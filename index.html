@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mental8Works - Saúde Mental & Bem-estar</title>
-    <link rel="icon" type="image/png" href="assets/images/fav-icon.png">
+    <link rel="icon" type="image/png" href="assets/images/fav-icon-color.png">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
@@ -14,7 +14,7 @@
 
 <body>
 
-    <!-- Dynamic Background Blobs -->
+    <!-- Blobs -->
     <div class="blob-container">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
@@ -23,18 +23,15 @@
         <div class="blob blob-5"></div>
     </div>
 
-    <!-- Mobile Menu Overlay -->
     <div class="menu-overlay"></div>
 
-    <!-- Header / Nav -->
+    <!-- Header -->
     <header class="header">
         <div class="container nav-container">
-            <!-- Logo -->
             <a href="#" class="nav-logo-link">
                 <img src="assets/images/logo-mental8works-color.webp" alt="Mental8Works" class="nav-logo-img">
             </a>
 
-            <!-- Mobile Toggle -->
             <div class="mobile-toggle">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -44,58 +41,48 @@
                 </svg>
             </div>
 
-            <!-- Centered Nav Menu -->
             <nav class="nav-menu">
                 <a href="#services" class="nav-link">Serviços</a>
                 <a href="#about" class="nav-link">Sobre Nós</a>
                 <a href="#team" class="nav-link">Equipa</a>
                 <a href="#blog" class="nav-link">Blog</a>
                 <a href="#contact" class="nav-link">Contactos</a>
-                <!-- Mobile Only Agendar Button in Menu -->
-                <a href="agendamentos/index.html" class="btn btn-primary"
-                    style="margin-top: 1rem; width: 100%; display: none;">Agendar</a>
-                <!-- Show this button only on mobile via CSS is tricky if we want default hidden. 
-                     We can use JavaScript to toggle classes or just leave it style="display: flex" inside media query.
-                     Let's use the CSS media query class logic we built. -->
-                <style>
-                    @media(max-width: 900px) {
-                        .nav-menu .btn {
-                            display: flex !important;
-                        }
-                    }
-                </style>
+                <!-- Mobile only button via CSS utility or media query logic -->
+                <a href="agendamentos/index.html" class="btn btn-primary d-md-none"
+                    style="margin-top: 1rem; width: 100%;">Agendar</a>
             </nav>
 
-            <!-- Actions (Desktop) -->
-            <div class="nav-actions">
+            <div class="nav-actions d-none d-md-block">
                 <a href="agendamentos/index.html" class="btn btn-primary">Agendar</a>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero" id="home">
         <div class="container hero-container"
             style="display: flex; flex-direction: column; align-items: center; gap: 2rem;">
-            <!-- Desktop structure moved to CSS flex-->
+            <!-- Content & Visual wrapper not strictly needed if we rely on flex order in CSS, 
+                 but keeping clean logic here for mobile order: Text then Image -->
             <div class="hero-content">
                 <h1>Encontre o seu equilíbrio interior</h1>
 
-                <!-- Pills -->
-                <div
-                    style="margin-bottom: 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; @media(min-width: 900px){justify-content: flex-start;}">
+                <div class="pills-container">
                     <span class="pill">Mediação Familiar</span>
                     <span class="pill">Psicologia Clínica</span>
                     <span class="pill">Psiquiatria</span>
                     <span class="pill">Terapia de Casal</span>
                 </div>
 
-                <p style="font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-inline: auto;">
+                <p style="max-width: 600px; margin-inline: auto; margin-left: 0;">
                     Promovendo a saúde mental com uma abordagem humana, inclusiva e acessível.
                     O seu bem-estar é a nossa prioridade.
                 </p>
                 <div class="hero-actions">
-                    <a href="agendamentos/index.html" class="btn btn-primary">Agendar Consulta</a>
+                    <a href="agendamentos/index.html" class="btn btn-primary">
+                        <span class="d-none d-md-inline">Agendar Consulta</span>
+                        <span class="d-md-none">Agendar</span>
+                    </a>
                     <a href="#services" class="btn btn-secondary">Saber Mais</a>
                 </div>
             </div>
@@ -103,8 +90,6 @@
                 <img src="assets/images/hero-banner.webp" alt="Saúde Mental" class="hero-banner">
             </div>
         </div>
-        <!-- Style override for specific element alignment responsiveness handled in CSS file, 
-             removed inline styles that conflict with media queries -->
     </section>
 
     <!-- Services -->
@@ -199,7 +184,7 @@
         </div>
     </section>
 
-    <!-- About Us - Redesigned -->
+    <!-- About Us -->
     <section class="section section-about" id="about">
         <div class="container">
             <div class="about-grid">
@@ -211,10 +196,6 @@
                         A Mental8Works é uma associação sem fins lucrativos, criada a partir da insatisfação de
                         profissionais que acreditavam ser possível fazer mais e melhor na área da saúde mental.
                     </p>
-                    <p>
-                        Acreditamos numa abordagem multidisciplinar, rigorosa, ética e sustentável. Queremos
-                        descomplicar o acesso ao cuidado, eliminando barreiras e estigmas.
-                    </p>
                 </div>
                 <div class="about-images">
                     <img src="assets/images/about-us.webp" alt="Equipa Mental8Works"
@@ -225,7 +206,7 @@
     </section>
 
     <!-- Team -->
-    <section class="section" id="team" style="background: white;">
+    <section class="section" id="team">
         <div class="container">
             <h2 class="text-center">A Nossa Equipa Fundadora</h2>
             <div class="team-grid">
@@ -292,7 +273,6 @@
         <div class="container">
             <h2 class="text-center">Blog & Notícias</h2>
             <div class="grid-cards" style="margin-bottom: 3rem;">
-                <!-- Blog cards -->
                 <div class="card blog-card" style="padding: 0;">
                     <div style="height: 200px; background: #eee;"></div>
                     <div class="blog-content">
@@ -317,7 +297,7 @@
         </div>
     </section>
 
-    <!-- Contact & Schedule -->
+    <!-- Contact -->
     <section class="section" id="contact">
         <div class="container">
             <div class="contact-grid">
@@ -332,7 +312,6 @@
                             📅 Agende Já a Sua Consulta
                         </a>
 
-                        <!-- Social/Contact Buttons Row -->
                         <div class="social-buttons-row">
                             <a href="mailto:mental8works@gmail.com" class="btn-social" title="Email">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
@@ -406,7 +385,6 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-                <!-- Col 1: Logo -->
                 <div class="footer-col">
                     <img src="assets/images/logo-mental8works-white.webp" alt="Mental8Works White Logo"
                         class="footer-logo-img">
@@ -414,8 +392,6 @@
                         Promovendo a saúde mental com excelência e humanidade desde 2014.
                     </p>
                 </div>
-
-                <!-- Col 2: Website Links -->
                 <div class="footer-col">
                     <h4 style="margin-bottom: 1rem; color: white;">Website</h4>
                     <ul style="opacity: 0.9;">
@@ -426,8 +402,6 @@
                         <li style="margin-bottom: 0.5rem;"><a href="agendamentos/index.html">Agendar</a></li>
                     </ul>
                 </div>
-
-                <!-- Col 3: Contacts -->
                 <div class="footer-col">
                     <h4 style="margin-bottom: 1rem; color: white;">Contactos</h4>
                     <ul style="opacity: 0.9;">
@@ -436,28 +410,8 @@
                         <li style="margin-bottom: 0.5rem;">Lisboa, Portugal</li>
                     </ul>
                 </div>
-
-                <div class="footer-col">
-                    <div style="margin-bottom: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="https://www.facebook.com/mental8works/" target="_blank"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                            </svg></a>
-                        <a href="https://www.instagram.com/mental8works/" target="_blank"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                            </svg></a>
-                    </div>
-                </div>
             </div>
 
-            <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <div>
                     <span style="display: block; margin-bottom: 0.25rem;">&copy; 2026 Mental8Works</span>
@@ -475,38 +429,28 @@
     </footer>
 
     <!-- Service Modals -->
-    <!-- Modal 1: Consultas -->
+    <!-- Modal 1: Consultas with Radial Chart -->
     <div id="modal-clinica" class="modal-overlay">
-        <div class="modal-content">
+        <div class="modal-content text-center">
             <button class="modal-close" onclick="closeModal('modal-clinica')">&times;</button>
             <h2 style="color: var(--color-primary); font-size: 1.5rem;">Psicologia Clínica</h2>
-            <p style="font-size: 0.95rem;">Trata-se de um ramo da Psicologia que versa sobre as condições que possam
-                causar mal-estar, sofrimento ou que retiram qualidade de vida às pessoas.</p>
+            <p style="font-size: 0.95rem; margin-bottom: 2rem;">Trata-se de um ramo da Psicologia que versa sobre as
+                condições que possam causar mal-estar, sofrimento ou que retiram qualidade de vida às pessoas.</p>
 
-            <!-- Dynamic Chart Visualization (Grid for response) -->
-            <div
-                style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 2rem 0; width: 100%; max-width: 400px; margin-inline: auto;">
-                <!-- Hacked the circle view to a grid for simpler mobile responsiveness, or keep flex wrap -->
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin: 1.5rem 0;">
-                <div
-                    style="padding: 1rem; background: #a3e635; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; text-align: center;">
-                    Avaliação</div>
-                <div
-                    style="padding: 1rem; background: #60a5fa; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; text-align: center; color: white;">
-                    Prevenção</div>
-                <div
-                    style="padding: 1rem; background: #facc15; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; text-align: center;">
-                    Diagnóstico</div>
-                <div
-                    style="padding: 1rem; background: #4ade80; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; text-align: center;">
-                    Tratamento</div>
+            <!-- Radial Chart Layout -->
+            <div class="chart-container-wrapper">
+                <div class="chart-circle chart-center">Psicologia<br>Clínica</div>
+                <div class="chart-circle pos-top">Avaliação</div>
+                <div class="chart-circle pos-tr">Prevenção</div>
+                <div class="chart-circle pos-br">Diagnóstico</div>
+                <div class="chart-circle pos-bot">Prognóstico</div>
+                <div class="chart-circle pos-bl">Tratamento</div>
+                <div class="chart-circle pos-tl">Reabilitação</div>
             </div>
 
-            <p style="font-size: 0.9rem; color: #64748b;">
+            <p style="font-size: 0.9rem; color: #64748b; margin-top: 2rem;">
                 A Psicologia Clínica da Mental8Works disponibiliza consultas para crianças, adolescentes e adultos com
-                vista à identificação de perturbações cognitivas ou emocionais, e acompanhamento psicológico
-                especializado.
+                vista à identificação de perturbações cognitivas ou emocionais.
             </p>
         </div>
     </div>
@@ -517,14 +461,11 @@
             <button class="modal-close" onclick="closeModal('modal-projetos')">&times;</button>
             <h2 style="color: var(--color-primary); font-size: 1.5rem;">Projetos Sociais</h2>
             <p>Desenvolvemos iniciativas que levam a saúde mental para fora do consultório.</p>
-
             <ul style="margin: 1.5rem 0; list-style: disc; padding-left: 1.5rem;">
                 <li style="margin-bottom: 0.5rem;"><strong>Intervenção Escolar:</strong> Programas de inteligência
-                    emocional para crianças.</li>
-                <li style="margin-bottom: 0.5rem;"><strong>Apoio à Família:</strong> Workshops de parentalidade
-                    consciente.</li>
-                <li style="margin-bottom: 0.5rem;"><strong>Sustentabilidade Social:</strong> Projetos de inclusão
-                    comunitária.</li>
+                    emocional.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Apoio à Família:</strong> Workshops de parentalidade.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Sustentabilidade Social:</strong> Projetos de inclusão.</li>
             </ul>
         </div>
     </div>
@@ -535,15 +476,10 @@
             <button class="modal-close" onclick="closeModal('modal-formacao')">&times;</button>
             <h2 style="color: var(--color-primary); font-size: 1.5rem;">Catálogo de Formação</h2>
             <p>Capacitação para profissionais e empresas.</p>
-
             <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
                 <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
                     <h4>Clínica</h4>
                     <p style="font-size: 0.85rem;">Especilização para psicólogos</p>
-                </div>
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
-                    <h4>Organizacional</h4>
-                    <p style="font-size: 0.85rem;">Liderança e Bem-estar no trabalho</p>
                 </div>
             </div>
         </div>
@@ -551,49 +487,9 @@
 
     <script src="assets/js/script.js"></script>
     <script>
-        // Modal Logic
-        function openModal(id) {
-            document.getElementById(id).classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeModal(id) {
-            document.getElementById(id).classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        document.querySelectorAll('.modal-overlay').forEach(overlay => {
-            overlay.addEventListener('click', (e) => {
-                if (e.target === overlay) {
-                    overlay.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            })
-        });
-
-        // Mobile Toggle Logic (Moved to inline script for guaranteed execution without waiting for external load if slow)
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggle = document.querySelector('.mobile-toggle');
-            const menu = document.querySelector('.nav-menu');
-            const overlay = document.querySelector('.menu-overlay');
-
-            if (toggle && menu) {
-                toggle.addEventListener('click', () => {
-                    menu.classList.toggle('active');
-                    if (overlay) overlay.classList.toggle('active');
-                });
-                if (overlay) {
-                    overlay.addEventListener('click', () => {
-                        menu.classList.remove('active');
-                        overlay.classList.remove('active');
-                    });
-                }
-                menu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        menu.classList.remove('active');
-                        if (overlay) overlay.classList.remove('active');
-                    })
-                })
-            }
-        });
+        // Inline script logic for Modals and Toggle that must run immediately
+        function openModal(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow = 'auto'; }
     </script>
 </body>
 
