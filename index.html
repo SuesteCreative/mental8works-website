@@ -5,12 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mental8Works - Saúde Mental & Bem-estar</title>
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/fav-icon.png">
-
     <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
         rel="stylesheet">
@@ -18,11 +14,11 @@
 
 <body>
 
-    <!-- Dynamic Background Blobs (Appearing throughout) -->
+    <!-- Dynamic Background Blobs -->
     <div class="blob-container">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div> <!-- Yellow one added -->
+        <div class="blob blob-3"></div>
         <div class="blob blob-4"></div>
         <div class="blob blob-5"></div>
     </div>
@@ -30,19 +26,35 @@
     <!-- Header / Nav -->
     <header class="header">
         <div class="container nav-container">
-            <!-- Logo Image in Navbar -->
-            <a href="#" class="nav-logo">
+            <!-- Logo -->
+            <a href="#" class="nav-logo-link">
                 <img src="assets/images/logo-mental8works-color.webp" alt="Mental8Works" class="nav-logo-img">
             </a>
 
+            <!-- Centered Nav Menu -->
             <nav class="nav-menu">
                 <a href="#services" class="nav-link">Serviços</a>
                 <a href="#about" class="nav-link">Sobre Nós</a>
                 <a href="#team" class="nav-link">Equipa</a>
                 <a href="#blog" class="nav-link">Blog</a>
                 <a href="#contact" class="nav-link">Contactos</a>
-                <a href="agendamentos/index.html" class="btn btn-primary">Agendar</a>
+                <!-- Mobile Only Agendar Button in Menu -->
+                <a href="agendamentos/index.html" class="btn btn-primary"
+                    style="display: none; @media(max-width:900px){display:block;}">Agendar</a>
             </nav>
+
+            <!-- Actions (Desktop) -->
+            <div class="nav-actions" style="display: none;">
+                <a href="agendamentos/index.html" class="btn btn-primary">Agendar</a>
+            </div>
+            <!-- Show actions properly via CSS media queries, hacked inline for now just to ensure structure -->
+            <style>
+                @media(min-width: 901px) {
+                    .nav-actions {
+                        display: block !important;
+                    }
+                }
+            </style>
 
             <div class="mobile-toggle">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -59,8 +71,16 @@
     <section class="hero" id="home">
         <div class="container" style="display: flex; align-items: center; gap: 4rem; width: 100%;">
             <div class="hero-content">
-                <!-- Removed Logo from here -->
                 <h1>Encontre o seu equilíbrio interior</h1>
+
+                <!-- Pills -->
+                <div style="margin-bottom: 1.5rem;">
+                    <span class="pill">Mediação Familiar</span>
+                    <span class="pill">Psicologia Clínica</span>
+                    <span class="pill">Psiquiatria</span>
+                    <span class="pill">Terapia de Casal</span>
+                </div>
+
                 <p style="font-size: 1.25rem; margin-bottom: 2rem;">
                     Promovendo a saúde mental com uma abordagem humana, inclusiva e acessível.
                     O seu bem-estar é a nossa prioridade.
@@ -83,101 +103,125 @@
             <div class="grid-cards">
                 <!-- Card 1 -->
                 <div class="card">
-                    <div class="service-icon-wrapper">
-                        <!-- User/Doctor Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
-                        </svg>
+                    <div class="card-content">
+                        <div class="service-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                        </div>
+                        <h3>Consultas de Psiquiatria e Psicologia</h3>
+                        <div style="width: 50px; height: 3px; background: #f0be44; margin-bottom: 1rem;"></div>
+                        <p>Os nossos Serviços abrangem as áreas de Psiquiatria, Psicologia do Adulto e Infanto-Juvenil.
+                        </p>
                     </div>
-                    <h3>Consultas de Psiquiatria e Psicologia</h3>
-                    <div style="width: 50px; height: 3px; background: #f0be44; margin-bottom: 1rem;"></div>
-                    <p>Os nossos Serviços abrangem as áreas de Psiquiatria, Psicologia do Adulto e Infanto-Juvenil.</p>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn-text" onclick="openModal('modal-clinica')">
+                            Ver mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="margin-left: 4px;">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Card 2 -->
                 <div class="card">
-                    <div class="service-icon-wrapper">
-                        <!-- Project Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                            <polyline points="14 2 14 8 20 8" />
-                            <path d="M12 13v6" />
-                            <path d="M9 16l3-3 3 3" />
-                        </svg>
+                    <div class="card-content">
+                        <div class="service-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                <polyline points="14 2 14 8 20 8" />
+                                <path d="M12 13v6" />
+                                <path d="M9 16l3-3 3 3" />
+                            </svg>
+                        </div>
+                        <h3>Projetos</h3>
+                        <div style="width: 50px; height: 3px; background: #03919f; margin-bottom: 1rem;"></div>
+                        <p>Ao nível de Projectos damos respostas nas áreas Clínica, Família, Social e Comunitária.</p>
                     </div>
-                    <h3>Projetos</h3>
-                    <div style="width: 50px; height: 3px; background: #03919f; margin-bottom: 1rem;"></div>
-                    <p>Ao nível de Projectos damos respostas nas áreas Clínica, Família, Social e Comunitária.</p>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn-text" onclick="openModal('modal-projetos')">
+                            Ver mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="margin-left: 4px;">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Card 3 -->
                 <div class="card">
-                    <div class="service-icon-wrapper">
-                        <!-- Graduation/Training Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                            <path d="M6 12v5c3 3 9 3 12 0v-5" />
-                        </svg>
+                    <div class="card-content">
+                        <div class="service-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                            </svg>
+                        </div>
+                        <h3>Formação</h3>
+                        <div style="width: 50px; height: 3px; background: #f0be44; margin-bottom: 1rem;"></div>
+                        <p>O nosso catálogo de Formação é facilmente customizado às diferentes realidades nas áreas de
+                            Clínica e Família.</p>
                     </div>
-                    <h3>Formação</h3>
-                    <div style="width: 50px; height: 3px; background: #f0be44; margin-bottom: 1rem;"></div>
-                    <p>O nosso catálogo de Formação é facilmente customizado às diferentes realidades nas áreas de
-                        Clínica e Família, bem como a ecossistemas Sociais e Organizacionais.</p>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn-text" onclick="openModal('modal-formacao')">
+                            Ver mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="margin-left: 4px;">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Us -->
-    <section class="section" id="about" style="background: var(--color-text-main); color: white;">
+    <!-- About Us - Redesigned -->
+    <section class="section section-about" id="about">
         <div class="container">
-            <h2 class="text-center" style="color: white;">Sobre Nós</h2>
-            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-                <p style="color: white; font-weight: 600; font-size: 1.1rem; margin-bottom: 2rem;">
-                    A Mental8Works é uma associação sem fins lucrativos, um embrião lançado numa conversa de café em
-                    2014,
-                    entre amigos de escola e colegas de profissão, guiados por um ponto em comum: insatisfação.
-                </p>
-
-                <div
-                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; text-align: left; align-items: center;">
-                    <div>
-                        <h3 style="font-size: 2rem; margin-bottom: 1rem; color: white;">Propomo-nos a construir um
-                            futuro em que a nossa visão possa ser a norma em vez da exceção.</h3>
-                    </div>
-                    <div>
-                        <p style="color: #cbd5e1; font-size: 0.95rem;">
-                            A crença de que é possível fazer mais e melhor, numa área do conhecimento que foi e continua
-                            a ser
-                            alvo de barreiras, equívocos, estigmas e lacunas. Acreditamos que a promoção da Saúde Mental
-                            e a intervenção
-                            nesta área deve ser sustentada numa abordagem multidisciplinar e cooperativa, rigorosa e
-                            irreverente, ética e sustentável.
-                        </p>
-                        <p style="color: #cbd5e1; font-size: 0.95rem;">
-                            Acreditamos na promoção de saúde mental junto dos jovens, adultos, famílias, escolas e
-                            sociedade, com uma linguagem inclusiva e acessível.
-                        </p>
-                    </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                <div>
+                    <h2 style="color: var(--color-text-main);">Sobre Nós</h2>
+                    <h3 style="color: var(--color-primary);">Propomo-nos a construir um futuro em que a nossa visão
+                        possa ser a norma.</h3>
+                    <p>
+                        A Mental8Works é uma associação sem fins lucrativos, criada a partir da insatisfação de
+                        profissionais que acreditavam ser possível fazer mais e melhor na área da saúde mental.
+                    </p>
+                    <p>
+                        Acreditamos numa abordagem multidisciplinar, rigorosa, ética e sustentável. Queremos
+                        descomplicar o acesso ao cuidado, eliminando barreiras e estigmas.
+                    </p>
+                </div>
+                <div class="about-images">
+                    <img src="assets/images/about-us.webp" alt="Equipa Mental8Works"
+                        style="width: 100%; height: auto; border-radius: 12px;">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Team -->
-    <section class="section" id="team">
+    <section class="section" id="team" style="background: white;">
         <div class="container">
             <h2 class="text-center">A Nossa Equipa Fundadora</h2>
-            <p class="text-center" style="margin-bottom: 3rem;">Quem somos e de onde vimos</p>
             <div class="team-grid">
                 <!-- Member 1 -->
                 <div class="team-member">
                     <div class="team-img-wrapper" style="border-color: #03919f;">
-                        <!-- Placeholder team image -->
                         <img src="assets/images/team1.jpg" onerror="this.src='https://via.placeholder.com/150'"
                             alt="João Silva Gonçalves" class="team-img">
                     </div>
@@ -190,64 +234,56 @@
                         </svg>
                     </a>
                 </div>
-
-                <!-- Member 2 -->
                 <div class="team-member">
                     <div class="team-img-wrapper" style="border-color: #f0be44;">
                         <img src="assets/images/team2.jpg" onerror="this.src='https://via.placeholder.com/150'"
                             alt="Maria João Sequeira" class="team-img">
                     </div>
                     <h3>Maria João Sequeira</h3>
-                    <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="currentColor">
                             <path
                                 d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                        </svg>
-                    </a>
+                        </svg></a>
                 </div>
-
-                <!-- Member 3 -->
                 <div class="team-member">
                     <div class="team-img-wrapper" style="border-color: #03919f;">
                         <img src="assets/images/team3.jpg" onerror="this.src='https://via.placeholder.com/150'"
                             alt="Bruno Chibante" class="team-img">
                     </div>
                     <h3>Bruno Chibante</h3>
-                    <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="currentColor">
                             <path
                                 d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                        </svg>
-                    </a>
+                        </svg></a>
                 </div>
-
-                <!-- Member 4 -->
                 <div class="team-member">
                     <div class="team-img-wrapper" style="border-color: #f0be44;">
                         <img src="assets/images/team4.jpg" onerror="this.src='https://via.placeholder.com/150'"
                             alt="Mafalda Morais" class="team-img">
                     </div>
                     <h3>Mafalda Morais</h3>
-                    <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="currentColor">
                             <path
                                 d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                        </svg>
-                    </a>
+                        </svg></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Blog Preview -->
-    <section class="section" id="blog" style="background: white;">
+    <!-- Blog Preview (White Background to show blobs through transparency?? No, user asked "blog section is great, but it has a white background, and i want the blobs to be visible in this section.") -->
+    <!-- Answer: Keep white background but make it slightly transparent OR make it transparent to see global blobs. I will make it transparent (no BG) -->
+    <section class="section" id="blog">
         <div class="container">
             <h2 class="text-center">Blog & Notícias</h2>
             <div class="grid-cards" style="margin-bottom: 3rem;">
-                <!-- Blog cards placeholders -->
+                <!-- Blog cards -->
                 <div class="card blog-card" style="padding: 0;">
                     <div style="height: 200px; background: #eee;"></div>
                     <div class="blog-content">
@@ -272,16 +308,6 @@
         </div>
     </section>
 
-    <!-- Inspiration Quote -->
-    <section class="section text-center" style="background: var(--color-primary); color: white;">
-        <div class="container">
-            <blockquote style="font-size: 1.5rem; font-family: var(--font-serif); font-style: italic;">
-                "A única jornada impossível é aquela que nunca começas."
-            </blockquote>
-            <cite style="display: block; margin-top: 1rem; opacity: 0.9;">- Tony Robbins</cite>
-        </div>
-    </section>
-
     <!-- Contact & Schedule -->
     <section class="section" id="contact">
         <div class="container">
@@ -292,9 +318,49 @@
 
                     <div style="margin-top: 2rem;">
                         <a href="agendamentos/index.html" class="btn btn-primary"
-                            style="padding: 1rem 2rem; font-size: 1.1rem;">
+                            style="padding: 1rem 2rem; font-size: 1.1rem; width: 100%; text-align: center;">
                             📅 Agende Já a Sua Consulta
                         </a>
+
+                        <!-- Social/Contact Buttons Row -->
+                        <div class="social-buttons-row">
+                            <a href="mailto:mental8works@gmail.com" class="btn-social" title="Email">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                            </a>
+                            <!-- Whatsapp (No link yet) -->
+                            <span class="btn-social" title="Whatsapp (Brevemente)" style="cursor: help;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                                </svg>
+                            </span>
+                            <a href="https://www.instagram.com/mental8works/" target="_blank" class="btn-social"
+                                title="Instagram">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/mental8works/" target="_blank" class="btn-social"
+                                title="Facebook">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -327,42 +393,186 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer - Redesigned -->
     <footer class="footer">
-        <div class="container footer-grid">
-            <!-- Col 1: Logo -->
-            <div class="footer-col-left">
-                <img src="assets/images/logo-mental8works-white.webp" alt="Mental8Works White Logo"
-                    class="footer-logo-img">
-                <p style="text-align: left; opacity: 0.8; font-size: 0.9rem;">
-                    Promovendo a saúde mental desde 2014.
-                </p>
-            </div>
-
-            <!-- Col 2: Quick Links -->
-            <div class="footer-col-center">
-                <h4 style="margin-bottom: 1rem; color: white;">Links Rápidos</h4>
-                <ul style="opacity: 0.9;">
-                    <li style="margin-bottom: 0.5rem;"><a href="#home">Início</a></li>
-                    <li style="margin-bottom: 0.5rem;"><a href="#services">Serviços</a></li>
-                    <li style="margin-bottom: 0.5rem;"><a href="#about">Sobre Nós</a></li>
-                    <li style="margin-bottom: 0.5rem;"><a href="agendamentos/index.html">Agendar</a></li>
-                </ul>
-            </div>
-
-            <!-- Col 3: Social/Copyright -->
-            <div class="footer-col-right">
-                <div style="margin-bottom: 1rem; display: flex; gap: 1rem; justify-content: flex-end;">
-                    <a href="#">Facebook</a>
-                    <a href="#">Instagram</a>
-                    <a href="#">LinkedIn</a>
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Col 1: Logo -->
+                <div class="footer-col">
+                    <img src="assets/images/logo-mental8works-white.webp" alt="Mental8Works White Logo"
+                        class="footer-logo-img">
+                    <p style="opacity: 0.8; font-size: 0.9rem;">
+                        Promovendo a saúde mental com excelência e humanidade desde 2014.
+                    </p>
                 </div>
-                <p>&copy; 2026 Mental8Works.</p>
+
+                <!-- Col 2: Website Links -->
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1rem; color: white;">Website</h4>
+                    <ul style="opacity: 0.9;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#home">Início</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#services">Serviços</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#about">Sobre Nós</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#blog">Blog</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="agendamentos/index.html">Agendar</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Contacts -->
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1rem; color: white;">Contactos</h4>
+                    <ul style="opacity: 0.9;">
+                        <li style="margin-bottom: 0.5rem;"><a
+                                href="mailto:mental8works@gmail.com">mental8works@gmail.com</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.facebook.com/mental8works/"
+                                target="_blank">Facebook</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="https://www.instagram.com/mental8works/"
+                                target="_blank">Instagram</a></li>
+                        <li style="margin-bottom: 0.5rem;">Lisboa, Portugal</li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Socials (Can merge with contacts or keep separate icons) -->
+                <!-- User requested simple list, but visual icons nice. I'll stick to text per request for column, icons below -->
+                <div class="footer-col">
+                    <div style="margin-bottom: 1rem; display: flex; gap: 1rem;">
+                        <!-- Icons -->
+                        <a href="https://www.facebook.com/mental8works/" target="_blank"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                            </svg></a>
+                        <a href="https://www.instagram.com/mental8works/" target="_blank"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div>
+                    <span style="display: block; margin-bottom: 0.25rem;">&copy; 2026 Mental8Works</span>
+                    <span style="font-size: 0.75rem; opacity: 0.7;">Designed by <a href="#"
+                            style="text-decoration: underline;">Sueste - Creative Agency</a></span>
+                </div>
+                <div>
+                    <a href="#" style="margin-right: 1rem;">Política de Privacidade</a>
+                    <a href="#" style="margin-right: 1rem;">Termos e Condições</a>
+                    <a href="#" style="margin-right: 1rem;">Cookies</a>
+                    <a href="contactos/index.html">Contactos</a>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- Service Modals -->
+    <!-- Modal 1: Consultas -->
+    <div id="modal-clinica" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-clinica')">&times;</button>
+            <h2 style="color: var(--color-primary);">Psicologia Clínica</h2>
+            <p>Trata-se de um ramo da Psicologia que versa sobre as condições que possam causar mal-estar, sofrimento ou
+                que retiram qualidade de vida às pessoas.</p>
+
+            <!-- Dynamic Chart Visualization (CSS Shapes/Flex) -->
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin: 2rem 0;">
+                <div
+                    style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background: #a3e635; border-radius: 50%; color: #1a2e05; font-size: 0.8rem; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    Avaliação</div>
+                <div
+                    style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background: #60a5fa; border-radius: 50%; color: white; font-size: 0.8rem; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    Prevenção</div>
+                <div
+                    style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background: #facc15; border-radius: 50%; color: #422006; font-size: 0.8rem; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    Diagnóstico</div>
+                <div
+                    style="width: 120px; height: 120px; display: flex; align-items: center; justify-content: center; background: #03919f; border-radius: 50%; color: white; font-size: 1rem; font-weight: bold; box-shadow: 0 10px 15px rgba(0,0,0,0.1); z-index: 2;">
+                    Psicologia<br>Clínica</div>
+                <div
+                    style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background: #4b5563; border-radius: 50%; color: white; font-size: 0.8rem; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    Reabilitação</div>
+                <div
+                    style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background: #4ade80; border-radius: 50%; color: #14532d; font-size: 0.8rem; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    Tratamento</div>
+                <div
+                    style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background: #fbbf24; border-radius: 50%; color: #451a03; font-size: 0.8rem; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    Prognóstico</div>
+            </div>
+
+            <p style="font-size: 0.9rem; color: #64748b;">
+                A Psicologia Clínica da Mental8Works disponibiliza consultas para crianças, adolescentes e adultos com
+                vista à identificação de perturbações cognitivas ou emocionais, e acompanhamento psicológico
+                especializado.
+            </p>
+        </div>
+    </div>
+
+    <!-- Modal 2: Projetos -->
+    <div id="modal-projetos" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-projetos')">&times;</button>
+            <h2 style="color: var(--color-primary);">Projetos Sociais & Comunitários</h2>
+            <p>Desenvolvemos iniciativas que levam a saúde mental para fora do consultório.</p>
+
+            <ul style="margin: 2rem 0; list-style: disc; padding-left: 1.5rem;">
+                <li style="margin-bottom: 0.5rem;"><strong>Intervenção Escolar:</strong> Programas de inteligência
+                    emocional para crianças.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Apoio à Família:</strong> Workshops de parentalidade
+                    consciente.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Sustentabilidade Social:</strong> Projetos de inclusão
+                    comunitária.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal 3: Formação -->
+    <div id="modal-formacao" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-formacao')">&times;</button>
+            <h2 style="color: var(--color-primary);">Catálogo de Formação</h2>
+            <p>Capacitação para profissionais e empresas.</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                    <h4>Clínica</h4>
+                    <p style="font-size: 0.85rem;">Especilização para psicólogos</p>
+                </div>
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                    <h4>Organizacional</h4>
+                    <p style="font-size: 0.85rem;">Liderança e Bem-estar no trabalho</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="assets/js/script.js"></script>
+    <script>
+        // Modal Logic
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        // Close on outside click
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            })
+        });
+    </script>
 </body>
 
 </html>
