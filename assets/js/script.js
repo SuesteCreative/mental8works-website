@@ -1,6 +1,35 @@
+// Global Functions for HTML interactions
+window.openModal = function (id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+window.closeModal = function (id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Mailto Form Handler
+window.sendMail = function (e) {
+    e.preventDefault();
+    const name = document.getElementById('contactName').value;
+    const email = document.getElementById('contactEmail').value;
+    const msg = document.getElementById('contactMessage').value;
+
+    const subject = `Contacto Site: ${name}`;
+    const body = `Nome: ${name}\nEmail: ${email}\n\n${msg}`;
+
+    window.location.href = `mailto:mental8works@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu Toggle Logic
-    // Check if elements exist to avoid null errors on subpages if structure differs
     const mobileToggle = document.querySelector('.mobile-toggle');
     const navMenu = document.querySelector('.nav-menu');
     const overlay = document.querySelector('.menu-overlay');
@@ -52,5 +81,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
+    });
+
+    // Safety check for mobile constraints to prevent overflow issues
+    // Just a helper to ensure smooth experience
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 900) {
+            if (navMenu) navMenu.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+        }
     });
 });
