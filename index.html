@@ -5,255 +5,225 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mental8Works - Saúde Mental & Bem-estar</title>
-    <meta name="description"
-        content="Associação Mental8Works - Promoção e intervenção na saúde mental, multidisciplinar e acessível para todos.">
-
-    <!-- Fonts -->
+    <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
         rel="stylesheet">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
 
-    <!-- Header -->
+    <!-- Dynamic Background Blobs (Fixed to viewport or absolute to Body) -->
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div> <!-- Desktop only -->
+        <div class="blob blob-5"></div> <!-- Desktop only -->
+    </div>
+
+    <!-- Header / Nav -->
     <header class="header">
-        <div class="container">
-            <div class="header-content flex items-center justify-between">
-                <a href="index.html" class="logo">
-                    <span class="logo-text">Mental8Works</span>
-                </a>
+        <div class="container nav-container">
+            <!-- Nav Logo (User asked for logo in Hero, but usually Nav has a small logo or brand name. I'll put text for now specifically requested logic) -->
+            <!-- Wait, user said "nav bar no top da hero section". I will put the nav links. The logo is requested IN the hero section distinct from nav? Or nav logo? 
+                 "usa também o logo... na hero section". Usually implies the big branding. I'll put a text/small logo in nav for sticky, but big logo in hero content. -->
+            <a href="#" class="nav-logo"
+                style="font-weight: 700; font-size: 1.25rem; font-family: 'Playfair Display', serif;">Mental8Works</a>
 
-                <nav class="nav-links">
-                    <a href="index.html" class="active">Início</a>
-                    <a href="about.html">Sobre Nós</a> <!-- Assuming about is root or handled -->
-                    <!-- Wait, user structure didn't specify 'about', but 'contactos' and 'blog' folders. I'll link accordingly. -->
-                    <a href="contactos/index.html">Contactos</a>
-                    <a href="blog/index.html">Blog</a>
+            <nav class="nav-menu">
+                <a href="#services" class="nav-link">Serviços</a>
+                <a href="#about" class="nav-link">Sobre Nós</a>
+                <a href="#team" class="nav-link">Equipa</a>
+                <a href="#blog" class="nav-link">Blog</a>
+                <a href="#contact" class="nav-link">Contactos</a>
+                <a href="agendamentos/index.html" class="btn btn-primary">Agendar</a>
+            </nav>
 
-                    <div class="mobile-only" style="margin-top: 1rem;">
-                        <a href="contactos/index.html" class="btn btn-primary">Agendar</a>
-                    </div>
-                </nav>
-
-                <div class="header-actions flex items-center">
-                    <a href="contactos/index.html" class="btn btn-primary desktop-only">Agendar Consulta</a>
-                    <button class="menu-toggle" aria-label="Menu">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-menu">
-                            <line x1="4" x2="20" y1="12" y2="12" />
-                            <line x1="4" x2="20" y1="6" y2="6" />
-                            <line x1="4" x2="20" y1="18" y2="18" />
-                        </svg>
-                    </button>
-                </div>
+            <div class="mobile-toggle">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container hero-container">
-                <div class="hero-content animate-fade-up">
-                    <div class="badge">Saúde Mental & Bem-estar</div>
-                    <h1>Encontre o seu <br /> <span class="highlight">Equilíbrio Interior</span></h1>
-                    <p class="hero-subtitle">
-                        Mental8Works é o seu refúgio seguro para o crescimento pessoal.
-                        Uma abordagem humanista e integrativa para cuidar da sua mente.
-                    </p>
-                    <div class="hero-actions">
-                        <a href="contactos/index.html" class="btn btn-primary">Agendar Consulta</a>
-                        <a href="#services" class="btn btn-secondary">Explorar Serviços</a>
-                    </div>
-                </div>
-
-                <div class="hero-visual animate-fade-up delay-200">
-                    <div class="image-wrapper animate-float">
-                        <img src="https://images.unsplash.com/photo-1544367563-12123d8965cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                            alt="Meditation and Peace" class="main-img">
-                        <div class="floating-card card">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="icon-heart">
-                                <path
-                                    d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-                            </svg>
-                            <span>Cuidado Humanizado</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Abstract Shapes -->
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="intro section">
-            <div class="container text-center">
-                <h2 class="animate-fade-up">Porque escolher a Mental8Works?</h2>
-                <p class="intro-text animate-fade-up delay-100">
-                    Acreditamos que a saúde mental é a base de uma vida plena.
-                    Nossa missão é tornar o apoio psicológico acessível, ético e transformador.
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container" style="display: flex; align-items: center; gap: 4rem; width: 100%;">
+            <div class="hero-content">
+                <img src="assets/images/logo-mental8works-color.webp" alt="Mental8Works Logo" class="logo-hero">
+                <h1>Encontre o seu equilíbrio interior</h1>
+                <p style="font-size: 1.25rem; margin-bottom: 2rem;">
+                    Promovendo a saúde mental com uma abordagem humana, inclusiva e acessível.
+                    O seu bem-estar é a nossa prioridade.
                 </p>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="agendamentos/index.html" class="btn btn-primary">Agendar Consulta</a>
+                    <a href="#services" class="btn btn-secondary">Saber Mais</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="assets/images/hero-banner.webp" alt="Saúde Mental" class="hero-banner">
+            </div>
+        </div>
+    </section>
 
-                <div class="features-grid grid grid-cols-3">
-                    <div class="feature-item animate-fade-up delay-100">
-                        <div class="icon-circle">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="4" />
-                                <path d="M12 2v2" />
-                                <path d="M12 20v2" />
-                                <path d="m4.93 4.93 1.41 1.41" />
-                                <path d="m17.66 17.66 1.41 1.41" />
-                                <path d="M2 12h2" />
-                                <path d="M20 12h2" />
-                                <path d="m6.34 17.66-1.41 1.41" />
-                                <path d="m19.07 4.93-1.41 1.41" />
-                            </svg>
-                        </div>
-                        <h3>Abordagem Positiva</h3>
-                        <p>Focamos nas suas forças e potencialidades, não apenas nos sintomas.</p>
+    <!-- Services -->
+    <section class="section" id="services">
+        <div class="container">
+            <h2 class="text-center">Nossos Serviços</h2>
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>Psicologia Clínica</h3>
+                    <p>Acompanhamento psicoterapêutico para jovens e adultos, focado no autoconhecimento e bem-estar.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3>Psiquiatria</h3>
+                    <p>Avaliação e acompanhamento médico especializado para o tratamento de perturbações mentais.</p>
+                </div>
+                <div class="card">
+                    <h3>Terapia de Casal</h3>
+                    <p>Espaço de diálogo e mediação para fortalecer relações e resolver conflitos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section class="section" id="about" style="background: white;">
+        <div class="container">
+            <h2 class="text-center">Sobre Nós</h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p>
+                    A Mental8Works nasceu da vontade de criar um espaço onde a saúde mental é tratada com
+                    a dignidade e a excelência que merece. A nossa missão é descomplicar o acesso ao cuidado,
+                    oferecendo um serviço próximo, ético e profissional.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="section" id="team">
+        <div class="container">
+            <h2 class="text-center">A Nossa Equipa</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <!-- Placeholder images since specific ones weren't provided -->
+                    <div class="team-img" style="background: #eee;"></div>
+                    <h3>Dra. Ana Silva</h3>
+                    <p>Psicóloga Clínica</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-img" style="background: #eee;"></div>
+                    <h3>Dr. João Santos</h3>
+                    <p>Psiquiatra</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-img" style="background: #eee;"></div>
+                    <h3>Dra. Maria Costa</h3>
+                    <p>Terapeuta Familiar</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Preview -->
+    <section class="section" id="blog" style="background: white;">
+        <div class="container">
+            <h2 class="text-center">Blog & Notícias</h2>
+            <div class="grid-cards" style="margin-bottom: 3rem;">
+                <div class="card blog-card" style="padding: 0;">
+                    <div style="height: 200px; background: #eee;"></div>
+                    <div class="blog-content">
+                        <h3>Saúde Mental no Trabalho</h3>
+                        <p>Estratégias para prevenir o burnout...</p>
+                        <a href="blog/posts/exemplo-artigo/index.html"
+                            style="color: var(--color-primary); font-weight: 600;">Ler mais →</a>
                     </div>
-                    <div class="feature-item animate-fade-up delay-200">
-                        <div class="icon-circle">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                                <circle cx="9" cy="7" r="4" />
-                                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                            </svg>
-                        </div>
-                        <h3>Equipa Multidisciplinar</h3>
-                        <p>Psiquiatras, psicólogos e terapeutas trabalhando em sintonia para si.</p>
-                    </div>
-                    <div class="feature-item animate-fade-up delay-300">
-                        <div class="icon-circle">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path
-                                    d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
-                                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
-                            </svg>
-                        </div>
-                        <h3>Ambiente Seguro</h3>
-                        <p>Um espaço de confiança e confidencialidade total para a sua jornada.</p>
+                </div>
+                <div class="card blog-card" style="padding: 0;">
+                    <div style="height: 200px; background: #eee;"></div>
+                    <div class="blog-content">
+                        <h3>A Importância do Sono</h3>
+                        <p>Como dormir bem afeta a sua mente...</p>
+                        <a href="#" style="color: var(--color-primary); font-weight: 600;">Ler mais →</a>
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="text-center">
+                <a href="blog/index.html" class="btn btn-secondary">Ver Todos os Artigos</a>
+            </div>
+        </div>
+    </section>
 
-        <!-- Services Preview -->
-        <section id="services" class="services-preview section bg-soft">
-            <div class="container">
-                <div class="flex justify-between items-center mb-lg" style="flex-wrap: wrap;">
-                    <h2 style="margin-bottom: 0;">Nossos Serviços</h2>
-                    <!-- <a href="services.html" class="link-arrow">Ver todos <svg ...></svg></a> (No Service page in user request structure, but I can assume standard link) -->
+    <!-- Inspiration Quote -->
+    <section class="section text-center" style="background: var(--color-primary); color: white;">
+        <div class="container">
+            <blockquote style="font-size: 1.5rem; font-family: var(--font-serif); font-style: italic;">
+                "A única jornada impossível é aquela que nunca começas."
+            </blockquote>
+            <cite style="display: block; margin-top: 1rem; opacity: 0.9;">- Tony Robbins</cite>
+        </div>
+    </section>
+
+    <!-- Contact & Schedule -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                <div>
+                    <h2>Entre em Contacto</h2>
+                    <p>Estamos aqui para ouvir. Envie-nos uma mensagem ou agende a sua consulta diretamente.</p>
+
+                    <div style="margin-top: 2rem;">
+                        <a href="agendamentos/index.html" class="btn btn-primary"
+                            style="padding: 1rem 2rem; font-size: 1.1rem;">
+                            📅 Agende Já a Sua Consulta
+                        </a>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-3">
-                    <div class="card service-preview-card">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path
-                                    d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" />
-                                <path
-                                    d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z" />
-                            </svg>
+                <div class="contact-section">
+                    <form action="mailto:mental8works@gmail.com" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input type="text" class="form-control" name="name" required>
                         </div>
-                        <h3>Psiquiatria</h3>
-                        <p>Diagnóstico médico e tratamento farmacológico quando necessário para restabelecer o
-                            equilíbrio.</p>
-                    </div>
-                    <div class="card service-preview-card">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path
-                                    d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-                            </svg>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" name="email" required>
                         </div>
-                        <h3>Psicoterapia</h3>
-                        <p>Acompanhamento psicológico para ansiedade, depressão e autoconhecimento.</p>
-                    </div>
-                    <div class="card service-preview-card">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="4" />
-                                <path d="M12 2v2" />
-                                <path d="M12 20v2" />
-                                <path d="m4.93 4.93 1.41 1.41" />
-                                <path d="m17.66 17.66 1.41 1.41" />
-                                <path d="M2 12h2" />
-                                <path d="M20 12h2" />
-                                <path d="m6.34 17.66-1.41 1.41" />
-                                <path d="m19.07 4.93-1.41 1.41" />
-                            </svg>
+                        <div class="form-group">
+                            <label>Mensagem</label>
+                            <textarea class="form-control" rows="4" name="message" required></textarea>
                         </div>
-                        <h3>Mindfulness</h3>
-                        <p>Técnicas de atenção plena para redução de stress e maior clareza mental.</p>
-                    </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensagem</button>
+                    </form>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3 class="footer-logo">Mental8Works</h3>
-                    <p class="footer-text">
-                        Promovendo a saúde mental com uma abordagem humana, inclusiva e acessível desde 2014.
-                    </p>
-                </div>
-
-                <div class="footer-links">
-                    <h4>Links Rápidos</h4>
-                    <ul>
-                        <li><a href="index.html">Início</a></li>
-                        <li><a href="contactos/index.html">Contactos</a></li>
-                        <li><a href="blog/index.html">Blog & Notícias</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-contact">
-                    <h4>Contactos</h4>
-                    <ul style="color: #cbd5e1; list-style: none;">
-                        <li style="margin-bottom: 0.5rem;">+351 210 000 000</li>
-                        <li style="margin-bottom: 0.5rem;">geral@mental8works.pt</li>
-                        <li>Lisboa, Portugal</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2024 Mental8Works. Todos os direitos reservados.</p>
+            <img src="assets/images/logo-mental8works-white.webp" alt="Mental8Works White Logo">
+            <p>&copy; 2024 Mental8Works. Todos os direitos reservados.</p>
+            <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 1.5rem;">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
             </div>
         </div>
     </footer>
 
-    <!-- JS -->
     <script src="assets/js/script.js"></script>
 </body>
 
