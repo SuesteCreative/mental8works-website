@@ -1,1 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactos - Mental8Works</title>
+    <link rel="icon" type="image/png" href="../assets/images/fav-icon.png">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Blobs -->
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+        <div class="blob blob-5"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <img src="../assets/images/logo-mental8works-color.webp" alt="Mental8Works" class="nav-logo-img">
+            </a>
+
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Voltar ao Início</a>
+                <a href="../agendamentos/index.html" class="btn btn-primary">Agendar</a>
+            </nav>
+
+            <div class="mobile-toggle">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section hero" style="min-height: auto; padding-top: 150px;">
+            <div class="container">
+                <h1 class="text-center">Contactos</h1>
+                <p class="text-center" style="max-width: 600px; margin: 0 auto 3rem;">
+                    Estamos disponíveis para esclarecer as suas dúvidas.
+                </p>
+
+                <div
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1000px; margin: 0 auto;">
+                    <!-- Info -->
+                    <div>
+                        <div class="card" style="margin-bottom: 2rem;">
+                            <h3>Email</h3>
+                            <p style="margin-bottom: 0;">geral@mental8works.pt</p>
+                            <p>recrutamento@mental8works.pt</p>
+                        </div>
+                        <div class="card">
+                            <h3>Localização</h3>
+                            <p>Lisboa, Portugal</p>
+                        </div>
+                    </div>
+
+                    <!-- Form -->
+                    <div class="contact-section" style="margin-top: 0;">
+                        <form action="mailto:mental8works@gmail.com" method="post" enctype="text/plain">
+                            <div class="form-group">
+                                <label>Nome</label>
+                                <input type="text" class="form-control" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Mensagem</label>
+                                <textarea class="form-control" rows="4" name="message" required></textarea>
+                            </div>
+                            <!-- Privacy Checkbox -->
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="privacy-contact" required>
+                                <label for="privacy-contact">
+                                    Li e aceito a política de privacidade.
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensagem</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col-left">
+                <img src="../assets/images/logo-mental8works-white.webp" alt="Mental8Works White Logo"
+                    class="footer-logo-img">
+                <p style="text-align: left; opacity: 0.8; font-size: 0.9rem;">
+                    Promovendo a saúde mental desde 2014.
+                </p>
+            </div>
+            <div class="footer-col-center">
+                <h4 style="margin-bottom: 1rem; color: white;">Links Rápidos</h4>
+                <ul style="opacity: 0.9;">
+                    <li style="margin-bottom: 0.5rem;"><a href="../index.html">Início</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="../index.html#services">Serviços</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="../agendamentos/index.html">Agendar</a></li>
+                </ul>
+            </div>
+            <div class="footer-col-right">
+                <div style="margin-bottom: 1rem; display: flex; gap: 1rem; justify-content: flex-end;">
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+                <p>&copy; 2024 Mental8Works.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+</body>
+
+</html>
