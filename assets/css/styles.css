@@ -1,4 +1,4 @@
-/* Modern Reset & Base - Updated for Mobile Scaling */
+/* Modern Reset & Base */
 :root {
     --color-primary: #03919f;
     /* Teal */
@@ -81,15 +81,12 @@ ul {
     text-align: center;
 }
 
-/* Default centered for mobile */
 @media (min-width: 900px) {
     .section {
         text-align: left;
         padding: 6rem 0;
     }
 }
-
-/* Reset for Desktop */
 
 .text-center {
     text-align: center;
@@ -351,17 +348,19 @@ p {
 }
 
 .nav-logo-img {
-    height: 45px;
+    height: 60px;
     width: auto;
     transition: transform 0.3s;
 }
 
+/* Doubled Mobile Size roughly */
 @media (min-width: 900px) {
     .nav-logo-img {
-        height: 65px;
+        height: 90px;
     }
 }
 
+/* Doubled Desktop Size roughly */
 .nav-logo-img:hover {
     transform: scale(1.05);
 }
@@ -426,10 +425,11 @@ p {
     }
 
     .nav-link {
-        font-size: 0.95rem;
+        font-size: 1rem;
         padding: 0;
         border: none;
         width: auto;
+        font-weight: 500;
     }
 
     .header {
@@ -460,13 +460,13 @@ p {
     visibility: visible;
 }
 
-/* Hero Section - Mobile Optmized */
+/* Hero Section */
 .hero {
-    padding-top: 100px;
+    padding-top: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 3rem;
     text-align: center;
 }
 
@@ -489,8 +489,6 @@ p {
     margin: 0 auto;
     display: block;
 }
-
-/* Increased max-width for mobile visibility */
 
 .pills-container {
     display: grid;
@@ -532,26 +530,40 @@ p {
 }
 
 @media (min-width: 900px) {
+
+    /* Desktop Layout Revert: Text Left, Image Right, Row Direction */
     .hero {
-        flex-direction: row;
-        text-align: left;
-        padding-top: 130px;
+        padding-top: 150px;
         min-height: 85vh;
+    }
+
+    .hero-container {
+        display: flex;
+        flex-direction: row !important;
+        /* Forces row layout */
+        align-items: center;
+        justify-content: space-between;
+        text-align: left;
+        /* Center text align override */
+        gap: 4rem;
     }
 
     .hero-content {
         flex: 1;
-        margin-top: -2rem;
+        order: 1;
+        text-align: left;
     }
 
     .hero-visual {
         flex: 1;
+        order: 2;
         margin-top: 0;
     }
 
     .hero-banner {
         max-width: none;
         transform: rotate(2deg);
+        margin: 0;
     }
 
     .hero-banner:hover {
@@ -573,6 +585,17 @@ p {
 
     .hero-actions {
         justify-content: flex-start;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+        margin-left: 0;
+        margin-right: auto;
+        max-width: 600px;
     }
 }
 
@@ -856,8 +879,7 @@ p {
     color: var(--color-text-main);
 }
 
-/* Psychology Chart - Centered Grid Mobile / Radial Desktop */
-/* Using absolute positions for desktop radial layout */
+/* Psychology Chart */
 .chart-container-wrapper {
     position: relative;
     width: 300px;
@@ -925,7 +947,6 @@ p {
     }
 }
 
-/* Positions (Percentage based from center point) */
 .pos-top {
     top: 0;
     left: 50%;
@@ -933,7 +954,6 @@ p {
     background: #bef264;
 }
 
-/* Lime */
 .pos-tr {
     top: 20%;
     right: 0;
@@ -941,14 +961,12 @@ p {
     color: white;
 }
 
-/* Blue */
 .pos-br {
     bottom: 20%;
     right: 0;
     background: #facc15;
 }
 
-/* Yellow */
 .pos-bot {
     bottom: 0;
     left: 50%;
@@ -956,7 +974,6 @@ p {
     background: #fbbf24;
 }
 
-/* Orange */
 .pos-bl {
     bottom: 20%;
     left: 0;
@@ -964,14 +981,11 @@ p {
     color: white;
 }
 
-/* Dark */
 .pos-tl {
     top: 20%;
     left: 0;
     background: #4ade80;
 }
-
-/* Green */
 
 @media (min-width: 600px) {
     .pos-top {
@@ -999,10 +1013,11 @@ p {
 }
 
 .footer-logo-img {
-    max-height: 60px;
+    max-height: 80px;
     margin: 0 auto 1rem;
 }
 
+/* Mobile Footer Logo Larger */
 @media (min-width: 900px) {
     .footer-grid {
         grid-template-columns: 1.5fr 1fr 1fr 1fr;
@@ -1010,8 +1025,11 @@ p {
     }
 
     .footer-logo-img {
+        max-height: 100px;
         margin: 0 0 1rem;
     }
+
+    /* Desktop Footer Logo Larger */
 }
 
 .footer-bottom {
