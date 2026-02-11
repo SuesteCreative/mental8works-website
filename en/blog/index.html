@@ -1,1 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Mental8Works</title>
+    <link rel="icon" type="image/png" href="../assets/images/fav-icon.png">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Blobs -->
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+        <div class="blob blob-5"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="../index.html" class="nav-logo">
+                <img src="../assets/images/logo-mental8works-color.webp" alt="Mental8Works" class="nav-logo-img">
+            </a>
+
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Voltar ao Início</a>
+                <a href="../agendamentos/index.html" class="btn btn-primary">Agendar</a>
+            </nav>
+
+            <div class="mobile-toggle">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="section" style="padding-top: 150px; text-align: center;">
+            <div class="container">
+                <h1>Blog & Notícias</h1>
+                <p>Artigos sobre saúde mental e bem-estar.</p>
+            </div>
+        </div>
+
+        <section class="section container" style="padding-top: 0;">
+            <div class="grid-cards" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                <!-- Blog Post Card -->
+                <article class="card blog-card" style="padding: 0;">
+                    <div
+                        style="height: 200px; background-color: #e2e8f0; border-radius: 8px 8px 0 0; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Workplace" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="blog-content">
+                        <h3><a href="posts/exemplo-artigo/index.html">A Importância da Saúde Mental</a></h3>
+                        <p style="font-size: 0.9rem;">Como manter o equilíbrio no dia a dia...</p>
+                        <a href="posts/exemplo-artigo/index.html"
+                            style="color: var(--color-primary); font-weight: 600;">Ler mais →</a>
+                    </div>
+                </article>
+
+                <article class="card blog-card" style="padding: 0;">
+                    <div
+                        style="height: 200px; background-color: #e2e8f0; border-radius: 8px 8px 0 0; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1474418397713-7ede21d49118?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                            alt="Nature" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="blog-content">
+                        <h3><a href="#">Lidar com a Ansiedade</a></h3>
+                        <p style="font-size: 0.9rem;">Estratégias simples para momentos difíceis...</p>
+                        <a href="#" style="color: var(--color-primary); font-weight: 600;">Ler mais →</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col-left">
+                <img src="../assets/images/logo-mental8works-white.webp" alt="Mental8Works White Logo"
+                    class="footer-logo-img">
+                <p style="text-align: left; opacity: 0.8; font-size: 0.9rem;">
+                    Promovendo a saúde mental desde 2014.
+                </p>
+            </div>
+            <div class="footer-col-center">
+                <h4 style="margin-bottom: 1rem; color: white;">Links Rápidos</h4>
+                <ul style="opacity: 0.9;">
+                    <li style="margin-bottom: 0.5rem;"><a href="../index.html">Início</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="../index.html#services">Serviços</a></li>
+                    <li style="margin-bottom: 0.5rem;"><a href="../agendamentos/index.html">Agendar</a></li>
+                </ul>
+            </div>
+            <div class="footer-col-right">
+                <div style="margin-bottom: 1rem; display: flex; gap: 1rem; justify-content: flex-end;">
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+                <p>&copy; 2024 Mental8Works.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+</body>
+
+</html>
