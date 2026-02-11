@@ -23,6 +23,9 @@
         <div class="blob blob-5"></div>
     </div>
 
+    <!-- Mobile Menu Overlay -->
+    <div class="menu-overlay"></div>
+
     <!-- Header / Nav -->
     <header class="header">
         <div class="container nav-container">
@@ -30,6 +33,16 @@
             <a href="#" class="nav-logo-link">
                 <img src="assets/images/logo-mental8works-color.webp" alt="Mental8Works" class="nav-logo-img">
             </a>
+
+            <!-- Mobile Toggle -->
+            <div class="mobile-toggle">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </div>
 
             <!-- Centered Nav Menu -->
             <nav class="nav-menu">
@@ -40,52 +53,48 @@
                 <a href="#contact" class="nav-link">Contactos</a>
                 <!-- Mobile Only Agendar Button in Menu -->
                 <a href="agendamentos/index.html" class="btn btn-primary"
-                    style="display: none; @media(max-width:900px){display:block;}">Agendar</a>
+                    style="margin-top: 1rem; width: 100%; display: none;">Agendar</a>
+                <!-- Show this button only on mobile via CSS is tricky if we want default hidden. 
+                     We can use JavaScript to toggle classes or just leave it style="display: flex" inside media query.
+                     Let's use the CSS media query class logic we built. -->
+                <style>
+                    @media(max-width: 900px) {
+                        .nav-menu .btn {
+                            display: flex !important;
+                        }
+                    }
+                </style>
             </nav>
 
             <!-- Actions (Desktop) -->
-            <div class="nav-actions" style="display: none;">
+            <div class="nav-actions">
                 <a href="agendamentos/index.html" class="btn btn-primary">Agendar</a>
-            </div>
-            <!-- Show actions properly via CSS media queries, hacked inline for now just to ensure structure -->
-            <style>
-                @media(min-width: 901px) {
-                    .nav-actions {
-                        display: block !important;
-                    }
-                }
-            </style>
-
-            <div class="mobile-toggle">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container" style="display: flex; align-items: center; gap: 4rem; width: 100%;">
+        <div class="container hero-container"
+            style="display: flex; flex-direction: column; align-items: center; gap: 2rem;">
+            <!-- Desktop structure moved to CSS flex-->
             <div class="hero-content">
                 <h1>Encontre o seu equilíbrio interior</h1>
 
                 <!-- Pills -->
-                <div style="margin-bottom: 1.5rem;">
+                <div
+                    style="margin-bottom: 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; @media(min-width: 900px){justify-content: flex-start;}">
                     <span class="pill">Mediação Familiar</span>
                     <span class="pill">Psicologia Clínica</span>
                     <span class="pill">Psiquiatria</span>
                     <span class="pill">Terapia de Casal</span>
                 </div>
 
-                <p style="font-size: 1.25rem; margin-bottom: 2rem;">
+                <p style="font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-inline: auto;">
                     Promovendo a saúde mental com uma abordagem humana, inclusiva e acessível.
                     O seu bem-estar é a nossa prioridade.
                 </p>
-                <div style="display: flex; gap: 1rem;">
+                <div class="hero-actions">
                     <a href="agendamentos/index.html" class="btn btn-primary">Agendar Consulta</a>
                     <a href="#services" class="btn btn-secondary">Saber Mais</a>
                 </div>
@@ -94,6 +103,8 @@
                 <img src="assets/images/hero-banner.webp" alt="Saúde Mental" class="hero-banner">
             </div>
         </div>
+        <!-- Style override for specific element alignment responsiveness handled in CSS file, 
+             removed inline styles that conflict with media queries -->
     </section>
 
     <!-- Services -->
@@ -105,14 +116,14 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="service-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
                                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                                 <circle cx="12" cy="7" r="4" />
                             </svg>
                         </div>
-                        <h3>Consultas de Psiquiatria e Psicologia</h3>
+                        <h3>Psiquiatria e Psicologia</h3>
                         <div style="width: 50px; height: 3px; background: #f0be44; margin-bottom: 1rem;"></div>
                         <p>Os nossos Serviços abrangem as áreas de Psiquiatria, Psicologia do Adulto e Infanto-Juvenil.
                         </p>
@@ -133,7 +144,7 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="service-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
                                 <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
@@ -162,7 +173,7 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="service-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
                                 <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
@@ -171,8 +182,7 @@
                         </div>
                         <h3>Formação</h3>
                         <div style="width: 50px; height: 3px; background: #f0be44; margin-bottom: 1rem;"></div>
-                        <p>O nosso catálogo de Formação é facilmente customizado às diferentes realidades nas áreas de
-                            Clínica e Família.</p>
+                        <p>O nosso catálogo de Formação é facilmente customizado às diferentes realidades.</p>
                     </div>
                     <div style="margin-top: 1rem;">
                         <button class="btn-text" onclick="openModal('modal-formacao')">
@@ -192,11 +202,11 @@
     <!-- About Us - Redesigned -->
     <section class="section section-about" id="about">
         <div class="container">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+            <div class="about-grid">
                 <div>
                     <h2 style="color: var(--color-text-main);">Sobre Nós</h2>
-                    <h3 style="color: var(--color-primary);">Propomo-nos a construir um futuro em que a nossa visão
-                        possa ser a norma.</h3>
+                    <h3 style="color: var(--color-primary); font-size: 1.25rem; line-height: 1.5;">Propomo-nos a
+                        construir um futuro em que a nossa visão possa ser a norma.</h3>
                     <p>
                         A Mental8Works é uma associação sem fins lucrativos, criada a partir da insatisfação de
                         profissionais que acreditavam ser possível fazer mais e melhor na área da saúde mental.
@@ -225,9 +235,9 @@
                         <img src="assets/images/team1.jpg" onerror="this.src='https://via.placeholder.com/150'"
                             alt="João Silva Gonçalves" class="team-img">
                     </div>
-                    <h3>João Silva Gonçalves</h3>
+                    <h3>João Gonçalves</h3>
                     <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                             fill="currentColor">
                             <path
                                 d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
@@ -239,9 +249,9 @@
                         <img src="assets/images/team2.jpg" onerror="this.src='https://via.placeholder.com/150'"
                             alt="Maria João Sequeira" class="team-img">
                     </div>
-                    <h3>Maria João Sequeira</h3>
+                    <h3>Maria Sequeira</h3>
                     <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                             fill="currentColor">
                             <path
                                 d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
@@ -254,7 +264,7 @@
                     </div>
                     <h3>Bruno Chibante</h3>
                     <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                             fill="currentColor">
                             <path
                                 d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
@@ -267,7 +277,7 @@
                     </div>
                     <h3>Mafalda Morais</h3>
                     <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                             fill="currentColor">
                             <path
                                 d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
@@ -277,8 +287,7 @@
         </div>
     </section>
 
-    <!-- Blog Preview (White Background to show blobs through transparency?? No, user asked "blog section is great, but it has a white background, and i want the blobs to be visible in this section.") -->
-    <!-- Answer: Keep white background but make it slightly transparent OR make it transparent to see global blobs. I will make it transparent (no BG) -->
+    <!-- Blog Preview -->
     <section class="section" id="blog">
         <div class="container">
             <h2 class="text-center">Blog & Notícias</h2>
@@ -311,8 +320,9 @@
     <!-- Contact & Schedule -->
     <section class="section" id="contact">
         <div class="container">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
-                <div>
+            <div class="contact-grid">
+
+                <div class="contact-info">
                     <h2>Entre em Contacto</h2>
                     <p>Estamos aqui para ouvir. Envie-nos uma mensagem ou agende a sua consulta diretamente.</p>
 
@@ -333,7 +343,6 @@
                                     <polyline points="22,6 12,13 2,6" />
                                 </svg>
                             </a>
-                            <!-- Whatsapp (No link yet) -->
                             <span class="btn-social" title="Whatsapp (Brevemente)" style="cursor: help;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -364,7 +373,7 @@
                     </div>
                 </div>
 
-                <div class="contact-section" style="margin-top: 0;">
+                <div class="contact-form-wrapper">
                     <form action="mailto:mental8works@gmail.com" method="post" enctype="text/plain">
                         <div class="form-group">
                             <label>Nome</label>
@@ -393,7 +402,7 @@
         </div>
     </section>
 
-    <!-- Footer - Redesigned -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -424,19 +433,12 @@
                     <ul style="opacity: 0.9;">
                         <li style="margin-bottom: 0.5rem;"><a
                                 href="mailto:mental8works@gmail.com">mental8works@gmail.com</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="https://www.facebook.com/mental8works/"
-                                target="_blank">Facebook</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="https://www.instagram.com/mental8works/"
-                                target="_blank">Instagram</a></li>
                         <li style="margin-bottom: 0.5rem;">Lisboa, Portugal</li>
                     </ul>
                 </div>
 
-                <!-- Col 4: Socials (Can merge with contacts or keep separate icons) -->
-                <!-- User requested simple list, but visual icons nice. I'll stick to text per request for column, icons below -->
                 <div class="footer-col">
-                    <div style="margin-bottom: 1rem; display: flex; gap: 1rem;">
-                        <!-- Icons -->
+                    <div style="margin-bottom: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
                         <a href="https://www.facebook.com/mental8works/" target="_blank"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -462,10 +464,10 @@
                     <span style="font-size: 0.75rem; opacity: 0.7;">Designed by <a href="#"
                             style="text-decoration: underline;">Sueste - Creative Agency</a></span>
                 </div>
-                <div>
-                    <a href="#" style="margin-right: 1rem;">Política de Privacidade</a>
-                    <a href="#" style="margin-right: 1rem;">Termos e Condições</a>
-                    <a href="#" style="margin-right: 1rem;">Cookies</a>
+                <div class="footer-bottom-links">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos e Condições</a>
+                    <a href="#">Cookies</a>
                     <a href="contactos/index.html">Contactos</a>
                 </div>
             </div>
@@ -477,33 +479,28 @@
     <div id="modal-clinica" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('modal-clinica')">&times;</button>
-            <h2 style="color: var(--color-primary);">Psicologia Clínica</h2>
-            <p>Trata-se de um ramo da Psicologia que versa sobre as condições que possam causar mal-estar, sofrimento ou
-                que retiram qualidade de vida às pessoas.</p>
+            <h2 style="color: var(--color-primary); font-size: 1.5rem;">Psicologia Clínica</h2>
+            <p style="font-size: 0.95rem;">Trata-se de um ramo da Psicologia que versa sobre as condições que possam
+                causar mal-estar, sofrimento ou que retiram qualidade de vida às pessoas.</p>
 
-            <!-- Dynamic Chart Visualization (CSS Shapes/Flex) -->
-            <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin: 2rem 0;">
+            <!-- Dynamic Chart Visualization (Grid for response) -->
+            <div
+                style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 2rem 0; width: 100%; max-width: 400px; margin-inline: auto;">
+                <!-- Hacked the circle view to a grid for simpler mobile responsiveness, or keep flex wrap -->
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin: 1.5rem 0;">
                 <div
-                    style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background: #a3e635; border-radius: 50%; color: #1a2e05; font-size: 0.8rem; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    style="padding: 1rem; background: #a3e635; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; text-align: center;">
                     Avaliação</div>
                 <div
-                    style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background: #60a5fa; border-radius: 50%; color: white; font-size: 0.8rem; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    style="padding: 1rem; background: #60a5fa; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; text-align: center; color: white;">
                     Prevenção</div>
                 <div
-                    style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background: #facc15; border-radius: 50%; color: #422006; font-size: 0.8rem; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    style="padding: 1rem; background: #facc15; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; text-align: center;">
                     Diagnóstico</div>
                 <div
-                    style="width: 120px; height: 120px; display: flex; align-items: center; justify-content: center; background: #03919f; border-radius: 50%; color: white; font-size: 1rem; font-weight: bold; box-shadow: 0 10px 15px rgba(0,0,0,0.1); z-index: 2;">
-                    Psicologia<br>Clínica</div>
-                <div
-                    style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background: #4b5563; border-radius: 50%; color: white; font-size: 0.8rem; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                    Reabilitação</div>
-                <div
-                    style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background: #4ade80; border-radius: 50%; color: #14532d; font-size: 0.8rem; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    style="padding: 1rem; background: #4ade80; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; text-align: center;">
                     Tratamento</div>
-                <div
-                    style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background: #fbbf24; border-radius: 50%; color: #451a03; font-size: 0.8rem; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                    Prognóstico</div>
             </div>
 
             <p style="font-size: 0.9rem; color: #64748b;">
@@ -518,10 +515,10 @@
     <div id="modal-projetos" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('modal-projetos')">&times;</button>
-            <h2 style="color: var(--color-primary);">Projetos Sociais & Comunitários</h2>
+            <h2 style="color: var(--color-primary); font-size: 1.5rem;">Projetos Sociais</h2>
             <p>Desenvolvemos iniciativas que levam a saúde mental para fora do consultório.</p>
 
-            <ul style="margin: 2rem 0; list-style: disc; padding-left: 1.5rem;">
+            <ul style="margin: 1.5rem 0; list-style: disc; padding-left: 1.5rem;">
                 <li style="margin-bottom: 0.5rem;"><strong>Intervenção Escolar:</strong> Programas de inteligência
                     emocional para crianças.</li>
                 <li style="margin-bottom: 0.5rem;"><strong>Apoio à Família:</strong> Workshops de parentalidade
@@ -536,10 +533,10 @@
     <div id="modal-formacao" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('modal-formacao')">&times;</button>
-            <h2 style="color: var(--color-primary);">Catálogo de Formação</h2>
+            <h2 style="color: var(--color-primary); font-size: 1.5rem;">Catálogo de Formação</h2>
             <p>Capacitação para profissionais e empresas.</p>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
+            <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
                 <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
                     <h4>Clínica</h4>
                     <p style="font-size: 0.85rem;">Especilização para psicólogos</p>
@@ -557,13 +554,12 @@
         // Modal Logic
         function openModal(id) {
             document.getElementById(id).classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
         }
         function closeModal(id) {
             document.getElementById(id).classList.remove('active');
             document.body.style.overflow = 'auto';
         }
-        // Close on outside click
         document.querySelectorAll('.modal-overlay').forEach(overlay => {
             overlay.addEventListener('click', (e) => {
                 if (e.target === overlay) {
@@ -571,6 +567,32 @@
                     document.body.style.overflow = 'auto';
                 }
             })
+        });
+
+        // Mobile Toggle Logic (Moved to inline script for guaranteed execution without waiting for external load if slow)
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.querySelector('.mobile-toggle');
+            const menu = document.querySelector('.nav-menu');
+            const overlay = document.querySelector('.menu-overlay');
+
+            if (toggle && menu) {
+                toggle.addEventListener('click', () => {
+                    menu.classList.toggle('active');
+                    if (overlay) overlay.classList.toggle('active');
+                });
+                if (overlay) {
+                    overlay.addEventListener('click', () => {
+                        menu.classList.remove('active');
+                        overlay.classList.remove('active');
+                    });
+                }
+                menu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menu.classList.remove('active');
+                        if (overlay) overlay.classList.remove('active');
+                    })
+                })
+            }
         });
     </script>
 </body>
