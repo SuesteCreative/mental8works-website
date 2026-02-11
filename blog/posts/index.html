@@ -14,23 +14,36 @@
 
 <body>
 
+    <div class="menu-overlay"></div>
+
     <header class="header">
         <div class="container nav-container">
             <a href="../index.html" class="nav-logo-link">
                 <img src="../assets/images/logo-mental8works-color.webp" alt="Mental8Works" class="nav-logo-img">
             </a>
+
+            <!-- Added Mobile Toggle -->
+            <div class="mobile-toggle">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </div>
+
             <nav class="nav-menu">
                 <a href="../index.html" class="nav-link">Início</a>
-                <a href="../index.html#contact" class="btn btn-primary d-md-none">Contactos</a>
-
+                <a href="../contactos/index.html" class="nav-link">Contactos</a>
+                <a href="../index.html#services" class="nav-link d-md-none">Serviços</a>
             </nav>
             <div class="nav-actions d-none d-md-block">
-                <a href="../index.html#contact" class="btn btn-primary">Contactos</a>
+                <a href="../contactos/index.html" class="btn btn-primary">Contactos</a>
             </div>
         </div>
     </header>
 
-    <section class="section" style="padding-top: 150px;">
+    <section class="section section-pt-large">
         <div class="container">
             <h1 class="text-center">Blog & Notícias</h1>
             <p class="text-center" style="max-width: 600px; margin: 0 auto 3rem;">
