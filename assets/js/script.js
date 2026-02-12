@@ -1,3 +1,14 @@
+// Luxury Preloader Handler
+window.addEventListener('load', function () {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        preloader.classList.add('fade-out');
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 800);
+    }
+});
+
 // Global Functions for HTML interactions
 window.openModal = function (id) {
     const modal = document.getElementById(id);
