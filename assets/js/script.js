@@ -156,22 +156,40 @@ document.addEventListener('DOMContentLoaded', () => {
         let wordIndex = 0;
         let wordInterval;
 
+        const startWordRotation = () => {
+            if (wordInterval) return;
+            wordInterval = setInterval(changeWord, 2000);
+        };
+
+        const stopWordRotation = () => {
+            clearInterval(wordInterval);
+            wordInterval = null;
+        };
+
         const changeWord = () => {
             dynamicWord.style.opacity = '0';
             dynamicWord.style.transition = 'opacity 0.4s ease';
 
             setTimeout(() => {
-                dynamicWord.textContent = words[wordIndex];
+                dynamicWord.textContent = words[wordIndex % words.length];
                 dynamicWord.style.opacity = '1';
                 wordIndex++;
-
-                if (wordIndex >= words.length) {
-                    clearInterval(wordInterval);
-                }
             }, 400);
         };
 
-        // Faster transition for attention
-        wordInterval = setInterval(changeWord, 2000);
+        // Initialize
+        startWordRotation();
+
+        // Pause rotation when page is not visible to save main thread on mobile
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopWordRotation();
+            } else {
+                startWordRotation();
+            }
+        });
+
+        // Also stop on pagehide
+        window.addEventListener('pagehide', stopWordRotation);
     }
 });
