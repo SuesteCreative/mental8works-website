@@ -4,34 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apresentação Projeto - Mental8Works</title>
+    <title>Pitch Deck: Mental8Works Digital Transformation</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap"
         rel="stylesheet">
+    <!-- Lucide Icons for modern look -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
             --primary: #03919f;
+            --primary-dark: #026e79;
             --secondary: #f0be44;
             --dark: #1a202c;
             --light: #f7fafc;
-            --glass: rgba(255, 255, 255, 0.8);
+            --glass: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--light);
             color: var(--dark);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
-        /* Blobs background */
+        /* Animated Blobs Background */
         .blob-container {
             position: fixed;
             top: 0;
@@ -39,297 +45,424 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            filter: blur(80px);
-            opacity: 0.5;
+            filter: blur(90px);
+            opacity: 0.4;
         }
 
         .blob {
             position: absolute;
             border-radius: 50%;
-            animation: move 10s infinite alternate;
+            animation: move 20s infinite alternate;
         }
 
         .blob-1 {
-            width: 400px;
-            height: 400px;
+            width: 500px;
+            height: 500px;
             background: var(--primary);
-            top: -100px;
-            left: -100px;
+            top: -150px;
+            left: -150px;
+            opacity: 0.6;
         }
 
         .blob-2 {
+            width: 450px;
+            height: 450px;
+            background: var(--secondary);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -5s;
+            opacity: 0.4;
+        }
+
+        .blob-3 {
             width: 300px;
             height: 300px;
-            background: var(--secondary);
-            bottom: -50px;
-            right: -50px;
-            animation-duration: 15s;
+            background: var(--primary-dark);
+            top: 40%;
+            left: 60%;
+            animation-duration: 25s;
+            opacity: 0.3;
         }
 
         @keyframes move {
-            from {
+            0% {
                 transform: translate(0, 0) scale(1);
             }
 
-            to {
-                transform: translate(100px, 50px) scale(1.1);
+            50% {
+                transform: translate(100px, 80px) scale(1.1);
+            }
+
+            100% {
+                transform: translate(-50px, 20px) scale(0.9);
             }
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 2rem;
+        }
+
+        /* Progress Bar */
+        #progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--primary);
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.2s;
         }
 
         header {
-            text-align: center;
-            margin-bottom: 6rem;
-            min-height: 80vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
         }
 
-        h1 {
+        header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            font-size: 5rem;
+            font-weight: 900;
             color: var(--primary);
-            margin-bottom: 1rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
         }
 
-        .subtitle {
-            font-size: 1.5rem;
+        header .badge {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        /* Slides Styling */
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--dark);
+        }
+
+        .section-title p {
             color: #666;
-            font-weight: 300;
+            font-size: 1.2rem;
         }
 
         .slide {
             background: var(--glass);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            border-radius: 40px;
+            padding: 5rem;
+            margin-bottom: 6rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Grid System */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
             border-radius: 24px;
-            padding: 4rem;
-            margin-bottom: 4rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .slide:hover {
-            transform: translateY(-10px);
-        }
-
-        h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--primary);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            transition: 0.3s;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             gap: 1rem;
         }
 
-        h2::before {
-            content: '';
-            width: 40px;
-            height: 4px;
-            background: var(--secondary);
-            display: block;
-            border-radius: 2px;
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.5);
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-
-        .card h3 {
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(3, 145, 159, 0.1);
             color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-        }
-
-        .roadmap-item {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            align-items: flex-start;
-        }
-
-        .icon-circle {
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            border-radius: 50%;
-            flex-shrink: 0;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+
+        /* Payment Logic Styles */
+        .payment-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f1f5f9;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: #475569;
+        }
+
+        /* Mockup Visual */
+        .mockup-container {
+            width: 100%;
+            height: 400px;
+            background: #eee;
+            border-radius: 20px;
+            margin-top: 3rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .mockup-img {
+            width: 90%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer-cta {
+            text-align: center;
+            padding: 8rem 0;
+            background: var(--dark);
             color: white;
-            font-weight: bold;
-            font-size: 1.5rem;
+            border-radius: 50px;
+            margin-top: 4rem;
         }
 
         .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.2rem 3rem;
             background: var(--primary);
             color: white;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: 600;
-            margin-top: 2rem;
+            font-weight: 700;
+            font-size: 1.1rem;
             transition: 0.3s;
+            margin-top: 2rem;
+            box-shadow: 0 10px 20px rgba(3, 145, 159, 0.3);
         }
 
         .btn:hover {
-            background: var(--dark);
             transform: scale(1.05);
+            background: var(--secondary);
+            color: var(--dark);
         }
 
-        footer {
-            text-align: center;
-            padding: 6rem 0;
-            color: #888;
+        /* List Items */
+        ul.custom-list {
+            list-style: none;
+        }
+
+        ul.custom-list li {
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        ul.custom-list li i {
+            color: var(--secondary);
+            margin-top: 4px;
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
+            header h1 {
+                font-size: 3rem;
             }
 
             .slide {
                 padding: 2rem;
             }
 
-            h2 {
-                font-size: 1.8rem;
+            .grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 
 <body>
+    <div id="progress"></div>
+
     <div class="blob-container">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
     </div>
 
     <div class="container">
         <header>
-            <h1>Mental8Works</h1>
-            <p class="subtitle">Digital Experience & Strategy Presentation</p>
-            <div>
-                <a href="#start" class="btn">Explorar Projeto</a>
-            </div>
+            <span class="badge">Estratégia Digital 2026</span>
+            <h1>A Nova Era da <br><span style="color: var(--secondary)">Mental8Works</span></h1>
+            <p style="font-size: 1.5rem; max-width: 700px; margin-top: 1rem; color: #444;">
+                Transformando a saúde mental através de uma experiência digital humana, fluida e de alta performance.
+            </p>
+            <a href="#vision" class="btn">Conhecer a Solução <i data-lucide="chevron-down"></i></a>
         </header>
 
-        <section id="start" class="slide">
-            <h2>1. Visão Geral</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
-                A nova plataforma digital da <strong>Mental8Works</strong> foi concebida para refletir os valores
-                fundamentais da clínica. Criámos um ecossistema digital premium que serve como uma extensão natural do
-                cuidado terapêutico.
+        <!-- Slide 1: Visão & UX -->
+        <section id="vision" class="slide">
+            <div class="section-title">
+                <h2>1. Design que Acolhe</h2>
+                <p>Criámos um santuário digital para os seus pacientes.</p>
+            </div>
+
+            <div class="grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="sparkles"></i></div>
+                    <h3>Estética Premium</h3>
+                    <p>Uso de <em>Glassmorphism</em> e tipografia de luxo para elevar a perceção da marca e transmitir
+                        confiança instantânea.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="smartphone"></i></div>
+                    <h3>Mobile First</h3>
+                    <p>Otimização radical para telemóveis. Os pacientes podem agendar no autocarro, em casa ou no
+                        intervalo do trabalho.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="mouse-pointer-2"></i></div>
+                    <h3>Fricção Zero</h3>
+                    <p>Navegação intuitiva que remove barreiras psicológicas, facilitando o primeiro contacto com o
+                        especialista.</p>
+                </div>
+            </div>
+
+            <div class="mockup-container">
+                <!-- Image simulation -->
+                <div
+                    style="background: linear-gradient(135deg, var(--primary), var(--secondary)); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 2rem; opacity: 0.8;">
+                    DESKTOP & MOBILE RESPONSIVE PREVIEW
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Tech & Performance -->
+        <section class="slide">
+            <div class="section-title">
+                <h2>2. Performance & SEO</h2>
+                <p>Invisível aos olhos, essencial para o Google.</p>
+            </div>
+
+            <div class="grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="zap"></i></div>
+                    <h3>Velocidade Extrema</h3>
+                    <p>Carregamento em menos de 2 segundos. Menos tempo de espera significa menos desistências antes do
+                        agendamento.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="search"></i></div>
+                    <h3>SEO Avançado</h3>
+                    <p>Estrutura pronta para dominar pesquisas como "Psicólogo Lisboa" ou "Terapia de Casal Online".</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="shield-check"></i></div>
+                    <h3>Segurança Total</h3>
+                    <p>Arquitetura estática imune aos ataques comuns a sites WordPress, garantindo 100% de uptime.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Roadmap Payments -->
+        <section class="slide">
+            <div class="section-title">
+                <h2>3. O Futuro: Conversão Automática</h2>
+                <p>Como automatizar a clínica 24/7 na Fase 2.</p>
+            </div>
+
+            <div class="grid">
+                <div class="feature-card" style="grid-column: span 2;">
+                    <div class="feature-icon"><i data-lucide="credit-card"></i></div>
+                    <h3>Pagamentos Sem Falhas</h3>
+                    <p>Proposta de integração com provedores líderes para garantir que a consulta é paga no ato da
+                        reserva:</p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                        <span class="payment-pill"><i data-lucide="check-circle-2"></i> <strong>MBWay</strong> (via
+                            IfthenPay)</span>
+                        <span class="payment-pill"><i data-lucide="check-circle-2"></i> <strong>Stripe</strong>
+                            (Visa/Mastercard)</span>
+                        <span class="payment-pill"><i data-lucide="check-circle-2"></i> <strong>Multibanco</strong>
+                            (Referências)</span>
+                        <span class="payment-pill"><i data-lucide="check-circle-2"></i> <strong>PayPal</strong></span>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="calendar"></i></div>
+                    <h3>Agendamento Inteligente</h3>
+                    <p>Sincronização bidirecional com calendários de equipa:</p>
+                    <ul class="custom-list" style="font-size: 0.9rem; color: #555;">
+                        <li><i data-lucide="check"></i> Google Calendar & Outlook.</li>
+                        <li><i data-lucide="check"></i> Lembretes automáticos via E-mail.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Slide -->
+        <div class="footer-cta">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 1rem;">Prontos para o
+                Próximo Nível?</h2>
+            <p style="font-size: 1.2rem; opacity: 0.8; max-width: 600px; margin: 0 auto 2rem;">
+                Esta é apenas a fundação de um ecossistema digital que elevará a Mental8Works ao topo do mercado de
+                saúde mental.
             </p>
-            <div class="grid">
-                <div class="card">
-                    <h3>Humanidade</h3>
-                    <p>Design empático e acolhedor para o paciente.</p>
-                </div>
-                <div class="card">
-                    <h3>Excelência</h3>
-                    <p>Referência técnica e autoridade no setor.</p>
-                </div>
-                <div class="card">
-                    <h3>Acessibilidade</h3>
-                    <p>Fácil de usar em qualquer dispositivo.</p>
-                </div>
-            </div>
-        </section>
+            <p style="font-weight: 600; color: var(--secondary);">Proposto por: Sueste Creative Agency</p>
+            <p style="font-size: 0.9rem; opacity: 0.5; margin-top: 1rem;">Fevereiro 2026 | v1.2 Release</p>
+        </div>
 
-        <section class="slide">
-            <h2>2. Modern UX/UI Design</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3 style="color: var(--secondary);">✨ Visual Premium</h3>
-                    <p>Uso de <em>glassmorphism</em> e paletas de cores que transmitem calma e segurança.</p>
-                </div>
-                <div class="card">
-                    <h3 style="color: var(--secondary);">🌊 Dinamismo Orgânico</h3>
-                    <p>Background blobs fluidos que dão vida ao site sem comprometer a performance.</p>
-                </div>
-                <div class="card">
-                    <h3 style="color: var(--secondary);">📱 Mobile-First</h3>
-                    <p>Navegação impecável e rápida em smartphones e tablets.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="slide">
-            <h2>3. SEO & Performance</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Visibilidade Google</h3>
-                    <p>HTML5 semântico e meta tags otimizadas para garantir que a clínica aparece nas pesquisas certas.
-                    </p>
-                </div>
-                <div class="card">
-                    <h3>Velocidade</h3>
-                    <p>Código limpo e animações otimizadas via GPU para carregamento instantâneo.</p>
-                </div>
-                <div class="card">
-                    <h3>Autoridade</h3>
-                    <p>Sistema de blog estruturado para partilha de conhecimento e crescimento orgânico.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="slide">
-            <h2>4. Roadmap: O Futuro do Agendamento</h2>
-            <div class="roadmap-item">
-                <div class="icon-circle">1</div>
-                <div>
-                    <h3>Sincronização de Calendários</h3>
-                    <p>Integração com Google Calendar e Outlook para agendamentos em tempo real sem erros.</p>
-                </div>
-            </div>
-            <div class="roadmap-item">
-                <div class="icon-circle">2</div>
-                <div>
-                    <h3>Pagamentos Online</h3>
-                    <p>Integração de MBWay, Stripe e Multibanco para confirmação instantânea de consultas.</p>
-                </div>
-            </div>
-            <div class="roadmap-item">
-                <div class="icon-circle">3</div>
-                <div>
-                    <h3>Notificações Automáticas</h3>
-                    <p>Lembretes automáticos via WhatsApp e E-mail para reduzir faltas a consultas.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="slide" style="text-align: center; background: var(--primary); color: white;">
-            <h2 style="color: white; justify-content: center; border:0;">Conclusão</h2>
-            <p style="font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.9;">
-                Esta plataforma coloca a <strong>Mental8Works</strong> na vanguarda digital da saúde mental em Portugal.
-            </p>
-            <p>Preparado para o futuro.</p>
-        </section>
-
-        <footer>
-            <p>&copy; 2026 Mental8Works Digital Strategy</p>
-            <p>v1.2 Premium Edition</p>
-        </footer>
+        <div style="text-align: center; margin-top: 4rem; padding-bottom: 4rem;">
+            <p style="color: #999;">Mental8Works Digital Transformation Presentation</p>
+        </div>
     </div>
+
+    <script>
+        // Progress Bar logic
+        window.onscroll = function () {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("progress").style.width = scrolled + "%";
+        };
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
 </body>
 
 </html>
