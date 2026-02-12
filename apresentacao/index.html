@@ -100,16 +100,16 @@
 
         .top-logo {
             text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 0 1rem;
         }
 
         .top-logo img {
-            height: 80px;
+            height: 120px;
             width: auto;
         }
 
         header {
-            min-height: 80vh;
+            min-height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -127,12 +127,12 @@
             margin-bottom: 2rem;
         }
 
-        .title-yellow {
-            color: var(--secondary);
+        .title-blue {
+            color: var(--primary);
         }
 
-        .title-8 {
-            color: var(--primary);
+        .title-yellow {
+            color: var(--secondary);
         }
 
         .badge {
@@ -239,9 +239,9 @@
         .payment-logos-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
+            gap: 2rem;
             margin-top: 2rem;
-            padding: 3rem;
+            padding: 2.5rem;
             background: #fff;
             border-radius: 30px;
             align-items: center;
@@ -249,9 +249,9 @@
         }
 
         .payment-logos-grid img {
-            max-width: 120px;
+            max-width: 100px;
             height: auto;
-            max-height: 45px;
+            max-height: 40px;
             filter: grayscale(1);
             opacity: 0.8;
             transition: 0.4s;
@@ -265,7 +265,7 @@
 
         .footer-cta {
             text-align: center;
-            padding: 6rem 2rem;
+            padding: 4rem 2rem;
             background: var(--dark);
             color: white;
             border-radius: 40px;
@@ -275,9 +275,9 @@
         .contact-links {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1rem;
             align-items: center;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
         .contact-item {
@@ -286,7 +286,7 @@
             gap: 1rem;
             color: white;
             text-decoration: none;
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             transition: 0.3s;
             opacity: 0.9;
         }
@@ -304,7 +304,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.8rem;
-            padding: 1.2rem 3rem;
+            padding: 1rem 2.5rem;
             background: var(--primary);
             color: white;
             text-decoration: none;
@@ -366,10 +366,10 @@
         </div>
 
         <header>
-            <span class="badge">Estratégia Digital & Transformação</span>
-            <h1>A Nova Era da <br><span class="title-yellow">Mental</span><span class="title-8">8</span><span
-                    class="title-yellow">Works</span></h1>
-            <p style="font-size: 1.4rem; max-width: 700px; color: #444; margin-bottom: 3rem;">
+            <span class="badge" style="margin-bottom: 1.5rem;">Estratégia Digital & Transformação</span>
+            <h1>A Nova Era da <br><span class="title-blue">Mental</span><span class="title-yellow">8</span><span
+                    class="title-blue">Works</span></h1>
+            <p style="font-size: 1.3rem; max-width: 700px; color: #444; margin-bottom: 2.5rem;">
                 Uma fusão entre cuidado humano e tecnologia de ponta para criar a melhor experiência terapêutica
                 digital.
             </p>
@@ -406,7 +406,6 @@
                 </div>
             </div>
 
-            <!-- Preview da Landing Page -->
             <h3 class="preview-header">A Nossa Visão</h3>
             <div class="preview-wrapper">
                 <iframe src="https://suestecreative.github.io/mental8works-website/"
@@ -447,7 +446,6 @@
                 </div>
             </div>
 
-            <!-- Placeholder com imagem real -->
             <img src="../assets/images/about-us.webp" alt="Mental8Works Workspace" class="placeholder-img">
         </section>
 
@@ -458,52 +456,49 @@
                 <p>Redução do trabalho operacional e aumento imediato das marcações.</p>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr; gap: 4rem;">
+            <div style="display: grid; grid-template-columns: 1fr; gap: 3rem;">
                 <div
-                    style="background: white; padding: 4rem; border-radius: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                    style="background: white; padding: 3rem; border-radius: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
                     <h3
-                        style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2rem; color: var(--primary); font-size: 1.8rem;">
+                        style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.5rem; color: var(--primary); font-size: 1.6rem;">
                         <i data-lucide="credit-card"></i> Pagamentos Integrados
                     </h3>
-                    <p style="font-size: 1.15rem; margin-bottom: 2rem;">Propomos a integração direta de gateways de
-                        pagamento no fluxo de marcação. Isto permite que o utente garanta a sua vaga através de
-                        pagamento imediato, eliminando "no-shows" e simplificando a faturação.</p>
+                    <p style="font-size: 1.05rem; margin-bottom: 2rem;">Propomos a integração direta de gateways de
+                        pagamento no fluxo de marcação. O utente paga no momento da reserva, eliminando "no-shows".</p>
 
                     <div class="payment-logos-grid">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg"
-                            alt="Stripe">
-                        <img src="https://www.eupago.pt/assets/img/logo_eupago.svg" alt="EuPago"
-                            onerror="this.src='https://placehold.co/100x40?text=EuPago'">
-                        <img src="https://ifthenpay.com/Themes/ifthenpay/Content/images/logo_ifthenpay.png"
-                            alt="IfthenPay" onerror="this.src='https://placehold.co/100x40?text=IfthenPay'">
-                        <img src="https://www.easypay.pt/wp-content/themes/easypay/assets/images/logo.svg" alt="Easypay"
-                            onerror="this.src='https://placehold.co/100x40?text=Easypay'">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
-                        <img src="https://vignette.wikia.nocookie.net/logopedia/images/e/ea/Revolut_2019.svg"
-                            alt="Revolut" style="height: 25px;"
-                            onerror="this.src='https://placehold.co/100x40?text=Revolut'">
+                        <img src="../assets/images/stripe.png" alt="Stripe">
+                        <img src="../assets/images/eupago.png" alt="EuPago">
+                        <img src="../assets/images/ifthenppay.png" alt="IfthenPay">
+                        <img src="../assets/images/easypay.png" alt="Easypay">
+                        <img src="../assets/images/paypal.png" alt="PayPal">
+                        <img src="../assets/images/revolut.png" alt="Revolut">
                     </div>
                 </div>
 
                 <div
-                    style="background: white; padding: 4rem; border-radius: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                    style="background: white; padding: 3rem; border-radius: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
                     <h3
-                        style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2rem; color: var(--primary); font-size: 1.8rem;">
+                        style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.5rem; color: var(--primary); font-size: 1.6rem;">
                         <i data-lucide="calendar"></i> Sincronização Inteligente
                     </h3>
-                    <p style="font-size: 1.15rem; margin-bottom: 2rem;">Os agendamentos podem ser sincronizados
-                        automaticamente com os seus sistemas habituais via API aberta, garantindo que a sua agenda
-                        pessoal e profissional estão sempre alinhadas.</p>
-                    <div class="grid-4" style="grid-template-columns: repeat(2, 1fr);">
+                    <p style="font-size: 1.05rem; margin-bottom: 2rem;">Os agendamentos podem ser sincronizados
+                        automaticamente via API aberta, garantindo alinhamento total da agenda.</p>
+                    <div class="grid-4" style="grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
                         <div
-                            style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; padding: 2rem; border-radius: 20px; background: #f8fafc;">
-                            <i data-lucide="mail" size="40" style="color: #0078d4;"></i>
-                            <strong>Microsoft Outlook</strong>
+                            style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; padding: 1.5rem; border-radius: 15px; background: #f8fafc;">
+                            <i data-lucide="mail" size="32" style="color: #0078d4;"></i>
+                            <span style="font-size: 0.9rem; font-weight: 600;">Outlook</span>
                         </div>
                         <div
-                            style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; padding: 2rem; border-radius: 20px; background: #f8fafc;">
-                            <i data-lucide="calendar-days" size="40" style="color: #4285f4;"></i>
-                            <strong>Google Calendar</strong>
+                            style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; padding: 1.5rem; border-radius: 15px; background: #f8fafc;">
+                            <i data-lucide="calendar-days" size="32" style="color: #4285f4;"></i>
+                            <span style="font-size: 0.9rem; font-weight: 600;">Google</span>
+                        </div>
+                        <div
+                            style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; padding: 1.5rem; border-radius: 15px; background: #f8fafc;">
+                            <i data-lucide="code-2" size="32" style="color: var(--primary);"></i>
+                            <span style="font-size: 0.8rem; font-weight: 600;">Sistemas API Aberta</span>
                         </div>
                     </div>
                 </div>
@@ -512,25 +507,25 @@
 
         <!-- FOOTER CONTACTS -->
         <div class="footer-cta">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 1.5rem;">Prontos para o
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1rem;">Prontos para o
                 Futuro?</h2>
 
             <div class="contact-links">
                 <a href="mailto:info@sueste-creative.pt" class="contact-item">
-                    <i data-lucide="mail"></i> info@sueste-creative.pt
+                    <i data-lucide="mail" size="18"></i> info@sueste-creative.pt
                 </a>
                 <a href="tel:+351965494727" class="contact-item">
-                    <i data-lucide="phone"></i> +351 965 494 727
+                    <i data-lucide="phone" size="18"></i> +351 965 494 727
                 </a>
                 <a href="https://wa.me/351965494727" target="_blank" class="contact-item">
-                    <i data-lucide="message-circle"></i> Falar via WhatsApp
+                    <i data-lucide="message-circle" size="18"></i> WhatsApp
                 </a>
             </div>
 
-            <p style="margin-top: 4rem; font-weight: 700; color: var(--secondary); letter-spacing: 1px;">SUESTE CREATIVE
-                AGENCY</p>
-            <p style="font-size: 0.8rem; opacity: 0.5; margin-top: 1rem;">© 2026 Digital Strategy v1.4 | Premium Edition
-            </p>
+            <p
+                style="margin-top: 3rem; font-weight: 700; color: var(--secondary); letter-spacing: 1px; font-size: 0.9rem;">
+                SUESTE CREATIVE AGENCY</p>
+            <p style="font-size: 0.75rem; opacity: 0.5; margin-top: 0.5rem;">© 2026 Digital Strategy v1.5</p>
         </div>
     </div>
 
