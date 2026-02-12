@@ -1217,8 +1217,14 @@ p {
 }
 
 .carousel-card {
-    min-width: 300px;
+    min-width: 280px;
     flex: 0 0 auto;
+}
+
+@media (min-width: 900px) {
+    .carousel-card {
+        min-width: calc((100% - 3rem) / 3);
+    }
 }
 
 .carousel-btn {
