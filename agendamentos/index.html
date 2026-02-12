@@ -6,12 +6,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamentos - Mental8Works</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../assets/images/fav-icon.png">
+    <link rel="icon" type="image/png" href="../assets/images/fav-icon-color.png">
 
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/styles.css?v=1.2">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
         rel="stylesheet">
+    <style>
+        .calendar-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            text-align: center;
+        }
+
+        .day-name {
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--color-text-light);
+            padding-bottom: 10px;
+        }
+
+        .day {
+            padding: 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .day:hover:not(.empty) {
+            background: #f0f9fa;
+            color: var(--color-primary);
+        }
+
+        .day.active {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .day.today {
+            border: 2px solid var(--color-secondary);
+            font-weight: 700;
+        }
+
+        .day.empty {
+            cursor: default;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+
+        .slot {
+            padding: 8px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .slot:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .slot.selected {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+    </style>
 </head>
 
 <body>
@@ -25,82 +110,195 @@
         <div class="blob blob-5"></div>
     </div>
 
-    <!-- Navbar -->
+    <!-- Header -->
     <header class="header">
         <div class="container nav-container">
-            <a href="../index.html" class="nav-logo">
+            <a href="../index.html" class="nav-logo-link">
                 <img src="../assets/images/logo-mental8works-color.webp" alt="Mental8Works" class="nav-logo-img">
             </a>
 
-            <nav class="nav-menu">
-                <a href="../index.html" class="nav-link">Voltar ao Início</a>
-                <a href="../contactos/index.html" class="nav-link">Contactos</a>
-            </nav>
-
             <div class="mobile-toggle">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <line x1="3" y1="12" x2="21" y2="12"></line>
                     <line x1="3" y1="6" x2="21" y2="6"></line>
                     <line x1="3" y1="18" x2="21" y2="18"></line>
                 </svg>
             </div>
+
+            <nav class="nav-menu">
+                <a href="../index.html#services" class="nav-link">Serviços</a>
+                <a href="../index.html#about" class="nav-link">Sobre Nós</a>
+                <a href="../index.html#team" class="nav-link">Equipa</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="../contactos/index.html" class="nav-link">Contactos</a>
+            </nav>
+
+            <div class="nav-actions d-none d-md-block">
+                <a href="../index.html" class="btn btn-secondary">Voltar ao Início</a>
+            </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <section class="section hero"
-        style="min-height: 80vh; align-items: center; justify-content: center; text-align: center;">
+    <section class="section hero" style="padding-top: 180px; text-align: center;">
         <div class="container">
             <h1>Agende a Sua Consulta</h1>
-            <p>Selecione o serviço e o horário mais conveniente para si.</p>
+            <p class="text-center" style="max-width: 600px; margin: 0 auto 3rem;">
+                Escolha o dia e a hora que melhor se adaptam à sua rotina. O nosso sistema de agendamento é simples e
+                confidencial.
+            </p>
 
             <div
-                style="background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); max-width: 600px; margin: 2rem auto; position: relative;">
-                <p style="margin-bottom: 2rem;">(Integração de calendário/agendamento virá aqui)</p>
-                <form>
-                    <div class="form-group" style="text-align: left;">
-                        <label>Serviço Pretendido</label>
-                        <select class="form-control">
-                            <option>Psicologia Clínica</option>
-                            <option>Psiquiatria</option>
-                            <option>Terapia de Casal</option>
-                        </select>
+                style="display: flex; flex-direction: column; lg-flex-direction: row; gap: 3rem; align-items: center; justify-content: center; margin-bottom: 4rem;">
+
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <button class="btn-text">&lt;</button>
+                        <h3 style="margin: 0;">Fevereiro 2026</h3>
+                        <button class="btn-text">&gt;</button>
                     </div>
-                    <button class="btn btn-primary" type="button"
-                        onclick="alert('Funcionalidade de agendamento em breve!')">Ver Horários Disponíveis</button>
-                </form>
+                    <div class="calendar-grid">
+                        <div class="day-name">Dom</div>
+                        <div class="day-name">Seg</div>
+                        <div class="day-name">Ter</div>
+                        <div class="day-name">Qua</div>
+                        <div class="day-name">Qui</div>
+                        <div class="day-name">Sex</div>
+                        <div class="day-name">Sáb</div>
+
+                        <div class="day empty"></div>
+                        <div class="day">1</div>
+                        <div class="day">2</div>
+                        <div class="day">3</div>
+                        <div class="day">4</div>
+                        <div class="day">5</div>
+                        <div class="day">6</div>
+                        <div class="day">7</div>
+                        <div class="day">8</div>
+                        <div class="day">9</div>
+                        <div class="day">10</div>
+                        <div class="day">11</div>
+                        <div class="day today">12</div>
+                        <div class="day">13</div>
+                        <div class="day">14</div>
+                        <div class="day">15</div>
+                        <div class="day active">16</div>
+                        <div class="day">17</div>
+                        <div class="day">18</div>
+                        <div class="day">19</div>
+                        <div class="day">20</div>
+                        <div class="day">21</div>
+                        <div class="day">22</div>
+                        <div class="day">23</div>
+                        <div class="day">24</div>
+                        <div class="day">25</div>
+                        <div class="day">26</div>
+                        <div class="day">27</div>
+                        <div class="day">28</div>
+                    </div>
+
+                    <div class="time-slots">
+                        <div class="slot">09:00</div>
+                        <div class="slot">10:00</div>
+                        <div class="slot selected">11:00</div>
+                        <div class="slot">14:00</div>
+                        <div class="slot">15:00</div>
+                        <div class="slot">16:00</div>
+                    </div>
+                </div>
+
+                <div
+                    style="background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 450px; width: 100%; text-align: left;">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--color-primary);">Confirmar Detalhes</h3>
+                    <form>
+                        <div class="form-group">
+                            <label>Nome Completo</label>
+                            <input type="text" class="form-control" placeholder="Seu nome">
+                        </div>
+                        <div class="form-group">
+                            <label>Serviço</label>
+                            <select class="form-control">
+                                <option>Psicologia Clínica</option>
+                                <option>Psiquiatria</option>
+                                <option>Terapia de Casal</option>
+                                <option>Mediação Familiar</option>
+                            </select>
+                        </div>
+                        <div
+                            style="margin-top: 1.5rem; padding: 1rem; background: #f0f9fa; border-radius: 8px; font-size: 0.9rem;">
+                            <strong>Data Selecionada:</strong> 16 de Fevereiro de 2026 às 11:00
+                        </div>
+                        <button class="btn btn-primary" type="button" style="width: 100%; margin-top: 1.5rem;"
+                            onclick="alert('Funcionalidade de agendamento em breve!')">Agendar Consulta</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container footer-grid">
-            <div class="footer-col-left">
-                <img src="../assets/images/logo-mental8works-white.webp" alt="Mental8Works White Logo"
-                    class="footer-logo-img">
-                <p style="text-align: left; opacity: 0.8; font-size: 0.9rem;">
-                    Promovendo a saúde mental desde 2014.
-                </p>
-            </div>
-
-            <div class="footer-col-center">
-                <h4 style="margin-bottom: 1rem; color: white;">Links Rápidos</h4>
-                <ul style="opacity: 0.9;">
-                    <li style="margin-bottom: 0.5rem;"><a href="../index.html">Início</a></li>
-                    <li style="margin-bottom: 0.5rem;"><a href="../index.html#services">Serviços</a></li>
-                    <li style="margin-bottom: 0.5rem;"><a href="../contactos/index.html">Contactos</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col-right">
-                <div style="margin-bottom: 1rem; display: flex; gap: 1rem; justify-content: flex-end;">
-                    <a href="#">Facebook</a>
-                    <a href="#">Instagram</a>
-                    <a href="#">LinkedIn</a>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="../assets/images/logo-mental8works-white.webp" alt="Mental8Works White Logo"
+                        class="footer-logo-img">
+                    <p style="opacity: 0.8; font-size: 0.9rem;">
+                        Promovendo a saúde mental com excelência e humanidade desde 2014.
+                    </p>
                 </div>
-                <p>&copy; 2024 Mental8Works.</p>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1rem; color: white;">Website</h4>
+                    <ul style="opacity: 0.9;">
+                        <li style="margin-bottom: 0.5rem;"><a href="../index.html#home">Início</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="../index.html#services">Serviços</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="../index.html#about">Sobre Nós</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="../blog/index.html">Blog</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="index.html">Agendar</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1rem; color: white;">Contactos</h4>
+                    <ul style="opacity: 0.9;">
+                        <li style="margin-bottom: 0.5rem;"><a
+                                href="mailto:mental8works@gmail.com">mental8works@gmail.com</a></li>
+                        <li style="margin-bottom: 0.5rem;">Avenida Miguel Bombarda,<br>123, 2º piso,<br>1050-164 Lisboa
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <div style="margin-bottom: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://www.facebook.com/mental8works/" target="_blank"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                            </svg></a>
+                        <a href="https://www.instagram.com/mental8works/" target="_blank"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>
+                    <span style="display: block; margin-bottom: 0.25rem;">&copy; 2026 Mental8Works</span>
+                    <span style="font-size: 0.75rem; opacity: 0.7;">Designed by <a href="#"
+                            style="text-decoration: underline;">Sueste - Creative Agency</a></span>
+                </div>
+                <div class="footer-bottom-links">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos e Condições</a>
+                    <a href="#">Cookies</a>
+                    <a href="../contactos/index.html">Contactos</a>
+                </div>
             </div>
         </div>
     </footer>
