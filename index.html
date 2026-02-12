@@ -13,7 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css?v=1.2">
 </head>
 
 <body>
@@ -68,6 +68,10 @@
                 <h1>Encontre o seu equilíbrio <span id="dynamic-word"
                         style="color: var(--color-primary);">interior</span></h1>
 
+                <div class="hero-visual">
+                    <img src="assets/images/hero-banner.webp" alt="Saúde Mental" class="hero-banner">
+                </div>
+
                 <div class="pills-container">
                     <span class="pill">Mediação Familiar</span>
                     <span class="pill">Psicologia Clínica</span>
@@ -86,9 +90,6 @@
                     </a>
                     <a href="#services" class="btn btn-secondary">Saber Mais</a>
                 </div>
-            </div>
-            <div class="hero-visual">
-                <img src="assets/images/hero-banner.webp" alt="Saúde Mental" class="hero-banner">
             </div>
         </div>
     </section>
@@ -214,7 +215,7 @@
                 <!-- Member 1 -->
                 <div class="team-member">
                     <div class="team-img-wrapper" style="border-color: #03919f;">
-                        <img src="assets/images/fav-icon-color.png" alt="João Silva Gonçalves" class="team-img">
+                        <img src="assets/images/1x/Prancheta 1new.png" alt="João Silva Gonçalves" class="team-img">
                     </div>
                     <h3>João Gonçalves</h3>
                     <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon">
@@ -230,7 +231,7 @@
                 </div>
                 <div class="team-member">
                     <div class="team-img-wrapper" style="border-color: #f0be44;">
-                        <img src="assets/images/fav-icon-color.png" alt="Maria João Sequeira" class="team-img">
+                        <img src="assets/images/1x/Prancheta 2new.png" alt="Maria João Sequeira" class="team-img">
                     </div>
                     <h3>Maria Sequeira</h3>
                     <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon"><svg
@@ -245,7 +246,7 @@
                 </div>
                 <div class="team-member">
                     <div class="team-img-wrapper" style="border-color: #03919f;">
-                        <img src="assets/images/fav-icon-color.png" alt="Bruno Chibante" class="team-img">
+                        <img src="assets/images/1x/Prancheta 3new.png" alt="Bruno Chibante" class="team-img">
                     </div>
                     <h3>Bruno Chibante</h3>
                     <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon"><svg
@@ -260,7 +261,7 @@
                 </div>
                 <div class="team-member">
                     <div class="team-img-wrapper" style="border-color: #f0be44;">
-                        <img src="assets/images/fav-icon-color.png" alt="Mafalda Morais" class="team-img">
+                        <img src="assets/images/1x/Prancheta 4new.png" alt="Mafalda Morais" class="team-img">
                     </div>
                     <h3>Mafalda Morais</h3>
                     <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon"><svg
@@ -588,36 +589,56 @@
     <div id="modal-bio-joao" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('modal-bio-joao')">&times;</button>
-            <h2 style="color: var(--color-primary); font-size: 1.5rem; text-align: center;">João Gonçalves</h2>
-            <p>O João possui o Mestrado Integrado em Medicina pela Faculdade de Medicina da Universidade de Lisboa e,
-                actualmente, é Médico Interno de Psiquiatria no Centro Hospitalar Lisboa Norte.</p>
+            <div class="modal-bio-flex">
+                <img src="assets/images/1x/Prancheta 1new.png" alt="João Gonçalves" class="modal-bio-img">
+                <div class="modal-bio-text">
+                    <h2 style="color: var(--color-primary); font-size: 1.5rem; margin-bottom: 1rem;">João Gonçalves</h2>
+                    <p>O João possui o Mestrado Integrado em Medicina pela Faculdade de Medicina da Universidade de
+                        Lisboa e, actualmente, é Médico Interno de Psiquiatria no Centro Hospitalar Lisboa Norte.</p>
+                </div>
+            </div>
         </div>
     </div>
     <div id="modal-bio-maria" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('modal-bio-maria')">&times;</button>
-            <h2 style="color: var(--color-primary); font-size: 1.5rem; text-align: center;">Maria Sequeira</h2>
-            <p>A Maria é Mestre em Psicologia pelo ISPA, com Especialização em Mediação Familiar pelo Instituto
-                Português de Mediação Familiar e Mediação de Conflitos pela Faculdade de Direito da UNL e pelo IMI. É,
-                ainda, formadora certificada.</p>
+            <div class="modal-bio-flex">
+                <img src="assets/images/1x/Prancheta 2new.png" alt="Maria Sequeira" class="modal-bio-img">
+                <div class="modal-bio-text">
+                    <h2 style="color: var(--color-primary); font-size: 1.5rem; margin-bottom: 1rem;">Maria Sequeira</h2>
+                    <p>A Maria é Mestre em Psicologia pelo ISPA, com Especialização em Mediação Familiar pelo Instituto
+                        Português de Mediação Familiar e Mediação de Conflitos pela Faculdade de Direito da UNL e pelo
+                        IMI. É, ainda, formadora certificada.</p>
+                </div>
+            </div>
         </div>
     </div>
     <div id="modal-bio-bruno" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('modal-bio-bruno')">&times;</button>
-            <h2 style="color: var(--color-primary); font-size: 1.5rem; text-align: center;">Bruno Chibante</h2>
-            <p>O Bruno fez a sua formação académica no ISPA, tendo tirado o Mestrado em Psicocriminologia pelo ISPA-IU.
-                Realizou o seu estágio na Direcção Geral de Reinserção e Serviços Prisionais e é formador certificado.
-            </p>
+            <div class="modal-bio-flex">
+                <img src="assets/images/1x/Prancheta 3new.png" alt="Bruno Chibante" class="modal-bio-img">
+                <div class="modal-bio-text">
+                    <h2 style="color: var(--color-primary); font-size: 1.5rem; margin-bottom: 1rem;">Bruno Chibante</h2>
+                    <p>O Bruno fez a sua formação académica no ISPA, tendo tirado o Mestrado em Psicocriminologia pelo
+                        ISPA-IU. Realizou o seu estágio na Direcção Geral de Reinserção e Serviços Prisionais e é
+                        formador certificado.</p>
+                </div>
+            </div>
         </div>
     </div>
     <div id="modal-bio-mafalda" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal('modal-bio-mafalda')">&times;</button>
-            <h2 style="color: var(--color-primary); font-size: 1.5rem; text-align: center;">Mafalda Morais</h2>
-            <p>A Mafalda é Mestre em Psicologia Social e das Organizações pelo ISCTE, com Especialização em Digital
-                Marketing and Strategy pela EDIT. Trabalha como Human Resources Specialist e é formadora certificada.
-            </p>
+            <div class="modal-bio-flex">
+                <img src="assets/images/1x/Prancheta 4new.png" alt="Mafalda Morais" class="modal-bio-img">
+                <div class="modal-bio-text">
+                    <h2 style="color: var(--color-primary); font-size: 1.5rem; margin-bottom: 1rem;">Mafalda Morais</h2>
+                    <p>A Mafalda é Mestre em Psicologia Social e das Organizações pelo ISCTE, com Especialização em
+                        Digital Marketing and Strategy pela EDIT. Trabalha como Human Resources Specialist e é formadora
+                        certificada.</p>
+                </div>
+            </div>
         </div>
     </div>
 
