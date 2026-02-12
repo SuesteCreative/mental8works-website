@@ -1127,3 +1127,11 @@ p {
 /* Responsive Map */
 .map-responsive { overflow: hidden; padding-bottom: 56.25%; position: relative; height: 0; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
 .map-responsive iframe { left: 0; top: 0; height: 100%; width: 100%; position: absolute; border: 0; filter: grayscale(100%) invert(92%) contrast(83%); }
+
+/* Blog Post Layout */
+.blog-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+@media (min-width: 900px) { .blog-grid { grid-template-columns: 2fr 1fr; align-items: start; } }
+.blog-content-area img { width: 100%; border-radius: 12px; margin-bottom: 2rem; }
+.sidebar { background: #f8fafc; padding: 2rem; border-radius: 12px; position: sticky; top: 100px; }
+.author-box { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.author-img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
