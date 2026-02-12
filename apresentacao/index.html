@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Apresentação: Mental8Works</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap"
@@ -28,12 +28,18 @@
             scroll-behavior: smooth;
         }
 
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--light);
             color: var(--dark);
             line-height: 1.7;
-            overflow-x: hidden;
         }
 
         .blob-container {
@@ -45,6 +51,7 @@
             z-index: -1;
             filter: blur(100px);
             opacity: 0.5;
+            overflow: hidden;
         }
 
         .blob {
@@ -86,6 +93,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
+            width: 100%;
         }
 
         #progress {
@@ -104,8 +112,9 @@
         }
 
         .top-logo img {
-            height: 180px;
-            width: auto;
+            max-width: 180px;
+            height: auto;
+            width: 100%;
         }
 
         header {
@@ -116,15 +125,17 @@
             align-items: center;
             text-align: center;
             padding: 0 1rem;
+            width: 100%;
         }
 
         header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-size: clamp(2.2rem, 8vw, 5rem);
             font-weight: 900;
             color: #000;
             line-height: 1.1;
             margin-bottom: 2rem;
+            width: 100%;
         }
 
         .title-blue {
@@ -155,6 +166,7 @@
             margin-bottom: 6rem;
             box-shadow: var(--shadow);
             border: 1px solid var(--glass-border);
+            width: 100%;
         }
 
         .section-title {
@@ -164,7 +176,7 @@
 
         .section-title h2 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(1.8rem, 5vw, 3rem);
             color: var(--dark);
         }
 
@@ -206,33 +218,88 @@
             margin-bottom: 1rem;
         }
 
-        /* Preview area */
+        /* Preview area - MAC/Browser Frame */
         .preview-header {
             text-align: center;
-            margin: 4rem 0 2rem;
+            margin: 4rem 0 2.5rem;
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             color: var(--primary);
         }
 
         .preview-wrapper {
-            border-radius: 24px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
             background: white;
-            border: 8px solid white;
+            border: 1px solid #e2e8f0;
             position: relative;
-            padding-top: 56.25%;
-            /* 16:9 Aspect Ratio */
+            padding-top: calc(56.25% + 40px);
+            /* 16:9 + header */
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 100%;
         }
 
-        .preview-wrapper iframe {
+        /* Mac/Browser Header */
+        .browser-header {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 40px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            border-bottom: 1px solid #e2e8f0;
+            z-index: 10;
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .browser-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red {
+            background: #ff5f56;
+        }
+
+        .dot-yellow {
+            background: #ffbd2e;
+        }
+
+        .dot-green {
+            background: #27c93f;
+        }
+
+        .browser-address {
+            background: white;
+            padding: 2px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            color: #94a3b8;
+            margin-left: 20px;
+            flex: 1;
+            max-width: 400px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .preview-wrapper iframe {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 40px);
             border: none;
         }
 
@@ -245,8 +312,8 @@
             color: white;
             border: none;
             border-radius: 12px;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -272,6 +339,7 @@
             border-radius: 30px;
             align-items: center;
             justify-items: center;
+            width: 100%;
         }
 
         .payment-logos-grid img {
@@ -296,6 +364,7 @@
             color: white;
             border-radius: 40px;
             margin-top: 4rem;
+            width: 100%;
         }
 
         .contact-links {
@@ -348,7 +417,8 @@
 
         .placeholder-img {
             width: 100%;
-            height: 450px;
+            height: auto;
+            min-height: 300px;
             object-fit: cover;
             border-radius: 30px;
             margin: 3rem 0;
@@ -368,18 +438,36 @@
         }
 
         @media (max-width: 768px) {
-            .slide {
-                padding: 2rem;
+            .container {
+                padding: 1rem;
             }
 
+            .slide {
+                padding: 1.5rem;
+                border-radius: 30px;
+            }
+
+            /* IPHONE Frame on Mobile */
             .preview-wrapper {
                 padding-top: 180%;
                 /* Altura de iPhone */
-                max-width: 320px;
+                max-width: 280px;
                 margin: 0 auto;
                 border: 12px solid #1a202c;
                 /* Moldura de telemóvel */
                 border-radius: 45px;
+                background: #1a202c;
+            }
+
+            .browser-header {
+                display: none;
+                /* Hide Mac header on mobile */
+            }
+
+            .preview-wrapper iframe {
+                top: 0;
+                height: 100%;
+                border-radius: 30px;
             }
 
             .preview-wrapper::before {
@@ -388,19 +476,28 @@
                 top: 0;
                 left: 50%;
                 transform: translateX(-50%);
-                width: 120px;
+                width: 100px;
                 height: 25px;
                 background: #1a202c;
-                border-bottom-left-radius: 15px;
-                border-bottom-right-radius: 15px;
+                border-bottom-left-radius: 12px;
+                border-bottom-right-radius: 12px;
                 z-index: 10;
             }
 
             .fullscreen-btn {
-                bottom: 30px;
-                right: 30px;
-                width: 45px;
-                height: 45px;
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .payment-logos-grid {
+                padding: 1.5rem;
+                gap: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
             }
         }
 
@@ -410,44 +507,13 @@
             color: #555;
             margin: -1rem 0 2rem;
             opacity: 0.85;
-        }
-
-        /* Preloader styles */
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.6s ease;
-        }
-
-        #preloader.fade-out {
-            opacity: 0;
-        }
-
-        .preloader-video {
-            width: 200px;
-            height: auto;
+            padding: 0 1rem;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Luxury Preloader -->
-    <div id="preloader">
-        <div class="preloader-content">
-            <video class="preloader-video" autoplay loop muted playsinline>
-                <source src="../assets/images/logo-animated.mp4" type="video/mp4">
-            </video>
-        </div>
-    </div>
     <div id="progress"></div>
     <div class="blob-container">
         <div class="blob blob-1"></div>
@@ -463,7 +529,7 @@
             <span class="badge" style="margin-bottom: 1.5rem;">Estratégia Digital & Transformação</span>
             <h1>A Nova Era da <br><span class="title-blue">Mental</span><span class="title-yellow">8</span><span
                     class="title-blue">Works</span></h1>
-            <p style="font-size: 1.3rem; max-width: 700px; color: #444; margin-bottom: 2.5rem;">
+            <p style="font-size: 1.25rem; max-width: 700px; color: #444; margin-bottom: 2.5rem;">
                 Uma fusão entre cuidado humano e tecnologia de ponta para criar a melhor experiência para os seus
                 utilizadores.
             </p>
@@ -474,7 +540,7 @@
         <section id="vision" class="slide">
             <div class="section-title">
                 <h2>1. Design que Acolhe</h2>
-                <p>Equilíbrio visual sereno que transmite confiança desde a primeira visita. .</p>
+                <p>Equilíbrio visual sereno que transmite confiança desde a primeira visita.</p>
             </div>
 
             <div class="grid-4">
@@ -503,6 +569,14 @@
             <h3 class="preview-header">A Nossa Visão</h3>
             <p class="preview-subtitle">Faz scroll e vê o preview do site aqui</p>
             <div class="preview-wrapper" id="previewContainer">
+                <div class="browser-header">
+                    <div class="browser-dots">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                    </div>
+                    <div class="browser-address">https://mental8works.pt</div>
+                </div>
                 <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Ver em ecrã total">
                     <i data-lucide="maximize"></i>
                 </button>
@@ -557,7 +631,7 @@
 
             <div style="display: grid; grid-template-columns: 1fr; gap: 3rem;">
                 <div
-                    style="background: white; padding: 3rem; border-radius: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                    style="background: white; padding: 2rem; border-radius: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
                     <h3
                         style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.5rem; color: var(--primary); font-size: 1.6rem;">
                         <i data-lucide="credit-card"></i> Pagamentos Integrados
@@ -583,7 +657,7 @@
                 </div>
 
                 <div
-                    style="background: white; padding: 3rem; border-radius: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                    style="background: white; padding: 2rem; border-radius: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
                     <h3
                         style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.5rem; color: var(--primary); font-size: 1.6rem;">
                         <i data-lucide="calendar"></i> Sincronização Inteligente
@@ -592,7 +666,8 @@
                         automaticamente através de API aberta, garantindo alinhamento total da agenda. Podemos integrar
                         diretamente com o calendário do Outlook (Office 365), Google Calendar ou qualquer outro sistema
                         de gestão que suporte ligações externas.</p>
-                    <div class="grid-4" style="grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1.5rem;">
                         <div
                             style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; padding: 1.5rem; border-radius: 15px; background: #f8fafc;">
                             <i data-lucide="mail" size="32" style="color: #0078d4;"></i>
@@ -606,7 +681,7 @@
                         <div
                             style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; padding: 1.5rem; border-radius: 15px; background: #f8fafc;">
                             <i data-lucide="code-2" size="32" style="color: var(--primary);"></i>
-                            <span style="font-size: 0.8rem; font-weight: 600;">Sistemas API Aberta</span>
+                            <span style="font-size: 0.8rem; font-weight: 600;">API Aberta</span>
                         </div>
                     </div>
                 </div>
@@ -639,19 +714,13 @@
     </div>
 
     <script>
-        window.addEventListener('load', function () {
-            const preloader = document.getElementById('preloader');
-            preloader.classList.add('fade-out');
-            setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 600);
-        });
-
         window.onscroll = function () {
             var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var scrolled = (winScroll / height) * 100;
-            document.getElementById("progress").style.width = scrolled + "%";
+            if (height > 0) {
+                var scrolled = (winScroll / height) * 100;
+                document.getElementById("progress").style.width = scrolled + "%";
+            }
         };
 
         function toggleFullscreen() {
