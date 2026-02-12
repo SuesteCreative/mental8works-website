@@ -1,1 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação Projeto - Mental8Works</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #03919f;
+            --secondary: #f0be44;
+            --dark: #1a202c;
+            --light: #f7fafc;
+            --glass: rgba(255, 255, 255, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Blobs background */
+        .blob-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: blur(80px);
+            opacity: 0.5;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            animation: move 10s infinite alternate;
+        }
+
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            top: -100px;
+            left: -100px;
+        }
+
+        .blob-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--secondary);
+            bottom: -50px;
+            right: -50px;
+            animation-duration: 15s;
+        }
+
+        @keyframes move {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(100px, 50px) scale(1.1);
+            }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 6rem;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            font-weight: 300;
+        }
+
+        .slide {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 4rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .slide:hover {
+            transform: translateY(-10px);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        h2::before {
+            content: '';
+            width: 40px;
+            height: 4px;
+            background: var(--secondary);
+            display: block;
+            border-radius: 2px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .roadmap-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--dark);
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 6rem 0;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .slide {
+                padding: 2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Mental8Works</h1>
+            <p class="subtitle">Digital Experience & Strategy Presentation</p>
+            <div>
+                <a href="#start" class="btn">Explorar Projeto</a>
+            </div>
+        </header>
+
+        <section id="start" class="slide">
+            <h2>1. Visão Geral</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                A nova plataforma digital da <strong>Mental8Works</strong> foi concebida para refletir os valores
+                fundamentais da clínica. Criámos um ecossistema digital premium que serve como uma extensão natural do
+                cuidado terapêutico.
+            </p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Humanidade</h3>
+                    <p>Design empático e acolhedor para o paciente.</p>
+                </div>
+                <div class="card">
+                    <h3>Excelência</h3>
+                    <p>Referência técnica e autoridade no setor.</p>
+                </div>
+                <div class="card">
+                    <h3>Acessibilidade</h3>
+                    <p>Fácil de usar em qualquer dispositivo.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <h2>2. Modern UX/UI Design</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3 style="color: var(--secondary);">✨ Visual Premium</h3>
+                    <p>Uso de <em>glassmorphism</em> e paletas de cores que transmitem calma e segurança.</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--secondary);">🌊 Dinamismo Orgânico</h3>
+                    <p>Background blobs fluidos que dão vida ao site sem comprometer a performance.</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--secondary);">📱 Mobile-First</h3>
+                    <p>Navegação impecável e rápida em smartphones e tablets.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <h2>3. SEO & Performance</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Visibilidade Google</h3>
+                    <p>HTML5 semântico e meta tags otimizadas para garantir que a clínica aparece nas pesquisas certas.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3>Velocidade</h3>
+                    <p>Código limpo e animações otimizadas via GPU para carregamento instantâneo.</p>
+                </div>
+                <div class="card">
+                    <h3>Autoridade</h3>
+                    <p>Sistema de blog estruturado para partilha de conhecimento e crescimento orgânico.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <h2>4. Roadmap: O Futuro do Agendamento</h2>
+            <div class="roadmap-item">
+                <div class="icon-circle">1</div>
+                <div>
+                    <h3>Sincronização de Calendários</h3>
+                    <p>Integração com Google Calendar e Outlook para agendamentos em tempo real sem erros.</p>
+                </div>
+            </div>
+            <div class="roadmap-item">
+                <div class="icon-circle">2</div>
+                <div>
+                    <h3>Pagamentos Online</h3>
+                    <p>Integração de MBWay, Stripe e Multibanco para confirmação instantânea de consultas.</p>
+                </div>
+            </div>
+            <div class="roadmap-item">
+                <div class="icon-circle">3</div>
+                <div>
+                    <h3>Notificações Automáticas</h3>
+                    <p>Lembretes automáticos via WhatsApp e E-mail para reduzir faltas a consultas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" style="text-align: center; background: var(--primary); color: white;">
+            <h2 style="color: white; justify-content: center; border:0;">Conclusão</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.9;">
+                Esta plataforma coloca a <strong>Mental8Works</strong> na vanguarda digital da saúde mental em Portugal.
+            </p>
+            <p>Preparado para o futuro.</p>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Mental8Works Digital Strategy</p>
+            <p>v1.2 Premium Edition</p>
+        </footer>
+    </div>
+</body>
+
+</html>
