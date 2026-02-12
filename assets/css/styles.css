@@ -1,1281 +1,588 @@
-/* Modern Reset & Base */
-:root {
-    --color-primary: #03919f;
-    /* Teal */
-    --color-secondary: #f0be44;
-    /* Gold/Yellow */
-    --color-text-main: #1e293b;
-    --color-text-light: #64748b;
-    --color-bg: #f8fafc;
-    --font-sans: 'Inter', sans-serif;
-    --font-serif: 'Playfair Display', serif;
-    --radius-md: 12px;
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: var(--font-sans);
-    color: var(--color-text-main);
-    background: var(--color-bg);
-    overflow-x: hidden;
-    position: relative;
-}
-
-img {
-    max-width: 100%;
-    display: block;
-    height: auto;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: 0.3s;
-}
-
-ul {
-    list-style: none;
-}
-
-/* Utilities */
-.d-none {
-    display: none !important;
-}
-
-@media (min-width: 768px) {
-    .d-md-block {
-        display: block !important;
-    }
-
-    .d-md-none {
-        display: none !important;
-    }
-
-    .d-md-inline {
-        display: inline !important;
-    }
-}
-
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-    position: relative;
-    z-index: 2;
-}
-
-.section {
-    padding: 4rem 0;
-    position: relative;
-    text-align: center;
-}
-
-@media (min-width: 900px) {
-    .section {
-        text-align: left;
-        padding: 6rem 0;
-    }
-}
-
-.text-center {
-    text-align: center !important;
-}
-
-/* Typography */
-h1,
-h2,
-h3 {
-    font-family: var(--font-serif);
-    line-height: 1.2;
-}
-
-h1 {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
-}
-
-h2 {
-    font-size: 1.75rem;
-    margin-bottom: 1.5rem;
-    color: var(--color-text-main);
-}
-
-h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-}
-
-p {
-    margin-bottom: 1rem;
-    line-height: 1.6;
-    color: var(--color-text-light);
-    font-size: 0.95rem;
-}
-
-@media (min-width: 768px) {
-    h1 {
-        font-size: 3.5rem;
-        margin-bottom: 1.5rem;
-    }
-
-    h2 {
-        font-size: 2.5rem;
-        margin-bottom: 2rem;
-    }
-
-    h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-    }
-
-    p {
-        font-size: 1rem;
-    }
-}
-
-/* Buttons */
-.btn {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.75rem 1.5rem;
-    border-radius: 50px;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-    transition: 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.btn-primary {
-    background: var(--color-primary);
-    color: white;
-}
-
-.btn-primary:hover {
-    background: #027a85;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 15px rgba(3, 145, 159, 0.3);
-}
-
-.btn-secondary {
-    background: white;
-    border: 2px solid var(--color-primary);
-    color: var(--color-primary);
-}
-
-.btn-secondary:hover {
-    background: var(--color-primary);
-    color: white;
-}
-
-.btn-pill-small {
-    background: white;
-    border: 1px solid var(--color-primary);
-    color: var(--color-primary);
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-pill-small:hover {
-    background: var(--color-primary);
-    color: white;
-}
-
-.btn-text {
-    color: var(--color-primary);
-    font-weight: 600;
-    background: transparent;
-    border: none;
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    padding: 0;
-}
-
-.social-buttons-row {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-    justify-content: center;
-}
-
-@media(min-width: 900px) {
-    .social-buttons-row {
-        justify-content: flex-start;
-    }
-}
-
-.btn-social {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #e2e8f0;
-    color: #475569;
-    transition: 0.3s;
-}
-
-.btn-social:hover {
-    background: var(--color-primary);
-    color: white;
-    transform: translateY(-3px);
-}
-
-/* Blobs */
-.blob-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    z-index: 0;
-    pointer-events: none;
-}
-
-.blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(60px);
-    animation: floatBlobs 12s infinite alternate ease-in-out;
-    opacity: 0.6;
-    background: radial-gradient(circle, currentColor 0%, transparent 70%);
-}
-
-.blob-1 {
-    top: 5%;
-    left: -10%;
-    width: 250px;
-    height: 250px;
-    color: rgba(240, 190, 68, 0.4);
-    animation-duration: 15s;
-}
-
-.blob-2 {
-    top: 50%;
-    right: -10%;
-    width: 250px;
-    height: 250px;
-    color: rgba(3, 145, 159, 0.4);
-    animation-duration: 18s;
-}
-
-.blob-3 {
-    top: 20%;
-    left: 30%;
-    width: 200px;
-    height: 200px;
-    color: rgba(240, 190, 68, 0.4);
-    animation-duration: 16s;
-}
-
-.blob-4 {
-    bottom: -10%;
-    left: 10%;
-    width: 300px;
-    height: 300px;
-    color: rgba(3, 145, 159, 0.4);
-    animation-duration: 20s;
-    display: none;
-}
-
-.blob-5 {
-    top: -10%;
-    right: 20%;
-    width: 300px;
-    height: 300px;
-    color: rgba(240, 190, 68, 0.4);
-    animation-duration: 19s;
-    display: none;
-}
-
-@media (min-width: 768px) {
-    .blob {
-        opacity: 0.8;
-    }
-
-    .blob-1 {
-        width: 400px;
-        height: 400px;
-        left: 10%;
-    }
-
-    .blob-2 {
-        width: 500px;
-        height: 500px;
-        right: 10%;
-    }
-
-    .blob-4,
-    .blob-5 {
-        display: block;
-    }
-}
-
-@keyframes floatBlobs {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    50% {
-        transform: translate(20px, -30px) scale(1.05);
-    }
-
-    100% {
-        transform: translate(-15px, 25px) scale(0.95);
-    }
-}
-
-/* Header & Nav */
-.header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    padding: 0.75rem 0;
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-logo-img {
-    height: 60px;
-    width: auto;
-    transition: transform 0.3s;
-}
-
-@media (min-width: 900px) {
-    .nav-logo-img {
-        height: 90px;
-    }
-}
-
-.nav-logo-img:hover {
-    transform: scale(1.05);
-}
-
-.mobile-toggle {
-    display: block;
-    cursor: pointer;
-    padding: 0.5rem;
-    margin-right: -0.5rem;
-    z-index: 1002;
-}
-
-@media(min-width: 901px) {
-    .mobile-toggle {
-        display: none;
-    }
-}
-
-.nav-menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 85%;
-    max-width: 300px;
-    height: 100vh;
-    background: white;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 6rem 2rem 2rem;
-    transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
-
-.nav-menu.active {
-    transform: translateX(0);
-}
-
-.nav-link {
-    font-size: 1.1rem;
-    padding: 0.75rem 0;
-    width: 100%;
-    border-bottom: 1px solid #f1f5f9;
-    display: block;
-    color: var(--color-text-main);
-    white-space: nowrap;
-}
-
-@media(min-width: 901px) {
-
-    /* True Centering Layout */
-    .nav-container {
-        display: grid;
-        grid-template-columns: 1fr auto 1fr;
-        align-items: center;
-    }
-
-    .nav-logo-link {
-        justify-self: start;
-    }
-
-    .nav-menu {
-        position: static;
-        height: auto;
-        width: auto;
-        background: transparent;
-        flex-direction: row;
-        padding: 0;
-        transform: none;
-        box-shadow: none;
-        display: flex;
-        gap: 2rem;
-        align-items: center;
-        justify-self: center;
-        /* Center the menu in the middle column */
-    }
-
-    .nav-actions {
-        justify-self: end;
-    }
-
-    .nav-link {
-        font-size: 1rem;
-        padding: 0;
-        border: none;
-        width: auto;
-        font-weight: 500;
-    }
-
-    .header {
-        padding: 0.5rem 0;
-    }
-}
-
-.menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3s;
-}
-
-.menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Hero Section */
-.hero {
-    padding-top: 120px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem;
-    text-align: center;
-}
-
-.hero-content {
-    width: 100%;
-    order: 1;
-}
-
-.hero-visual {
-    width: 100%;
-    order: 2;
-    margin-top: 1rem;
-}
-
-.hero-banner {
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-lg);
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    display: block;
-}
-
-.pills-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-}
-
-.pill {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
-    background: rgba(3, 145, 159, 0.1);
-    color: var(--color-primary);
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    transition: 0.3s;
-    width: 100%;
-    text-align: center;
-    margin: 0;
-}
-
-.pill:hover {
-    background: var(--color-primary);
-    color: white;
-}
-
-.hero-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-}
-
-.hero-actions .btn {
-    font-size: 0.9rem;
-    padding: 0.7rem 1.2rem;
-}
-
-@media (min-width: 900px) {
-
-    /* Reduced Vertical Space */
-    .hero {
-        padding-top: 120px;
-        /* Reduced from 150px */
-        padding-bottom: 2rem;
-        min-height: auto;
-        /* Removed strict VH to allow natural sizing */
-    }
-
-    .hero-container {
-        display: flex;
-        flex-direction: row !important;
-        align-items: center;
-        justify-content: space-between;
-        text-align: left;
-        gap: 4rem;
-    }
-
-    .hero-content {
-        flex: 1;
-        order: 1;
-        text-align: left;
-    }
-
-    .hero-visual {
-        flex: 1;
-        order: 2;
-        margin-top: 0;
-        display: flex;
-        align-items: center;
-    }
-
-    /* ensuring visual center */
-
-    .hero-banner {
-        max-width: none;
-        transform: rotate(2deg);
-        margin: 0;
-    }
-
-    .hero-banner:hover {
-        transform: rotate(0);
-    }
-
-    .pills-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        gap: 0.5rem;
-    }
-
-    .pill {
-        width: auto;
-        padding: 0.35rem 0.85rem;
-        display: inline-block;
-    }
-
-    .hero-actions {
-        justify-content: flex-start;
-    }
-
-    h1 {
-        font-size: 3.5rem;
-    }
-
-    p {
-        font-size: 1.1rem;
-        margin-left: 0;
-        margin-right: auto;
-        max-width: 600px;
-    }
-}
-
-/* Services - Updated Background */
-.grid-cards {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    justify-items: center;
-}
-
-.card {
-    background: #f0f9fa;
-    /* Light Blue BG */
-    padding: 2rem;
-    border-radius: var(--radius-md);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: 0.3s;
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    background: white;
-}
-
-/* Hover White for pop */
-
-.card-content {
-    width: 100%;
-}
-
-.service-icon-wrapper {
-    width: 60px;
-    height: 60px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    color: var(--color-primary);
-    transition: 0.3s;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-.card:hover .service-icon-wrapper {
-    background: var(--color-primary);
-    color: white;
-    transform: scale(1.1);
-}
-
-@media (min-width: 768px) {
-    .grid-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .card {
-        max-width: none;
-        align-items: flex-start;
-        text-align: left;
-    }
-
-    .service-icon-wrapper {
-        margin: 0 0 1.5rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .grid-cards {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* Blog Cards */
-.blog-card {
-    padding: 0;
-    overflow: hidden;
-    background: white;
-    text-align: left !important;
-    align-items: flex-start !important;
-}
-
-.blog-content {
-    padding: 1.5rem;
-    width: 100%;
-}
-
-.blog-content h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-}
-
-.blog-content p {
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    color: #64748b;
-}
-
-/* About Us */
-.about-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    text-align: center;
-}
-
-.about-images {
-    order: 2;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    transition: 0.3s;
-}
-
-.about-images:hover {
-    transform: scale(1.02);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-}
-
-@media (min-width: 900px) {
-    .about-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        text-align: left;
-        align-items: center;
-    }
-
-    .about-images {
-        order: 1;
-        margin: 0;
-    }
-}
-
-/* Team */
-#team {
-    background: transparent;
-}
-
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-}
-
-@media (min-width: 768px) {
-    .team-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-.team-member {
-    text-align: center;
-}
-
-.team-img-wrapper {
-    width: 110px;
-    height: 110px;
-    margin: 0 auto 1rem;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid var(--color-primary);
-}
-
-@media (min-width: 768px) {
-    .team-img-wrapper {
-        width: 140px;
-        height: 140px;
-    }
-}
-
-.team-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Contact */
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    text-align: center;
-}
-
-.contact-info {
-    order: 1;
-}
-
-.contact-form-wrapper {
-    order: 2;
-    background: white;
-    border-radius: 20px;
-    box-shadow: var(--shadow-lg);
-    padding: 2rem;
-    max-width: 500px;
-    margin: 0 auto;
-    width: 100%;
-    text-align: left;
-}
-
-@media (min-width: 900px) {
-    .contact-grid {
-        grid-template-columns: 1.2fr 1fr;
-        gap: 4rem;
-        text-align: left;
-        align-items: start;
-    }
-
-    .contact-form-wrapper {
-        margin: 0;
-    }
-}
-
-.form-control {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    font-family: inherit;
-}
-
-.form-group {
-    margin-bottom: 1.25rem;
-}
-
-.checkbox-group {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-}
-
-.checkbox-group input {
-    margin-top: 4px;
-}
-
-/* Modals */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    z-index: 2000;
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-}
-
-.modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.modal-content {
-    background: white;
-    width: 100%;
-    max-width: 800px;
-    max-height: 90vh;
-    overflow-y: auto;
-    border-radius: var(--radius-md);
-    padding: 2rem;
-    position: relative;
-    transform: translateY(20px);
-    transition: 0.3s;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    text-align: center !important;
-}
-
-/* ENFORCED CENTER */
-.modal-overlay.active .modal-content {
-    transform: translateY(0);
-}
-
-.modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    cursor: pointer;
-    background: #f1f5f9;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: #64748b;
-    border: none;
-    transition: 0.2s;
-}
-
-.modal-close:hover {
-    background: #e2e8f0;
-    color: var(--color-text-main);
-}
-
-/* Psychology Chart */
-.chart-container-wrapper {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    margin: 0 auto 2rem;
-}
-
-@media (min-width: 600px) {
-    .chart-container-wrapper {
-        width: 400px;
-        height: 400px;
-    }
-}
-
-.chart-circle {
-    border-radius: 50%;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-weight: 700;
-    font-size: 0.75rem;
-    color: #1e293b;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-    width: 90px;
-    height: 90px;
-}
-
-@media (min-width: 600px) {
-    .chart-circle {
-        width: 110px;
-        height: 110px;
-        font-size: 0.85rem;
-    }
-}
-
-.chart-circle:hover {
-    transform: scale(1.15) !important;
-    z-index: 10;
-    cursor: default;
-}
-
-.chart-center {
-    background: var(--color-primary);
-    color: white;
-    width: 110px;
-    height: 110px;
-    top: 50%;
-    left: 50%;
-    margin-top: -55px;
-    margin-left: -55px;
-    z-index: 5;
-    font-size: 0.9rem;
-}
-
-@media (min-width: 600px) {
-    .chart-center {
-        width: 140px;
-        height: 140px;
-        margin-top: -70px;
-        margin-left: -70px;
-        font-size: 1.1rem;
-    }
-}
-
-.pos-top {
-    top: 0;
-    left: 50%;
-    margin-left: -45px;
-    background: #bef264;
-}
-
-.pos-tr {
-    top: 20%;
-    right: 0;
-    background: #60a5fa;
-    color: white;
-}
-
-.pos-br {
-    bottom: 20%;
-    right: 0;
-    background: #facc15;
-}
-
-.pos-bot {
-    bottom: 0;
-    left: 50%;
-    margin-left: -45px;
-    background: #fbbf24;
-}
-
-.pos-bl {
-    bottom: 20%;
-    left: 0;
-    background: #475569;
-    color: white;
-}
-
-.pos-tl {
-    top: 20%;
-    left: 0;
-    background: #4ade80;
-}
-
-@media (min-width: 600px) {
-    .pos-top {
-        margin-left: -55px;
-    }
-
-    .pos-bot {
-        margin-left: -55px;
-    }
-}
-
-/* Footer */
-.footer {
-    background: var(--color-text-main);
-    color: white;
-    padding: 4rem 0 2rem;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.footer-logo-img {
-    max-height: 80px;
-    margin: 0 auto 1rem;
-}
-
-@media (min-width: 900px) {
-    .footer-grid {
-        grid-template-columns: 1.5fr 1fr 1fr 1fr;
-        text-align: left;
-    }
-
-    .footer-logo-img {
-        max-height: 100px;
-        margin: 0 0 1rem;
-    }
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-    font-size: 0.85rem;
-    color: #94a3b8;
-}
-
-.footer-bottom-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-}
-
-@media (min-width: 768px) {
-    .footer-bottom {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-}
-
-/* Subpages Header Spacing */
-.section-pt-large {
-    padding-top: 150px;
-}
-
-/* Responsive Map */
-.map-responsive {
-    overflow: hidden;
-    padding-bottom: 56.25%;
-    position: relative;
-    height: 0;
-    border-radius: 12px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.map-responsive iframe {
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    border: 0;
-    filter: grayscale(100%) invert(92%) contrast(83%);
-}
-
-/* Blog Post Layout */
-.blog-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-}
-
-@media (min-width: 900px) {
-    .blog-grid {
-        grid-template-columns: 1fr 3fr;
-    }
-}
-
-.blog-content-area img {
-    width: 40%;
-    max-width: 195px;
-    display: block;
-    margin: 0 auto 2rem;
-    border-radius: 12px;
-}
-
-.blog-card-img-wrapper {
-    width: 40%;
-    aspect-ratio: 3/4;
-    overflow: hidden;
-    border-radius: 8px;
-    margin: 1.5rem auto 0;
-}
-
-/* Specific for Blog Index Page */
-.grid-cards .blog-card-img-wrapper {
-    width: 40%;
-}
-
-.blog-card-img-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.sidebar {
-    background: #f8fafc;
-    padding: 2rem;
-    border-radius: 12px;
-}
-
-@media (min-width: 900px) {
-    .sidebar {
-        position: sticky;
-        top: 100px;
-        order: -1;
-    }
-}
-
-.author-box {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.author-img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: contain;
-    background: var(--color-primary);
-    padding: 5px;
-}
-
-/* Carousel */
-.carousel-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    padding: 1rem 0;
-}
-
-.carousel-track {
-    display: flex;
-    gap: 1.5rem;
-    transition: transform 0.5s ease-in-out;
-}
-
-.carousel-card {
-    min-width: 280px;
-    width: 280px;
-    flex: 0 0 280px;
-}
-
-@media (min-width: 900px) {
-    .carousel-card {
-        min-width: calc((100% - 3rem) / 3);
-        width: calc((100% - 3rem) / 3);
-        flex: 0 1 calc((100% - 3rem) / 3);
-    }
-}
-
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: white;
-    border: 1px solid #e2e8f0;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.carousel-btn:hover {
-    background: var(--color-primary);
-    color: white;
-}
-
-.carousel-btn.prev {
-    left: 10px;
-}
-
-.carousel-btn.next {
-    right: 10px;
-}
-
-.author-placeholder {
-    background: var(--color-primary);
-    padding: 10px;
-}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental8Works - Saúde Mental & Bem-estar</title>
+    <link rel="icon" type="image/png" href="assets/images/fav-icon-color.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <!-- Blobs -->
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+        <div class="blob blob-5"></div>
+    </div>
+    <div class="menu-overlay"></div>
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo-link">
+                <img src="assets/images/logo-mental8works-color.webp" alt="Mental8Works" class="nav-logo-img">
+            </a>
+            <div class="mobile-toggle">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </div>
+            <nav class="nav-menu">
+                <a href="#services" class="nav-link">Serviços</a>
+                <a href="#about" class="nav-link">Sobre Nós</a>
+                <a href="#team" class="nav-link">Equipa</a>
+                <a href="blog/index.html" class="nav-link">Blog</a>
+                <a href="contactos/index.html" class="nav-link">Contactos</a>
+                <a href="agendamentos/index.html" class="btn btn-primary d-md-none"
+                    style="margin-top: 1rem; width: 100%;">Agendar</a>
+            </nav>
+            <div class="nav-actions d-none d-md-block">
+                <a href="agendamentos/index.html" class="btn btn-primary">Agendar</a>
+            </div>
+        </div>
+    </header>
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Encontre o seu equilíbrio <span id="dynamic-word"
+                        style="color: var(--color-primary);">interior</span></h1>
+                <div class="pills-container">
+                    <span class="pill">Mediação Familiar</span>
+                    <span class="pill">Psicologia Clínica</span>
+                    <span class="pill">Psiquiatria</span>
+                    <span class="pill">Terapia de Casal</span>
+                </div>
+                <p>
+                    Promovendo a saúde mental com uma abordagem humana, inclusiva e acessível.
+                    O seu bem-estar é a nossa prioridade.
+                </p>
+                <div class="hero-actions">
+                    <a href="agendamentos/index.html" class="btn btn-primary">
+                        <span class="d-none d-md-inline">Agendar Consulta</span>
+                        <span class="d-md-none">Agendar</span>
+                    </a>
+                    <a href="#services" class="btn btn-secondary">Saber Mais</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="assets/images/hero-banner.webp" alt="Saúde Mental" class="hero-banner">
+            </div>
+        </div>
+    </section>
+    <!-- Services -->
+    <section class="section" id="services">
+        <div class="container">
+            <h2 class="text-center">O Que Fazemos</h2>
+            <div class="grid-cards">
+                <!-- Card 1 -->
+                <div class="card">
+                    <div class="card-content">
+                        <div class="service-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                        </div>
+                        <h3>Psiquiatria e Psicologia</h3>
+                        <div style="width: 50px; height: 3px; background: #f0be44; margin-bottom: 1rem;"></div>
+                        <p>Os nossos Serviços abrangem as áreas de Psiquiatria, Psicologia do Adulto e Infanto-Juvenil.
+                        </p>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn-pill-small" onclick="openModal('modal-clinica')">
+                            Ver mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="margin-left: 4px;">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="card-content">
+                        <div class="service-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                <polyline points="14 2 14 8 20 8" />
+                                <path d="M12 13v6" />
+                                <path d="M9 16l3-3 3 3" />
+                            </svg>
+                        </div>
+                        <h3>Projetos</h3>
+                        <div style="width: 50px; height: 3px; background: #03919f; margin-bottom: 1rem;"></div>
+                        <p>Ao nível de Projectos damos respostas nas áreas Clínica, Família, Social e Comunitária.</p>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn-pill-small" onclick="openModal('modal-projetos')">
+                            Ver mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="margin-left: 4px;">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="card">
+                    <div class="card-content">
+                        <div class="service-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                            </svg>
+                        </div>
+                        <h3>Formação</h3>
+                        <div style="width: 50px; height: 3px; background: #f0be44; margin-bottom: 1rem;"></div>
+                        <p>O nosso catálogo de Formação é facilmente customizado às diferentes realidades.</p>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn-pill-small" onclick="openModal('modal-formacao')">
+                            Ver mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="margin-left: 4px;">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Us -->
+    <section class="section section-about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <h2 style="color: var(--color-text-main);">Sobre Nós</h2>
+                    <h3 style="color: var(--color-primary); font-size: 1.25rem; line-height: 1.5;">Propomo-nos a
+                        construir um futuro em que a nossa visão possa ser a norma.</h3>
+                    <p>
+                        A Mental8Works é uma associação sem fins lucrativos, criada a partir da insatisfação de
+                        profissionais que acreditavam ser possível fazer mais e melhor na área da saúde mental.
+                    </p>
+                </div>
+                <div class="about-images">
+                    <img src="assets/images/about-us.webp" alt="Equipa Mental8Works"
+                        style="width: 100%; height: auto; border-radius: 12px;">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Team -->
+    <section class="section" id="team">
+        <div class="container">
+            <h2 class="text-center">A Nossa Equipa Fundadora</h2>
+            <div class="team-grid">
+                <!-- Member 1 -->
+                <div class="team-member">
+                    <div class="team-img-wrapper" style="border-color: #03919f;">
+                        <img src="assets/images/fav-icon-color.png" alt="João Silva Gonçalves" class="team-img">
+                    </div>
+                    <h3>João Gonçalves</h3>
+                    <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                    </a>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn-pill-small" onclick="openModal('modal-bio-joao')">Bio</button>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-img-wrapper" style="border-color: #f0be44;">
+                        <img src="assets/images/fav-icon-color.png" alt="Maria João Sequeira" class="team-img">
+                    </div>
+                    <h3>Maria Sequeira</h3>
+                    <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg></a>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn-pill-small" onclick="openModal('modal-bio-maria')">Bio</button>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-img-wrapper" style="border-color: #03919f;">
+                        <img src="assets/images/fav-icon-color.png" alt="Bruno Chibante" class="team-img">
+                    </div>
+                    <h3>Bruno Chibante</h3>
+                    <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg></a>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn-pill-small" onclick="openModal('modal-bio-bruno')">Bio</button>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-img-wrapper" style="border-color: #f0be44;">
+                        <img src="assets/images/fav-icon-color.png" alt="Mafalda Morais" class="team-img">
+                    </div>
+                    <h3>Mafalda Morais</h3>
+                    <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg></a>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn-pill-small" onclick="openModal('modal-bio-mafalda')">Bio</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Preview -->
+    <section class="section" id="blog">
+        <div class="container">
+            <h2 class="text-center">Blog & Notícias</h2>
+            <div class="carousel-container">
+                <button class="carousel-btn prev">&#10094;</button>
+                <div class="carousel-track-container" style="overflow: hidden;">
+                    <ul class="carousel-track" style="margin: 0; padding: 0; list-style: none;">
+                        <!-- Blog 1 -->
+                        <li class="carousel-card card blog-card">
+                            <a href="blog/posts/desmistificar-o-suicidio/index.html"
+                                style="text-decoration: none; color: inherit; display: block;">
+                                <div class="blog-card-img-wrapper">
+                                    <img src="assets/images/desmistificar-o-suicidio.png"
+                                        alt="Desmistificar o suicídio">
+                                </div>
+                                <div class="blog-content">
+                                    <h3>Desmistificar o suicídio</h3>
+                                    <p>A consciencialização é o primeiro passo para a prevenção...</p>
+                                    <span style="color: var(--color-primary); font-weight: 600;">Ler mais →</span>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- Blog 2 -->
+                        <li class="carousel-card card blog-card">
+                            <a href="blog/posts/mudanças-no-regresso-a-rotina/index.html"
+                                style="text-decoration: none; color: inherit; display: block;">
+                                <div class="blog-card-img-wrapper">
+                                    <img src="assets/images/mudanças-no-regresso-a-rotina.png"
+                                        alt="Mudanças no regresso à rotina">
+                                </div>
+                                <div class="blog-content">
+                                    <h3>Mudanças no regresso à rotina</h3>
+                                    <p>Como encontrar satisfação e propósito no retorno ao trabalho...</p>
+                                    <span style="color: var(--color-primary); font-weight: 600;">Ler mais →</span>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- Blog 3 -->
+                        <li class="carousel-card card blog-card">
+                            <a href="blog/posts/saude-mental-recursos-e-informações/index.html"
+                                style="text-decoration: none; color: inherit; display: block;">
+                                <div class="blog-card-img-wrapper">
+                                    <img src="assets/images/saude-mental-recursos-e-informacoes.png" alt="Saúde Mental">
+                                </div>
+                                <div class="blog-content">
+                                    <h3>Saúde Mental – Recursos</h3>
+                                    <p>Onde encontrar ajuda e informação fidedigna sobre saúde mental...</p>
+                                    <span style="color: var(--color-primary); font-weight: 600;">Ler mais →</span>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- Blog 4 -->
+                        <li class="carousel-card card blog-card">
+                            <a href="blog/posts/vamos-falar-de-ansiedade/index.html"
+                                style="text-decoration: none; color: inherit; display: block;">
+                                <div class="blog-card-img-wrapper">
+                                    <img src="assets/images/vamos-falar-de-ansiedade.png" alt="Ansiedade">
+                                </div>
+                                <div class="blog-content">
+                                    <h3>Vamos falar de Ansiedade</h3>
+                                    <p>Quando a ansiedade se torna um problema e como intervir...</p>
+                                    <span style="color: var(--color-primary); font-weight: 600;">Ler mais →</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <button class="carousel-btn next">&#10095;</button>
+            </div>
+            <div class="text-center">
+                <a href="blog/index.html" class="btn btn-secondary">Ver Todos os Artigos</a>
+            </div>
+        </div>
+    </section>
+    <!-- Contact & Form -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Entre em Contacto</h2>
+                    <p>Estamos aqui para ouvir. Envie-nos uma mensagem ou agende a sua consulta diretamente.</p>
+                    <div style="margin-top: 2rem;">
+                        <a href="agendamentos/index.html" class="btn btn-primary"
+                            style="padding: 1rem 2rem; font-size: 1.1rem; width: 100%; text-align: center;">
+                            📅 Agende Já a Sua Consulta
+                        </a>
+                        <div class="social-buttons-row">
+                            <a href="mailto:mental8works@gmail.com" class="btn-social" title="Email">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                            </a>
+                            <span class="btn-social" title="Whatsapp (Brevemente)" style="cursor: help;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                                </svg>
+                            </span>
+                            <a href="https://www.instagram.com/mental8works/" target="_blank" class="btn-social"
+                                title="Instagram">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/mental8works/" target="_blank" class="btn-social"
+                                title="Facebook">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form id="contactForm" onsubmit="sendMail(event)">
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input type="text" class="form-control" id="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" id="contactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Mensagem</label>
+                            <textarea class="form-control" rows="4" id="contactMessage" required></textarea>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="privacy" required>
+                            <label for="privacy">
+                                Li e aceito a <a href="contactos/index.html"
+                                    style="color: var(--color-primary); text-decoration: underline;">política de
+                                    privacidade</a>.
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="assets/images/logo-mental8works-white.webp" alt="Mental8Works White Logo"
+                        class="footer-logo-img">
+                    <p style="opacity: 0.8; font-size: 0.9rem;">
+                        Promovendo a saúde mental com excelência e humanidade desde 2014.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1rem; color: white;">Website</h4>
+                    <ul style="opacity: 0.9;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#home">Início</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#services">Serviços</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#about">Sobre Nós</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="blog/index.html">Blog</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="agendamentos/index.html">Agendar</a></li>
+                    </ul>
+                </div>
+                <!-- Updated Contact Info -->
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1rem; color: white;">Contactos</h4>
+                    <ul style="opacity: 0.9;">
+                        <li style="margin-bottom: 0.5rem;"><a
+                                href="mailto:mental8works@gmail.com">mental8works@gmail.com</a></li>
+                        <li style="margin-bottom: 0.5rem;">Avenida Miguel Bombarda,<br>123, 2º piso,<br>1050-164 Lisboa
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <div style="margin-bottom: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://www.facebook.com/mental8works/" target="_blank"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                            </svg></a>
+                        <a href="https://www.instagram.com/mental8works/" target="_blank"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>
+                    <span style="display: block; margin-bottom: 0.25rem;">&copy; 2026 Mental8Works</span>
+                    <span style="font-size: 0.75rem; opacity: 0.7;">Designed by <a href="#"
+                            style="text-decoration: underline;">Sueste - Creative Agency</a></span>
+                </div>
+                <div class="footer-bottom-links">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos e Condições</a>
+                    <a href="#">Cookies</a>
+                    <a href="contactos/index.html">Contactos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Service Modals -->
+    <div id="modal-clinica" class="modal-overlay">
+        <div class="modal-content text-center">
+            <button class="modal-close" onclick="closeModal('modal-clinica')">&times;</button>
+            <h2 style="color: var(--color-primary); font-size: 1.5rem;">Psicologia Clínica</h2>
+            <p style="font-size: 0.95rem; margin-bottom: 2rem;">Trata-se de um ramo da Psicologia que versa sobre as
+                condições que possam causar mal-estar, sofrimento ou que retiram qualidade de vida às pessoas.</p>
+            <div class="chart-container-wrapper">
+                <div class="chart-circle chart-center">Psicologia<br>Clínica</div>
+                <div class="chart-circle pos-top">Avaliação</div>
+                <div class="chart-circle pos-tr">Prevenção</div>
+                <div class="chart-circle pos-br">Diagnóstico</div>
+                <div class="chart-circle pos-bot">Prognóstico</div>
+                <div class="chart-circle pos-bl">Tratamento</div>
+                <div class="chart-circle pos-tl">Reabilitação</div>
+            </div>
+            <p style="font-size: 0.9rem; color: #64748b; margin-top: 2rem;">
+                A Psicologia Clínica da Mental8Works disponibiliza consultas para crianças, adolescentes e adultos com
+                vista à identificação de perturbações cognitivas ou emocionais.
+            </p>
+        </div>
+    </div>
+    <div id="modal-projetos" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-projetos')">&times;</button>
+            <h2 style="color: var(--color-primary); font-size: 1.5rem; text-align: center;">Projetos Sociais</h2>
+            <p style="text-align: center;">Desenvolvemos iniciativas que levam a saúde mental para fora do consultório,
+                promovendo o bem-estar em comunidades e instituições.</p>
+            <ul style="margin: 1.5rem auto; list-style: none; padding: 0; max-width: 500px; text-align: left;">
+                <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                    <span style="color:var(--color-primary); font-weight: bold;">•</span>
+                    <div><strong>Intervenção Escolar:</strong> Programas adaptados para alunos e professores focados em
+                        inteligência emocional, prevenção de bullying e gestão de stress acadêmico.</div>
+                </li>
+                <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                    <span style="color:var(--color-primary); font-weight: bold;">•</span>
+                    <div><strong>Apoio à Família:</strong> Workshops e grupos de partilha sobre parentalidade positiva,
+                        mediação de conflitos e suporte em momentos de transição familiar.</div>
+                </li>
+                <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                    <span style="color:var(--color-primary); font-weight: bold;">•</span>
+                    <div><strong>Sustentabilidade Social:</strong> Projetos de inclusão para grupos vulneráveis,
+                        combatendo o estigma associado à doença mental e promovendo a literacia em saúde.</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="modal-formacao" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-formacao')">&times;</button>
+            <h2 style="color: var(--color-primary); font-size: 1.5rem; text-align: center;">Catálogo de Formação</h2>
+            <p style="text-align: center;">Oferecemos capacitação técnica e comportamental para profissionais de saúde,
+                educação e empresas, adaptando os conteúdos a cada necessidade específica.</p>
+            <div
+                style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem; max-width: 500px; margin-inline: auto;">
+                <div
+                    style="background: #f8fafc; padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--color-primary);">
+                    <h4 style="color: var(--color-primary);">Clínica e Intervenção</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0;">Especialização em técnicas de psicoterapia,
+                        avaliação diagnóstica e intervenção em crise para profissionais da área.</p>
+                </div>
+                <div
+                    style="background: #f8fafc; padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--color-secondary);">
+                    <h4 style="color: var(--color-secondary);">Corporativo e RH</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0;">Workshop de gestão de stress no trabalho, liderança
+                        empática e saúde mental organizacional.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team Bios Modals -->
+    <div id="modal-bio-joao" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-bio-joao')">&times;</button>
+            <h2 style="color: var(--color-primary); font-size: 1.5rem; text-align: center;">João Gonçalves</h2>
+            <p>O João possui o Mestrado Integrado em Medicina pela Faculdade de Medicina da Universidade de Lisboa e,
+                actualmente, é Médico Interno de Psiquiatria no Centro Hospitalar Lisboa Norte.</p>
+        </div>
+    </div>
+    <div id="modal-bio-maria" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-bio-maria')">&times;</button>
+            <h2 style="color: var(--color-primary); font-size: 1.5rem; text-align: center;">Maria Sequeira</h2>
+            <p>A Maria é Mestre em Psicologia pelo ISPA, com Especialização em Mediação Familiar pelo Instituto
+                Português de Mediação Familiar e Mediação de Conflitos pela Faculdade de Direito da UNL e pelo IMI. É,
+                ainda, formadora certificada.</p>
+        </div>
+    </div>
+    <div id="modal-bio-bruno" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-bio-bruno')">&times;</button>
+            <h2 style="color: var(--color-primary); font-size: 1.5rem; text-align: center;">Bruno Chibante</h2>
+            <p>O Bruno fez a sua formação académica no ISPA, tendo tirado o Mestrado em Psicocriminologia pelo ISPA-IU.
+                Realizou o seu estágio na Direcção Geral de Reinserção e Serviços Prisionais e é formador certificado.
+            </p>
+        </div>
+    </div>
+    <div id="modal-bio-mafalda" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-bio-mafalda')">&times;</button>
+            <h2 style="color: var(--color-primary); font-size: 1.5rem; text-align: center;">Mafalda Morais</h2>
+            <p>A Mafalda é Mestre em Psicologia Social e das Organizações pelo ISCTE, com Especialização em Digital
+                Marketing and Strategy pela EDIT. Trabalha como Human Resources Specialist e é formadora certificada.
+            </p>
+        </div>
+    </div>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
