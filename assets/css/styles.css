@@ -670,7 +670,8 @@ p {
     }
 
     h1 {
-        font-size: 3.5rem;
+        font-size: 2.625rem;
+        /* Matches dynamic word size to maintain uniform look */
     }
 
     /* Fix dynamic word wrap on desktop */
@@ -678,8 +679,7 @@ p {
         display: inline-block;
         min-width: 250px;
         white-space: nowrap;
-        font-size: 0.75em;
-        /* Smaller to guarantee NO-WRAP */
+        font-size: 1em;
     }
 
     p {
