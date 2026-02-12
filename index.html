@@ -1,23 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mental8Works - Saúde Mental & Bem-estar</title>
     <link rel="icon" type="image/png" href="assets/images/fav-icon-color.png">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
         rel="stylesheet">
-
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-
 <body>
-
     <!-- Blobs -->
     <div class="blob-container">
         <div class="blob blob-1"></div>
@@ -26,16 +21,13 @@
         <div class="blob blob-4"></div>
         <div class="blob blob-5"></div>
     </div>
-
     <div class="menu-overlay"></div>
-
     <!-- Header -->
     <header class="header">
         <div class="container nav-container">
             <a href="#" class="nav-logo-link">
                 <img src="assets/images/logo-mental8works-color.webp" alt="Mental8Works" class="nav-logo-img">
             </a>
-
             <div class="mobile-toggle">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -44,7 +36,6 @@
                     <line x1="3" y1="18" x2="21" y2="18"></line>
                 </svg>
             </div>
-
             <nav class="nav-menu">
                 <a href="#services" class="nav-link">Serviços</a>
                 <a href="#about" class="nav-link">Sobre Nós</a>
@@ -54,26 +45,23 @@
                 <a href="agendamentos/index.html" class="btn btn-primary d-md-none"
                     style="margin-top: 1rem; width: 100%;">Agendar</a>
             </nav>
-
             <div class="nav-actions d-none d-md-block">
                 <a href="agendamentos/index.html" class="btn btn-primary">Agendar</a>
             </div>
         </div>
     </header>
-
     <!-- Hero -->
     <section class="hero" id="home">
         <div class="container hero-container">
             <div class="hero-content">
-                <h1>Encontre o seu equilíbrio interior</h1>
-
+                <h1>Encontre o seu equilíbrio <span id="dynamic-word"
+                        style="color: var(--color-primary);">interior</span></h1>
                 <div class="pills-container">
                     <span class="pill">Mediação Familiar</span>
                     <span class="pill">Psicologia Clínica</span>
                     <span class="pill">Psiquiatria</span>
                     <span class="pill">Terapia de Casal</span>
                 </div>
-
                 <p>
                     Promovendo a saúde mental com uma abordagem humana, inclusiva e acessível.
                     O seu bem-estar é a nossa prioridade.
@@ -91,7 +79,6 @@
             </div>
         </div>
     </section>
-
     <!-- Services -->
     <section class="section" id="services">
         <div class="container">
@@ -124,7 +111,6 @@
                         </button>
                     </div>
                 </div>
-
                 <!-- Card 2 -->
                 <div class="card">
                     <div class="card-content">
@@ -153,7 +139,6 @@
                         </button>
                     </div>
                 </div>
-
                 <!-- Card 3 -->
                 <div class="card">
                     <div class="card-content">
@@ -183,7 +168,6 @@
             </div>
         </div>
     </section>
-
     <!-- About Us -->
     <section class="section section-about" id="about">
         <div class="container">
@@ -204,7 +188,6 @@
             </div>
         </div>
     </section>
-
     <!-- Team -->
     <section class="section" id="team">
         <div class="container">
@@ -223,6 +206,9 @@
                                 d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                         </svg>
                     </a>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn-pill-small" onclick="openModal('modal-bio-joao')">Bio</button>
+                    </div>
                 </div>
                 <div class="team-member">
                     <div class="team-img-wrapper" style="border-color: #f0be44;">
@@ -235,6 +221,9 @@
                             <path
                                 d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                         </svg></a>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn-pill-small" onclick="openModal('modal-bio-maria')">Bio</button>
+                    </div>
                 </div>
                 <div class="team-member">
                     <div class="team-img-wrapper" style="border-color: #03919f;">
@@ -247,6 +236,9 @@
                             <path
                                 d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                         </svg></a>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn-pill-small" onclick="openModal('modal-bio-bruno')">Bio</button>
+                    </div>
                 </div>
                 <div class="team-member">
                     <div class="team-img-wrapper" style="border-color: #f0be44;">
@@ -259,11 +251,13 @@
                             <path
                                 d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                         </svg></a>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn-pill-small" onclick="openModal('modal-bio-mafalda')">Bio</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- Blog Preview -->
     <section class="section" id="blog">
         <div class="container">
@@ -272,7 +266,6 @@
                 <button class="carousel-btn prev">&#10094;</button>
                 <div class="carousel-track-container" style="overflow: hidden;">
                     <ul class="carousel-track" style="margin: 0; padding: 0; list-style: none;">
-
                         <!-- Blog 1 -->
                         <li class="carousel-card card blog-card">
                             <a href="blog/posts/desmistificar-o-suicidio/index.html"
@@ -288,7 +281,6 @@
                                 </div>
                             </a>
                         </li>
-
                         <!-- Blog 2 -->
                         <li class="carousel-card card blog-card">
                             <a href="blog/posts/mudanças-no-regresso-a-rotina/index.html"
@@ -304,7 +296,6 @@
                                 </div>
                             </a>
                         </li>
-
                         <!-- Blog 3 -->
                         <li class="carousel-card card blog-card">
                             <a href="blog/posts/saude-mental-recursos-e-informações/index.html"
@@ -319,7 +310,6 @@
                                 </div>
                             </a>
                         </li>
-
                         <!-- Blog 4 -->
                         <li class="carousel-card card blog-card">
                             <a href="blog/posts/vamos-falar-de-ansiedade/index.html"
@@ -334,7 +324,6 @@
                                 </div>
                             </a>
                         </li>
-
                     </ul>
                 </div>
                 <button class="carousel-btn next">&#10095;</button>
@@ -344,22 +333,18 @@
             </div>
         </div>
     </section>
-
     <!-- Contact & Form -->
     <section class="section" id="contact">
         <div class="container">
             <div class="contact-grid">
-
                 <div class="contact-info">
                     <h2>Entre em Contacto</h2>
                     <p>Estamos aqui para ouvir. Envie-nos uma mensagem ou agende a sua consulta diretamente.</p>
-
                     <div style="margin-top: 2rem;">
                         <a href="agendamentos/index.html" class="btn btn-primary"
                             style="padding: 1rem 2rem; font-size: 1.1rem; width: 100%; text-align: center;">
                             📅 Agende Já a Sua Consulta
                         </a>
-
                         <div class="social-buttons-row">
                             <a href="mailto:mental8works@gmail.com" class="btn-social" title="Email">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
@@ -399,7 +384,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="contact-form-wrapper">
                     <form id="contactForm" onsubmit="sendMail(event)">
                         <div class="form-group">
@@ -428,7 +412,6 @@
             </div>
         </div>
     </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -479,7 +462,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <div>
                     <span style="display: block; margin-bottom: 0.25rem;">&copy; 2026 Mental8Works</span>
@@ -495,7 +477,6 @@
             </div>
         </div>
     </footer>
-
     <!-- Service Modals -->
     <div id="modal-clinica" class="modal-overlay">
         <div class="modal-content text-center">
@@ -503,7 +484,6 @@
             <h2 style="color: var(--color-primary); font-size: 1.5rem;">Psicologia Clínica</h2>
             <p style="font-size: 0.95rem; margin-bottom: 2rem;">Trata-se de um ramo da Psicologia que versa sobre as
                 condições que possam causar mal-estar, sofrimento ou que retiram qualidade de vida às pessoas.</p>
-
             <div class="chart-container-wrapper">
                 <div class="chart-circle chart-center">Psicologia<br>Clínica</div>
                 <div class="chart-circle pos-top">Avaliação</div>
@@ -513,52 +493,96 @@
                 <div class="chart-circle pos-bl">Tratamento</div>
                 <div class="chart-circle pos-tl">Reabilitação</div>
             </div>
-
             <p style="font-size: 0.9rem; color: #64748b; margin-top: 2rem;">
                 A Psicologia Clínica da Mental8Works disponibiliza consultas para crianças, adolescentes e adultos com
                 vista à identificação de perturbações cognitivas ou emocionais.
             </p>
         </div>
     </div>
-
-    <!-- Modal 2: Projetos -->
     <div id="modal-projetos" class="modal-overlay">
-        <div class="modal-content text-center"> <!-- Enforced Center -->
+        <div class="modal-content">
             <button class="modal-close" onclick="closeModal('modal-projetos')">&times;</button>
-            <h2 style="color: var(--color-primary); font-size: 1.5rem;">Projetos Sociais</h2>
-            <p>Desenvolvemos iniciativas que levam a saúde mental para fora do consultório.</p>
-            <!-- Center list items or keep text handling -->
-            <ul style="margin: 1.5rem auto; list-style: none; padding: 0; max-width: 400px; text-align: left;">
-                <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
-                        style="color:var(--color-primary);">•</span> <strong>Intervenção Escolar:</strong> Programas de
-                    inteligência emocional.</li>
-                <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
-                        style="color:var(--color-primary);">•</span> <strong>Apoio à Família:</strong> Workshops de
-                    parentalidade.</li>
-                <li style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span
-                        style="color:var(--color-primary);">•</span> <strong>Sustentabilidade Social:</strong> Projetos
-                    de inclusão.</li>
+            <h2 style="color: var(--color-primary); font-size: 1.5rem; text-align: center;">Projetos Sociais</h2>
+            <p style="text-align: center;">Desenvolvemos iniciativas que levam a saúde mental para fora do consultório,
+                promovendo o bem-estar em comunidades e instituições.</p>
+            <ul style="margin: 1.5rem auto; list-style: none; padding: 0; max-width: 500px; text-align: left;">
+                <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                    <span style="color:var(--color-primary); font-weight: bold;">•</span>
+                    <div><strong>Intervenção Escolar:</strong> Programas adaptados para alunos e professores focados em
+                        inteligência emocional, prevenção de bullying e gestão de stress acadêmico.</div>
+                </li>
+                <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                    <span style="color:var(--color-primary); font-weight: bold;">•</span>
+                    <div><strong>Apoio à Família:</strong> Workshops e grupos de partilha sobre parentalidade positiva,
+                        mediação de conflitos e suporte em momentos de transição familiar.</div>
+                </li>
+                <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                    <span style="color:var(--color-primary); font-weight: bold;">•</span>
+                    <div><strong>Sustentabilidade Social:</strong> Projetos de inclusão para grupos vulneráveis,
+                        combatendo o estigma associado à doença mental e promovendo a literacia em saúde.</div>
+                </li>
             </ul>
         </div>
     </div>
-
-    <!-- Modal 3: Formação -->
     <div id="modal-formacao" class="modal-overlay">
-        <div class="modal-content text-center">
+        <div class="modal-content">
             <button class="modal-close" onclick="closeModal('modal-formacao')">&times;</button>
-            <h2 style="color: var(--color-primary); font-size: 1.5rem;">Catálogo de Formação</h2>
-            <p>Capacitação para profissionais e empresas.</p>
+            <h2 style="color: var(--color-primary); font-size: 1.5rem; text-align: center;">Catálogo de Formação</h2>
+            <p style="text-align: center;">Oferecemos capacitação técnica e comportamental para profissionais de saúde,
+                educação e empresas, adaptando os conteúdos a cada necessidade específica.</p>
             <div
-                style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; max-width: 300px; margin-inline: auto;">
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
-                    <h4>Clínica</h4>
-                    <p style="font-size: 0.85rem;">Especilização para psicólogos</p>
+                style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem; max-width: 500px; margin-inline: auto;">
+                <div
+                    style="background: #f8fafc; padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--color-primary);">
+                    <h4 style="color: var(--color-primary);">Clínica e Intervenção</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0;">Especialização em técnicas de psicoterapia,
+                        avaliação diagnóstica e intervenção em crise para profissionais da área.</p>
+                </div>
+                <div
+                    style="background: #f8fafc; padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--color-secondary);">
+                    <h4 style="color: var(--color-secondary);">Corporativo e RH</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0;">Workshop de gestão de stress no trabalho, liderança
+                        empática e saúde mental organizacional.</p>
                 </div>
             </div>
         </div>
     </div>
-
+    <!-- Team Bios Modals -->
+    <div id="modal-bio-joao" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-bio-joao')">&times;</button>
+            <h2 style="color: var(--color-primary); font-size: 1.5rem; text-align: center;">João Gonçalves</h2>
+            <p>O João possui o Mestrado Integrado em Medicina pela Faculdade de Medicina da Universidade de Lisboa e,
+                actualmente, é Médico Interno de Psiquiatria no Centro Hospitalar Lisboa Norte.</p>
+        </div>
+    </div>
+    <div id="modal-bio-maria" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-bio-maria')">&times;</button>
+            <h2 style="color: var(--color-primary); font-size: 1.5rem; text-align: center;">Maria Sequeira</h2>
+            <p>A Maria é Mestre em Psicologia pelo ISPA, com Especialização em Mediação Familiar pelo Instituto
+                Português de Mediação Familiar e Mediação de Conflitos pela Faculdade de Direito da UNL e pelo IMI. É,
+                ainda, formadora certificada.</p>
+        </div>
+    </div>
+    <div id="modal-bio-bruno" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-bio-bruno')">&times;</button>
+            <h2 style="color: var(--color-primary); font-size: 1.5rem; text-align: center;">Bruno Chibante</h2>
+            <p>O Bruno fez a sua formação académica no ISPA, tendo tirado o Mestrado em Psicocriminologia pelo ISPA-IU.
+                Realizou o seu estágio na Direcção Geral de Reinserção e Serviços Prisionais e é formador certificado.
+            </p>
+        </div>
+    </div>
+    <div id="modal-bio-mafalda" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('modal-bio-mafalda')">&times;</button>
+            <h2 style="color: var(--color-primary); font-size: 1.5rem; text-align: center;">Mafalda Morais</h2>
+            <p>A Mafalda é Mestre em Psicologia Social e das Organizações pelo ISCTE, com Especialização em Digital
+                Marketing and Strategy pela EDIT. Trabalha como Human Resources Specialist e é formadora certificada.
+            </p>
+        </div>
+    </div>
     <script src="assets/js/script.js"></script>
 </body>
-
 </html>
