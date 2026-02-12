@@ -1162,18 +1162,26 @@ p {
 }
 
 .blog-content-area img {
-    width: 100%;
-    max-width: 600px;
+    width: 75%;
+    max-width: 450px;
     display: block;
     margin: 0 auto 2rem;
     border-radius: 12px;
 }
 
 .blog-card-img-wrapper {
-    width: 100%;
+    width: 60%;
+    /* Much smaller on landing page */
     aspect-ratio: 3/4;
     overflow: hidden;
-    border-radius: 12px 12px 0 0;
+    border-radius: 8px;
+    margin: 1.5rem auto 0;
+}
+
+/* Specific for Blog Index Page */
+.grid-cards .blog-card-img-wrapper {
+    width: 50%;
+    /* Half size on blog page */
 }
 
 .blog-card-img-wrapper img {
