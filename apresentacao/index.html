@@ -127,6 +127,10 @@
             margin-bottom: 2rem;
         }
 
+        .title-yellow {
+            color: var(--secondary);
+        }
+
         .title-8 {
             color: var(--primary);
         }
@@ -164,15 +168,16 @@
             color: var(--dark);
         }
 
+        /* 2x2 Grid Layout for Desktop */
         .grid-4 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
         }
 
         .feature-card {
             background: white;
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: 24px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
             transition: 0.3s;
@@ -196,18 +201,26 @@
         }
 
         .feature-card h3 {
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             color: var(--primary);
             margin-bottom: 1rem;
         }
 
-        /* Iframe Styles */
+        /* Preview area */
+        .preview-header {
+            text-align: center;
+            margin: 4rem 0 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
         .preview-wrapper {
-            margin-top: 4rem;
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
             background: white;
+            border: 8px solid white;
             position: relative;
             padding-top: 56.25%;
             /* 16:9 Aspect Ratio */
@@ -222,44 +235,69 @@
             border: none;
         }
 
-        /* Payments area */
-        .payment-logos {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
+        /* Payments area - 3 columns, 2 rows */
+        .payment-logos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
             margin-top: 2rem;
-            padding: 2rem;
+            padding: 3rem;
             background: #fff;
-            border-radius: 20px;
+            border-radius: 30px;
+            align-items: center;
+            justify-items: center;
         }
 
-        .payment-logos img {
-            height: 40px;
+        .payment-logos-grid img {
+            max-width: 120px;
+            height: auto;
+            max-height: 45px;
             filter: grayscale(1);
-            opacity: 0.7;
-            transition: 0.3s;
+            opacity: 0.8;
+            transition: 0.4s;
         }
 
-        .payment-logos img:hover {
+        .payment-logos-grid img:hover {
             filter: grayscale(0);
             opacity: 1;
-        }
-
-        .roadmap-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            transform: scale(1.1);
         }
 
         .footer-cta {
             text-align: center;
-            padding: 6rem 1rem;
+            padding: 6rem 2rem;
             background: var(--dark);
             color: white;
             border-radius: 40px;
             margin-top: 4rem;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1.15rem;
+            transition: 0.3s;
+            opacity: 0.9;
+        }
+
+        .contact-item:hover {
+            color: var(--secondary);
+            opacity: 1;
+        }
+
+        .contact-item i {
+            color: var(--secondary);
         }
 
         .btn {
@@ -273,6 +311,7 @@
             border-radius: 50px;
             font-weight: 700;
             transition: 0.3s;
+            margin-bottom: 2rem;
         }
 
         .btn:hover {
@@ -283,11 +322,23 @@
 
         .placeholder-img {
             width: 100%;
-            height: 400px;
+            height: 450px;
             object-fit: cover;
-            border-radius: 24px;
-            margin: 2rem 0;
+            border-radius: 30px;
+            margin: 3rem 0;
             box-shadow: var(--shadow);
+            border: 4px solid white;
+        }
+
+        @media (max-width: 992px) {
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-logos-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 2rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -298,8 +349,6 @@
             .preview-wrapper {
                 padding-top: 100%;
             }
-
-            /* Square for mobile */
         }
     </style>
 </head>
@@ -313,12 +362,13 @@
 
     <div class="container">
         <div class="top-logo">
-            <img src="assets/images/logo-mental8works-color.webp" alt="Mental8Works Logo">
+            <img src="../assets/images/logo-mental8works-color.webp" alt="Mental8Works Logo">
         </div>
 
         <header>
             <span class="badge">Estratégia Digital & Transformação</span>
-            <h1>A Nova Era da <br>Mental<span class="title-8">8</span>Works</h1>
+            <h1>A Nova Era da <br><span class="title-yellow">Mental</span><span class="title-8">8</span><span
+                    class="title-yellow">Works</span></h1>
             <p style="font-size: 1.4rem; max-width: 700px; color: #444; margin-bottom: 3rem;">
                 Uma fusão entre cuidado humano e tecnologia de ponta para criar a melhor experiência terapêutica
                 digital.
@@ -337,12 +387,12 @@
                 <div class="feature-card">
                     <div class="feature-icon"><i data-lucide="sun"></i></div>
                     <h3>Interface Zen</h3>
-                    <p>Cores e formas suaves que reduzem a ansiedade do paciente no primeiro impacto.</p>
+                    <p>Cores e formas suaves que reduzem a ansiedade do paciente no primeiro impacto visual.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i data-lucide="layers"></i></div>
                     <h3>Glassmorphism</h3>
-                    <p>Camadas de transparência que trazem profundidade e uma estética moderna e premium.</p>
+                    <p>Camadas de transparência que trazem profundidade e uma estética moderna de alto nível.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i data-lucide="heart"></i></div>
@@ -352,13 +402,15 @@
                 <div class="feature-card">
                     <div class="feature-icon"><i data-lucide="smartphone"></i></div>
                     <h3>Mobile Mastery</h3>
-                    <p>Pensado para o uso em movimento, garantindo uma navegação fluida em smartphones.</p>
+                    <p>Pensado para o uso em movimento, com agendamentos acessíveis em apenas dois toques.</p>
                 </div>
             </div>
 
+            <!-- Preview da Landing Page -->
+            <h3 class="preview-header">A Nossa Visão</h3>
             <div class="preview-wrapper">
-                <!-- Preview real do site -->
-                <iframe src="index.html" title="Mental8Works Preview"></iframe>
+                <iframe src="https://suestecreative.github.io/mental8works-website/"
+                    title="Mental8Works Live Preview"></iframe>
             </div>
         </section>
 
@@ -373,48 +425,51 @@
                 <div class="feature-card">
                     <div class="feature-icon"><i data-lucide="zap"></i></div>
                     <h3>Velocidade Core</h3>
-                    <p>Otimização de imagens e código para carregamento em milissegundos.</p>
+                    <p>Otimização de imagens e código para carregamento em milissegundos, reduzindo a taxa de abandono.
+                    </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i data-lucide="search"></i></div>
                     <h3>SEO Semântico</h3>
-                    <p>Estrutura preparada para indexação prioritária pelo Google nas pesquisas locais.</p>
+                    <p>Estrutura preparada para indexação prioritária pelo Google nas pesquisas por psicologia em
+                        Lisboa.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i data-lucide="hard-drive"></i></div>
                     <h3>Site Estático</h3>
-                    <p>Máxima segurança e estabilidade, sem bases de dados lentas ou vulneráveis.</p>
+                    <p>Máxima segurança e estabilidade, sem as vulnerabilidades e lentidões de sistemas tradicionais.
+                    </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i data-lucide="bar-chart-3"></i></div>
                     <h3>Analytics Ready</h3>
-                    <p>Preparado para monitorização de funis de conversão e comportamento do utente.</p>
+                    <p>Preparado para monitorizar a jornada do utente e otimizar funis de conversão para consultas.</p>
                 </div>
             </div>
 
-            <!-- Placeholder com imagem real do repo -->
-            <img src="assets/images/about-us.webp" alt="Mental8Works Workspace" class="placeholder-img">
+            <!-- Placeholder com imagem real -->
+            <img src="../assets/images/about-us.webp" alt="Mental8Works Workspace" class="placeholder-img">
         </section>
 
         <!-- SECÇÃO 3: FUTURO (PAGAMENTOS E CALENDÁRIO) -->
         <section class="slide">
             <div class="section-title">
                 <h2>3. Fase 2: Automatização & Agendamento</h2>
-                <p>Redução do trabalho operacional e aumento das marcações.</p>
+                <p>Redução do trabalho operacional e aumento imediato das marcações.</p>
             </div>
 
-            <div class="grid-4" style="grid-template-columns: 1fr 1fr; gap: 4rem;">
-                <div>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 4rem;">
+                <div
+                    style="background: white; padding: 4rem; border-radius: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
                     <h3
-                        style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; color: var(--primary);">
+                        style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2rem; color: var(--primary); font-size: 1.8rem;">
                         <i data-lucide="credit-card"></i> Pagamentos Integrados
                     </h3>
-                    <p>É possível integrar o checkout diretamente no fluxo de agendamento. O utente paga no momento da
-                        reserva, garantindo o compromisso e reduzindo faltas.</p>
-                    <p style="margin-top: 1rem; font-size: 0.9rem;">Integração via API com os principais gateways:</p>
+                    <p style="font-size: 1.15rem; margin-bottom: 2rem;">Propomos a integração direta de gateways de
+                        pagamento no fluxo de marcação. Isto permite que o utente garanta a sua vaga através de
+                        pagamento imediato, eliminando "no-shows" e simplificando a faturação.</p>
 
-                    <div class="payment-logos">
-                        <!-- Logos placeholders with text for professional feel -->
+                    <div class="payment-logos-grid">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg"
                             alt="Stripe">
                         <img src="https://www.eupago.pt/assets/img/logo_eupago.svg" alt="EuPago"
@@ -423,41 +478,59 @@
                             alt="IfthenPay" onerror="this.src='https://placehold.co/100x40?text=IfthenPay'">
                         <img src="https://www.easypay.pt/wp-content/themes/easypay/assets/images/logo.svg" alt="Easypay"
                             onerror="this.src='https://placehold.co/100x40?text=Easypay'">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+                        <img src="https://vignette.wikia.nocookie.net/logopedia/images/e/ea/Revolut_2019.svg"
+                            alt="Revolut" style="height: 25px;"
+                            onerror="this.src='https://placehold.co/100x40?text=Revolut'">
                     </div>
                 </div>
 
-                <div>
+                <div
+                    style="background: white; padding: 4rem; border-radius: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
                     <h3
-                        style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; color: var(--primary);">
+                        style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2rem; color: var(--primary); font-size: 1.8rem;">
                         <i data-lucide="calendar"></i> Sincronização Inteligente
                     </h3>
-                    <p>Ligação bidirecional com calendários profissionais. Quando um horário é marcado no site, aparece
-                        instantaneamente na sua rotina diaria.</p>
-                    <ul style="list-style: none; margin-top: 1.5rem;">
-                        <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: center;">
-                            <i data-lucide="check-circle" style="color: var(--secondary);"></i> Outlook / Office 365
-                        </li>
-                        <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: center;">
-                            <i data-lucide="check-circle" style="color: var(--secondary);"></i> Google Calendar
-                        </li>
-                        <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: center;">
-                            <i data-lucide="check-circle" style="color: var(--secondary);"></i> Apple iCal ou APIs
-                            Abertas
-                        </li>
-                    </ul>
+                    <p style="font-size: 1.15rem; margin-bottom: 2rem;">Os agendamentos podem ser sincronizados
+                        automaticamente com os seus sistemas habituais via API aberta, garantindo que a sua agenda
+                        pessoal e profissional estão sempre alinhadas.</p>
+                    <div class="grid-4" style="grid-template-columns: repeat(2, 1fr);">
+                        <div
+                            style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; padding: 2rem; border-radius: 20px; background: #f8fafc;">
+                            <i data-lucide="mail" size="40" style="color: #0078d4;"></i>
+                            <strong>Microsoft Outlook</strong>
+                        </div>
+                        <div
+                            style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; padding: 2rem; border-radius: 20px; background: #f8fafc;">
+                            <i data-lucide="calendar-days" size="40" style="color: #4285f4;"></i>
+                            <strong>Google Calendar</strong>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- FOOTER CONTACTS -->
         <div class="footer-cta">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 1.5rem;">Prontos para o
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 1.5rem;">Prontos para o
                 Futuro?</h2>
-            <p style="max-width: 600px; margin: 0 auto 2rem; opacity: 0.9;">
-                A transformação digital da Mental8Works não é um destino, é um processo de evolução contínua para melhor
-                servir quem mais precisa.
+
+            <div class="contact-links">
+                <a href="mailto:info@sueste-creative.pt" class="contact-item">
+                    <i data-lucide="mail"></i> info@sueste-creative.pt
+                </a>
+                <a href="tel:+351965494727" class="contact-item">
+                    <i data-lucide="phone"></i> +351 965 494 727
+                </a>
+                <a href="https://wa.me/351965494727" target="_blank" class="contact-item">
+                    <i data-lucide="message-circle"></i> Falar via WhatsApp
+                </a>
+            </div>
+
+            <p style="margin-top: 4rem; font-weight: 700; color: var(--secondary); letter-spacing: 1px;">SUESTE CREATIVE
+                AGENCY</p>
+            <p style="font-size: 0.8rem; opacity: 0.5; margin-top: 1rem;">© 2026 Digital Strategy v1.4 | Premium Edition
             </p>
-            <p style="font-weight: 700; color: var(--secondary);">Sueste Creative Agency</p>
-            <p style="font-size: 0.8rem; opacity: 0.5; margin-top: 1rem;">© 2026 Pitch Deck v1.3</p>
         </div>
     </div>
 
