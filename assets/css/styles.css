@@ -671,13 +671,14 @@ p {
 
     h1 {
         font-size: 2.625rem;
+        line-height: 1.1;
         /* Matches dynamic word size to maintain uniform look */
     }
 
-    /* Fix dynamic word wrap on desktop */
+    /* Fix dynamic word flow on desktop */
     #dynamic-word {
-        display: inline-block;
-        min-width: 250px;
+        display: inline;
+        min-width: 0;
         white-space: nowrap;
         font-size: 1em;
     }
