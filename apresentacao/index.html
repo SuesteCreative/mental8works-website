@@ -351,16 +351,17 @@
             }
         }
         
-        @media (max-width: 768px) {
-  .preview-wrapper {
-    width: 100%;
-    max-width: 92vw;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 100%;
-    border-radius: 28px;
+       @media (max-width: 768px) {
+  .preview-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    border-radius: 40px;
+    border: 2px solid rgba(0,0,0,0.15);
+    pointer-events: none;
   }
 }
+
 
         .preview-subtitle {
   text-align: center;
