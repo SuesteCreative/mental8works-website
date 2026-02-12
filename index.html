@@ -14,6 +14,11 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/styles.css?v=1.2">
+
+    <!-- Performance: Prefetch key internal pages for instant mobile navigation -->
+    <link rel="prefetch" href="contactos/index.html">
+    <link rel="prefetch" href="blog/index.html">
+    <link rel="prefetch" href="agendamentos/index.html">
 </head>
 
 <body>
@@ -70,7 +75,7 @@
 
                 <div class="hero-visual">
                     <img src="assets/images/hero-banner.webp" alt="Saúde Mental" class="hero-banner" width="800"
-                        height="600">
+                        height="600" decoding="async">
                 </div>
 
                 <div class="pills-container">
@@ -201,7 +206,7 @@
                     </p>
                 </div>
                 <div class="about-images">
-                    <img src="assets/images/about-us.webp" alt="Equipa Mental8Works" loading="lazy"
+                    <img src="assets/images/about-us.webp" alt="Equipa Mental8Works" loading="lazy" decoding="async"
                         style="width: 100%; height: auto; border-radius: 12px;">
                 </div>
             </div>
@@ -217,7 +222,7 @@
                 <div class="team-member">
                     <div class="team-img-wrapper" style="border-color: #03919f;">
                         <img src="assets/images/logo-mental8works-white.webp" alt="João Gonçalves" class="team-img"
-                            loading="lazy">
+                            loading="lazy" decoding="async">
                     </div>
                     <h3>João Gonçalves</h3>
                     <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon">
@@ -234,7 +239,7 @@
                 <div class="team-member">
                     <div class="team-img-wrapper" style="border-color: #f0be44;">
                         <img src="assets/images/logo-mental8works-white.webp" alt="Maria Sequeira" class="team-img"
-                            loading="lazy">
+                            loading="lazy" decoding="async">
                     </div>
                     <h3>Maria Sequeira</h3>
                     <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon"><svg
@@ -250,7 +255,7 @@
                 <div class="team-member">
                     <div class="team-img-wrapper" style="border-color: #03919f;">
                         <img src="assets/images/logo-mental8works-white.webp" alt="Bruno Chibante" class="team-img"
-                            loading="lazy">
+                            loading="lazy" decoding="async">
                     </div>
                     <h3>Bruno Chibante</h3>
                     <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon"><svg
@@ -266,7 +271,7 @@
                 <div class="team-member">
                     <div class="team-img-wrapper" style="border-color: #f0be44;">
                         <img src="assets/images/logo-mental8works-white.webp" alt="Mafalda Morais" class="team-img"
-                            loading="lazy">
+                            loading="lazy" decoding="async">
                     </div>
                     <h3>Mafalda Morais</h3>
                     <a href="https://www.linkedin.com" target="_blank" class="linkedin-icon"><svg
@@ -649,7 +654,7 @@
         </div>
     </div>
 
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/script.js" defer></script>
 </body>
 
 </html>
