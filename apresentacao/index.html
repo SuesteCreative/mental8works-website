@@ -354,6 +354,15 @@
 </head>
 
 <body>
+
+    <!-- Luxury Preloader -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <video class="preloader-video" autoplay loop muted playsinline>
+                <source src="../assets/images/logo-animated.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
     <div id="progress"></div>
     <div class="blob-container">
         <div class="blob blob-1"></div>
@@ -446,7 +455,8 @@
                 </div>
             </div>
 
-            <img src="../assets/images/about-us.webp" alt="Mental8Works Workspace" class="placeholder-img">
+            <img src="../assets/images/mockup-final.webp" alt="Mental8Works Mockup" class="placeholder-img"
+                loading="lazy">
         </section>
 
         <!-- SECÇÃO 3: FUTURO (PAGAMENTOS E CALENDÁRIO) -->
@@ -538,6 +548,14 @@
     </div>
 
     <script>
+        window.addEventListener('load', function () {
+            const preloader = document.getElementById('preloader');
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 600);
+        });
+
         window.onscroll = function () {
             var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
