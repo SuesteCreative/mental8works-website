@@ -6,6 +6,7 @@ window.openModal = function (id) {
         document.body.style.overflow = 'hidden';
     }
 }
+
 window.closeModal = function (id) {
     const modal = document.getElementById(id);
     if (modal) {
@@ -13,26 +14,32 @@ window.closeModal = function (id) {
         document.body.style.overflow = 'auto';
     }
 }
+
 // Mailto Form Handler
 window.sendMail = function (e) {
     e.preventDefault();
     const name = document.getElementById('contactName').value;
     const email = document.getElementById('contactEmail').value;
     const msg = document.getElementById('contactMessage').value;
+
     const subject = `Contacto Site: ${name}`;
     const body = `Nome: ${name}\nEmail: ${email}\n\n${msg}`;
+
     window.location.href = `mailto:mental8works@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
+
 document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu Toggle Logic
     const mobileToggle = document.querySelector('.mobile-toggle');
     const navMenu = document.querySelector('.nav-menu');
     const overlay = document.querySelector('.menu-overlay');
+
     if (mobileToggle && navMenu) {
         mobileToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             if (overlay) overlay.classList.toggle('active');
         });
+
         // Close menu when clicking a link
         navMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
@@ -40,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (overlay) overlay.classList.remove('active');
             });
         });
+
         // Close on overlay click
         if (overlay) {
             overlay.addEventListener('click', () => {
@@ -48,13 +56,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
     // Smooth Scroll for Anchors
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
+
             // If href is just # or empty, do nothing
             if (!targetId || targetId === "#") return;
+
             const targetSection = document.querySelector(targetId);
+
             if (targetSection) {
                 e.preventDefault();
                 // Offset for fixed header (approx 80px)
@@ -62,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const elementPosition = targetSection.getBoundingClientRect().top;
                 // Use window.scrollY instead of pageYOffset (deprecated)
                 const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: "smooth"
@@ -69,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
     // Safety check for mobile constraints to prevent overflow issues
     // Just a helper to ensure smooth experience
     window.addEventListener('resize', () => {
@@ -84,15 +98,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const next = document.querySelector('.carousel-btn.next');
         const cards = Array.from(track.children);
         let currentIndex = 0;
+
         // Clone for infinite effect
         // Simple implementation: clone first few to end
         cards.forEach(card => {
             track.appendChild(card.cloneNode(true));
         });
+
         const updateTrack = () => {
             const width = track.children[0].getBoundingClientRect().width + 24; // 24px is 1.5rem gap
             track.style.transform = `translateX(-${currentIndex * width}px)`;
         };
+
         if (next) {
             next.addEventListener('click', () => {
                 if (currentIndex >= cards.length) {
@@ -111,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+
         if (prev) {
             prev.addEventListener('click', () => {
                 if (currentIndex <= 0) {
@@ -130,24 +148,29 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
     // Hero Dynamic Title Word changing logic
     const dynamicWord = document.getElementById('dynamic-word');
     if (dynamicWord) {
         const words = ["emocional", "pessoal", "mental", "pleno", "espiritual", "connosco", "interior"];
         let wordIndex = 0;
         let wordInterval;
+
         const changeWord = () => {
             dynamicWord.style.opacity = '0';
             dynamicWord.style.transition = 'opacity 0.4s ease';
+
             setTimeout(() => {
                 dynamicWord.textContent = words[wordIndex];
                 dynamicWord.style.opacity = '1';
                 wordIndex++;
+
                 if (wordIndex >= words.length) {
                     clearInterval(wordInterval);
                 }
             }, 400);
         };
+
         // Faster transition for attention
         wordInterval = setInterval(changeWord, 2000);
     }
