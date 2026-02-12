@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const updateTrack = () => {
-            const width = track.children[0].getBoundingClientRect().width + 24; // 1.5rem gap
+            const width = track.children[0].getBoundingClientRect().width + 24; // 24px is 1.5rem gap
             track.style.transform = `translateX(-${currentIndex * width}px)`;
         };
 
