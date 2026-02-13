@@ -101,12 +101,12 @@
     </section>
 
     <!-- Services -->
-    <section class="section" id="services">
+    <section class="section reveal" id="services">
         <div class="container">
             <h2 class="text-center">O Que Fazemos</h2>
             <div class="grid-cards">
                 <!-- Card 1 -->
-                <div class="card">
+                <div class="card reveal">
                     <div class="card-content">
                         <div class="service-icon-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -134,7 +134,7 @@
                 </div>
 
                 <!-- Card 2 -->
-                <div class="card">
+                <div class="card reveal">
                     <div class="card-content">
                         <div class="service-icon-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -163,7 +163,7 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div class="card">
+                <div class="card reveal">
                     <div class="card-content">
                         <div class="service-icon-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -193,7 +193,7 @@
     </section>
 
     <!-- About Us -->
-    <section class="section section-about" id="about">
+    <section class="section reveal section-about reveal" id="about">
         <div class="container">
             <div class="about-grid">
                 <div>
@@ -213,13 +213,46 @@
         </div>
     </section>
 
+    <!-- Social Mission Section -->
+    <section class="section reveal" id="social-mission" style="background: #f8fafc;">
+        <div class="container">
+            <div class="about-grid" style="align-items: center;">
+                <div class="reveal">
+                    <span class="badge" style="background: var(--color-secondary); color: var(--color-text-main);">Nossa
+                        Missão Social</span>
+                    <h2 style="margin-top: 1rem;">O Coração da Mental8Works</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">
+                        Como associação sem fins lucrativos, o nosso maior objetivo é democratizar o acesso à saúde
+                        mental. Acreditamos que o apoio psicológico não deve ser um luxo, mas um direito fundamental,
+                        independentemente da situação económica.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
+                        O nosso <strong>Tarifário Social</strong> é a materialização desta crença, permitindo que
+                        profissionais de excelência acompanhem quem mais precisa, removendo as barreiras financeiras que
+                        muitas vezes impedem a cura.
+                    </p>
+                </div>
+                <div class="mission-visual reveal">
+                    <div class="floating-elements">
+                        <div class="float-card bubble-1">Apoio</div>
+                        <div class="float-card bubble-2">Inclusão</div>
+                        <div class="float-card bubble-3">Comunidade</div>
+                        <div class="main-circle">
+                            <img src="assets/images/logo-mental8works-color.webp" alt="Mental8Works Logo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Team -->
-    <section class="section" id="team">
+    <section class="section reveal" id="team">
         <div class="container">
             <h2 class="text-center">A Nossa Equipa Fundadora</h2>
             <div class="team-grid">
                 <!-- Member 1 -->
-                <div class="team-member">
+                <div class="team-member reveal">
                     <div class="team-img-wrapper" style="border-color: #03919f;">
                         <img src="assets/images/logo-mental8works-white.webp" alt="João Gonçalves" class="team-img"
                             loading="lazy" decoding="async">
@@ -236,7 +269,7 @@
                         <button class="btn-pill-small" onclick="openModal('modal-bio-joao')">Bio</button>
                     </div>
                 </div>
-                <div class="team-member">
+                <div class="team-member reveal">
                     <div class="team-img-wrapper" style="border-color: #f0be44;">
                         <img src="assets/images/logo-mental8works-white.webp" alt="Maria Sequeira" class="team-img"
                             loading="lazy" decoding="async">
@@ -252,7 +285,7 @@
                         <button class="btn-pill-small" onclick="openModal('modal-bio-maria')">Bio</button>
                     </div>
                 </div>
-                <div class="team-member">
+                <div class="team-member reveal">
                     <div class="team-img-wrapper" style="border-color: #03919f;">
                         <img src="assets/images/logo-mental8works-white.webp" alt="Bruno Chibante" class="team-img"
                             loading="lazy" decoding="async">
@@ -268,7 +301,7 @@
                         <button class="btn-pill-small" onclick="openModal('modal-bio-bruno')">Bio</button>
                     </div>
                 </div>
-                <div class="team-member">
+                <div class="team-member reveal">
                     <div class="team-img-wrapper" style="border-color: #f0be44;">
                         <img src="assets/images/logo-mental8works-white.webp" alt="Mafalda Morais" class="team-img"
                             loading="lazy" decoding="async">
@@ -289,7 +322,7 @@
     </section>
 
     <!-- Blog Preview -->
-    <section class="section" id="blog">
+    <section class="section reveal" id="blog">
         <div class="container">
             <h2 class="text-center">Blog & Notícias</h2>
             <div class="carousel-container">
@@ -371,8 +404,76 @@
         </div>
     </section>
 
+    <!-- Pricing Section -->
+    <section class="section reveal" id="pricing">
+        <div class="container">
+            <h2 class="text-center">Tabela de Valores</h2>
+            <p class="text-center" style="max-width: 700px; margin: 0 auto 3rem; opacity: 0.8;">
+                Preços competitivos e acessíveis, focados na sustentabilidade do seu bem-estar.
+            </p>
+
+            <div class="pricing-grid">
+                <!-- Psiquiatria -->
+                <div class="pricing-card reveal">
+                    <div class="pricing-header">
+                        <h3>Psiquiatria</h3>
+                        <div class="price-main">60€<span> / 1ª Consulta</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><strong>Seguintes:</strong> 50€</li>
+                        <li><strong>Preço Social:</strong> 45€</li>
+                        <li>Atendimento Personalizado</li>
+                        <li>Online ou Presencial</li>
+                    </ul>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScmf8ICKVDhN5RiBjPreF12jviu3av3TLlvrorxlu9lP9VSSA/viewform?usp=pp_url"
+                        target="_blank" class="btn btn-primary">Marcar Consulta</a>
+                </div>
+
+                <!-- Psicologia -->
+                <div class="pricing-card reveal featured">
+                    <div class="pricing-header">
+                        <h3>Psicologia</h3>
+                        <div class="price-main">55€<span> / 1ª Consulta</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><strong>Seguintes:</strong> 45€</li>
+                        <li><strong>Preço Social:</strong> 35€</li>
+                        <li>Apoio Emocional Especializado</li>
+                        <li>Online ou Presencial</li>
+                    </ul>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfwd4SGi8fKlZjJW7xDwzFOYjrITs4AE_vcAxs2_PDKjgff5A/viewform?usp=pp_url"
+                        target="_blank" class="btn btn-primary">Marcar Consulta</a>
+                </div>
+            </div>
+
+            <!-- Social Value Info -->
+            <div class="social-value-box reveal" style="margin-top: 4rem;">
+                <div class="social-value-content">
+                    <div class="icon-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4
+                            style="color: var(--color-primary); margin-bottom: 0.5rem; font-family: var(--font-serif); font-size: 1.25rem;">
+                            Compromisso com o Valor Social</h4>
+                        <p style="margin-bottom: 0.5rem; color: var(--color-text-main);">A Mental8Works é sensível a
+                            situações de maior vulnerabilidade social. Criámos consultas a preço social destinado a
+                            pessoas em situação de: desemprego, baixa médica ou Certificado de Incapacidade Temporária
+                            (CIT) e trabalhador-estudante.</p>
+                        <small style="color: var(--color-text-light); font-style: italic;">* O valor será aplicado a
+                            partir da consulta em que for apresentado documento comprovativo da situação de
+                            vulnerabilidade social.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact & Form -->
-    <section class="section" id="contact">
+    <section class="section reveal" id="contact">
         <div class="container">
             <div class="contact-grid">
 
@@ -456,7 +557,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer reveal">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
@@ -658,3 +759,8 @@
 </body>
 
 </html>
+
+
+
+
+
