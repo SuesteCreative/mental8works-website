@@ -875,6 +875,20 @@ p {
 .team-member {
     text-align: center;
     position: relative;
+    background: #f0f9fa;
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    /* Consistent shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
 }
 
 .linkedin-icon {
@@ -1630,7 +1644,8 @@ p {
     justify-content: center;
     padding: 1.5rem;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    z-index: 2;
+    z-index: 5;
+    /* Higher z-index to stay above bubbles if they cross */
     animation: pulsate 3s infinite ease-in-out;
 }
 
@@ -1670,48 +1685,49 @@ p {
 }
 
 /* Specific Positions for more bubbles */
+/* Specific Positions for more bubbles - Pushed further to avoid center */
 .bubble-etica {
-    top: 0%;
-    left: 0%;
+    top: -5%;
+    left: 10%;
     color: #03919f;
     border-color: #03919f;
 }
 
 .bubble-transp {
-    top: 10%;
-    right: 0%;
+    top: 5%;
+    right: 5%;
     color: #60a5fa;
     border-color: #60a5fa;
     animation-delay: -1s;
 }
 
 .bubble-excel {
-    bottom: 0%;
-    right: 10%;
+    bottom: -5%;
+    right: 15%;
     color: #f59e0b;
     border-color: #f59e0b;
     animation-delay: -2s;
 }
 
 .bubble-susten {
-    bottom: 10%;
-    left: 10%;
+    bottom: 5%;
+    left: 5%;
     color: #10b981;
     border-color: #10b981;
     animation-delay: -3s;
 }
 
 .bubble-compet {
-    top: 40%;
-    left: -15%;
+    top: 45%;
+    left: -20%;
     color: #8b5cf6;
     border-color: #8b5cf6;
     animation-delay: -4s;
 }
 
 .bubble-humanismo {
-    bottom: 40%;
-    right: -15%;
+    bottom: 45%;
+    right: -20%;
     color: #ef4444;
     border-color: #ef4444;
     animation-delay: -5s;
@@ -1723,8 +1739,10 @@ p {
     }
 
     100% {
-        transform: translate(10px, -15px) rotate(2deg);
+        transform: translate(5px, -10px) rotate(2deg);
     }
+
+    /* Reduced translation for better control */
 }
 
 /* Scroll Reveal Animation */
