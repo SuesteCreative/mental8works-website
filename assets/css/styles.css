@@ -1457,12 +1457,11 @@ p {
 
 .pricing-card {
     background: #f0f9fa;
-    /* Light blue tone as requested */
     padding: 3rem 2rem;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e2e8f0;
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 2px solid var(--color-primary);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1471,26 +1470,12 @@ p {
 }
 
 .pricing-card.featured {
-    border: 2px solid var(--color-primary);
     background: white;
-    /* Make featured stand out with white */
-}
-
-@media (min-width: 768px) {
-    .pricing-card.featured {
-        transform: scale(1.05);
-    }
 }
 
 .pricing-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-}
-
-@media (min-width: 768px) {
-    .pricing-card.featured:hover {
-        transform: scale(1.05) translateY(-10px);
-    }
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(3, 145, 159, 0.12);
 }
 
 .pricing-header h3 {
@@ -1511,6 +1496,14 @@ p {
     font-weight: 400;
     color: var(--color-text-light);
     font-family: var(--font-sans);
+}
+
+.price-next {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    margin-top: -0.5rem;
+    font-weight: 500;
+    opacity: 0.9;
 }
 
 .pricing-features {
@@ -1535,8 +1528,7 @@ p {
 .tarifa-social-highlight {
     margin-top: auto;
     padding: 1rem;
-    background: var(--color-secondary);
-    border-radius: 12px;
+    background: transparent;
     width: 100%;
     color: var(--color-text-main);
     font-weight: 700;
@@ -1546,12 +1538,33 @@ p {
     display: block;
     font-size: 0.75rem;
     text-transform: uppercase;
-    opacity: 0.8;
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
 }
 
 .tarifa-social-highlight .price {
-    font-size: 1.5rem;
+    font-size: 2.2rem;
     font-family: var(--font-serif);
+    background: linear-gradient(135deg, #f0be44, #03919f, #f0be44);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMovePrice 5s ease infinite;
+}
+
+@keyframes gradientMovePrice {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .social-value-box {
