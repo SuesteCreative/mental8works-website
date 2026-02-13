@@ -1456,10 +1456,11 @@ p {
 }
 
 .pricing-card {
-    background: white;
+    background: #f0f9fa;
+    /* Light blue tone as requested */
     padding: 3rem 2rem;
     border-radius: 20px;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     border: 1px solid #e2e8f0;
     transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
@@ -1471,6 +1472,8 @@ p {
 
 .pricing-card.featured {
     border: 2px solid var(--color-primary);
+    background: white;
+    /* Make featured stand out with white */
 }
 
 @media (min-width: 768px) {
@@ -1481,6 +1484,7 @@ p {
 
 .pricing-card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
 @media (min-width: 768px) {
@@ -1513,17 +1517,41 @@ p {
     width: 100%;
     margin: 2rem 0;
     padding: 0;
+    list-style: none;
 }
 
 .pricing-features li {
     padding: 0.75rem 0;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     color: var(--color-text-light);
     font-size: 0.95rem;
 }
 
 .pricing-features li:last-child {
     border-bottom: none;
+}
+
+/* Tarifa Social Highlight at bottom */
+.tarifa-social-highlight {
+    margin-top: auto;
+    padding: 1rem;
+    background: var(--color-secondary);
+    border-radius: 12px;
+    width: 100%;
+    color: var(--color-text-main);
+    font-weight: 700;
+}
+
+.tarifa-social-highlight span {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.tarifa-social-highlight .price {
+    font-size: 1.5rem;
+    font-family: var(--font-serif);
 }
 
 .social-value-box {
@@ -1565,7 +1593,7 @@ p {
 /* Mission Section Visuals */
 .mission-visual {
     position: relative;
-    height: 300px;
+    height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1575,7 +1603,7 @@ p {
 @media (min-width: 900px) {
     .mission-visual {
         margin-top: 0;
-        height: 400px;
+        height: 450px;
     }
 }
 
@@ -1590,6 +1618,21 @@ p {
     padding: 1.5rem;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     z-index: 2;
+    animation: pulsate 3s infinite ease-in-out;
+}
+
+@keyframes pulsate {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 @media (min-width: 768px) {
@@ -1607,50 +1650,67 @@ p {
     border-radius: 50px;
     font-weight: 600;
     font-size: 0.85rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    animation: floatMission 4s infinite alternate ease-in-out;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    animation: floatMission 5s infinite alternate ease-in-out;
     z-index: 3;
+    border: 1px solid #f1f5f9;
 }
 
-.bubble-1 {
-    top: 10%;
-    right: 5%;
-    animation-delay: 0s !important;
-}
-
-.bubble-2 {
-    bottom: 15%;
-    left: 5%;
-    animation-delay: -1.5s !important;
-}
-
-.bubble-3 {
-    top: 30%;
+/* Specific Positions for more bubbles */
+.bubble-etica {
+    top: 0%;
     left: 0%;
-    animation-delay: -3s !important;
+    color: #03919f;
+    border-color: #03919f;
 }
 
-@media (min-width: 768px) {
-    .bubble-1 {
-        right: 15%;
-    }
+.bubble-transp {
+    top: 10%;
+    right: 0%;
+    color: #60a5fa;
+    border-color: #60a5fa;
+    animation-delay: -1s;
+}
 
-    .bubble-2 {
-        left: 10%;
-    }
+.bubble-excel {
+    bottom: 0%;
+    right: 10%;
+    color: #f59e0b;
+    border-color: #f59e0b;
+    animation-delay: -2s;
+}
 
-    .bubble-3 {
-        left: 5%;
-    }
+.bubble-susten {
+    bottom: 10%;
+    left: 10%;
+    color: #10b981;
+    border-color: #10b981;
+    animation-delay: -3s;
+}
+
+.bubble-compet {
+    top: 40%;
+    left: -15%;
+    color: #8b5cf6;
+    border-color: #8b5cf6;
+    animation-delay: -4s;
+}
+
+.bubble-humanismo {
+    bottom: 40%;
+    right: -15%;
+    color: #ef4444;
+    border-color: #ef4444;
+    animation-delay: -5s;
 }
 
 @keyframes floatMission {
     0% {
-        transform: translateY(0) rotate(-2deg);
+        transform: translate(0, 0) rotate(-2deg);
     }
 
     100% {
-        transform: translateY(-20px) rotate(2deg);
+        transform: translate(10px, -15px) rotate(2deg);
     }
 }
 
@@ -1664,6 +1724,14 @@ p {
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Global Card Drop Shadows */
+.card,
+.team-member,
+.blog-card,
+.pricing-card {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 /* Speed variations for grid items to create staggered effect */
