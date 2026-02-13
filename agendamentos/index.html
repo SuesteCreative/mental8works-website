@@ -97,6 +97,9 @@
             border-color: var(--color-primary);
         }
     </style>
+    <!-- Performance: Prefetch for instant navigation -->
+    <link rel="prefetch" href="../index.html">
+    <link rel="prefetch" href="../blog/index.html">
 </head>
 
 <body>
@@ -143,7 +146,7 @@
     </header>
 
     <!-- Main Content -->
-    <section class="section hero" style="padding-top: 180px; text-align: center;">
+    <section class="section reveal hero reveal" style="padding-top: 180px; text-align: center;">
         <div class="container">
             <h1>Agende a Sua Consulta</h1>
             <p class="text-center" style="max-width: 600px; margin: 0 auto 3rem !important;">
@@ -240,7 +243,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer reveal">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
@@ -305,7 +308,12 @@
         </div>
     </footer>
 
-    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/script.js" defer></script>
 </body>
 
 </html>
+
+
+
+
+
