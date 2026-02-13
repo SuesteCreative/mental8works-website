@@ -1635,6 +1635,8 @@ p {
 }
 
 .main-circle {
+    position: relative;
+    /* Essential for z-index */
     width: 160px;
     height: 160px;
     background: white;
@@ -1644,8 +1646,8 @@ p {
     justify-content: center;
     padding: 1.5rem;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    z-index: 5;
-    /* Higher z-index to stay above bubbles if they cross */
+    z-index: 10;
+    /* Highest priority */
     animation: pulsate 3s infinite ease-in-out;
 }
 
@@ -1687,14 +1689,14 @@ p {
 /* Specific Positions for more bubbles */
 /* Specific Positions for more bubbles - Pushed further to avoid center */
 .bubble-etica {
-    top: -5%;
+    top: -8%;
     left: 10%;
     color: #03919f;
     border-color: #03919f;
 }
 
 .bubble-transp {
-    top: 5%;
+    top: 3%;
     right: 5%;
     color: #60a5fa;
     border-color: #60a5fa;
@@ -1702,7 +1704,7 @@ p {
 }
 
 .bubble-excel {
-    bottom: -5%;
+    bottom: -8%;
     right: 15%;
     color: #f59e0b;
     border-color: #f59e0b;
@@ -1710,7 +1712,7 @@ p {
 }
 
 .bubble-susten {
-    bottom: 5%;
+    bottom: 3%;
     left: 5%;
     color: #10b981;
     border-color: #10b981;
@@ -1718,19 +1720,56 @@ p {
 }
 
 .bubble-compet {
-    top: 45%;
-    left: -20%;
+    top: 48%;
+    left: -25%;
     color: #8b5cf6;
     border-color: #8b5cf6;
     animation-delay: -4s;
 }
 
 .bubble-humanismo {
-    bottom: 45%;
-    right: -20%;
+    bottom: 48%;
+    right: -25%;
     color: #ef4444;
     border-color: #ef4444;
     animation-delay: -5s;
+}
+
+/* Mobile-specific adjustments to prevent any overlap */
+@media (max-width: 768px) {
+    .mission-visual {
+        height: 450px;
+    }
+
+    .bubble-etica {
+        top: 0;
+        left: 10%;
+    }
+
+    .bubble-transp {
+        top: 15%;
+        right: 0;
+    }
+
+    .bubble-excel {
+        bottom: 0;
+        right: 10%;
+    }
+
+    .bubble-susten {
+        bottom: 15%;
+        left: 0;
+    }
+
+    .bubble-compet {
+        top: 40%;
+        left: -10px;
+    }
+
+    .bubble-humanismo {
+        bottom: 40%;
+        right: -10px;
+    }
 }
 
 @keyframes floatMission {
