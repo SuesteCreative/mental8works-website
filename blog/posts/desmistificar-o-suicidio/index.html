@@ -4,20 +4,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desmistificar o suicídio - Mental8Works</title>
-    <link rel="icon" type="image/png" href="../../../assets/images/fav-icon-color.png">
-    <link rel="stylesheet" href="../../../assets/css/styles.css?v=1.2">
+    <title>Agendamentos - Mental8Works</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/fav-icon-color.png">
+
+    <link rel="stylesheet" href="../assets/css/styles.css?v=1.2">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
         rel="stylesheet">
+    <style>
+        .calendar-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            text-align: center;
+        }
+
+        .day-name {
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--color-text-light);
+            padding-bottom: 10px;
+        }
+
+        .day {
+            padding: 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .day:hover:not(.empty) {
+            background: #f0f9fa;
+            color: var(--color-primary);
+        }
+
+        .day.active {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .day.today {
+            border: 2px solid var(--color-secondary);
+            font-weight: 700;
+        }
+
+        .day.empty {
+            cursor: default;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+
+        .slot {
+            padding: 8px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .slot:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .slot.selected {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+    </style>
     <!-- Performance: Prefetch for instant navigation -->
-    <link rel="prefetch" href="../../index.html">
-    <link rel="prefetch" href="../../../index.html">
+    <link rel="prefetch" href="../index.html">
+    <link rel="prefetch" href="../blog/index.html">
 </head>
 
 <body>
 
-    <!-- Blobs -->
+    <!-- Dynamic Background Blobs -->
     <div class="blob-container">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
@@ -26,12 +113,11 @@
         <div class="blob blob-5"></div>
     </div>
 
-    <div class="menu-overlay"></div>
-
+    <!-- Header -->
     <header class="header">
         <div class="container nav-container">
-            <a href="../../../index.html" class="nav-logo-link">
-                <img src="../../../assets/images/logo-mental8works-color.webp" alt="Mental8Works" class="nav-logo-img">
+            <a href="../index.html" class="nav-logo-link">
+                <img src="../assets/images/logo-mental8works-color.webp" alt="Mental8Works" class="nav-logo-img">
             </a>
 
             <div class="mobile-toggle">
@@ -44,101 +130,114 @@
             </div>
 
             <nav class="nav-menu">
-                <a href="../../../index.html#services" class="nav-link">Serviços</a>
-                <a href="../../../index.html#about" class="nav-link">Sobre Nós</a>
-                <a href="../../../index.html#team" class="nav-link">Equipa</a>
-                <a href="../../index.html" class="nav-link">Blog</a>
-                <a href="../../../contactos/index.html" class="nav-link">Contactos</a>
-                <a href="../../../agendamentos/index.html" class="btn btn-primary d-md-none"
+                <a href="../index.html#services" class="nav-link">Serviços</a>
+                <a href="../index.html#about" class="nav-link">Sobre Nós</a>
+                <a href="../index.html#team" class="nav-link">Equipa</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="../contactos/index.html" class="nav-link">Contactos</a>
+                <a href="../agendamentos/index.html" class="btn btn-primary d-md-none"
                     style="margin-top: 1rem; width: 100%;">Agendar</a>
             </nav>
 
             <div class="nav-actions d-none d-md-block">
-                <a href="../../../agendamentos/index.html" class="btn btn-primary">Agendar</a>
+                <a href="../agendamentos/index.html" class="btn btn-primary">Agendar</a>
             </div>
         </div>
     </header>
 
-    <section class="section reveal section-pt-large">
+    <!-- Main Content -->
+    <section class="section reveal hero reveal" style="padding-top: 180px; text-align: center;">
         <div class="container">
-            <div class="blog-grid">
-                <!-- Mobile Image: Shown at top on mobile, hidden on desktop -->
-                <img src="../../../assets/images/desmistificar-o-suicidio.png" alt="Desmistificar o suicídio"
-                    class="sidebar-blog-img mobile-only" loading="lazy">
+            <h1>Agende a Sua Consulta</h1>
+            <p class="text-center" style="max-width: 600px; margin: 0 auto 3rem !important;">
+                Escolha o dia e a hora que melhor se adaptam à sua rotina. O nosso sistema de agendamento é simples e
+                confidencial.
+            </p>
 
-                <div class="blog-content-area">
-                    <h1>Desmistificar o suicídio</h1>
-                    <p class="text-muted" style="margin-bottom: 2rem;">Novembro 8, 2021</p>
+            <div
+                style="display: flex; flex-direction: column; gap: 3rem; align-items: center; justify-content: center; margin-bottom: 4rem;">
 
-                    <p>A Organização Mundial de Saúde (OMS) define o suicídio como “um ato de pôr termo à própria vida,
-                        que foi deliberadamente iniciado e preparado, com o prévio conhecimento do seu resultado final”
-                        (OMS, 1984). É um grave problema de saúde pública, com cerca de 800 mil a um milhão de mortes
-                        anuais, sendo a segunda causa de morte entre os 15 e os 34 anos.</p>
-
-                    <p>A prevenção do suicídio é possível, através da consciencialização da população e redução do
-                        estigma, que é a principal barreira para a procura de ajuda. De facto, algumas pessoas, em parte
-                        por influência cultural, ainda veem o suicídio o suicídio como um pecado, egoísmo ou fraqueza.
-                    </p>
-
-                    <p>O estigma assenta também em vários mitos ou crenças pré-concebidas, que pretendemos desconstruir
-                        neste texto:</p>
-
-                    <h3>Só fala sobre suicídio quem tenta chamar a atenção, e é pouco provável que o faça.</h3>
-                    <p>Na verdade, mais de dois terços das pessoas que cometem suicídio expressam a sua ideação suicida
-                        e pelo menos um terço verbaliza a intenção em cometer suicídio. Falar sobre o suicídio pode ser
-                        um pedido de ajuda, que pode ter consequências perigosas se considerado chamada de atenção.</p>
-
-                    <h3>Quem contempla ou concretiza o suicidio é egoísta ou incapaz.</h3>
-                    <p>A maioria das pessoas que comete suicídio (cerca de 90%) tem uma perturbação mental no momento da
-                        sua morte.</p>
-
-                    <h3>O risco de suicídio consumado diminui após uma tentativa de suicídio falhada.</h3>
-                    <p>As tentativas de suicídio prévias são um fator de risco importante para a morte por suicídio.</p>
-
-                    <h3>Falar sobre suicídio com alguém em risco pode levá-lo ao suicídio.</h3>
-                    <p>Apesar de poder ser desconfortável falar acerca do suicídio e o outro se possa sentir impotente,
-                        muitas pessoas com depressão e ideação suicida sentem-se aliviadas quando conversam sobre isso.
-                    </p>
-
-                    <p>De que maneira se pode falar sobre o suicídio com alguém que expresse essa ideia? Em primeiro
-                        lugar, é importante ouvir de forma empática, amigável e não ameaçadora, sem fazer juízos de
-                        valor. Podem ser feitas perguntas abertas, permitindo que os sentimentos sejam expressos
-                        livremente. Deve ser evitado ao máximo qualquer desvalorização do que nos é dito, sem conselhos
-                        “de algibeira”. Em vez da procura de soluções para os problemas que possam ser relatados, deve
-                        sim incentivar-se a pessoa a procurar ajuda de um profissional de saúde. É natural que exista
-                        desesperança quando se contempla o suicídio, pelo que quando se tenta ajudar alguém com estas
-                        ideias é comum ter de se insistir para que procure ajuda, ou até ser necessário envolver
-                        familiares ou outras pessoas próximas.</p>
-
-                    <p>Todos podemos fazer algo para ajudar a evitar o suicídio, não só de forma direta, mas também
-                        alterando a nossa mentalidade e preconceito com conhecimento. Numa sociedade mais compassiva e
-                        informada, existe maior abertura para pedir ajuda.</p>
-                </div>
-
-                <div class="sidebar">
-                    <!-- Desktop Image: Shown in sidebar on desktop, hidden on mobile -->
-                    <img src="../../../assets/images/desmistificar-o-suicidio.png" alt="Desmistificar o suicídio"
-                        class="sidebar-blog-img desktop-only" loading="lazy">
-
-                    <h3>Autor</h3>
-                    <div class="author-box">
-                        <img src="../../../assets/images/logo-mental8works-white.webp" class="author-img"
-                            alt="Author Icon">
-                        <div>
-                            <strong>Beatriz Côrte-Real</strong>
-                            <p style="font-size: 0.9rem; margin:0; color: #64748b;">Médica de Psiquiatria Mental8Works
-                            </p>
-                        </div>
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <button class="btn-text">&lt;</button>
+                        <h3 style="margin: 0;">Fevereiro 2026</h3>
+                        <button class="btn-text">&gt;</button>
                     </div>
-                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 1.5rem 0;">
-                    <p style="font-size: 0.9rem;">
-                        <strong>Imagem por:</strong> <a href="https://pt.pinterest.com/jayanabutts/" target="_blank"
-                            style="color: var(--color-primary); text-decoration: underline;">Jayana Butts</a>
-                    </p>
+                    <div class="calendar-grid">
+                        <div class="day-name">Dom</div>
+                        <div class="day-name">Seg</div>
+                        <div class="day-name">Ter</div>
+                        <div class="day-name">Qua</div>
+                        <div class="day-name">Qui</div>
+                        <div class="day-name">Sex</div>
+                        <div class="day-name">Sáb</div>
+
+                        <div class="day empty"></div>
+                        <div class="day">1</div>
+                        <div class="day">2</div>
+                        <div class="day">3</div>
+                        <div class="day">4</div>
+                        <div class="day">5</div>
+                        <div class="day">6</div>
+                        <div class="day">7</div>
+                        <div class="day">8</div>
+                        <div class="day">9</div>
+                        <div class="day">10</div>
+                        <div class="day">11</div>
+                        <div class="day today">12</div>
+                        <div class="day">13</div>
+                        <div class="day">14</div>
+                        <div class="day">15</div>
+                        <div class="day active">16</div>
+                        <div class="day">17</div>
+                        <div class="day">18</div>
+                        <div class="day">19</div>
+                        <div class="day">20</div>
+                        <div class="day">21</div>
+                        <div class="day">22</div>
+                        <div class="day">23</div>
+                        <div class="day">24</div>
+                        <div class="day">25</div>
+                        <div class="day">26</div>
+                        <div class="day">27</div>
+                        <div class="day">28</div>
+                    </div>
+
+                    <div class="time-slots">
+                        <div class="slot">09:00</div>
+                        <div class="slot">10:00</div>
+                        <div class="slot selected">11:00</div>
+                        <div class="slot">14:00</div>
+                        <div class="slot">15:00</div>
+                        <div class="slot">16:00</div>
+                    </div>
                 </div>
-            </div>
-            <div class="text-center" style="margin-top: 3rem;">
-                <a href="../../index.html" class="btn btn-secondary">Voltar ao Blog</a>
+
+                <div
+                    style="background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 450px; width: 100%; text-align: left;">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--color-primary);">Confirmar Detalhes</h3>
+                    <form>
+                        <div class="form-group">
+                            <label>Nome Completo</label>
+                            <input type="text" class="form-control" placeholder="Seu nome">
+                        </div>
+                        <div class="form-group">
+                            <label>Serviço</label>
+                            <select class="form-control">
+                                <option>Psicologia Clínica</option>
+                                <option>Psiquiatria</option>
+                                <option>Terapia de Casal</option>
+                                <option>Mediação Familiar</option>
+                            </select>
+                        </div>
+                        <div
+                            style="margin-top: 1.5rem; padding: 1rem; background: #f0f9fa; border-radius: 8px; font-size: 0.9rem;">
+                            <strong>Data Selecionada:</strong> 16 de Fevereiro de 2026 às 11:00
+                        </div>
+                        <button class="btn btn-primary" type="button" style="width: 100%; margin-top: 1.5rem;"
+                            onclick="alert('Funcionalidade de agendamento em breve!')">Agendar Consulta</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -148,7 +247,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <img src="../../../assets/images/logo-mental8works-white.webp" alt="Mental8Works White Logo"
+                    <img src="../assets/images/logo-mental8works-white.webp" alt="Mental8Works White Logo"
                         class="footer-logo-img">
                     <p style="opacity: 0.8; font-size: 0.9rem;">
                         Promovendo a saúde mental com excelência e humanidade desde 2014.
@@ -157,11 +256,11 @@
                 <div class="footer-col">
                     <h4 style="margin-bottom: 1rem; color: white;">Website</h4>
                     <ul style="opacity: 0.9;">
-                        <li style="margin-bottom: 0.5rem;"><a href="../../../index.html#home">Início</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="../../../index.html#services">Serviços</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="../../../index.html#about">Sobre Nós</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="../../index.html">Blog</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="../../../agendamentos/index.html">Agendar</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="../index.html#home">Início</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="../index.html#services">Serviços</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="../index.html#about">Sobre Nós</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="../blog/index.html">Blog</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="index.html">Agendar</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -203,18 +302,15 @@
                     <a href="#">Política de Privacidade</a>
                     <a href="#">Termos e Condições</a>
                     <a href="#">Cookies</a>
-                    <a href="../../../contactos/index.html">Contactos</a>
+                    <a href="../contactos/index.html">Contactos</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="../../../assets/js/script.js" defer></script>
+    <script src="../assets/js/script.js" defer></script>
 </body>
 
 </html>
-
-
-
 
 
