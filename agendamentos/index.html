@@ -5,106 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamentos - Mental8Works</title>
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="../assets/images/fav-icon-color.png">
-
     <link rel="stylesheet" href="../assets/css/styles.css?v=1.2">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
         rel="stylesheet">
-    <style>
-        .calendar-container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            padding: 2rem;
-            max-width: 450px;
-            margin: 0 auto;
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            text-align: center;
-        }
-
-        .day-name {
-            font-weight: 600;
-            font-size: 0.8rem;
-            color: var(--color-text-light);
-            padding-bottom: 10px;
-        }
-
-        .day {
-            padding: 10px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-
-        .day:hover:not(.empty) {
-            background: #f0f9fa;
-            color: var(--color-primary);
-        }
-
-        .day.active {
-            background: var(--color-primary);
-            color: white;
-        }
-
-        .day.today {
-            border: 2px solid var(--color-secondary);
-            font-weight: 700;
-        }
-
-        .day.empty {
-            cursor: default;
-        }
-
-        .time-slots {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-            margin-top: 2rem;
-        }
-
-        .slot {
-            padding: 8px;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .slot:hover {
-            border-color: var(--color-primary);
-            color: var(--color-primary);
-        }
-
-        .slot.selected {
-            background: var(--color-primary);
-            color: white;
-            border-color: var(--color-primary);
-        }
-    </style>
-    <!-- Performance: Prefetch for instant navigation -->
-    <link rel="prefetch" href="../index.html">
-    <link rel="prefetch" href="../blog/index.html">
 </head>
 
 <body>
 
-    <!-- Dynamic Background Blobs -->
+    <!-- Blobs -->
     <div class="blob-container">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
@@ -113,7 +23,6 @@
         <div class="blob blob-5"></div>
     </div>
 
-    <!-- Header -->
     <header class="header">
         <div class="container nav-container">
             <a href="../index.html" class="nav-logo-link">
@@ -131,112 +40,90 @@
 
             <nav class="nav-menu">
                 <a href="../index.html#services" class="nav-link">Serviços</a>
-                <a href="../index.html#about" class="nav-link">Sobre Nós</a>
-                <a href="../index.html#team" class="nav-link">Equipa</a>
+                <a href="../about-us/index.html" class="nav-link">Sobre Nós</a>
+                <a href="../team/index.html" class="nav-link">Equipa</a>
+                <a href="../socios/index.html" class="nav-link">Sócio</a>
                 <a href="../blog/index.html" class="nav-link">Blog</a>
                 <a href="../contactos/index.html" class="nav-link">Contactos</a>
-                <a href="../agendamentos/index.html" class="btn btn-primary d-md-none"
+                <a href="index.html" class="btn btn-primary d-md-none"
                     style="margin-top: 1rem; width: 100%;">Agendar</a>
             </nav>
 
             <div class="nav-actions d-none d-md-block">
-                <a href="../agendamentos/index.html" class="btn btn-primary">Agendar</a>
+                <a href="index.html" class="btn btn-primary">Agendar</a>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <section class="section reveal hero reveal" style="padding-top: 180px; text-align: center;">
+    <section class="section reveal hero reveal" style="padding-top: 180px;">
         <div class="container">
-            <h1>Agende a Sua Consulta</h1>
-            <p class="text-center" style="max-width: 600px; margin: 0 auto 3rem !important;">
-                Escolha o dia e a hora que melhor se adaptam à sua rotina. O nosso sistema de agendamento é simples e
-                confidencial.
-            </p>
+            <div class="text-center">
+                <h1>Agende a Sua Consulta</h1>
+                <p class="lead" style="max-width: 800px; margin: 1.5rem auto 4rem;">
+                    Selecione a especialidade pretendida para aceder ao formulário de marcação.
+                </p>
+            </div>
 
-            <div
-                style="display: flex; flex-direction: column; gap: 3rem; align-items: center; justify-content: center; margin-bottom: 4rem;">
-
-                <div class="calendar-container">
-                    <div class="calendar-header">
-                        <button class="btn-text">&lt;</button>
-                        <h3 style="margin: 0;">Fevereiro 2026</h3>
-                        <button class="btn-text">&gt;</button>
+            <div class="pricing-grid">
+                <!-- Psiquiatria -->
+                <div class="pricing-card reveal">
+                    <div class="pricing-header">
+                        <h3>Psiquiatria</h3>
+                        <div class="price-main">60€<span> / 1ª Consulta</span></div>
+                        <div class="price-next">Seguintes: 50€</div>
+                        <div class="price-social"
+                            style="color: var(--color-primary); font-weight: 600; margin-top: 0.5rem;">Preço social: 45€
+                        </div>
                     </div>
-                    <div class="calendar-grid">
-                        <div class="day-name">Dom</div>
-                        <div class="day-name">Seg</div>
-                        <div class="day-name">Ter</div>
-                        <div class="day-name">Qua</div>
-                        <div class="day-name">Qui</div>
-                        <div class="day-name">Sex</div>
-                        <div class="day-name">Sáb</div>
-
-                        <div class="day empty"></div>
-                        <div class="day">1</div>
-                        <div class="day">2</div>
-                        <div class="day">3</div>
-                        <div class="day">4</div>
-                        <div class="day">5</div>
-                        <div class="day">6</div>
-                        <div class="day">7</div>
-                        <div class="day">8</div>
-                        <div class="day">9</div>
-                        <div class="day">10</div>
-                        <div class="day">11</div>
-                        <div class="day today">12</div>
-                        <div class="day">13</div>
-                        <div class="day">14</div>
-                        <div class="day">15</div>
-                        <div class="day active">16</div>
-                        <div class="day">17</div>
-                        <div class="day">18</div>
-                        <div class="day">19</div>
-                        <div class="day">20</div>
-                        <div class="day">21</div>
-                        <div class="day">22</div>
-                        <div class="day">23</div>
-                        <div class="day">24</div>
-                        <div class="day">25</div>
-                        <div class="day">26</div>
-                        <div class="day">27</div>
-                        <div class="day">28</div>
-                    </div>
-
-                    <div class="time-slots">
-                        <div class="slot">09:00</div>
-                        <div class="slot">10:00</div>
-                        <div class="slot selected">11:00</div>
-                        <div class="slot">14:00</div>
-                        <div class="slot">15:00</div>
-                        <div class="slot">16:00</div>
-                    </div>
+                    <ul class="pricing-features">
+                        <li>Atendimento Online e Presencial</li>
+                    </ul>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScmf8ICKVDhN5RiBjPreF12jviu3av3TLlvrorxlu9lP9VSSA/viewform?usp=pp_url"
+                        target="_blank" class="btn btn-primary" style="width: 100%; border-radius: 50px;">Marcar
+                        Consulta</a>
                 </div>
 
-                <div
-                    style="background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 450px; width: 100%; text-align: left;">
-                    <h3 style="margin-bottom: 1.5rem; color: var(--color-primary);">Confirmar Detalhes</h3>
-                    <form>
-                        <div class="form-group">
-                            <label>Nome Completo</label>
-                            <input type="text" class="form-control" placeholder="Seu nome">
+                <!-- Psicologia -->
+                <div class="pricing-card reveal featured">
+                    <div class="pricing-header">
+                        <h3>Psicologia</h3>
+                        <div class="price-main">55€<span> / 1ª Consulta</span></div>
+                        <div class="price-next">Seguintes: 45€</div>
+                        <div class="price-social"
+                            style="color: var(--color-primary); font-weight: 600; margin-top: 0.5rem;">Preço social: 35€
                         </div>
-                        <div class="form-group">
-                            <label>Serviço</label>
-                            <select class="form-control">
-                                <option>Psicologia Clínica</option>
-                                <option>Psiquiatria</option>
-                                <option>Terapia de Casal</option>
-                                <option>Mediação Familiar</option>
-                            </select>
-                        </div>
-                        <div
-                            style="margin-top: 1.5rem; padding: 1rem; background: #f0f9fa; border-radius: 8px; font-size: 0.9rem;">
-                            <strong>Data Selecionada:</strong> 16 de Fevereiro de 2026 às 11:00
-                        </div>
-                        <button class="btn btn-primary" type="button" style="width: 100%; margin-top: 1.5rem;"
-                            onclick="alert('Funcionalidade de agendamento em breve!')">Agendar Consulta</button>
-                    </form>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Atendimento Online e Presencial</li>
+                    </ul>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfwd4SGi8fKlZjJW7xDwzFOYjrITs4AE_vcAxs2_PDKjgff5A/viewform?usp=pp_url"
+                        target="_blank" class="btn btn-primary" style="width: 100%; border-radius: 50px;">Marcar
+                        Consulta</a>
+                </div>
+            </div>
+
+            <div class="social-value-box reveal" style="margin-top: 4rem;">
+                <div class="social-value-content">
+                    <div>
+                        <h4
+                            style="color: var(--color-primary); margin-bottom: 1rem; font-family: var(--font-serif); font-size: 1.5rem;">
+                            Valor Social: na Mental8Works pode encontrar consultas a preço social.</h4>
+                        <p
+                            style="margin-bottom: 1rem; color: var(--color-text-main); font-size: 1.1rem; line-height: 1.8;">
+                            A Mental8Works está sensível a situações de maior vulnerabilidade social e por isso criou
+                            consultas a preço social destinado a pessoas em situação de: desemprego, baixa médica ou
+                            Certificado de Incapacidade Temporária (CIT) e trabalhador-estudante.
+                        </p>
+                        <p
+                            style="margin-bottom: 1rem; color: var(--color-text-main); font-size: 1.1rem; line-height: 1.8;">
+                            O valor será aplicado a partir da consulta em que for apresentado documento comprovativo da
+                            situação de vulnerabilidade social.
+                        </p>
+                        <hr style="opacity: 0.1; margin: 2rem 0;">
+                        <p style="font-weight: 600;">Contacte-nos para esclarecer alguma dúvida que persista.</p>
+                        <p>Email: <a href="mailto:mental8works@gmail.com"
+                                style="color: var(--color-primary);">mental8works@gmail.com</a></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -258,9 +145,10 @@
                     <ul style="opacity: 0.9;">
                         <li style="margin-bottom: 0.5rem;"><a href="../index.html#home">Início</a></li>
                         <li style="margin-bottom: 0.5rem;"><a href="../index.html#services">Serviços</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="../index.html#about">Sobre Nós</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="../about-us/index.html">Sobre Nós</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="../team/index.html">Equipa</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="../socios/index.html">Sócio</a></li>
                         <li style="margin-bottom: 0.5rem;"><a href="../blog/index.html">Blog</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="index.html">Agendar</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -301,7 +189,6 @@
                 <div class="footer-bottom-links">
                     <a href="#">Política de Privacidade</a>
                     <a href="#">Termos e Condições</a>
-                    <a href="#">Cookies</a>
                     <a href="../contactos/index.html">Contactos</a>
                 </div>
             </div>
@@ -312,5 +199,3 @@
 </body>
 
 </html>
-
-
