@@ -10,9 +10,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
         rel="stylesheet">
-    <!-- Performance: Prefetch for instant navigation -->
-    <link rel="prefetch" href="../index.html">
-    <link rel="prefetch" href="../blog/index.html">
 </head>
 
 <body>
@@ -34,7 +31,6 @@
                 <img src="../assets/images/logo-mental8works-color.webp" alt="Mental8Works" class="nav-logo-img">
             </a>
 
-            <!-- Added Mobile Toggle -->
             <div class="mobile-toggle">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -46,8 +42,9 @@
 
             <nav class="nav-menu">
                 <a href="../index.html#services" class="nav-link">Serviços</a>
-                <a href="../index.html#about" class="nav-link">Sobre Nós</a>
-                <a href="../index.html#team" class="nav-link">Equipa</a>
+                <a href="../about-us/index.html" class="nav-link">Sobre Nós</a>
+                <a href="../team/index.html" class="nav-link">Equipa</a>
+                <a href="../socios/index.html" class="nav-link">Sócio</a>
                 <a href="../blog/index.html" class="nav-link">Blog</a>
                 <a href="index.html" class="nav-link">Contactos</a>
                 <a href="../agendamentos/index.html" class="btn btn-primary d-md-none"
@@ -63,32 +60,103 @@
     <section class="section reveal section-pt-large reveal">
         <div class="container">
             <h1 class="text-center">Contacte-nos</h1>
-            <div class="contact-grid" style="margin-top: 3rem;">
+            <p class="text-center lead" style="max-width: 600px; margin: 1.5rem auto 4rem;">Estamos à sua disposição
+                para qualquer dúvida ou esclarecimento. Envie-nos uma mensagem diretamente por aqui.</p>
 
+            <div class="contact-grid">
+                <!-- Info Side -->
                 <div class="contact-info">
-                    <h3>Onde Estamos</h3>
-                    <p style="font-size: 1.1rem; color: #1e293b;">
-                        Avenida Miguel Bombarda,<br>
-                        123, 2º piso,<br>
-                        1050-164 Lisboa
-                    </p>
-
-                    <h3 style="margin-top: 2rem;">Horário</h3>
-                    <p>Segunda a Sexta: 09:00 - 19:00</p>
-
-                    <div style="margin-top: 2rem;">
-                        <a href="mailto:mental8works@gmail.com" class="btn btn-primary">Enviar Email</a>
+                    <div class="card" style="padding: 2.5rem; background: var(--color-surface);">
+                        <h3>Informações</h3>
+                        <div style="margin-top: 2rem;">
+                            <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+                                <div style="color: var(--color-primary);">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                        <polyline points="22,6 12,13 2,6" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p style="font-weight: 600; margin-bottom: 5px;">Email</p>
+                                    <a href="mailto:mental8works@gmail.com"
+                                        style="color: var(--color-text-main);">mental8works@gmail.com</a>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+                                <div style="color: var(--color-primary);">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <circle cx="12" cy="10" r="3" />
+                                        <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p style="font-weight: 600; margin-bottom: 5px;">Lisboa</p>
+                                    <p style="color: var(--color-text-main);">Avenida Miguel Bombarda, 123, 2º
+                                        piso,<br>1050-164 Lisboa</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 15px;">
+                                <div style="color: var(--color-primary);">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <polyline points="12 6 12 12 16 14" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p style="font-weight: 600; margin-bottom: 5px;">Horário</p>
+                                    <p style="color: var(--color-text-main);">Segunda a Sexta: 09:00 - 19:00</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="map-container">
-                    <div class="map-responsive">
+                    <div class="map-container" style="margin-top: 2rem;">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.556277761066!2d-9.1557!3d38.7323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1933a2f3f7734d%3A0x6bda674012345678!2sAv.%20Miguel%20Bombarda%20123%2C%20Lisboa!5e0!3m2!1spt-PT!2spt!4v1620000000000!5m2!1spt-PT!2spt"
-                            allowfullscreen="" loading="lazy"></iframe>
+                            style="width: 100%; height: 250px; border-radius: 12px; border: 0;" allowfullscreen=""
+                            loading="lazy"></iframe>
                     </div>
                 </div>
 
+                <!-- Form Side -->
+                <div class="contact-form-wrapper reveal">
+                    <div class="card" style="padding: 3rem;">
+                        <h3 style="margin-bottom: 2rem; color: var(--color-primary);">Enviar Mensagem</h3>
+                        <form id="contactFormMain" action="https://formspree.io/f/mental8works@gmail.com" method="POST">
+                            <div class="form-group">
+                                <label>Nome</label>
+                                <input type="text" name="name" class="form-control" required placeholder="O seu nome">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" name="email" class="form-control" required
+                                    placeholder="seu@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Assunto</label>
+                                <select name="subject" class="form-control">
+                                    <option>Pedido de Formação</option>
+                                    <option>Dúvida Geral</option>
+                                    <option>Outro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Mensagem</label>
+                                <textarea name="message" class="form-control" rows="5" required
+                                    placeholder="Como podemos ajudar?"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">Enviar de
+                                forma segura</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -109,12 +177,12 @@
                     <ul style="opacity: 0.9;">
                         <li style="margin-bottom: 0.5rem;"><a href="../index.html#home">Início</a></li>
                         <li style="margin-bottom: 0.5rem;"><a href="../index.html#services">Serviços</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="../index.html#about">Sobre Nós</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="../about-us/index.html">Sobre Nós</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="../team/index.html">Equipa</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="../socios/index.html">Sócio</a></li>
                         <li style="margin-bottom: 0.5rem;"><a href="../blog/index.html">Blog</a></li>
-                        <li style="margin-bottom: 0.5rem;"><a href="../agendamentos/index.html">Agendar</a></li>
                     </ul>
                 </div>
-                <!-- Updated Contact Info -->
                 <div class="footer-col">
                     <h4 style="margin-bottom: 1rem; color: white;">Contactos</h4>
                     <ul style="opacity: 0.9;">
@@ -140,6 +208,12 @@
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                             </svg></a>
+                        <a href="https://www.linkedin.com/company/mental8works/" target="_blank"
+                            style="color: white;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg></a>
                     </div>
                 </div>
             </div>
@@ -153,7 +227,6 @@
                 <div class="footer-bottom-links">
                     <a href="#">Política de Privacidade</a>
                     <a href="#">Termos e Condições</a>
-                    <a href="#">Cookies</a>
                     <a href="index.html">Contactos</a>
                 </div>
             </div>
@@ -164,5 +237,3 @@
 </body>
 
 </html>
-
-
