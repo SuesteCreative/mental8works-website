@@ -91,63 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (overlay) overlay.classList.remove('active');
         }
     });
-    // Carousel Logic
-    const track = document.querySelector('.carousel-track');
-    if (track) {
-        const prev = document.querySelector('.carousel-btn.prev');
-        const next = document.querySelector('.carousel-btn.next');
-        const cards = Array.from(track.children);
-        let currentIndex = 0;
-
-        // Clone for infinite effect
-        // Simple implementation: clone first few to end
-        cards.forEach(card => {
-            track.appendChild(card.cloneNode(true));
-        });
-
-        const updateTrack = () => {
-            const width = track.children[0].getBoundingClientRect().width + 24; // 24px is 1.5rem gap
-            track.style.transform = `translateX(-${currentIndex * width}px)`;
-        };
-
-        if (next) {
-            next.addEventListener('click', () => {
-                if (currentIndex >= cards.length) {
-                    currentIndex = 0;
-                    track.style.transition = 'none';
-                    updateTrack();
-                    setTimeout(() => {
-                        currentIndex++;
-                        track.style.transition = 'transform 0.5s ease';
-                        updateTrack();
-                    }, 10);
-                } else {
-                    currentIndex++;
-                    track.style.transition = 'transform 0.5s ease';
-                    updateTrack();
-                }
-            });
-        }
-
-        if (prev) {
-            prev.addEventListener('click', () => {
-                if (currentIndex <= 0) {
-                    currentIndex = cards.length;
-                    track.style.transition = 'none';
-                    updateTrack();
-                    setTimeout(() => {
-                        currentIndex--;
-                        track.style.transition = 'transform 0.5s ease';
-                        updateTrack();
-                    }, 10);
-                } else {
-                    currentIndex--;
-                    track.style.transition = 'transform 0.5s ease';
-                    updateTrack();
-                }
-            });
-        }
-    }
+    // Carousel Logic Removed - Reverted to Grid Layout
 
     // Hero Dynamic Title Word changing logic
     const dynamicWord = document.getElementById('dynamic-word');
