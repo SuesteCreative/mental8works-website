@@ -75,8 +75,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!blogContainer) return;
 
         try {
-            const indexResponse = await fetch('../data/blog-index.json');
-            if (!indexResponse.ok) throw new Error('Index not found');
+            const indexResponse = await fetch('/data/blog-index.json');
+            if (!indexResponse.ok) throw new Error(`Blog index fetch failed: ${indexResponse.status}`);
             const posts = await indexResponse.json();
 
             if (!posts || posts.length === 0) {
