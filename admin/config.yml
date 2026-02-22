@@ -2,66 +2,24 @@ backend:
   name: git-gateway
   branch: main
 
-# Localização das imagens
+# Se o erro persistir, o CMS tentará usar o Identity diretamente
+publish_mode: simple
+
 media_folder: "assets/images"
 public_folder: "/assets/images"
 
-# Idioma da interface do CMS
-locale: 'pt'
-
 collections:
-  # --- Configurações Gerais (Contactos) ---
   - name: "settings"
-    label: "Configurações Gerais"
-    delete: false
-    editor:
-      preview: false
+    label: "Configurações"
     files:
       - name: "contacts"
-        label: "Contactos e Redes Sociais"
+        label: "Contactos"
         file: "data/settings.json"
         fields:
           - {label: "Email", name: "email", widget: "string"}
-          - {label: "Telefone", name: "phone", widget: "string"}
           - {label: "Morada", name: "address", widget: "text"}
-          - {label: "Facebook URL", name: "facebook", widget: "string"}
-          - {label: "Instagram URL", name: "instagram", widget: "string"}
-          - {label: "LinkedIn URL", name: "linkedin", widget: "string"}
+          - {label: "Facebook", name: "facebook", widget: "string"}
 
-  # --- Páginas ---
-  - name: "pages"
-    label: "Páginas"
-    delete: false
-    files:
-      # Página Inicial
-      - name: "home"
-        label: "Página Inicial"
-        file: "data/home.json"
-        fields:
-          - label: "Secção Hero"
-            name: "hero"
-            widget: "object"
-            fields:
-              - {label: "Título Estático", name: "title_prefix", widget: "string"}
-              - label: "Palavras Animadas"
-                name: "words"
-                widget: "list"
-                allow_add: true
-                summary: "{{fields.word}}"
-                field: {label: "Palavra", name: "word", widget: "string"}
-              - {label: "Sub-título", name: "subheading", widget: "text"}
-              - {label: "Imagem Hero", name: "image", widget: "image"}
-          - label: "A Nossa Missão"
-            name: "mission"
-            widget: "object"
-            fields:
-              - {label: "Texto Principal", name: "text", widget: "markdown"}
-              - label: "Pills da Animação (Valores)"
-                name: "bubbles"
-                widget: "list"
-                field: {label: "Valor", name: "val", widget: "string"}
-
-  # --- Blog ---
   - name: "blog"
     label: "Blog"
     folder: "data/blog"
@@ -69,7 +27,4 @@ collections:
     slug: "{{slug}}"
     fields:
       - {label: "Título", name: "title", widget: "string"}
-      - {label: "Data", name: "date", widget: "datetime"}
-      - {label: "Imagem de Destaque", name: "image", widget: "image"}
-      - {label: "Resumo", name: "summary", widget: "text"}
-      - {label: "Conteúdo do Artigo", name: "body", widget: "markdown"}
+      - {label: "Conteúdo", name: "body", widget: "markdown"}
