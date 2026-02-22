@@ -1,0 +1,70 @@
+backend:
+  name: github
+  repo: SuesteCreative/mental8works-website
+  branch: main
+
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+collections:
+  # --- Configurações Gerais (Contactos) ---
+  - name: "settings"
+    label: "Configurações Gerais"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "contacts"
+        label: "Contactos e Redes Sociais"
+        file: "data/settings.json"
+        fields:
+          - {label: "Email", name: "email", widget: "string"}
+          - {label: "Telefone", name: "phone", widget: "string"}
+          - {label: "Morada", name: "address", widget: "text"}
+          - {label: "Facebook URL", name: "facebook", widget: "string"}
+          - {label: "Instagram URL", name: "instagram", widget: "string"}
+          - {label: "LinkedIn URL", name: "linkedin", widget: "string"}
+
+  # --- Páginas ---
+  - name: "pages"
+    label: "Páginas"
+    delete: false
+    files:
+      # Página Inicial
+      - name: "home"
+        label: "Página Inicial"
+        file: "data/home.json"
+        fields:
+          - label: "Secção Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - {label: "Título Estático", name: "title_prefix", widget: "string"}
+              - {label: "Palavras Animadas (a mudar)", name: "words", widget: "list", field: {label: "Palavra", name: "word", widget: "string"}}
+              - {label: "Sub-título", name: "subheading", widget: "text"}
+              - {label: "Imagem Hero", name: "image", widget: "image"}
+          - label: "Secção Serviços (Descrições)"
+            name: "services"
+            widget: "list"
+            fields:
+              - {label: "Nome do Serviço", name: "name", widget: "string"}
+              - {label: "Descrição", name: "description", widget: "text"}
+          - label: "A Nossa Missão"
+            name: "mission"
+            widget: "object"
+            fields:
+              - {label: "Texto Principal", name: "text", widget: "markdown"}
+              - {label: "Pills da Animação (Valores)", name: "bubbles", widget: "list", field: {label: "Valor", name: "val", widget: "string"}}
+
+  # --- Blog ---
+  - name: "blog"
+    label: "Blog"
+    folder: "data/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Data", name: "date", widget: "datetime"}
+      - {label: "Imagem de Destaque", name: "image", widget: "image"}
+      - {label: "Resumo", name: "summary", widget: "text"}
+      - {label: "Conteúdo do Artigo", name: "body", widget: "markdown"}

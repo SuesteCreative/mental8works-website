@@ -96,7 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hero Dynamic Title Word changing logic
     const dynamicWord = document.getElementById('dynamic-word');
     if (dynamicWord) {
-        const words = ["emocional", "pessoal", "mental", "pleno", "espiritual", "connosco", "interior"];
+        // Use words from CMS if available, otherwise use defaults
+        const words = window.CMS_DYNAMIC_WORDS || ["emocional", "pessoal", "mental", "pleno", "espiritual", "connosco", "interior"];
         let wordIndex = 0;
         let wordInterval;
 
