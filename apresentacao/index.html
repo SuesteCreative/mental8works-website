@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Apresentação: Mental8Works</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary: #03919f;
+            --primary-dark: #026e79;
+            --secondary: #f0be44;
+            --dark: #1a202c;
+            --light: #f1f5f9;
+            --glass: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        .blob-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: blur(100px);
+            opacity: 0.5;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            animation: move 20s infinite alternate;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--primary);
+            top: -200px;
+            left: -200px;
+            opacity: 0.6;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--secondary);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -5s;
+            opacity: 0.4;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(150px, 100px) scale(1.1);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+        }
+
+        #progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: var(--primary);
+            width: 0%;
+            z-index: 1000;
+        }
+
+        .top-logo {
+            text-align: center;
+            padding: 3rem 0 1rem;
+        }
+
+        .top-logo img {
+            max-width: 180px;
+            height: auto;
+            width: 100%;
+        }
+
+        header {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            width: 100%;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 8vw, 5rem);
+            font-weight: 900;
+            color: #000;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        .title-blue {
+            color: var(--primary);
+        }
+
+        .title-yellow {
+            color: var(--secondary);
+        }
+
+        .badge {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .slide {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border-radius: 40px;
+            padding: 4rem;
+            margin-bottom: 6rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--glass-border);
+            width: 100%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            color: var(--dark);
+        }
+
+        /* 2x2 Grid Layout for Desktop */
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(3, 145, 159, 0.1);
+            color: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.35rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Preview area - MAC/Browser Frame */
+        .preview-header {
+            text-align: center;
+            margin: 4rem 0 2.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .preview-wrapper {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            background: white;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            padding-top: calc(56.25% + 40px);
+            /* 16:9 + header */
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 100%;
+        }
+
+        /* Mac/Browser Header */
+        .browser-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            border-bottom: 1px solid #e2e8f0;
+            z-index: 10;
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .browser-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red {
+            background: #ff5f56;
+        }
+
+        .dot-yellow {
+            background: #ffbd2e;
+        }
+
+        .dot-green {
+            background: #27c93f;
+        }
+
+        .browser-address {
+            background: white;
+            padding: 2px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            color: #94a3b8;
+            margin-left: 20px;
+            flex: 1;
+            max-width: 400px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .preview-wrapper iframe {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 40px);
+            border: none;
+        }
+
+        .fullscreen-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+        .fullscreen-btn:hover {
+            transform: scale(1.1);
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        /* Overay Fullscreen (for iOS and more control) */
+        #previewOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 10000;
+            display: none;
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.3s ease;
+            transform: scale(0.95);
+        }
+
+        #previewOverlay.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        #previewOverlay iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-overlay-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10001;
+            background: var(--dark);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            transition: 0.3s;
+        }
+
+        .close-overlay-btn:hover {
+            transform: translateX(-50%) scale(1.1);
+            background: var(--primary);
+        }
+
+        /* Payments area - 3 columns, 2 rows */
+        .payment-logos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+            padding: 2.5rem;
+            background: #fff;
+            border-radius: 30px;
+            align-items: center;
+            justify-items: center;
+            width: 100%;
+        }
+
+        .payment-logos-grid img {
+            max-width: 100px;
+            height: auto;
+            max-height: 40px;
+            filter: grayscale(1);
+            opacity: 0.8;
+            transition: 0.4s;
+        }
+
+        .payment-logos-grid img:hover {
+            filter: grayscale(0);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .footer-cta {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--dark);
+            color: white;
+            border-radius: 40px;
+            margin-top: 4rem;
+            width: 100%;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1.05rem;
+            transition: 0.3s;
+            opacity: 0.9;
+        }
+
+        .contact-item:hover {
+            color: var(--secondary);
+            opacity: 1;
+        }
+
+        .contact-item i {
+            color: var(--secondary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: 0.3s;
+            margin-bottom: 2rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        .placeholder-img {
+            width: 100%;
+            height: auto;
+            min-height: 300px;
+            object-fit: cover;
+            border-radius: 30px;
+            margin: 3rem 0;
+            box-shadow: var(--shadow);
+            border: 4px solid white;
+        }
+
+        @media (max-width: 992px) {
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-logos-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .slide {
+                padding: 1.5rem;
+                border-radius: 30px;
+            }
+
+            /* IPHONE Frame on Mobile */
+            .preview-wrapper {
+                padding-top: 180%;
+                /* Altura de iPhone */
+                max-width: 280px;
+                margin: 0 auto;
+                border: 12px solid #1a202c;
+                /* Moldura de telemóvel */
+                border-radius: 45px;
+                background: #1a202c;
+            }
+
+            .browser-header {
+                display: none;
+                /* Hide Mac header on mobile */
+            }
+
+            .preview-wrapper iframe {
+                top: 0;
+                height: 100%;
+                border-radius: 30px;
+            }
+
+            .preview-wrapper::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100px;
+                height: 25px;
+                background: #1a202c;
+                border-bottom-left-radius: 12px;
+                border-bottom-right-radius: 12px;
+                z-index: 10;
+            }
+
+            .fullscreen-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .payment-logos-grid {
+                padding: 1.5rem;
+                gap: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        .preview-subtitle {
+            text-align: center;
+            font-size: 1.05rem;
+            color: #555;
+            margin: -1rem 0 2rem;
+            opacity: 0.85;
+            padding: 0 1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="progress"></div>
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container">
+        <div class="top-logo">
+            <img src="../assets/images/logo-mental8works-color.webp" alt="Mental8Works Logo">
+        </div>
+
+        <header>
+            <span class="badge" style="margin-bottom: 1.5rem;">Estratégia Digital & Transformação</span>
+            <h1>A Nova Era da <br><span class="title-blue">Mental</span><span class="title-yellow">8</span><span
+                    class="title-blue">Works</span></h1>
+            <p style="font-size: 1.25rem; max-width: 700px; color: #444; margin-bottom: 2.5rem;">
+                Uma fusão entre cuidado humano e tecnologia de ponta para criar a melhor experiência para os seus
+                utilizadores.
+            </p>
+            <a href="#vision" class="btn">Explorar Solução <i data-lucide="arrow-down"></i></a>
+        </header>
+
+        <!-- SECÇÃO 1: DESIGN -->
+        <section id="vision" class="slide">
+            <div class="section-title">
+                <h2>1. Design que Acolhe</h2>
+                <p>Equilíbrio visual sereno que transmite confiança desde a primeira visita.</p>
+            </div>
+
+            <div class="grid-4">
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="sun"></i></div>
+                    <h3>Interface Simples</h3>
+                    <p>Camadas subtis que criam profundidade sem distrair do essencial.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="layers"></i></div>
+                    <h3>Transparência e coerência</h3>
+                    <p>Camadas de transparência que trazem profundidade e uma estética moderna.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="heart"></i></div>
+                    <h3>User Friendly</h3>
+                    <p>Tipografia elegante que prioriza a legibilidade e o conforto visual em qualquer ecrã.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="smartphone"></i></div>
+                    <h3>Optimização Mobile</h3>
+                    <p>Pensado para o uso em movimento, com agendamentos acessíveis em apenas dois toques.</p>
+                </div>
+            </div>
+
+            <h3 class="preview-header">A Nossa Visão</h3>
+            <p class="preview-subtitle">Faz scroll e vê o preview do site aqui</p>
+            <div class="preview-wrapper" id="previewContainer">
+                <div class="browser-header">
+                    <div class="browser-dots">
+                        <div class="browser-dot dot-red"></div>
+                        <div class="browser-dot dot-yellow"></div>
+                        <div class="browser-dot dot-green"></div>
+                    </div>
+                    <div class="browser-address">https://mental8works.pt</div>
+                </div>
+                <button class="fullscreen-btn" onclick="openFullscreen()" title="Ver em ecrã total">
+                    <i data-lucide="maximize"></i>
+                </button>
+                <iframe src="https://suestecreative.github.io/mental8works-website/" id="previewIframe"
+                    title="Mental8Works Live Preview"></iframe>
+            </div>
+        </section>
+
+        <!-- SECÇÃO 2: PERFORMANCE -->
+        <section class="slide">
+            <div class="section-title">
+                <h2>2. Performance & SEO</h2>
+                <p>A inteligência por trás de um carregamento instantâneo.</p>
+            </div>
+
+            <div class="grid-4">
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="zap"></i></div>
+                    <h3>Velocidade</h3>
+                    <p>Otimização de imagens e código para carregamento em milissegundos, reduzindo a taxa de abandono.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="search"></i></div>
+                    <h3>SEO Semântico</h3>
+                    <p>Estrutura preparada para indexação prioritária pelo Google nas pesquisas por "psicologia em
+                        Lisboa".</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="hard-drive"></i></div>
+                    <h3>Site Estático</h3>
+                    <p>Máxima segurança e estabilidade sem dependências desnecessárias.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="bar-chart-3"></i></div>
+                    <h3>Análise de dados</h3>
+                    <p>Pronto para indexar com Google Analytics</p>
+                </div>
+            </div>
+
+            <img src="../assets/images/mockup-final.webp" alt="Mental8Works Mockup" class="placeholder-img"
+                loading="lazy">
+        </section>
+
+        <!-- SECÇÃO 3: FUTURO (PAGAMENTOS E CALENDÁRIO) -->
+        <section class="slide">
+            <div class="section-title">
+                <h2>3. Fase 2: Automatização & Agendamento</h2>
+                <p>Redução do trabalho operacional e aumento imediato das marcações.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr; gap: 3rem;">
+                <div
+                    style="background: white; padding: 2rem; border-radius: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                    <h3
+                        style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.5rem; color: var(--primary); font-size: 1.6rem;">
+                        <i data-lucide="credit-card"></i> Pagamentos Integrados
+                    </h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 2rem;">Propomos a integração direta de gateways de
+                        pagamento no fluxo de marcação. O utente paga no momento da reserva, reduzindo faltas de
+                        comparência.</p>
+
+                    <div class="payment-logos-grid">
+                        <a href="https://stripe.com/" target="_blank"><img src="../assets/images/stripe.png"
+                                alt="Stripe"></a>
+                        <a href="https://www.eupago.pt/" target="_blank"><img src="../assets/images/eupago.png"
+                                alt="EuPago"></a>
+                        <a href="https://ifthenpay.com/" target="_blank"><img src="../assets/images/ifthenppay.png"
+                                alt="IfthenPay"></a>
+                        <a href="https://www.easypay.pt/" target="_blank"><img src="../assets/images/easypay.png"
+                                alt="Easypay"></a>
+                        <a href="https://www.paypal.com/" target="_blank"><img src="../assets/images/paypal.png"
+                                alt="PayPal"></a>
+                        <a href="https://www.revolut.com/" target="_blank"><img src="../assets/images/revolut.png"
+                                alt="Revolut"></a>
+                    </div>
+                </div>
+
+                <div
+                    style="background: white; padding: 2rem; border-radius: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                    <h3
+                        style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.5rem; color: var(--primary); font-size: 1.6rem;">
+                        <i data-lucide="calendar"></i> Sincronização Inteligente
+                    </h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 2rem;">Os agendamentos podem ser sincronizados
+                        automaticamente através de API aberta, garantindo alinhamento total da agenda. Podemos integrar
+                        diretamente com o calendário do Outlook (Office 365), Google Calendar ou qualquer outro sistema
+                        de gestão que suporte ligações externas.</p>
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1.5rem;">
+                        <div
+                            style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; padding: 1.5rem; border-radius: 15px; background: #f8fafc;">
+                            <i data-lucide="mail" size="32" style="color: #0078d4;"></i>
+                            <span style="font-size: 0.9rem; font-weight: 600;">Outlook</span>
+                        </div>
+                        <div
+                            style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; padding: 1.5rem; border-radius: 15px; background: #f8fafc;">
+                            <i data-lucide="calendar-days" size="32" style="color: #4285f4;"></i>
+                            <span style="font-size: 0.9rem; font-weight: 600;">Google</span>
+                        </div>
+                        <div
+                            style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; padding: 1.5rem; border-radius: 15px; background: #f8fafc;">
+                            <i data-lucide="code-2" size="32" style="color: var(--primary);"></i>
+                            <span style="font-size: 0.8rem; font-weight: 600;">API Aberta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER CONTACTS -->
+        <div class="footer-cta">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1rem;">Prontos para o
+                avançar?</h2>
+
+            <div class="contact-links">
+                <a href="mailto:info@sueste-creative.pt" class="contact-item">
+                    <i data-lucide="mail" size="18"></i> info@sueste-creative.pt
+                </a>
+                <a href="tel:+351965494727" class="contact-item">
+                    <i data-lucide="phone" size="18"></i> +351 965 494 727
+                </a>
+                <a href="https://wa.me/351965494727" target="_blank" class="contact-item">
+                    <i data-lucide="message-circle" size="18"></i> WhatsApp
+                </a>
+            </div>
+
+            <p
+                style="margin-top: 3rem; font-weight: 700; color: var(--secondary); letter-spacing: 1px; font-size: 0.9rem;">
+                SUESTE CREATIVE AGENCY</p>
+            <p style="font-size: 0.75rem; opacity: 0.5; margin-top: 0.5rem;">© 2026 Mental8Works designed by Sueste -
+                Creative Agency</p>
+        </div>
+    </div>
+
+    <!-- Fullscreen Overlay Wrapper -->
+    <div id="previewOverlay">
+        <button class="close-overlay-btn" onclick="closeFullscreen()" title="Fechar preview">
+            <i data-lucide="x"></i>
+        </button>
+        <iframe id="overlayIframe" src=""></iframe>
+    </div>
+
+    <script>
+        window.onscroll = function () {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            if (height > 0) {
+                var scrolled = (winScroll / height) * 100;
+                document.getElementById("progress").style.width = scrolled + "%";
+            }
+        };
+
+        function openFullscreen() {
+            const overlay = document.getElementById('previewOverlay');
+            const overlayIframe = document.getElementById('overlayIframe');
+            const sourceUrl = "https://suestecreative.github.io/mental8works-website/";
+
+            overlayIframe.src = sourceUrl;
+            overlay.style.display = 'block';
+
+            // Força o reflow para a animação funcionar
+            overlay.offsetHeight;
+            overlay.classList.add('active');
+
+            // Impede o scroll na página principal enquanto o preview está aberto
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFullscreen() {
+            const overlay = document.getElementById('previewOverlay');
+            const overlayIframe = document.getElementById('overlayIframe');
+
+            overlay.classList.remove('active');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                overlayIframe.src = ""; // Limpa o iframe para poupar memória
+                document.body.style.overflow = 'auto';
+            }, 400);
+        }
+
+        // Fechar com a tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeFullscreen();
+            }
+        });
+
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
+
+
