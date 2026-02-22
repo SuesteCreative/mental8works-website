@@ -1,10 +1,13 @@
 backend:
-  name: github
-  repo: SuesteCreative/mental8works-website
+  name: git-gateway
   branch: main
 
+# Localização das imagens
 media_folder: "assets/images"
 public_folder: "/assets/images"
+
+# Idioma da interface do CMS
+locale: 'pt'
 
 collections:
   # --- Configurações Gerais (Contactos) ---
@@ -40,21 +43,23 @@ collections:
             widget: "object"
             fields:
               - {label: "Título Estático", name: "title_prefix", widget: "string"}
-              - {label: "Palavras Animadas (a mudar)", name: "words", widget: "list", field: {label: "Palavra", name: "word", widget: "string"}}
+              - label: "Palavras Animadas"
+                name: "words"
+                widget: "list"
+                allow_add: true
+                summary: "{{fields.word}}"
+                field: {label: "Palavra", name: "word", widget: "string"}
               - {label: "Sub-título", name: "subheading", widget: "text"}
               - {label: "Imagem Hero", name: "image", widget: "image"}
-          - label: "Secção Serviços (Descrições)"
-            name: "services"
-            widget: "list"
-            fields:
-              - {label: "Nome do Serviço", name: "name", widget: "string"}
-              - {label: "Descrição", name: "description", widget: "text"}
           - label: "A Nossa Missão"
             name: "mission"
             widget: "object"
             fields:
               - {label: "Texto Principal", name: "text", widget: "markdown"}
-              - {label: "Pills da Animação (Valores)", name: "bubbles", widget: "list", field: {label: "Valor", name: "val", widget: "string"}}
+              - label: "Pills da Animação (Valores)"
+                name: "bubbles"
+                widget: "list"
+                field: {label: "Valor", name: "val", widget: "string"}
 
   # --- Blog ---
   - name: "blog"
