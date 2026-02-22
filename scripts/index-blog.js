@@ -2,12 +2,13 @@
 import fs from 'fs';
 import path from 'path';
 
-const blogDir = './mental8works-static/data/blog';
-const outputFile = './mental8works-static/data/blog-index.json';
+const blogDir = './data/blog';
+const outputFile = './data/blog-index.json';
 
 // Garantir que a pasta existe
 if (!fs.existsSync(blogDir)) {
-    fs.mkdirSync(blogDir, { recursive: true });
+    console.error(`Erro: Pasta ${blogDir} não encontrada.`);
+    process.exit(1);
 }
 
 const files = fs.readdirSync(blogDir);
@@ -26,4 +27,4 @@ const posts = files
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 
 fs.writeFileSync(outputFile, JSON.stringify(posts, null, 2));
-console.log(`Blog indexado: ${posts.length} artigos encontrados.`);
+console.log(`Blog indexado: ${posts.length} artigos encontrados em ${outputFile}`);
