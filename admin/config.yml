@@ -1,0 +1,69 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/images"
+public_folder: "/assets/images"
+display_url: https://mental8works.netlify.app
+locale: 'pt'
+
+collections:
+  - name: "pages"
+    label: "Paginas do Site"
+    delete: false
+    files:
+      - name: "home"
+        label: "Pagina Inicial"
+        file: "data/home.json"
+        fields:
+          - label: "Cabecalho Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - {label: "Titulo", name: "title_prefix", widget: "string"}
+              - label: "Palavras Animadas"
+                name: "words"
+                widget: "list"
+                field: {label: "Palavra", name: "word", widget: "string"}
+              - {label: "Subtitulo", name: "subheading", widget: "text"}
+              - {label: "Imagem", name: "image", widget: "image"}
+          - label: "Missao"
+            name: "mission"
+            widget: "object"
+            fields:
+              - {label: "Texto", name: "text", widget: "text"}
+              - label: "Bolhas"
+                name: "bubbles"
+                widget: "list"
+                field: {label: "Valor", name: "val", widget: "string"}
+
+  - name: "settings"
+    label: "Configuracoes Gerais"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "contacts"
+        label: "Contactos"
+        file: "data/settings.json"
+        fields:
+          - {label: "Email", name: "email", widget: "string"}
+          - {label: "Telefone", name: "phone", widget: "string"}
+          - {label: "Morada", name: "address", widget: "string"}
+          - {label: "Facebook", name: "facebook", widget: "string"}
+          - {label: "Instagram", name: "instagram", widget: "string"}
+          - {label: "LinkedIn", name: "linkedin", widget: "string"}
+
+  - name: "blog"
+    label: "Artigos do Blog"
+    folder: "data/blog"
+    extension: "json"
+    format: "json"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Titulo", name: "title", widget: "string"}
+      - {label: "Data", name: "date", widget: "datetime"}
+      - {label: "Imagem", name: "image", widget: "image"}
+      - {label: "Resumo", name: "summary", widget: "text"}
+      - {label: "Conteudo", name: "body", widget: "markdown"}
