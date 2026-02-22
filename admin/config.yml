@@ -63,6 +63,8 @@ collections:
   - name: "blog"
     label: "✍️ Artigos do Blog"
     folder: "data/blog"
+    extension: "json"
+    format: "json"
     create: true
     slug: "{{slug}}"
     fields:
