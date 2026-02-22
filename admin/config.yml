@@ -2,29 +2,66 @@ backend:
   name: git-gateway
   branch: main
 
-# Se o erro persistir, o CMS tentará usar o Identity diretamente
-publish_mode: simple
-
 media_folder: "assets/images"
 public_folder: "/assets/images"
+display_url: https://mental8works.netlify.app
 
 collections:
   - name: "settings"
-    label: "Configurações"
+    label: "⚙️ Configurações Gerais"
+    delete: false
+    editor:
+      preview: false
     files:
       - name: "contacts"
-        label: "Contactos"
+        label: "Contactos e Redes Sociais"
         file: "data/settings.json"
         fields:
-          - {label: "Email", name: "email", widget: "string"}
-          - {label: "Morada", name: "address", widget: "text"}
-          - {label: "Facebook", name: "facebook", widget: "string"}
+          - {label: "Email Geral", name: "email", widget: "string"}
+          - {label: "Telefone", name: "phone", widget: "string"}
+          - {label: "Morada (HTML permitido)", name: "address", widget: "string"}
+          - {label: "Facebook URL", name: "facebook", widget: "string"}
+          - {label: "Instagram URL", name: "instagram", widget: "string"}
+          - {label: "LinkedIn URL", name: "linkedin", widget: "string"}
+
+  - name: "pages"
+    label: "📄 Páginas"
+    delete: false
+    files:
+      - name: "home"
+        label: "Página Inicial"
+        file: "data/home.json"
+        fields:
+          - label: "Secção Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - {label: "Título Estático", name: "title_prefix", widget: "string"}
+              - label: "Palavras que Rodam (Animação)"
+                name: "words"
+                widget: "list"
+                field: {label: "Palavra", name: "word", widget: "string"}
+              - {label: "Frase de Apoio", name: "subheading", widget: "text"}
+              - {label: "Imagem de Fundo", name: "image", widget: "image"}
+          
+          - label: "Missão Social"
+            name: "mission"
+            widget: "object"
+            fields:
+              - {label: "Texto Manifesto", name: "text", widget: "text"}
+              - label: "Valores Flutuantes (Bubbles)"
+                name: "bubbles"
+                widget: "list"
+                field: {label: "Valor", name: "val", widget: "string"}
 
   - name: "blog"
-    label: "Blog"
+    label: "✍️ Blog"
     folder: "data/blog"
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Título", name: "title", widget: "string"}
-      - {label: "Conteúdo", name: "body", widget: "markdown"}
+      - {label: "Título do Artigo", name: "title", widget: "string"}
+      - {label: "Data de Publicação", name: "date", widget: "datetime"}
+      - {label: "Imagem de Capa", name: "image", widget: "image"}
+      - {label: "Resumo para a Listagem", name: "summary", widget: "text"}
+      - {label: "Corpo do Artigo (Rich Text)", name: "body", widget: "markdown"}
