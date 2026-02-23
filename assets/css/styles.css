@@ -2002,7 +2002,8 @@ p {
 .main-circle.visible {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
-    animation: pulsate 3s 0.8s infinite ease-in-out;
+    /* No pulsate — static presence */
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.14));
 }
 
 @keyframes pulsate {
@@ -2035,14 +2036,14 @@ p {
     border-radius: 50px;
     font-weight: 600;
     font-size: 0.82rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    /* Richer shadow for depth */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
     border: 1.5px solid currentColor;
     z-index: 5;
     opacity: 0;
     transform: scale(0.6);
     transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     white-space: nowrap;
-    /* anchor point is center of bubble */
     transform-origin: center center;
 }
 
@@ -2172,6 +2173,41 @@ p {
 
     100% {
         transform: translate(-50%, -50%) scale(1) translateY(-8px);
+    }
+}
+
+/* ── Desktop: restore original SVG-aligned positions ───────────────────────
+   SVG viewBox 400×400; paths end at the coords above.
+   On desktop the container is 460px wide — same percentages apply.       */
+@media (min-width: 900px) {
+    .bubble-etica {
+        top: 17.5%;
+        left: 50%;
+    }
+
+    .bubble-transp {
+        top: 33.75%;
+        left: 78.75%;
+    }
+
+    .bubble-excel {
+        top: 66.25%;
+        left: 78.75%;
+    }
+
+    .bubble-susten {
+        top: 82.5%;
+        left: 50%;
+    }
+
+    .bubble-compet {
+        top: 66.25%;
+        left: 21.25%;
+    }
+
+    .bubble-humanismo {
+        top: 33.75%;
+        left: 21.25%;
     }
 }
 
