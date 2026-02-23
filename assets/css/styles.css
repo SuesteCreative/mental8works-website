@@ -2050,18 +2050,9 @@ p {
 .float-card.bubble-node.visible {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
-    animation: floatMission 5s infinite alternate ease-in-out;
+    /* No movement — static after reveal */
 }
 
-@keyframes floatMission {
-    0% {
-        transform: translate(-50%, -50%) scale(1) translateY(0);
-    }
-
-    100% {
-        transform: translate(-50%, -50%) scale(1) translateY(-8px);
-    }
-}
 
 /* Bubble colors */
 .bubble-etica {
