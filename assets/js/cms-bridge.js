@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 1. Load General Settings (contacts, social links)
     try {
-        const settingsResponse = await fetch(`${basePath}data/settings.json`);
+        const settingsResponse = await fetch(`${basePath}data/settings.json?v=${new Date().getTime()}`);
         if (settingsResponse.ok) {
             const settings = await settingsResponse.json();
 
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 2. Home Page Logic
     if (isHomePage) {
         try {
-            const homeResponse = await fetch('data/home.json');
+            const homeResponse = await fetch(`data/home.json?v=${new Date().getTime()}`);
             if (!homeResponse.ok) return;
             const homeData = await homeResponse.json();
 
