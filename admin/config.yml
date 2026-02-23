@@ -24,7 +24,7 @@ collections:
     slug: "{{slug}}"
     identifier_field: "name"
     summary: "{{name}} — {{role}}"
-    media_folder: "assets/images/equipa"
+    media_folder: "/assets/images/equipa"
     public_folder: "/assets/images/equipa"
     fields:
       - {label: "Nome", name: "name", widget: "string"}
@@ -53,7 +53,7 @@ collections:
     slug: "{{slug}}"
     identifier_field: "name"
     summary: "{{name}} — {{role}}"
-    media_folder: "assets/images/equipa"
+    media_folder: "/assets/images/equipa"
     public_folder: "/assets/images/equipa"
     fields:
       - {label: "Nome", name: "name", widget: "string"}
