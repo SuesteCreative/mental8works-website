@@ -249,6 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // This uses the professional library from CDN
     if (typeof CookieConsent !== 'undefined') {
         CookieConsent.run({
+            revision: 2,
             guiOptions: {
                 consentModal: {
                     layout: "cloud",

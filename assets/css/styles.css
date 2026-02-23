@@ -2486,26 +2486,28 @@ p {
 
 /* ── Cookie Consent Theme Overrides ────────────────────────────────────── */
 #cc-main {
-    --cc-bg: var(--color-primary);
+    --cc-bg: rgba(15, 20, 40, 0.98);
     --cc-primary-color: #ffffff;
     --cc-secondary-color: rgba(255, 255, 255, 0.85);
 
-    --cc-btn-primary-bg: #ffffff;
-    --cc-btn-primary-text: var(--color-primary);
-    --cc-btn-primary-hover-bg: #f8fafc;
+    --cc-btn-primary-bg: var(--color-primary);
+    --cc-btn-primary-text: #ffffff;
+    --cc-btn-primary-hover-bg: #027a87;
 
-    --cc-btn-secondary-bg: rgba(255, 255, 255, 0.15);
+    --cc-btn-secondary-bg: rgba(255, 255, 255, 0.08);
     --cc-btn-secondary-text: #ffffff;
-    --cc-btn-secondary-hover-bg: rgba(255, 255, 255, 0.25);
-    --cc-btn-secondary-border: rgba(255, 255, 255, 0.3);
+    --cc-btn-secondary-hover-bg: rgba(255, 255, 255, 0.15);
+    --cc-btn-secondary-border: rgba(255, 255, 255, 0.2);
 
     --cc-modal-border-radius: 16px;
     --cc-btn-border-radius: 8px;
     --cc-font-family: var(--font-sans);
 }
 
-/* Ensure the cloud layout looks premium on the blue background */
+/* Glassmorphism effect for the banner */
 #cc-main .cm--cloud {
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
