@@ -43,7 +43,7 @@ function buildTeamPage() {
                 <!-- ${member.name} (Dynamic) -->
                 <div class="team-card-detailed reveal" style="transition-delay: ${0.05 + (idx * 0.05)}s;">
                     <div class="team-card-image">
-                        <img src="${(() => { const p = member.photo || '/assets/images/user-outline.webp'; return p.startsWith('/') ? '..' + p : (p.startsWith('assets') ? '../' + p : p); })()}" alt="${member.name}"
+                        <img src="${(() => { const p = member.photo || '/assets/images/fav-icon-color.png'; return p.startsWith('/') ? '..' + p : (p.startsWith('assets') ? '../' + p : p); })()}" alt="${member.name}"
                             style="object-fit: cover; width: 100%; height: 100%;">
                     </div>
                     <div class="team-card-info">
@@ -131,7 +131,7 @@ function buildIndividualPosts(posts) {
         // Find Author in Authors collection or Team collection
         const authorName = post.author || "Equipa Mental8Works";
         let authorRole = "Especialista Mental8Works";
-        let authorPhoto = "/assets/images/logo-mental8works-white.webp";
+        let authorPhoto = "/assets/images/fav-icon-color.png";
 
         // Check Authors first (CMS blog relation points here)
         let authorMatch = authorNodes.find(m => m.name && m.name.toLowerCase() === authorName.toLowerCase());
