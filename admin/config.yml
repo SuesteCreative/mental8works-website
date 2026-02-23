@@ -9,6 +9,79 @@ display_url: https://mental8works.pt
 locale: 'pt'
 
 collections:
+  # ─────────────────────────────────────────────
+  #  AUTORES
+  # ─────────────────────────────────────────────
+  - name: "authors"
+    label: "Autores"
+    label_singular: "Autor"
+    folder: "data/authors"
+    extension: "json"
+    format: "json"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "name"
+    summary: "{{name}} — {{role}}"
+    fields:
+      - {label: "Nome", name: "name", widget: "string"}
+      - {label: "Cargo / Especialidade", name: "role", widget: "string"}
+      - {label: "Fotografia", name: "photo", widget: "image", required: false, hint: "Foto circular do autor. Recomendado: 400x400px."}
+      - {label: "LinkedIn", name: "linkedin", widget: "string", required: false, hint: "URL completo do perfil LinkedIn"}
+      - {label: "Biografia curta", name: "bio", widget: "text", required: false}
+
+  # ─────────────────────────────────────────────
+  #  EQUIPA
+  # ─────────────────────────────────────────────
+  - name: "team"
+    label: "Equipa"
+    label_singular: "Membro"
+    folder: "data/team"
+    extension: "json"
+    format: "json"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "name"
+    summary: "{{name}} — {{role}}"
+    fields:
+      - {label: "Nome", name: "name", widget: "string"}
+      - {label: "Cargo", name: "role", widget: "string"}
+      - {label: "Fotografia", name: "photo", widget: "image", required: false, hint: "Foto do membro. Recomendado: mínimo 400x400px."}
+      - {label: "LinkedIn", name: "linkedin", widget: "string", required: false}
+      - label: "Formação / Pontos biográficos"
+        name: "bio_items"
+        widget: "list"
+        label_singular: "Item"
+        field: {label: "Item", name: "item", widget: "string"}
+
+  # ─────────────────────────────────────────────
+  #  ARTIGOS DO BLOG
+  # ─────────────────────────────────────────────
+  - name: "blog"
+    label: "Artigos do Blog"
+    folder: "data/blog"
+    extension: "json"
+    format: "json"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Titulo", name: "title", widget: "string"}
+      - {label: "Data", name: "date", widget: "datetime"}
+      - {label: "Imagem de Destaque", name: "image", widget: "image"}
+      - {label: "Resumo", name: "summary", widget: "text"}
+      - label: "Autor"
+        name: "author"
+        widget: "relation"
+        collection: "authors"
+        search_fields: ["name"]
+        value_field: "name"
+        display_fields: ["name", "role"]
+        required: false
+        hint: "Selecione um autor existente. Para adicionar um novo, vá à secção 'Autores'."
+      - {label: "Conteudo", name: "body", widget: "markdown"}
+
+  # ─────────────────────────────────────────────
+  #  PÁGINAS DO SITE
+  # ─────────────────────────────────────────────
   - name: "pages"
     label: "Paginas do Site"
     delete: false
@@ -38,6 +111,9 @@ collections:
                 widget: "list"
                 field: {label: "Valor", name: "val", widget: "string"}
 
+  # ─────────────────────────────────────────────
+  #  CONFIGURAÇÕES GERAIS
+  # ─────────────────────────────────────────────
   - name: "settings"
     label: "Configuracoes Gerais"
     delete: false
@@ -55,16 +131,3 @@ collections:
           - {label: "Instagram", name: "instagram", widget: "string"}
           - {label: "LinkedIn", name: "linkedin", widget: "string"}
 
-  - name: "blog"
-    label: "Artigos do Blog"
-    folder: "data/blog"
-    extension: "json"
-    format: "json"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Titulo", name: "title", widget: "string"}
-      - {label: "Data", name: "date", widget: "datetime"}
-      - {label: "Imagem", name: "image", widget: "image"}
-      - {label: "Resumo", name: "summary", widget: "text"}
-      - {label: "Conteudo", name: "body", widget: "markdown"}
