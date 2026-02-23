@@ -3,9 +3,6 @@ const path = require('path');
 
 // --- Helper Functions ---
 
-/**
- * Reads all JSON files in a directory and returns an array of objects.
- */
 function readCollection(dirPath) {
     const fullPath = path.join(__dirname, '..', dirPath);
     if (!fs.existsSync(fullPath)) return [];
@@ -15,7 +12,7 @@ function readCollection(dirPath) {
         .map(file => JSON.parse(fs.readFileSync(path.join(fullPath, file), 'utf8')));
 }
 
-// --- Main Build Logic ---
+// --- Build Logic ---
 
 function buildTeamPage() {
     const teamNodes = readCollection('data/team');
@@ -23,9 +20,9 @@ function buildTeamPage() {
     let html = fs.readFileSync(templatePath, 'utf8');
 
     // Generate Team HTML
-    const teamHtml = teamNodes.map((member, idx) => `
+    const teamItemsHtml = teamNodes.map((member, idx) => `
                 <!-- ${member.name} (Dynamic) -->
-                <div class="team-card-detailed reveal" style="transition-delay: ${0.1 + (idx * 0.05)}s;">
+                <div class="team-card-detailed reveal" style="transition-delay: ${0.05 + (idx * 0.05)}s;">
                     <div class="team-card-image">
                         <img src="${member.photo.startsWith('/') ? '..' + member.photo : member.photo}" alt="${member.name}"
                             style="object-fit: cover; width: 100%; height: 100%;">
@@ -46,21 +43,20 @@ function buildTeamPage() {
                             ${(member.bio_items || []).map(item => `<li>${item}</li>`).join('\n                            ')}
                         </ul>
                     </div>
-                </div>
-  `).join('\n');
+                </div>`).join('\n');
 
-    // Replace the container content
-    // We look for the grid container and replace its children
-    const regex = /<div class="team-grid[^>]*>([\s\S]*?)<\/div>\s*<\/div>\s*<\/section>/;
-    const match = html.match(regex);
+    // Find the container and replace its content
+    // Regex to find <div class="team-grid-full"> ... </div>
+    const containerRegex = /<div class="team-grid-full">[\s\S]*?<\/div>/;
+    const newContainerHtml = `<div class="team-grid-full">\n                <!-- CMS_TEAM_MEMBERS -->\n${teamItemsHtml}\n            </div>`;
 
-    if (match) {
-        const newGrid = `<div class="team-grid reveal-grid">\n${teamHtml}\n                </div>`;
-        html = html.replace(match[0], `${newGrid}\n            </div>\n        </section>`);
+    if (containerRegex.test(html)) {
+        html = html.replace(containerRegex, newContainerHtml);
+        fs.writeFileSync(templatePath, html);
+        console.log('✅ Team page updated.');
+    } else {
+        console.error('❌ Could not find team-grid-full container in team/index.html');
     }
-
-    fs.writeFileSync(templatePath, html);
-    console.log('✅ Team page updated from JSON data.');
 }
 
 function buildHomePage() {
@@ -71,22 +67,20 @@ function buildHomePage() {
     const templatePath = path.join(__dirname, '..', 'index.html');
     let html = fs.readFileSync(templatePath, 'utf8');
 
-    // Update Hero dynamic words
     if (home.hero && home.hero.words) {
         const wordsArray = JSON.stringify(home.hero.words);
         html = html.replace(/window\.CMS_DYNAMIC_WORDS\s*=\s*\[.*?\]/, `window.CMS_DYNAMIC_WORDS = ${wordsArray}`);
     }
 
     fs.writeFileSync(templatePath, html);
-    console.log('✅ Homepage updated from JSON data.');
+    console.log('✅ Homepage updated.');
 }
 
-// Run all
+// Run
 try {
     buildTeamPage();
     buildHomePage();
-    // Add blog mapping here later if needed
 } catch (err) {
-    console.error('❌ Build failed:', err);
+    console.error('❌ Build script error:', err);
     process.exit(1);
 }
