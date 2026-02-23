@@ -22,12 +22,21 @@ collections:
     slug: "{{slug}}"
     identifier_field: "name"
     summary: "{{name}} — {{role}}"
+    media_folder: "assets/images/equipa"
+    public_folder: "/assets/images/equipa"
     fields:
       - {label: "Nome", name: "name", widget: "string"}
       - {label: "Cargo / Especialidade", name: "role", widget: "string"}
-      - {label: "Fotografia", name: "photo", widget: "image", required: false, hint: "Foto circular do autor. Recomendado: 400x400px."}
-      - {label: "LinkedIn", name: "linkedin", widget: "string", required: false, hint: "URL completo do perfil LinkedIn"}
-      - {label: "Biografia curta", name: "bio", widget: "text", required: false}
+      - label: "Fotografia"
+        name: "photo"
+        widget: "image"
+        required: false
+        hint: "📷 Formatos aceites: JPG, PNG ou WebP — Tamanho máximo: 2 MB — Dimensões recomendadas: 400 × 400 px (quadrado). Fotografias de rosto centradas resultam melhor com o corte circular do site."
+        media_library:
+          config:
+            max_file_size: 2097152
+      - {label: "LinkedIn", name: "linkedin", widget: "string", required: false, hint: "URL completo do perfil LinkedIn (ex: https://www.linkedin.com/in/nome)"}
+      - {label: "Biografia curta", name: "bio", widget: "text", required: false, hint: "Breve descrição do autor. Aparece na página do artigo do blog."}
 
   # ─────────────────────────────────────────────
   #  EQUIPA
@@ -42,11 +51,20 @@ collections:
     slug: "{{slug}}"
     identifier_field: "name"
     summary: "{{name}} — {{role}}"
+    media_folder: "assets/images/equipa"
+    public_folder: "/assets/images/equipa"
     fields:
       - {label: "Nome", name: "name", widget: "string"}
       - {label: "Cargo", name: "role", widget: "string"}
-      - {label: "Fotografia", name: "photo", widget: "image", required: false, hint: "Foto do membro. Recomendado: mínimo 400x400px."}
-      - {label: "LinkedIn", name: "linkedin", widget: "string", required: false}
+      - label: "Fotografia"
+        name: "photo"
+        widget: "image"
+        required: false
+        hint: "📷 Formatos aceites: JPG, PNG ou WebP — Tamanho máximo: 2 MB — Dimensões recomendadas: mínimo 400 × 400 px (quadrado). Fotografia de rosto centrada. Evitar fundos com padrões complexos."
+        media_library:
+          config:
+            max_file_size: 2097152
+      - {label: "LinkedIn", name: "linkedin", widget: "string", required: false, hint: "URL completo do perfil LinkedIn (ex: https://www.linkedin.com/in/nome)"}
       - label: "Formação / Pontos biográficos"
         name: "bio_items"
         widget: "list"
