@@ -123,17 +123,29 @@ function buildIndividualPosts(posts) {
     }
     const template = fs.readFileSync(templatePath, 'utf8');
     const teamNodes = readCollection('data/team');
+    const authorNodes = readCollection('data/authors');
 
     posts.forEach(post => {
         let html = template;
 
-        // Map Author Role if it matches someone in the team
+        // Find Author in Authors collection or Team collection
         const authorName = post.author || "Equipa Mental8Works";
         let authorRole = "Especialista Mental8Works";
+        let authorPhoto = "/assets/images/logo-mental8works-white.webp";
 
-        const authorMatch = teamNodes.find(m => m.name && m.name.toLowerCase() === authorName.toLowerCase());
+        // Check Authors first (CMS blog relation points here)
+        let authorMatch = authorNodes.find(m => m.name && m.name.toLowerCase() === authorName.toLowerCase());
+
+        // Fallback to Team if not found in Authors
+        if (!authorMatch) {
+            authorMatch = teamNodes.find(m => m.name && m.name.toLowerCase() === authorName.toLowerCase());
+        }
+
         if (authorMatch) {
-            authorRole = authorMatch.role;
+            authorRole = authorMatch.role || authorRole;
+            if (authorMatch.photo) {
+                authorPhoto = authorMatch.photo;
+            }
         }
 
         const dateFormatted = new Date(post.date).toLocaleDateString('pt-PT', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -143,6 +155,11 @@ function buildIndividualPosts(posts) {
         html = html.replace(/{{DATE}}/g, dateFormatted);
         html = html.replace(/{{SUMMARY}}/g, post.summary || "");
         html = html.replace(/{{AUTHOR_NAME}}/g, authorName);
+        html = html.replace(/{{AUTHOR_ROLE}}/g, authorRole);
+
+        // Author Photo Path (ensure it's relative to /blog/posts/)
+        const authorImgRelative = authorPhoto.startsWith('/') ? '../..' + authorPhoto : (authorPhoto.startsWith('assets') ? '../../' + authorPhoto : authorPhoto);
+        html = html.replace(/{{AUTHOR_IMAGE}}/g, authorImgRelative);
         html = html.replace(/{{AUTHOR_ROLE}}/g, authorRole);
 
         // Body (handling newlines)
