@@ -279,8 +279,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         consentModal: {
                             title: "Olá, respeitamos a sua privacidade! 🍪",
                             description: "Utilizamos cookies essenciais para o funcionamento do site. Se concordar, usaremos também cookies analíticos para melhorar a sua experiência.",
-                            acceptAllBtn: "Aceitar Todas",
-                            acceptNecessaryBtn: "Apenas Essenciais",
+                            acceptAllBtn: "Aceitar",
+                            acceptNecessaryBtn: "Recusar",
                             showPreferencesBtn: "Gerir preferências",
                             footer: `
                                 <a href="/privacidade/index.html">Política de Privacidade</a>
