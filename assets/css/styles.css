@@ -690,10 +690,11 @@ p {
 
     /* Fix dynamic word flow on desktop */
     #dynamic-word {
-        display: inline;
+        display: inline-block;
         min-width: 0;
         white-space: nowrap;
         font-size: 1em;
+        vertical-align: baseline;
     }
 
     p {
@@ -1627,171 +1628,206 @@ p {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* Mission Section Visuals */
+/* ============================================================
+   Dynamic Word Wrapper (hero cycling word)
+   ============================================================ */
+.dynamic-word-wrapper {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    line-height: inherit;
+}
+
+#dynamic-word {
+    display: inline-block;
+    animation-fill-mode: both;
+}
+
+#dynamic-word.word-exit {
+    animation: wordSlideOut 0.35s cubic-bezier(0.4,0,1,1) forwards;
+}
+
+#dynamic-word.word-enter {
+    animation: wordSlideIn 0.35s cubic-bezier(0,0,0.2,1) forwards;
+}
+
+@keyframes wordSlideOut {
+    0%   { transform: translateY(0);     opacity: 1; }
+    100% { transform: translateY(-110%); opacity: 0; }
+}
+
+@keyframes wordSlideIn {
+    0%   { transform: translateY(110%);  opacity: 0; }
+    100% { transform: translateY(0);     opacity: 1; }
+}
+
+/* ============================================================
+   Mission Section — Scroll-Driven Tentacle Diagram
+   ============================================================ */
 .mission-visual {
     position: relative;
-    height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2rem;
+    width: 100%;
+    /* fixed square viewport for the SVG diagram */
+    aspect-ratio: 1 / 1;
+    max-width: 420px;
+    margin: 2rem auto 0;
+    overflow: visible;
 }
 
 @media (min-width: 900px) {
     .mission-visual {
         margin-top: 0;
-        height: 450px;
+        max-width: 460px;
     }
 }
 
+/* SVG sits full-size behind everything */
+.mission-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* All tentacle lines start invisible (drawn via dashoffset in JS) */
+.tentacle-line {
+    stroke: var(--color-primary);
+    stroke-width: 2;
+    stroke-linecap: round;
+    fill: none;
+    opacity: 0.45;
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    transition: stroke-dashoffset 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+.tentacle-line.drawn {
+    stroke-dashoffset: 0;
+}
+
+/* Central logo circle */
 .main-circle {
-    position: relative;
-    /* Essential for z-index */
-    width: 160px;
-    height: 160px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.6);
+    width: 140px;
+    height: 140px;
     background: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
     z-index: 10;
-    /* Highest priority */
-    animation: pulsate 3s infinite ease-in-out;
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.main-circle.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    animation: pulsate 3s 0.8s infinite ease-in-out;
 }
 
 @keyframes pulsate {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.08);
-    }
-
-    100% {
-        transform: scale(1);
-    }
+    0%   { transform: translate(-50%, -50%) scale(1); }
+    50%  { transform: translate(-50%, -50%) scale(1.06); }
+    100% { transform: translate(-50%, -50%) scale(1); }
 }
 
 @media (min-width: 768px) {
     .main-circle {
-        width: 200px;
-        height: 200px;
+        width: 170px;
+        height: 170px;
         padding: 2rem;
     }
 }
 
-.floating-elements .float-card {
+/* Floating value bubbles — positioned by percentage, matching SVG endpoints */
+.float-card.bubble-node {
     position: absolute;
     background: white;
-    padding: 0.6rem 1.2rem;
+    padding: 0.5rem 1.1rem;
     border-radius: 50px;
     font-weight: 600;
-    font-size: 0.85rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    font-size: 0.82rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border: 1.5px solid currentColor;
+    z-index: 5;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+    white-space: nowrap;
+    /* anchor point is center of bubble */
+    transform-origin: center center;
+}
+
+.float-card.bubble-node.visible {
+    opacity: 1;
+    transform: scale(1);
     animation: floatMission 5s infinite alternate ease-in-out;
-    z-index: 3;
-    border: 1px solid #f1f5f9;
-}
-
-/* Specific Positions for more bubbles */
-/* Specific Positions for more bubbles - Pushed further to avoid center */
-.bubble-etica {
-    top: -8%;
-    left: 10%;
-    color: #03919f;
-    border-color: #03919f;
-}
-
-.bubble-transp {
-    top: 3%;
-    right: 5%;
-    color: #60a5fa;
-    border-color: #60a5fa;
-    animation-delay: -1s;
-}
-
-.bubble-excel {
-    bottom: -8%;
-    right: 15%;
-    color: #f59e0b;
-    border-color: #f59e0b;
-    animation-delay: -2s;
-}
-
-.bubble-susten {
-    bottom: 3%;
-    left: 5%;
-    color: #10b981;
-    border-color: #10b981;
-    animation-delay: -3s;
-}
-
-.bubble-compet {
-    top: 48%;
-    left: -25%;
-    color: #8b5cf6;
-    border-color: #8b5cf6;
-    animation-delay: -4s;
-}
-
-.bubble-humanismo {
-    bottom: 48%;
-    right: -25%;
-    color: #ef4444;
-    border-color: #ef4444;
-    animation-delay: -5s;
-}
-
-/* Mobile-specific adjustments to prevent any overlap */
-@media (max-width: 768px) {
-    .mission-visual {
-        height: 450px;
-    }
-
-    .bubble-etica {
-        top: 0;
-        left: 10%;
-    }
-
-    .bubble-transp {
-        top: 15%;
-        right: 0;
-    }
-
-    .bubble-excel {
-        bottom: 0;
-        right: 10%;
-    }
-
-    .bubble-susten {
-        bottom: 15%;
-        left: 0;
-    }
-
-    .bubble-compet {
-        top: 40%;
-        left: -10px;
-    }
-
-    .bubble-humanismo {
-        bottom: 40%;
-        right: -10px;
-    }
 }
 
 @keyframes floatMission {
-    0% {
-        transform: translate(0, 0) rotate(-2deg);
-    }
+    0%   { transform: scale(1) translateY(0); }
+    100% { transform: scale(1) translateY(-8px); }
+}
 
-    100% {
-        transform: translate(5px, -10px) rotate(2deg);
-    }
+/* Bubble colors */
+.bubble-etica    { color: #03919f; }
+.bubble-transp   { color: #60a5fa; }
+.bubble-excel    { color: #f59e0b; }
+.bubble-susten   { color: #10b981; }
+.bubble-compet   { color: #8b5cf6; }
+.bubble-humanismo{ color: #ef4444; }
 
-    /* Reduced translation for better control */
+/* Positions — anchored so bubble CENTER matches SVG endpoint */
+/* SVG viewBox 400x400; endpoints at percentage of container */
+/* top:    x2=200,y2=36  → 50% / 9% */
+.bubble-etica    { top: 0%;   left: 50%; transform: translate(-50%, -50%) scale(0.6); } /* top */
+.bubble-transp   { top: 18%;  right: 2%; transform: translate(0, -50%) scale(0.6); }   /* top-right */
+.bubble-excel    { bottom:18%; right: 2%; transform: translate(0, 50%) scale(0.6); }   /* bottom-right */
+.bubble-susten   { bottom: 0%; left: 50%; transform: translate(-50%, 50%) scale(0.6); } /* bottom */
+.bubble-compet   { bottom:18%; left: 2%;  transform: translate(0, 50%) scale(0.6); }   /* bottom-left */
+.bubble-humanismo{ top: 18%;   left: 2%;  transform: translate(0, -50%) scale(0.6); }  /* top-left */
+
+/* visible state — same anchor + scale(1) */
+.bubble-etica.visible    { transform: translate(-50%, -50%) scale(1); }
+.bubble-transp.visible   { transform: translate(0, -50%) scale(1); }
+.bubble-excel.visible    { transform: translate(0, 50%) scale(1); }
+.bubble-susten.visible   { transform: translate(-50%, 50%) scale(1); }
+.bubble-compet.visible   { transform: translate(0, 50%) scale(1); }
+.bubble-humanismo.visible{ transform: translate(0, -50%) scale(1); }
+
+/* Override floatMission per-bubble to preserve anchor transform */
+.bubble-etica.visible     { animation: floatMission-top 5s infinite alternate ease-in-out; }
+.bubble-transp.visible    { animation: floatMission-tr  5s 0.4s infinite alternate ease-in-out; }
+.bubble-excel.visible     { animation: floatMission-br  5s 0.8s infinite alternate ease-in-out; }
+.bubble-susten.visible    { animation: floatMission-bot 5s 1.2s infinite alternate ease-in-out; }
+.bubble-compet.visible    { animation: floatMission-bl  5s 1.6s infinite alternate ease-in-out; }
+.bubble-humanismo.visible { animation: floatMission-tl  5s 2.0s infinite alternate ease-in-out; }
+
+@keyframes floatMission-top { 0%{transform:translate(-50%,-50%) scale(1) translateY(0)} 100%{transform:translate(-50%,-50%) scale(1) translateY(-7px)} }
+@keyframes floatMission-tr  { 0%{transform:translate(0,-50%) scale(1) translateY(0)}  100%{transform:translate(0,-50%) scale(1) translateY(-7px)}  }
+@keyframes floatMission-br  { 0%{transform:translate(0,50%) scale(1) translateY(0)}   100%{transform:translate(0,50%) scale(1) translateY(7px)}   }
+@keyframes floatMission-bot { 0%{transform:translate(-50%,50%) scale(1) translateY(0)} 100%{transform:translate(-50%,50%) scale(1) translateY(7px)} }
+@keyframes floatMission-bl  { 0%{transform:translate(0,50%) scale(1) translateY(0)}   100%{transform:translate(0,50%) scale(1) translateY(7px)}   }
+@keyframes floatMission-tl  { 0%{transform:translate(0,-50%) scale(1) translateY(0)}  100%{transform:translate(0,-50%) scale(1) translateY(-7px)}  }
+
+/* Mobile safety: ensure no horizontal bleed */
+@media (max-width: 500px) {
+    .float-card.bubble-node {
+        font-size: 0.74rem;
+        padding: 0.4rem 0.9rem;
+    }
+    .mission-visual {
+        max-width: 340px;
+    }
 }
 
 /* Scroll Reveal Animation */

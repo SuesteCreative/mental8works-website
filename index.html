@@ -27,7 +27,7 @@
         }
     </script>
 
-    <link rel="stylesheet" href="assets/css/styles.css?v=1.3">
+    <link rel="stylesheet" href="assets/css/styles.css?v=1.4">
 
     <!-- CMS Data Bridge -->
     <script src="assets/js/cms-bridge.js" defer></script>
@@ -88,8 +88,8 @@
     <section class="hero" id="home">
         <div class="container hero-container">
             <div class="hero-content">
-                <h1>Encontre o seu equilíbrio <span id="dynamic-word"
-                        style="color: var(--color-primary);">interior</span></h1>
+                <h1>Encontre o seu equilíbrio <span class="dynamic-word-wrapper"><span id="dynamic-word"
+                            style="color: var(--color-primary);">interior</span></span></h1>
 
                 <div class="hero-visual">
                     <img src="assets/images/hero-banner.webp" alt="Saúde Mental" class="hero-banner" width="800"
@@ -100,7 +100,7 @@
                     <span class="pill">Mediação Familiar</span>
                     <span class="pill">Psicologia Clínica</span>
                     <span class="pill">Psiquiatria</span>
-                    <span class="pill">Terapia de Casal</span>
+                    <span class="pill">Componente Social</span>
                 </div>
 
                 <p>
@@ -233,18 +233,34 @@
                         muitas vezes impedem a cura.
                     </p>
                 </div>
-                <div class="mission-visual reveal">
-                    <div class="floating-elements">
-                        <div class="float-card bubble-etica">Ética</div>
-                        <div class="float-card bubble-transp">Transparência</div>
-                        <div class="float-card bubble-excel">Excelência</div>
-                        <div class="float-card bubble-susten">Sustentabilidade</div>
-                        <div class="float-card bubble-compet">Competência</div>
-                        <div class="float-card bubble-humanismo">Humanismo</div>
-                        <div class="main-circle">
-                            <img src="assets/images/logo-mental8works-color.webp" alt="Mental8Works Logo">
-                        </div>
+                <div class="mission-visual" id="mission-visual">
+                    <!-- SVG Tentacle Lines (drawn by scroll) -->
+                    <svg class="mission-svg" id="mission-svg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet"
+                        aria-hidden="true">
+                        <!-- Lines from center (200,200) to each bubble node -->
+                        <line class="tentacle-line" id="line-1" x1="200" y1="200" x2="200" y2="36" /> <!-- top -->
+                        <line class="tentacle-line" id="line-2" x1="200" y1="200" x2="370" y2="100" />
+                        <!-- top-right -->
+                        <line class="tentacle-line" id="line-3" x1="200" y1="200" x2="370" y2="300" />
+                        <!-- bottom-right -->
+                        <line class="tentacle-line" id="line-4" x1="200" y1="200" x2="200" y2="364" /> <!-- bottom -->
+                        <line class="tentacle-line" id="line-5" x1="200" y1="200" x2="30" y2="300" />
+                        <!-- bottom-left -->
+                        <line class="tentacle-line" id="line-6" x1="200" y1="200" x2="30" y2="100" /> <!-- top-left -->
+                    </svg>
+
+                    <!-- Central Logo -->
+                    <div class="main-circle" id="mission-logo">
+                        <img src="assets/images/logo-mental8works-color.webp" alt="Mental8Works Logo">
                     </div>
+
+                    <!-- Value Bubbles (revealed sequentially by scroll) -->
+                    <div class="float-card bubble-node bubble-etica" data-bubble="1">Ética</div>
+                    <div class="float-card bubble-node bubble-transp" data-bubble="2">Transparência</div>
+                    <div class="float-card bubble-node bubble-excel" data-bubble="3">Excelência</div>
+                    <div class="float-card bubble-node bubble-susten" data-bubble="4">Sustentabilidade</div>
+                    <div class="float-card bubble-node bubble-compet" data-bubble="5">Competência</div>
+                    <div class="float-card bubble-node bubble-humanismo" data-bubble="6">Humanismo</div>
                 </div>
             </div>
         </div>
