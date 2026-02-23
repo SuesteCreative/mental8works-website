@@ -75,7 +75,14 @@ buildTeamPage()
 
 ---
 
-## 6. Ficheiros eliminados
+## 6. `privacidade/index.html` & Cookies
+- **Problema:** O banner de cookies antigo tinha apenas o botão "Aceitar", forçando os utilizadores a aceitarem tudo sem alternativa. Na página da Política omitia-se detalhes sobre opções de cookies.
+- **Correção:** O banner em `assets/js/script.js` foi redesenhado para ter os botões "Aceitar Todas" e "Apenas Essenciais" (conforme regulamentos do RGPD/ePrivacy). O clique dispara de forma independente a gravação do `localStorage`.
+- **Política Atualizada:** O texto da cláusula "6. Cookies" na página de Privacidade foi modificado para diferenciar as Cookies Essenciais das Analíticas.
+
+---
+
+## 7. Ficheiros eliminados
 
 | Ficheiro | Motivo |
 |---|---|
@@ -84,7 +91,7 @@ buildTeamPage()
 
 ---
 
-## 6. Ficheiro auxiliar criado
+## 8. Ficheiro auxiliar criado
 
 | Ficheiro | Propósito |
 |---|---|
@@ -92,7 +99,7 @@ buildTeamPage()
 
 ---
 
-## 8. Cloudflare Pages — Configuração
+## 9. Cloudflare Pages — Configuração
 
 - **Problema raiz:** O Build command estava **vazio** no Cloudflare Pages, logo o `npm run build` nunca corria após commits do CMS — o site nunca refletia as alterações do backoffice
 - **Solução:** Configurar no painel Cloudflare Pages → Settings → Builds & Deployments:
@@ -105,7 +112,7 @@ buildTeamPage()
 
 ---
 
-## 9. Commits realizados
+## 10. Commits realizados
 
 ```
 8c6af6c  fix: about-us graph, subtitle, duplicate tags, contact form, address sync, build.js Assembleia/Conselho regex

@@ -244,27 +244,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // ── Cookie Consent Banner Logic ───────────────────────────────────────
+    // ── Cookie Consent Banner Logic (GDPR Compliant) ─────────────────────
     if (!localStorage.getItem('cookie-consent')) {
         const banner = document.createElement('div');
         banner.id = 'cookie-banner';
         banner.innerHTML = `
-            <div class="container">
-                <p>Utilizamos cookies essenciais para garantir o correto funcionamento do nosso site. Ao clicar em "Aceitar", concorda com a nossa <a href="/privacidade/index.html" style="color: var(--color-primary); text-decoration: underline;">Política de Privacidade</a>.</p>
-                <div class="cookie-actions">
-                    <button class="btn btn-primary" id="accept-cookies">Aceitar</button>
+            <div class="container" style="align-items: center;">
+                <p style="flex: 1; margin-right: 1.5rem;">Utilizamos cookies essenciais para garantir o funcionamento do nosso site. Caso consinta, utilizamos também cookies analíticos para melhorar a sua experiência. Pode consultar a nossa <a href="/privacidade/index.html" style="color: var(--color-primary); text-decoration: underline;">Política de Privacidade e Cookies</a> para mais informações.</p>
+                <div class="cookie-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="btn btn-secondary" id="reject-cookies" style="border: 1px solid rgba(255,255,255,0.2); background: transparent; color: white;">Apenas Essenciais</button>
+                    <button class="btn btn-primary" id="accept-cookies">Aceitar Todas</button>
                 </div>
             </div>
         `;
         document.body.appendChild(banner);
 
         // Small delay to trigger animation
-        setTimeout(() => banner.classList.add('active'), 1000);
+        setTimeout(() => banner.classList.add('active'), 800);
 
-        document.getElementById('accept-cookies').addEventListener('click', () => {
-            localStorage.setItem('cookie-consent', 'true');
+        const closeBanner = (status) => {
+            localStorage.setItem('cookie-consent', status);
             banner.classList.remove('active');
             setTimeout(() => banner.remove(), 500);
-        });
+
+            // Dispatch event for any analytics tracking logic to initialize if accepted
+            if (status === 'all') {
+                window.dispatchEvent(new Event('cookies-accepted'));
+            }
+        };
+
+        document.getElementById('accept-cookies').addEventListener('click', () => closeBanner('all'));
+        document.getElementById('reject-cookies').addEventListener('click', () => closeBanner('essential'));
     }
 });
