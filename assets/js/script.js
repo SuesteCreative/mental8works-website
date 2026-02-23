@@ -91,6 +91,30 @@ document.addEventListener('DOMContentLoaded', () => {
             if (overlay) overlay.classList.remove('active');
         }
     });
+
+    // ── Navbar transparent-on-top (landing page only) ────────────────────────
+    const header = document.querySelector('.header');
+    const path = window.location.pathname;
+    const isLandingPage = path === '/' || path.endsWith('/index.html') && !path.includes('/blog/') && !path.includes('/about-us/') && !path.includes('/contactos/') && !path.includes('/agendamentos/') && !path.includes('/socios/') && !path.includes('/team/');
+
+    if (header) {
+        if (isLandingPage) {
+            // Start transparent, transition to white on scroll
+            const updateNavbar = () => {
+                if (window.scrollY > 40) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            };
+            window.addEventListener('scroll', updateNavbar, { passive: true });
+            updateNavbar(); // initial check
+        } else {
+            // All other pages: always opaque
+            header.classList.add('opaque');
+        }
+    }
+
     // Carousel Logic Removed - Reverted to Grid Layout
 
     // ── Hero Dynamic Word – smooth slide-clip animation ──────────────────
