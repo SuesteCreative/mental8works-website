@@ -84,11 +84,15 @@ function buildBlogIndex() {
     if (!fs.existsSync(templatePath)) return;
     let html = fs.readFileSync(templatePath, 'utf8');
 
-    const blogItemsHtml = posts.map((post, idx) => `
+    const blogItemsHtml = posts.map((post, idx) => {
+        const image = post.image || '/assets/images/hero-banner.webp';
+        const displayImage = image.startsWith('/') ? '..' + image : (image.startsWith('assets') ? '../' + image : image);
+
+        return `
                 <!-- Artigo: ${post.title} -->
                 <a href="posts/${post._filename}.html" class="card blog-card">
                     <div class="blog-card-img-wrapper">
-                        <img src="${post.image.startsWith('/') ? '..' + post.image : post.image}" alt="${post.title}" loading="lazy">
+                        <img src="${displayImage}" alt="${post.title}" loading="lazy">
                     </div>
                     <div class="blog-content">
                         <p style="font-size:0.8rem; opacity:0.6; margin-bottom:0.5rem;">${new Date(post.date).toLocaleDateString('pt-PT', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
@@ -96,7 +100,8 @@ function buildBlogIndex() {
                         <p>${post.summary || ''}</p>
                         <span style="color: var(--color-primary); font-weight: 600;">Ler mais &rarr;</span>
                     </div>
-                </a>`).join('\n');
+                </a>`;
+    }).join('\n');
 
     const containerRegex = /<!-- CMS_BLOG_POSTS -->[\s\S]*?<!-- END_CMS_BLOG_POSTS -->/;
     const newContent = `<!-- CMS_BLOG_POSTS -->\n${blogItemsHtml}\n                <!-- END_CMS_BLOG_POSTS -->`;
@@ -106,6 +111,60 @@ function buildBlogIndex() {
         fs.writeFileSync(templatePath, html);
         console.log('✅ Blog index cleaned and updated.');
     }
+
+    buildIndividualPosts(posts);
+}
+
+function buildIndividualPosts(posts) {
+    const templatePath = path.join(__dirname, '..', 'blog', 'posts', 'template.html');
+    if (!fs.existsSync(templatePath)) {
+        console.warn('⚠️ Blog post template not found.');
+        return;
+    }
+    const template = fs.readFileSync(templatePath, 'utf8');
+    const teamNodes = readCollection('data/team');
+
+    posts.forEach(post => {
+        let html = template;
+
+        // Map Author Role if it matches someone in the team
+        const authorName = post.author || "Equipa Mental8Works";
+        let authorRole = "Especialista Mental8Works";
+
+        const authorMatch = teamNodes.find(m => m.name && m.name.toLowerCase() === authorName.toLowerCase());
+        if (authorMatch) {
+            authorRole = authorMatch.role;
+        }
+
+        const dateFormatted = new Date(post.date).toLocaleDateString('pt-PT', { day: 'numeric', month: 'long', year: 'numeric' });
+
+        // Simple replacements
+        html = html.replace(/{{TITLE}}/g, post.title || "Sem Título");
+        html = html.replace(/{{DATE}}/g, dateFormatted);
+        html = html.replace(/{{SUMMARY}}/g, post.summary || "");
+        html = html.replace(/{{AUTHOR_NAME}}/g, authorName);
+        html = html.replace(/{{AUTHOR_ROLE}}/g, authorRole);
+
+        // Body (handling newlines)
+        const bodyWithNewlines = (post.body || "").replace(/\n/g, '<br>');
+        html = html.replace(/{{BODY}}/g, bodyWithNewlines);
+
+        // Images - Template uses ../../../assets but individual post at blog/posts/slug.html needs ../../assets
+        // Wait, template I wrote uses ../../../assets assuming blog/posts/slug/index.html.
+        // Let me adjust paths to ../../assets for blog/posts/slug.html
+        html = html.replace(/\.\.\/\.\.\/\.\.\/assets/g, '../../assets');
+        html = html.replace(/\.\.\/\.\.\/index\.html/g, '../index.html'); // Back to blog index
+        html = html.replace(/\.\.\/\.\.\/\.\.\/index\.html/g, '../../index.html'); // Back to home
+
+        // Hero Image
+        const image = post.image || '/assets/images/hero-banner.webp';
+        const imgPath = image.startsWith('/') ? '../..' + image : (image.startsWith('assets') ? '../../' + image : image);
+        html = html.replace(/{{IMAGE}}/g, imgPath);
+
+        const targetFile = path.join(__dirname, '..', 'blog', 'posts', `${post._filename}.html`);
+        fs.writeFileSync(targetFile, html);
+    });
+    console.log(`✅ Generated ${posts.length} individual blog posts.`);
 }
 
 function buildHomePage() {
