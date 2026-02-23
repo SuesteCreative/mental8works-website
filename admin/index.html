@@ -5,25 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mental8Works Backoffice</title>
-    <!-- Netlify Identity Widget -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 
 <body>
-    <!-- Script do Decap CMS (Versão estável) -->
+    <!-- Decap CMS Script -->
     <script src="https://unpkg.com/decap-cms@^3.1.0/dist/decap-cms.js"></script>
-    <script>
-        // Se o utilizador vier de um link de confirmação do Netlify Identity
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => {
-                        document.location.href = "/admin/";
-                    });
-                }
-            });
-        }
-    </script>
 </body>
 
 </html>
