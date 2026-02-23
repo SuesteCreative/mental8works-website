@@ -28,12 +28,12 @@ function buildTeamPage() {
                 <!-- ${member.name} (Dynamic) -->
                 <div class="team-card-detailed reveal" style="transition-delay: ${0.05 + (idx * 0.05)}s;">
                     <div class="team-card-image">
-                        <img src="${member.photo.startsWith('/') ? '..' + member.photo : member.photo}" alt="${member.name}"
+                        <img src="${member.photo.startsWith('/') ? '..' + member.photo : (member.photo.startsWith('assets') ? '../' + member.photo : member.photo)}" alt="${member.name}"
                             style="object-fit: cover; width: 100%; height: 100%;">
                     </div>
                     <div class="team-card-info">
                         <h2>${member.name}</h2>
-                        ${member.linkedin && member.linkedin.includes('linkedin.com/in') ? `
+                        ${member.linkedin && member.linkedin.includes('linkedin.com') ? `
                         <a href="${member.linkedin}" target="_blank" rel="noopener noreferrer" class="linkedin-icon"
                             style="color: #0077b5; margin-bottom: 0.5rem; display: inline-flex;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
@@ -49,13 +49,20 @@ function buildTeamPage() {
                     </div>
                 </div>`).join('\n');
 
-    const containerRegex = /<div class="team-grid-full">[\s\S]*?<\/div>/;
-    const newContainerHtml = `<div class="team-grid-full">\n                <!-- CMS_TEAM_MEMBERS -->\n${teamItemsHtml}\n            </div>`;
+    // REGEX IMPROVED: We capture everything between the placeholder and the closing div of the grid
+    const startMarker = '<!-- CMS_TEAM_MEMBERS -->';
+    const endOfContainer = '</div>\n            </div>\n        </section>';
 
-    if (containerRegex.test(html)) {
-        html = html.replace(containerRegex, newContainerHtml);
+    const startIndex = html.indexOf(startMarker);
+    const searchPart = html.substring(startIndex);
+    const endIndex = searchPart.indexOf('</div>\n            </div>');
+
+    if (startIndex !== -1 && endIndex !== -1) {
+        const before = html.substring(0, startIndex + startMarker.length);
+        const after = searchPart.substring(endIndex);
+        html = before + '\n' + teamItemsHtml + '\n            ' + after;
         fs.writeFileSync(templatePath, html);
-        console.log('✅ Team page updated.');
+        console.log('✅ Team page cleaned and updated.');
     }
 }
 
@@ -79,20 +86,22 @@ function buildBlogIndex() {
                     </div>
                 </a>`).join('\n');
 
-    const containerRegex = /<div class="grid-cards" id="blog-posts-container">[\s\S]*?<\/div>/;
-    const newContainerHtml = `<div class="grid-cards" id="blog-posts-container">\n                <!-- CMS_BLOG_POSTS -->\n${blogItemsHtml}\n            </div>`;
-
-    if (containerRegex.test(html)) {
-        html = html.replace(containerRegex, newContainerHtml);
+    const startMarker = '<!-- CMS_BLOG_POSTS -->';
+    const startIndex = html.indexOf(startMarker);
+    if (startIndex !== -1) {
+        const searchPart = html.substring(startIndex);
+        const endIndex = searchPart.indexOf('</div>');
+        const before = html.substring(0, startIndex + startMarker.length);
+        const after = searchPart.substring(endIndex);
+        html = before + '\n' + blogItemsHtml + '\n            ' + after;
         fs.writeFileSync(templatePath, html);
-        console.log('✅ Blog index updated.');
+        console.log('✅ Blog index cleaned and updated.');
     }
 }
 
 function buildHomePage() {
     const homeDataPath = path.join(__dirname, '..', 'data', 'home.json');
     if (!fs.existsSync(homeDataPath)) return;
-
     const home = JSON.parse(fs.readFileSync(homeDataPath, 'utf8'));
     const templatePath = path.join(__dirname, '..', 'index.html');
     let html = fs.readFileSync(templatePath, 'utf8');
