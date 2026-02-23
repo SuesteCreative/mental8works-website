@@ -147,7 +147,7 @@ buildTeamPage()
 ### Redesign do Footer
 - **Estética:** Altura reduzida (padding de 3rem) e layout mais limpo.
 - **Redes Sociais:** Ícones movidos da coluna principal para a coluna de **Contactos**, posicionados logo abaixo da morada para melhor hierarquia de informação.
-- **Créditos:** Texto de copyright e créditos padronizado: *"© 2026 Mental8Works — designed by Sueste - Creative Agency. Todos os direitos reservados."*
+- **Créditos:** Texto de copyright e créditos padronizado com a **restauração do efeito de animação da "onda"** no link da Sueste Creative Agency.
 
 ### Sincronização em Escala
 - **Inovação:** Criada a função `syncFooter()` no `build.js` que percorre **todos** os ficheiros HTML do projeto e injeta o rodapé atualizado. Isto garante 100% de consistência entre páginas de serviços, blog e políticas de privacidade.
@@ -172,8 +172,9 @@ buildTeamPage()
 06fb7eb  chore(seo): implemented sitewide JSON-LD schema and updated sitemap generation
 2b9c122  fix: user requests - footer redesign, about-us alignment, and landing page button
 22da0ed  fix: landing page about us button
+9bc8cd2  fix: restored sueste wave brand effect in footer
 ```
 
 ---
 
-*Gerado/Atualizado em 2026-02-23 às 22:15 UTC*
+*Gerado/Atualizado em 2026-02-23 às 22:20 UTC*
