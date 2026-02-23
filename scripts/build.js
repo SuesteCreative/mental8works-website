@@ -9,7 +9,11 @@ function readCollection(dirPath) {
 
     return fs.readdirSync(fullPath)
         .filter(file => file.endsWith('.json'))
-        .map(file => JSON.parse(fs.readFileSync(path.join(fullPath, file), 'utf8')));
+        .map(file => {
+            const content = JSON.parse(fs.readFileSync(path.join(fullPath, file), 'utf8'));
+            content._filename = file.replace('.json', '');
+            return content;
+        });
 }
 
 // --- Build Logic ---
@@ -17,9 +21,9 @@ function readCollection(dirPath) {
 function buildTeamPage() {
     const teamNodes = readCollection('data/team');
     const templatePath = path.join(__dirname, '..', 'team', 'index.html');
+    if (!fs.existsSync(templatePath)) return;
     let html = fs.readFileSync(templatePath, 'utf8');
 
-    // Generate Team HTML
     const teamItemsHtml = teamNodes.map((member, idx) => `
                 <!-- ${member.name} (Dynamic) -->
                 <div class="team-card-detailed reveal" style="transition-delay: ${0.05 + (idx * 0.05)}s;">
@@ -29,7 +33,7 @@ function buildTeamPage() {
                     </div>
                     <div class="team-card-info">
                         <h2>${member.name}</h2>
-                        ${member.linkedin ? `
+                        ${member.linkedin && member.linkedin.includes('linkedin.com/in') ? `
                         <a href="${member.linkedin}" target="_blank" rel="noopener noreferrer" class="linkedin-icon"
                             style="color: #0077b5; margin-bottom: 0.5rem; display: inline-flex;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
@@ -45,8 +49,6 @@ function buildTeamPage() {
                     </div>
                 </div>`).join('\n');
 
-    // Find the container and replace its content
-    // Regex to find <div class="team-grid-full"> ... </div>
     const containerRegex = /<div class="team-grid-full">[\s\S]*?<\/div>/;
     const newContainerHtml = `<div class="team-grid-full">\n                <!-- CMS_TEAM_MEMBERS -->\n${teamItemsHtml}\n            </div>`;
 
@@ -54,8 +56,36 @@ function buildTeamPage() {
         html = html.replace(containerRegex, newContainerHtml);
         fs.writeFileSync(templatePath, html);
         console.log('✅ Team page updated.');
-    } else {
-        console.error('❌ Could not find team-grid-full container in team/index.html');
+    }
+}
+
+function buildBlogIndex() {
+    const posts = readCollection('data/blog').sort((a, b) => new Date(b.date) - new Date(a.date));
+    const templatePath = path.join(__dirname, '..', 'blog', 'index.html');
+    if (!fs.existsSync(templatePath)) return;
+    let html = fs.readFileSync(templatePath, 'utf8');
+
+    const blogItemsHtml = posts.map((post, idx) => `
+                <!-- Artigo: ${post.title} -->
+                <a href="posts/${post._filename}.html" class="card blog-card">
+                    <div class="blog-card-img-wrapper">
+                        <img src="${post.image.startsWith('/') ? '..' + post.image : post.image}" alt="${post.title}" loading="lazy">
+                    </div>
+                    <div class="blog-content">
+                        <p style="font-size:0.8rem; opacity:0.6; margin-bottom:0.5rem;">${new Date(post.date).toLocaleDateString('pt-PT', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
+                        <h3>${post.title}</h3>
+                        <p>${post.summary || ''}</p>
+                        <span style="color: var(--color-primary); font-weight: 600;">Ler mais &rarr;</span>
+                    </div>
+                </a>`).join('\n');
+
+    const containerRegex = /<div class="grid-cards" id="blog-posts-container">[\s\S]*?<\/div>/;
+    const newContainerHtml = `<div class="grid-cards" id="blog-posts-container">\n                <!-- CMS_BLOG_POSTS -->\n${blogItemsHtml}\n            </div>`;
+
+    if (containerRegex.test(html)) {
+        html = html.replace(containerRegex, newContainerHtml);
+        fs.writeFileSync(templatePath, html);
+        console.log('✅ Blog index updated.');
     }
 }
 
@@ -79,6 +109,7 @@ function buildHomePage() {
 // Run
 try {
     buildTeamPage();
+    buildBlogIndex();
     buildHomePage();
 } catch (err) {
     console.error('❌ Build script error:', err);
