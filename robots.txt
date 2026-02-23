@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block CMS admin from being indexed
+Disallow: /admin/
+Disallow: /apresentacao/
+Disallow: /apresentacao.html
+
+# Sitemap location
+Sitemap: https://mental8works.pt/sitemap.xml

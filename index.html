@@ -4,14 +4,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mental8Works - Saúde Mental & Bem-estar</title>
-    <link rel="icon" type="image/png" href="assets/images/fav-icon-color.png">
 
+    <!-- Primary SEO -->
+    <title>Mental8Works | Psicologia & Psiquiatria em Lisboa</title>
+    <meta name="description"
+        content="Mental8Works é uma associação de saúde mental em Lisboa com consultas de psicologia e psiquiatria. Atendimento presencial e online. Preço social disponível desde 2014.">
+    <meta name="keywords"
+        content="psicologia lisboa, psiquiatria lisboa, saúde mental, consulta psicologia, consulta psiquiatria, terapia online, preço social, mental8works">
+    <meta name="author" content="Mental8Works">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mental8works.pt/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mental8works.pt/">
+    <meta property="og:title" content="Mental8Works | Psicologia & Psiquiatria em Lisboa">
+    <meta property="og:description"
+        content="Associação de saúde mental em Lisboa com consultas de psicologia e psiquiatria. Atendimento presencial e online, com tarifa social.">
+    <meta property="og:image" content="https://mental8works.pt/assets/images/hero-banner.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="pt_PT">
+    <meta property="og:site_name" content="Mental8Works">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mental8Works | Psicologia & Psiquiatria em Lisboa">
+    <meta name="twitter:description"
+        content="Associação de saúde mental em Lisboa com consultas de psicologia e psiquiatria. Atendimento presencial e online, com tarifa social.">
+    <meta name="twitter:image" content="https://mental8works.pt/assets/images/hero-banner.webp">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/fav-icon-color.png">
+    <link rel="apple-touch-icon" href="assets/images/fav-icon-color.png">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
         rel="stylesheet">
+
+    <!-- JSON-LD: LocalBusiness + MedicalOrganization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["MedicalOrganization", "LocalBusiness"],
+      "name": "Mental8Works",
+      "description": "Associação de saúde mental em Lisboa com consultas de psicologia e psiquiatria presencial e online desde 2014.",
+      "url": "https://mental8works.pt",
+      "logo": "https://mental8works.pt/assets/images/logo-mental8works-color.webp",
+      "image": "https://mental8works.pt/assets/images/hero-banner.webp",
+      "telephone": "",
+      "email": "mental8works@gmail.com",
+      "foundingDate": "2014",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Miguel Bombarda, 123, 2º piso",
+        "addressLocality": "Lisboa",
+        "postalCode": "1050-164",
+        "addressCountry": "PT"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "38.7223",
+        "longitude": "-9.1393"
+      },
+      "sameAs": [
+        "https://www.facebook.com/mental8works/",
+        "https://www.instagram.com/mental8works/",
+        "https://www.linkedin.com/company/mental8works/"
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "09:00",
+          "closes": "20:00"
+        }
+      ],
+      "medicalSpecialty": ["Psychiatry", "Psychology"],
+      "priceRange": "€€"
+    }
+    </script>
 
     <!-- Netlify Identity Widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -27,15 +102,16 @@
         }
     </script>
 
-    <link rel="stylesheet" href="assets/css/styles.css?v=1.6">
+    <link rel="stylesheet" href="assets/css/styles.css?v=1.7">
 
     <!-- CMS Data Bridge -->
     <script src="assets/js/cms-bridge.js" defer></script>
 
-    <!-- Performance: Prefetch key internal pages for instant mobile navigation -->
-    <link rel="prefetch" href="contactos/index.html">
-    <link rel="prefetch" href="blog/index.html">
-    <link rel="prefetch" href="agendamentos/index.html">
+    <!-- Performance: Prefetch key internal pages -->
+    <link rel="prefetch" href="contactos/">
+    <link rel="prefetch" href="blog/">
+    <link rel="prefetch" href="agendamentos/">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 </head>
 
 <body>
