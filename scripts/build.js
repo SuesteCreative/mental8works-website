@@ -160,18 +160,35 @@ function buildIndividualPosts(posts) {
         // Author Photo Path (ensure it's relative to /blog/posts/)
         const authorImgRelative = authorPhoto.startsWith('/') ? '../..' + authorPhoto : (authorPhoto.startsWith('assets') ? '../../' + authorPhoto : authorPhoto);
         html = html.replace(/{{AUTHOR_IMAGE}}/g, authorImgRelative);
-        html = html.replace(/{{AUTHOR_ROLE}}/g, authorRole);
 
-        // Body (handling newlines)
-        const bodyWithNewlines = (post.body || "").replace(/\n/g, '<br>');
+        // Author Bio
+        const authorBio = (authorMatch && authorMatch.bio) ? authorMatch.bio : '';
+        html = html.replace(/{{AUTHOR_BIO}}/g, authorBio);
+
+        // Author LinkedIn
+        const authorLinkedin = (authorMatch && authorMatch.linkedin) ? authorMatch.linkedin : '';
+        const authorLinkedinHtml = authorLinkedin
+            ? `<a href="${authorLinkedin}" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:6px; margin-top:0.5rem; font-size:0.85rem; color:#0077b5; text-decoration:none; font-weight:500;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>LinkedIn</a>`
+            : '';
+        html = html.replace(/{{AUTHOR_LINKEDIN}}/g, authorLinkedinHtml);
+
+        // Body - full markdown parser
+        let bodyParsed = (post.body || "");
+
+        // Handle markdown links [text](url)
+        bodyParsed = bodyParsed.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color: var(--color-primary); font-weight: 500; text-decoration: underline;">$1</a>');
+
+        // Handle markdown headings ### h3, ## h2
+        bodyParsed = bodyParsed.replace(/^### (.+)$/gm, '<h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">$1</h3>');
+        bodyParsed = bodyParsed.replace(/^## (.+)$/gm, '<h2 style="margin-top: 2.5rem; margin-bottom: 1rem;">$1</h2>');
+
+        // Handle bold **text**
+        bodyParsed = bodyParsed.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+
+        // Handle newlines (double newline = paragraph break, single = line break)
+        const bodyWithNewlines = bodyParsed.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+
         html = html.replace(/{{BODY}}/g, bodyWithNewlines);
-
-        // Images - Template uses ../../../assets but individual post at blog/posts/slug.html needs ../../assets
-        // Wait, template I wrote uses ../../../assets assuming blog/posts/slug/index.html.
-        // Let me adjust paths to ../../assets for blog/posts/slug.html
-        html = html.replace(/\.\.\/\.\.\/\.\.\/assets/g, '../../assets');
-        html = html.replace(/\.\.\/\.\.\/index\.html/g, '../index.html'); // Back to blog index
-        html = html.replace(/\.\.\/\.\.\/\.\.\/index\.html/g, '../../index.html'); // Back to home
 
         // Hero Image
         const image = post.image || '/assets/images/hero-banner.webp';
@@ -194,7 +211,7 @@ function buildHomePage() {
     // Update Hero
     if (home.hero) {
         if (home.hero.title_prefix) {
-            html = html.replace(/(<h1>)([^<]*)(<br>)/, `$1${home.hero.title_prefix}$3`);
+            html = html.replace(/(<h1>)([^<]*?)(<br>)/, `$1${home.hero.title_prefix}$3`);
         }
         if (home.hero.words) {
             const wordsArray = JSON.stringify(home.hero.words);
@@ -202,6 +219,42 @@ function buildHomePage() {
         }
         if (home.hero.subheading) {
             html = html.replace(/(<p>)([\s\S]*?)(<\/p>[\s\S]*?<div class="hero-actions">)/, `$1\n                    ${home.hero.subheading}\n                $3`);
+        }
+        if (home.hero.image) {
+            const heroImgPath = home.hero.image.startsWith('/') ? '.' + home.hero.image : home.hero.image;
+            html = html.replace(/(<img[^>]*class="hero-banner"[^>]*src=")[^"]*(")/, `$1${heroImgPath}$2`);
+        }
+    }
+
+    // Update Services
+    if (home.services) {
+        const servicesHtml = home.services.map((s, idx) => {
+            const icon = idx === 1 ? `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2" /></svg>` :
+                (idx === 2 ? `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>` :
+                    `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>`);
+
+            const btn = idx === 2 ? `<a href="socios/index.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Donativo</a>` :
+                `<a href="agendamentos/index.html" class="btn btn-primary" style="width: 100%; text-align: center;">Agendar</a>`;
+
+            return `
+                <div class="card reveal">
+                    <div class="card-content">
+                        <div class="service-icon-wrapper">
+                            ${icon}
+                        </div>
+                        <h3>${s.name}</h3>
+                        <div style="width: 50px; height: 3px; background: ${idx === 1 ? '#03919f' : '#f0be44'}; margin-bottom: 1rem;"></div>
+                        <p>${s.description}</p>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        ${btn}
+                    </div>
+                </div>`;
+        }).join('\n');
+
+        const servicesRegex = /<!-- CMS_SERVICES -->[\s\S]*?<!-- END_CMS_SERVICES -->/;
+        if (servicesRegex.test(html)) {
+            html = html.replace(servicesRegex, `<!-- CMS_SERVICES -->\n${servicesHtml}\n                <!-- END_CMS_SERVICES -->`);
         }
     }
 
@@ -218,6 +271,51 @@ function buildHomePage() {
 
     fs.writeFileSync(templatePath, html);
     console.log('✅ Homepage updated.');
+}
+
+function buildAboutUsPage() {
+    const templatePath = path.join(__dirname, '..', 'about-us', 'index.html');
+    if (!fs.existsSync(templatePath)) return;
+    let html = fs.readFileSync(templatePath, 'utf8');
+    const teamNodes = readCollection('data/team');
+
+    // Find key roles with exclusion to distinguish between different presidents
+    const findMember = (roleKeywords, excludeKeywords = []) => {
+        return teamNodes.find(m => {
+            const role = (m.role || "").toLowerCase();
+            const matchesAll = roleKeywords.every(k => role.includes(k.toLowerCase()));
+            const matchesExclude = excludeKeywords.length === 0 || excludeKeywords.some(k => role.includes(k.toLowerCase()));
+            return matchesAll && (excludeKeywords.length === 0 ? true : !excludeKeywords.some(k => role.includes(k.toLowerCase())));
+        });
+    };
+
+    const presidente = findMember(['presidente'], ['assembleia', 'conselho']) || { name: 'Maria Silva' };
+    const tesoureiro = findMember(['tesoureiro']) || { name: 'Alexandre Horácio' };
+    const assembleia = findMember(['presidente', 'assembleia']) || { name: 'Elisa Pinto' };
+    const conselho = findMember(['presid', 'conselho']) || { name: 'Pedro Neto Cunha' };
+
+    // Update names in "Órgãos Sociais" using the same labels as the UI
+    const updateRole = (roleLabel, name) => {
+        const regex = new RegExp(`(<span[^>]*>${roleLabel}<\\/span><strong[^>]*>).*?(<\\/strong>)`, 'g');
+        html = html.replace(regex, `$1${name}$2`);
+    };
+
+    updateRole('Presidente', presidente.name); // Direção Presidente
+    updateRole('Tesoureiro', tesoureiro.name);
+    // Assembleia and Conselho Fiscal also use "Presidente" label in small caps span
+    // To distinguish, we look for them specifically in their cards
+    const assembleiaRegex = /Assembleia Geral<\/h4>[\s\S]*?Presidente<\/span><strong[^>]*>.*?<\/strong>/;
+    if (assembleiaRegex.test(html)) {
+        html = html.replace(assembleiaRegex, `Assembleia Geral</h4>\n                        <div style="margin-top: 1rem;">\n                            <p><span style="display: block; font-size: 0.8rem; color: var(--color-text-light); text-transform: uppercase;">Presidente</span><strong style="font-size: 1.1rem;">${assembleia.name}</strong></p>`);
+    }
+
+    const conselhoRegex = /Conselho Fiscal<\/h4>[\s\S]*?Presidente<\/span><strong[^>]*>.*?<\/strong>/;
+    if (conselhoRegex.test(html)) {
+        html = html.replace(conselhoRegex, `Conselho Fiscal</h4>\n                        <div style="margin-top: 1rem;">\n                            <p><span style="display: block; font-size: 0.8rem; color: var(--color-text-light); text-transform: uppercase;">Presidente</span><strong style="font-size: 1.1rem;">${conselho.name}</strong></p>`);
+    }
+
+    fs.writeFileSync(templatePath, html);
+    console.log('✅ About Us page updated.');
 }
 
 function syncSettings() {
@@ -245,6 +343,20 @@ function syncSettings() {
             }
         }
 
+        // Sync Phone
+        if (settings.phone) {
+            const phoneHrefRegex = /href="tel:[^"]*"/g;
+            const phoneTextRegex = /(>)(\+?\d[\d\s\-().]{6,}\d)(<)/g;
+            if (content.match(phoneHrefRegex)) {
+                content = content.replace(phoneHrefRegex, `href="tel:${settings.phone.replace(/\s/g, '')}"`);
+                changed = true;
+            }
+            if (content.match(phoneTextRegex)) {
+                content = content.replace(phoneTextRegex, `$1${settings.phone}$3`);
+                changed = true;
+            }
+        }
+
         // Sync Socials
         if (settings.facebook) {
             content = content.replace(/href="https:\/\/www\.facebook\.com\/.*?"/g, `href="${settings.facebook}"`);
@@ -259,12 +371,24 @@ function syncSettings() {
             changed = true;
         }
 
-        // Sync Address in Footer (approximate match)
+        // Sync Address (flexible match for any address-looking block)
         if (settings.address) {
-            const addressMatch = content.match(/<span[^>]*>Av\. Miguel Bombarda,[\s\S]*?1050-164 Lisboa<\/span>/);
-            if (addressMatch) {
-                const formattedAddress = settings.address.replace(/, /g, ',<br>');
-                content = content.replace(addressMatch[0], `<span>${formattedAddress}</span>`);
+            const formattedAddress = settings.address.replace(/, /g, ',<br>');
+            const rawAddress = settings.address;
+
+            // 1. Footer / Specific blocks (span based) - using <br>
+            // This regex is very specific to catch the blocks we want formatted with <br>
+            const addressSpanRegex = /<span[^>]*>(?:Av\.|Avenida|Rua|Praceta|Largo)[\s\S]*?\d{4}-\d{3}[\s\S]*?<\/span>/gi;
+            if (content.match(addressSpanRegex)) {
+                content = content.replace(addressSpanRegex, `<span>${formattedAddress}</span>`);
+                changed = true;
+            }
+
+            // 2. Inline / Legal paragraphs (using plain text)
+            // This catches the old address even with newlines/extra spaces
+            const oldAddressRegex = /(?:Av\.|Avenida)\s+Miguel\s+Bombarda,\s+123,\s+2\.º\s+piso,\s+1050-164\s+Lisboa/gi;
+            if (content.match(oldAddressRegex)) {
+                content = content.replace(oldAddressRegex, rawAddress);
                 changed = true;
             }
         }
@@ -281,6 +405,7 @@ try {
     buildTeamPage();
     buildBlogIndex();
     buildHomePage();
+    buildAboutUsPage();
     syncSettings();
 } catch (err) {
     console.error('❌ Build script error:', err);

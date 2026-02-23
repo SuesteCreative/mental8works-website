@@ -243,4 +243,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Cookie Consent Banner Logic ───────────────────────────────────────
+    if (!localStorage.getItem('cookie-consent')) {
+        const banner = document.createElement('div');
+        banner.id = 'cookie-banner';
+        banner.innerHTML = `
+            <div class="container">
+                <p>Utilizamos cookies essenciais para garantir o correto funcionamento do nosso site. Ao clicar em "Aceitar", concorda com a nossa <a href="/privacidade/index.html" style="color: var(--color-primary); text-decoration: underline;">Política de Privacidade</a>.</p>
+                <div class="cookie-actions">
+                    <button class="btn btn-primary" id="accept-cookies">Aceitar</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(banner);
+
+        // Small delay to trigger animation
+        setTimeout(() => banner.classList.add('active'), 1000);
+
+        document.getElementById('accept-cookies').addEventListener('click', () => {
+            localStorage.setItem('cookie-consent', 'true');
+            banner.classList.remove('active');
+            setTimeout(() => banner.remove(), 500);
+        });
+    }
 });
