@@ -151,3 +151,4 @@ collections:
           - {label: "Instagram", name: "instagram", widget: "string"}
           - {label: "LinkedIn", name: "linkedin", widget: "string"}
 
+# Triggering Cloudflare build to load environment variables
