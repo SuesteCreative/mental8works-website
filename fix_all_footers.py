@@ -1,89 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt">
+import os
+import re
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Importância do Sono - Mental8Works</title>
-    <link rel="icon" type="image/png" href="../../../assets/images/fav-icon-color.png">
-    <link rel="stylesheet" href="../../../assets/css/styles.css?v=1.6">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
-        rel="stylesheet">
-</head>
-
-<body>
-    <!-- Blobs -->
-    <div class="blob-container">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-        <div class="blob blob-4"></div>
-        <div class="blob blob-5"></div>
-    </div>
-
-    <div class="menu-overlay"></div>
-
-    <header class="header">
-        <div class="container nav-container">
-            <a href="../../../index.html" class="nav-logo-link">
-                <img src="../../../assets/images/logo-mental8works-color.webp" alt="Mental8Works" class="nav-logo-img">
-            </a>
-
-            <div class="mobile-toggle">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-            </div>
-
-            <nav class="nav-menu">
-                <a href="../../../index.html#services" class="nav-link">Serviços</a>
-                <a href="../../../index.html#about" class="nav-link">Sobre Nós</a>
-                <a href="../../../index.html#team" class="nav-link">Equipa</a>
-                <a href="../../index.html" class="nav-link">Blog</a>
-                <a href="../../../contactos/index.html" class="nav-link">Contactos</a>
-                <a href="../../../agendamentos/index.html" class="btn btn-primary d-md-none"
-                    style="margin-top: 1rem; width: 100%;">Agendar</a>
-            </nav>
-
-            <div class="nav-actions d-none d-md-block">
-                <a href="../../../agendamentos/index.html" class="btn btn-primary">Agendar</a>
-            </div>
-        </div>
-    </header>
-
-    <section class="section reveal section-pt-large">
-        <div class="container" style="max-width: 800px; position: relative;">
-            <h1>A Importância do Sono</h1>
-            <p style="color: #64748b; margin-bottom: 2rem;">Publicado em 11 Fev 2026</p>
-            <div
-                style="height: 300px; background: #eee; margin: 2rem 0; border-radius: 12px; display: flex; align-items:center; justify-content:center; color: #999;">
-                (Imagem do Post)
-            </div>
-
-            <div style="font-size: 1.125rem; line-height: 1.8;">
-                <p>O sono é fundamental para a regulação emocional e cognitiva. Dormir bem não é apenas um descanso
-                    físico,
-                    é uma necessidade mental.</p>
-                <p>Estudos indicam que a privação de sono está ligada a níveis mais elevados de ansiedade e stress.
-                    Priorizar 7 a 8 horas de sono pode transformar a sua qualidade de vida.</p>
-            </div>
-
-            <div style="margin-top: 4rem; text-align: center;">
-                <a href="../../index.html" class="btn btn-secondary">← Voltar ao Blog</a>
-            </div>
-        </div>
-    </section>
-
-        <footer class="footer reveal">
+footer_template = """    <footer class="footer reveal">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <a href="../../../index.html" class="footer-logo-link">
-                        <img src="../../../assets/images/logo-mental8works-white.webp" alt="Mental8Works White Logo" class="footer-logo-img">
+                    <a href="{root}index.html" class="footer-logo-link">
+                        <img src="{root}assets/images/logo-mental8works-white.webp" alt="Mental8Works White Logo" class="footer-logo-img">
                     </a>
                     <p style="opacity: 0.8; font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6;">
                         Promovendo a saúde mental com excelência e humanidade desde 2014. Uma associação dedicada ao seu bem-estar.
@@ -104,19 +27,19 @@
                 <div class="footer-col">
                     <h4 style="margin-bottom: 1.5rem; color: white; font-weight: 600; font-size: 1.1rem; border-bottom: 2px solid var(--color-primary); display: inline-block; padding-bottom: 5px;">Empresa</h4>
                     <ul style="opacity: 0.9; list-style: none; padding: 0;">
-                        <li style="margin-bottom: 0.75rem;"><a href="../../../index.html">Início</a></li>
-                        <li style="margin-bottom: 0.75rem;"><a href="../../../about-us/index.html">Sobre Nós</a></li>
-                        <li style="margin-bottom: 0.75rem;"><a href="../../../team/index.html">Equipa</a></li>
-                        <li style="margin-bottom: 0.75rem;"><a href="../../../socios/index.html">Sócio</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="{root}index.html">Início</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="{root}about-us/index.html">Sobre Nós</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="{root}team/index.html">Equipa</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="{root}socios/index.html">Sócio</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
                     <h4 style="margin-bottom: 1.5rem; color: white; font-weight: 600; font-size: 1.1rem; border-bottom: 2px solid var(--color-primary); display: inline-block; padding-bottom: 5px;">Intervenção</h4>
                     <ul style="opacity: 0.9; list-style: none; padding: 0;">
-                        <li style="margin-bottom: 0.75rem;"><a href="../../../index.html#services">Serviços</a></li>
-                        <li style="margin-bottom: 0.75rem;"><a href="../../../blog/index.html">Blog</a></li>
-                        <li style="margin-bottom: 0.75rem;"><a href="../../../agendamentos/index.html">Agendamentos</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="{root}index.html#services">Serviços</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="{root}blog/index.html">Blog</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="{root}agendamentos/index.html">Agendamentos</a></li>
                     </ul>
                 </div>
                 
@@ -151,15 +74,51 @@
                     <a href="#" style="color: white; text-decoration: none;">Política de Privacidade</a>
                     <a href="#" style="color: white; text-decoration: none;">Termos e Condições</a>
                     <a href="#" style="color: white; text-decoration: none;">Cookies</a>
-                    <a href="../../../contactos/index.html" style="color: white; text-decoration: none;">Contactos</a>
+                    <a href="{root}contactos/index.html" style="color: white; text-decoration: none;">Contactos</a>
                 </div>
             </div>
         </div>
-    </footer>
+    </footer>"""
 
-    <script src="../../../assets/js/script.js"></script>
-</body>
+def fix_footer(file_path):
+    print(f"Fixing: {file_path}")
+    with open(file_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # Calculate depth
+    rel_path = os.path.relpath(file_path, base_dir)
+    depth = rel_path.count(os.sep)
+    # Correct root calculation
+    if "posts" in rel_path: # Handle deep blog posts
+        root = "../../"
+        if "artigo-2" in rel_path and "exemplo-artigo" in rel_path:
+             root = "../../../"
+        elif "artigo-2" in rel_path or "exemplo-artigo" in rel_path:
+             root = "../../"
+    
+    # Simpler root logic based on folder structure
+    parts = rel_path.split(os.sep)
+    root = "../" * (len(parts) - 1)
+    if not root: root = "./"
+    
+    new_footer = footer_template.format(root=root)
+    
+    # Regex to find the whole footer tag
+    # Uses non-greedy .*? and handles multi-line
+    pattern = re.compile(r'<footer.*?class="[^"]*footer[^"]*".*?</footer>', re.DOTALL)
+    
+    new_content = pattern.sub(new_footer, content)
+    
+    if new_content != content:
+        with open(file_path, 'w', encoding='utf-8', newline='\n') as f:
+            f.write(new_content)
+        print(f"Fixed: {file_path}")
+    else:
+        print(f"Footer already clean or not found in: {file_path}")
 
-</html>
-
-
+base_dir = r'c:\Users\pedro\Downloads\mental8works'
+for root_dir, dirs, files in os.walk(base_dir):
+    if '.git' in dirs: dirs.remove('.git')
+    for file in files:
+        if file.endswith('.html') and 'admin' not in root_dir:
+            fix_footer(os.path.join(root_dir, file))

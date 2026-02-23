@@ -2159,3 +2159,145 @@ p {
         transform: scaleY(0.4) translateY(1px);
     }
 }
+
+/* =============================================
+   TEAM PAGE STYLES
+   ============================================= */
+
+.team-grid-full {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+    .team-grid-full {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+}
+
+@media (min-width: 1100px) {
+    .team-grid-full {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+}
+
+.team-card-detailed {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card-detailed:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(3, 145, 159, 0.15);
+}
+
+.team-card-image {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    background: var(--color-primary-light);
+    flex-shrink: 0;
+}
+
+.team-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.team-card-detailed:hover .team-card-image img {
+    transform: scale(1.04);
+}
+
+.team-card-info {
+    padding: 1.75rem 2rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.team-card-info h2 {
+    font-size: 1.4rem;
+    color: var(--color-text-main);
+    margin: 0 0 0.25rem 0;
+    font-family: var(--font-serif);
+}
+
+.team-card-info .linkedin-icon {
+    margin-bottom: 0.5rem;
+    transition: opacity 0.2s;
+}
+
+.team-card-info .linkedin-icon:hover {
+    opacity: 0.75;
+}
+
+.team-card-info .role {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0 0 1.25rem 0;
+    line-height: 1.4;
+}
+
+.bio-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.bio-list li {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    line-height: 1.55;
+    padding-left: 1.25rem;
+    position: relative;
+}
+
+.bio-list li::before {
+    content: "›";
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* =============================================
+   BLOG AUTHOR BOX ENHANCEMENTS
+   ============================================= */
+
+.author-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--color-bg);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.author-img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 2px solid var(--color-primary);
+    flex-shrink: 0;
+}
