@@ -100,7 +100,7 @@
                     <span class="pill">Mediação Familiar</span>
                     <span class="pill">Psicologia Clínica</span>
                     <span class="pill">Psiquiatria</span>
-                    <span class="pill">Componente Social</span>
+                    <span class="pill">Ação Social</span>
                 </div>
 
                 <p>
@@ -234,19 +234,16 @@
                     </p>
                 </div>
                 <div class="mission-visual" id="mission-visual">
-                    <!-- SVG Tentacle Lines (drawn by scroll) -->
+                    <!-- SVG Tentacle Lines (curved paths drawn by scroll) -->
                     <svg class="mission-svg" id="mission-svg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet"
                         aria-hidden="true">
-                        <!-- Lines from center (200,200) to each bubble node -->
-                        <line class="tentacle-line" id="line-1" x1="200" y1="200" x2="200" y2="36" /> <!-- top -->
-                        <line class="tentacle-line" id="line-2" x1="200" y1="200" x2="370" y2="100" />
-                        <!-- top-right -->
-                        <line class="tentacle-line" id="line-3" x1="200" y1="200" x2="370" y2="300" />
-                        <!-- bottom-right -->
-                        <line class="tentacle-line" id="line-4" x1="200" y1="200" x2="200" y2="364" /> <!-- bottom -->
-                        <line class="tentacle-line" id="line-5" x1="200" y1="200" x2="30" y2="300" />
-                        <!-- bottom-left -->
-                        <line class="tentacle-line" id="line-6" x1="200" y1="200" x2="30" y2="100" /> <!-- top-left -->
+                        <!-- Curved Paths from center (200,200) to each bubble node -->
+                        <path class="tentacle-line" id="line-1" d="M200,200 Q200,118 200,36" /> <!-- top -->
+                        <path class="tentacle-line" id="line-2" d="M200,200 Q285,100 370,100" /> <!-- top-right -->
+                        <path class="tentacle-line" id="line-3" d="M200,200 Q285,300 370,300" /> <!-- bottom-right -->
+                        <path class="tentacle-line" id="line-4" d="M200,200 Q200,282 200,364" /> <!-- bottom -->
+                        <path class="tentacle-line" id="line-5" d="M200,200 Q115,300 30,300" /> <!-- bottom-left -->
+                        <path class="tentacle-line" id="line-6" d="M200,200 Q115,100 30,100" /> <!-- top-left -->
                     </svg>
 
                     <!-- Central Logo -->
@@ -321,24 +318,11 @@
                     </a>
                 </div>
 
-                <!-- Blog 4 -->
-                <div class="card blog-card reveal">
-                    <a href="blog/posts/vamos-falar-de-ansiedade/index.html"
-                        style="text-decoration: none; color: inherit; display: block;">
-                        <div class="blog-card-img-wrapper">
-                            <img src="assets/images/vamos-falar-de-ansiedade.png?v=1.1" alt="Ansiedade" loading="lazy">
-                        </div>
-                        <div class="blog-content">
-                            <h3>Vamos falar de Ansiedade</h3>
-                            <p>Quando a ansiedade se torna um problema e como intervir...</p>
-                            <span style="color: var(--color-primary); font-weight: 600;">Ler mais →</span>
-                        </div>
-                    </a>
-                </div>
             </div>
-            <div class="text-center">
-                <a href="blog/index.html" class="btn btn-secondary">Ver Todos os Artigos</a>
-            </div>
+        </div>
+        <div class="text-center">
+            <a href="blog/index.html" class="btn btn-secondary">Ver Todos os Artigos</a>
+        </div>
         </div>
     </section>
 
@@ -373,20 +357,26 @@
 
                     <div style="margin-top: 2rem;">
                         <a href="agendamentos/index.html" class="btn btn-primary"
-                            style="padding: 1rem 2rem; font-size: 1.1rem; width: 100%; text-align: center;">
+                            style="padding: 1rem 2rem; font-size: 1.1rem; width: 100%; text-align: center; margin-bottom: 1.5rem;">
                             📅 Agende Já a Sua Consulta
                         </a>
 
-                        <div class="social-buttons-row">
-                            <a href="mailto:mental8works@gmail.com" class="btn-social" title="Email">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path
-                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                                    <polyline points="22,6 12,13 2,6" />
-                                </svg>
+                        <div class="contact-methods-row">
+                            <a href="mailto:mental8works@gmail.com" class="contact-method-item">
+                                <div class="btn-social">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                        <polyline points="22,6 12,13 2,6" />
+                                    </svg>
+                                </div>
+                                <span class="contact-method-text">mental8works@gmail.com</span>
                             </a>
+                        </div>
+
+                        <div class="social-buttons-row">
                             <span class="btn-social" title="Whatsapp (Brevemente)" style="cursor: help;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"

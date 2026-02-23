@@ -107,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
             animating = true;
 
             // slide out
-            dynamicWord.classList.remove('word-enter');
             dynamicWord.classList.add('word-exit');
 
             setTimeout(() => {
@@ -119,13 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     dynamicWord.classList.remove('word-enter');
                     animating = false;
-                }, 360);
-            }, 360);
+                }, 380);
+            }, 380);
         };
 
         const startWordRotation = () => {
             if (wordInterval) return;
-            wordInterval = setInterval(cycleWord, 2200);
+            wordInterval = setInterval(cycleWord, 2500);
         };
         const stopWordRotation = () => {
             clearInterval(wordInterval);
@@ -135,103 +134,56 @@ document.addEventListener('DOMContentLoaded', () => {
         startWordRotation();
 
         document.addEventListener('visibilitychange', () => {
-            document.hidden ? stopWordRotation() : startWordRotation();
+            if (document.hidden) stopWordRotation();
+            else startWordRotation();
         });
-        window.addEventListener('pagehide', stopWordRotation);
     }
 
     // ── Mission Section – scroll-driven tentacle diagram ─────────────────
     const missionVisual = document.getElementById('mission-visual');
     if (missionVisual) {
         const logo = document.getElementById('mission-logo');
-        const lines = Array.from(missionVisual.querySelectorAll('.tentacle-line'));
+        const paths = Array.from(missionVisual.querySelectorAll('.tentacle-line'));
         const bubbles = Array.from(missionVisual.querySelectorAll('.bubble-node'));
-
-        // Step 0: section enters viewport → show logo
-        // Steps 1-6: as user scrolls deeper, draw one tentacle + pop bubble per step
-
-        let missionRevealed = false;
 
         const revealStep = (step) => {
             if (step === 0) {
                 logo.classList.add('visible');
-            } else if (step >= 1 && step <= lines.length) {
+            } else if (step >= 1 && step <= paths.length) {
                 const idx = step - 1;
-                // Measure actual line length and set dasharray correctly
-                const line = lines[idx];
-                const len = Math.ceil(Math.hypot(
-                    line.x2.baseVal.value - line.x1.baseVal.value,
-                    line.y2.baseVal.value - line.y1.baseVal.value
-                ));
-                line.style.strokeDasharray = len;
-                line.style.strokeDashoffset = len;
-                // Force reflow so transition fires
-                line.getBoundingClientRect();
-                line.style.strokeDashoffset = 0;
+                const path = paths[idx];
+                const len = path.getTotalLength ? path.getTotalLength() : 300;
 
-                // Pop bubble a little after line starts drawing
+                path.style.strokeDasharray = len;
+                path.style.strokeDashoffset = len;
+                path.getBoundingClientRect();
+                path.style.strokeDashoffset = 0;
+
                 setTimeout(() => {
                     if (bubbles[idx]) bubbles[idx].classList.add('visible');
-                }, 500);
+                }, 600);
             }
         };
-
-        // Use IntersectionObserver with multiple thresholds for scroll-step detection
-        const thresholds = [0, 0.1, 0.18, 0.30, 0.45, 0.60, 0.75, 0.90];
 
         const missionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
-
                 const ratio = entry.intersectionRatio;
 
-                // Step 0 – logo appears
                 if (ratio >= 0.10 && !logo.classList.contains('visible')) {
                     revealStep(0);
                 }
-                // Steps 1-6 – tentacles + bubbles
-                for (let i = 0; i < lines.length; i++) {
-                    const threshold = 0.18 + i * 0.13;
-                    if (ratio >= threshold && !lines[i].classList.contains('drawn')) {
-                        lines[i].classList.add('drawn');
+                for (let i = 0; i < paths.length; i++) {
+                    const threshold = 0.20 + i * 0.12;
+                    if (ratio >= threshold && !paths[i].classList.contains('drawn')) {
+                        paths[i].classList.add('drawn');
                         revealStep(i + 1);
                     }
                 }
             });
-        }, { threshold: thresholds });
+        }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9] });
 
         missionObserver.observe(missionVisual);
-
-        // Supplement with scroll listener for finer control
-        let ticking = false;
-        window.addEventListener('scroll', () => {
-            if (ticking) return;
-            ticking = true;
-            requestAnimationFrame(() => {
-                ticking = false;
-                if (!missionVisual) return;
-
-                const rect = missionVisual.getBoundingClientRect();
-                const vh = window.innerHeight;
-
-                // How far the section has scrolled into view (0 → 1)
-                const progress = Math.max(0, Math.min(1,
-                    (vh - rect.top) / (vh + rect.height)
-                ));
-
-                if (progress > 0.05 && !logo.classList.contains('visible')) {
-                    revealStep(0);
-                }
-
-                lines.forEach((line, i) => {
-                    const threshold = 0.18 + i * 0.12;
-                    if (progress >= threshold && !line.classList.contains('drawn')) {
-                        line.classList.add('drawn');
-                        revealStep(i + 1);
-                    }
-                });
-            });
-        }, { passive: true });
     }
 
     // ── Intersection Observer for general Reveal on Scroll ────────────────
