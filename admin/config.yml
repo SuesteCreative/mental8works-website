@@ -5,7 +5,7 @@ backend:
 
 media_folder: "assets/images"
 public_folder: "/assets/images"
-display_url: https://mental8works.netlify.app
+display_url: https://mental8works.pt
 locale: 'pt'
 
 collections:
