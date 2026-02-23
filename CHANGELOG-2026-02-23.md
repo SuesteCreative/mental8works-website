@@ -73,6 +73,14 @@ buildTeamPage()
 - **Problema:** O texto estava guardado no HTML da página mas aparecia em branco no site. O CSS usava classes `.reveal` (opacidade zero). Como a página terminava de repente, faltava o tag `</body>` e a inclusão do `assets/js/script.js`. Assim a animação do script (que retira a invisibilidade) nunca era despoletada.
 - **Correção:** Adicionadas a fecho do ficheiro `</script>` com o respectivo JavaScript e a tag de encerramento html `</body>\n</html>`.
 
+### Design e Alinhamentos Desconfigurados
+- **Problema Geral:** A página exibia lacunas falsas e blocos vazios à esquerda porque o CSS (`grid-cards`) estritamente impunha largura, enquanto o texto global da classe `section` forçava `text-align: left` em ecrãs com largura superior a 900px, contrariando o `text-center`. Além disso, a simetria ilusória formava falsas colunas de texto desalinhado nas quebras de linha automáticas.
+- **Correções aplicadas:**
+  - Substituiu-se a opacidade falha do Display Grid por CSS Flexbox na galeria de cartões inferior (`display: flex; justify-content: center;`).
+  - Estabeleceu-se uma relação paramétrica nos cartões de Apoio e Tarifa Social para dividirem sempre 50/50 o Desktop (`flex: 1 1 320px`) e quebrarem empilhados no ecrã de telemóvel.
+  - O cartão IBAN inferior absorveu a mesma classe de largura máxima (`max-width: 960px; width: 100%`) para fechar visualmente o fundo e manter as arestas dos 2 cartões paralelos em cima.
+  - Todos os blocos de leitura (como o "Impacto do seu Apoio") receberam declaração expressa de `margin: 0 auto; text-align: center;` com quebras lineares manuais de HTML (`<br class="d-none d-md-block">`) para contornar qualquer dependência em cadeia ou ilusões de ótica com o layout anterior.
+
 ---
 
 ## 6. `privacidade/index.html` & Cookies
@@ -122,4 +130,4 @@ buildTeamPage()
 
 ---
 
-*Gerado em 2026-02-23 às 18:52 UTC*
+*Gerado/Atualizado em 2026-02-23 às 21:15 UTC*
