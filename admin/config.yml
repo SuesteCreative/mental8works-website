@@ -152,3 +152,4 @@ collections:
           - {label: "LinkedIn", name: "linkedin", widget: "string"}
 
 # Triggering Cloudflare build to load environment variables
+# Novo deploy com chaves OAuth corrigidas
