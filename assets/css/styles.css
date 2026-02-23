@@ -2142,39 +2142,7 @@ p {
     transform: translate(-50%, -50%) scale(1);
 }
 
-.bubble-etica.visible {
-    animation: floatMission-v 5s infinite alternate ease-in-out;
-}
 
-.bubble-transp.visible {
-    animation: floatMission-v 5s 0.4s infinite alternate ease-in-out;
-}
-
-.bubble-excel.visible {
-    animation: floatMission-v 5s 0.8s infinite alternate ease-in-out;
-}
-
-.bubble-susten.visible {
-    animation: floatMission-v 5s 1.2s infinite alternate ease-in-out;
-}
-
-.bubble-compet.visible {
-    animation: floatMission-v 5s 1.6s infinite alternate ease-in-out;
-}
-
-.bubble-humanismo.visible {
-    animation: floatMission-v 5s 2.0s infinite alternate ease-in-out;
-}
-
-@keyframes floatMission-v {
-    0% {
-        transform: translate(-50%, -50%) scale(1) translateY(0);
-    }
-
-    100% {
-        transform: translate(-50%, -50%) scale(1) translateY(-8px);
-    }
-}
 
 /* ── Desktop: restore original SVG-aligned positions ───────────────────────
    SVG viewBox 400×400; paths end at the coords above.
