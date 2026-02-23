@@ -1,21 +1,28 @@
 /**
  * Cloudflare Pages Function — GitHub OAuth: Step 1
  * Route: /api/auth
- *
- * Redirects the user to GitHub to authorize the OAuth App.
- * The GITHUB_CLIENT_ID environment variable must be set in
- * the Cloudflare Pages project settings.
  */
 export async function onRequest(context) {
-    const clientId = context.env.GITHUB_CLIENT_ID;
+    // .trim() handles accidental spaces in Cloudflare vars
+    const clientId = context.env.GITHUB_CLIENT_ID?.trim();
 
     if (!clientId) {
-        return new Response('Missing GITHUB_CLIENT_ID environment variable.', { status: 500 });
+        return new Response('Error: GITHUB_CLIENT_ID not found in environment.', { status: 500 });
     }
 
-    const redirectUri = encodeURIComponent(`${new URL(context.request.url).origin}/api/callback`);
+    const url = new URL(context.request.url);
+    const state = url.searchParams.get('state');
+
+    // Construct absolute callback URL
+    const redirectUri = encodeURIComponent(`${url.origin}/api/callback`);
     const scope = 'repo,user';
-    const githubUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
+
+    let githubUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
+
+    // Pass through the 'state' parameter (prevent CSRF issues in CMS)
+    if (state) {
+        githubUrl += `&state=${encodeURIComponent(state)}`;
+    }
 
     return Response.redirect(githubUrl, 302);
 }
