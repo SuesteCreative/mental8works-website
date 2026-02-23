@@ -5,3 +5,28 @@
 /blog/index.html /blog/ 301
 /contactos/index.html /contactos/ 301
 /agendamentos/index.html /agendamentos/ 301
+
+# Legacy WordPress Redirects
+/quem-somos/a-equipa/* /team/ 301
+/quem-somos/os-nossos-orgaos/* /about-us/ 301
+/quem-somos/* /about-us/ 301
+/marcar-consulta/* /agendamentos/ 301
+/servicos/* /#services 301
+/categoria/* /blog/ 301
+/tag/* /blog/ 301
+/author/* /team/ 301
+/feed/* /blog/ 301
+/comments/* / 301
+/2014/* /blog/ 301
+/2015/* /blog/ 301
+/2016/* /blog/ 301
+/2017/* /blog/ 301
+/2018/* /blog/ 301
+/2019/* /blog/ 301
+/2020/* /blog/ 301
+/2021/* /blog/ 301
+/saude-mental-recursos-e-informacoes/* /blog/posts/saude-mental-recursos-e-informacoes.html 301
+/vamos-falar-de-ansiedade/* /blog/posts/vamos-falar-de-ansiedade.html 301
+/mudancas-no-regresso-a-rotina/* /blog/posts/mudancas-no-regresso-a-rotina.html 301
+/desmistificar-o-suicidio/* /blog/posts/desmistificar-o-suicidio.html 301
+
