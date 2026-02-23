@@ -211,7 +211,8 @@ function buildHomePage() {
     // Update Hero
     if (home.hero) {
         if (home.hero.title_prefix) {
-            html = html.replace(/(<h1>)([^<]*?)(<br>)/, `$1${home.hero.title_prefix}$3`);
+            // Robust: replace everything inside h1 before the <br>
+            html = html.replace(/(<h1>[^<]*?)(<br>)/, `<h1>${home.hero.title_prefix}$2`);
         }
         if (home.hero.words) {
             const wordsArray = JSON.stringify(home.hero.words);
@@ -400,11 +401,52 @@ function syncSettings() {
     console.log('✅ Global settings synchronized.');
 }
 
+function buildBlogPreview() {
+    // Injects top 3 most recent posts into the homepage blog preview section
+    const posts = readCollection('data/blog')
+        .filter(p => p.title && p.title.trim() !== '' && p._filename !== 'odeio-segundas')
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .slice(0, 3);
+
+    const templatePath = path.join(__dirname, '..', 'index.html');
+    if (!fs.existsSync(templatePath)) return;
+    let html = fs.readFileSync(templatePath, 'utf8');
+
+    const previewHtml = posts.map(post => {
+        const image = post.image || '/assets/images/hero-banner.webp';
+        const imgSrc = image.startsWith('/') ? '.' + image : image;
+        const summary = (post.summary || '').substring(0, 120) + (post.summary && post.summary.length > 120 ? '...' : '');
+        const date = new Date(post.date).toLocaleDateString('pt-PT', { day: '2-digit', month: 'long', year: 'numeric' });
+        return `
+                <a href="blog/posts/${post._filename}.html" class="card blog-card reveal" style="text-decoration:none; color:inherit; display:flex; flex-direction:column;">
+                    <div class="blog-card-img-wrapper">
+                        <img src="${imgSrc}" alt="${post.title}" loading="lazy">
+                    </div>
+                    <div class="blog-content">
+                        <p style="font-size:0.8rem; opacity:0.6; margin-bottom:0.5rem;">${date}</p>
+                        <h3>${post.title}</h3>
+                        <p>${summary}</p>
+                        <span style="color: var(--color-primary); font-weight: 600;">Ler mais &rarr;</span>
+                    </div>
+                </a>`;
+    }).join('\n');
+
+    const previewRegex = /<!-- CMS_BLOG_PREVIEW -->[\s\S]*?<!-- END_CMS_BLOG_PREVIEW -->/;
+    if (previewRegex.test(html)) {
+        html = html.replace(previewRegex, `<!-- CMS_BLOG_PREVIEW -->${previewHtml}\n                <!-- END_CMS_BLOG_PREVIEW -->`);
+        fs.writeFileSync(templatePath, html);
+        console.log('✅ Homepage blog preview updated.');
+    } else {
+        console.warn('⚠️  CMS_BLOG_PREVIEW anchor not found in index.html — skipping preview update.');
+    }
+}
+
 // Run
 try {
     buildTeamPage();
     buildBlogIndex();
     buildHomePage();
+    buildBlogPreview();
     buildAboutUsPage();
     syncSettings();
 } catch (err) {
