@@ -332,7 +332,7 @@ function syncSettings() {
 
         // Sync Email
         if (settings.email) {
-            const emailRegex = /href="mailto:.*?"/g;
+            const emailRegex = /href="mailto:[^"]*"/g;
             const emailTextRegex = />[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}</g;
             if (content.match(emailRegex)) {
                 content = content.replace(emailRegex, `href="mailto:${settings.email}"`);
@@ -360,36 +360,36 @@ function syncSettings() {
 
         // Sync Socials
         if (settings.facebook) {
-            content = content.replace(/href="https:\/\/www\.facebook\.com\/.*?"/g, `href="${settings.facebook}"`);
+            content = content.replace(/href="https:\/\/www\.facebook\.com\/[^"]*"/g, `href="${settings.facebook}"`);
             changed = true;
         }
         if (settings.instagram) {
-            content = content.replace(/href="https:\/\/www\.instagram\.com\/.*?"/g, `href="${settings.instagram}"`);
+            content = content.replace(/href="https:\/\/www\.instagram\.com\/[^"]*"/g, `href="${settings.instagram}"`);
             changed = true;
         }
         if (settings.linkedin) {
-            content = content.replace(/href="https:\/\/www\.linkedin\.com\/company\/.*?"/g, `href="${settings.linkedin}"`);
+            content = content.replace(/href="https:\/\/www\.linkedin\.com\/company\/[^"]*"/g, `href="${settings.linkedin}"`);
             changed = true;
         }
 
-        // Sync Address (flexible match for any address-looking block)
+        // Sync Address
         if (settings.address) {
-            const formattedAddress = settings.address.replace(/, /g, ',<br>');
-            const rawAddress = settings.address;
+            const formattedAddress = settings.address.replace(/,\s*/g, ',<br>');
 
-            // 1. Footer / Specific blocks (span based) - using <br>
-            // This regex is very specific to catch the blocks we want formatted with <br>
-            const addressSpanRegex = /<span[^>]*>(?:Av\.|Avenida|Rua|Praceta|Largo)[\s\S]*?\d{4}-\d{3}[\s\S]*?<\/span>/gi;
-            if (content.match(addressSpanRegex)) {
-                content = content.replace(addressSpanRegex, `<span>${formattedAddress}</span>`);
+            // 1. Footer / Contact Page blocks (span/div based)
+            // Look for address-y words and handle the common structure
+            const addressBlockRegex = /(?:Av\.|Avenida|Rua|Praceta|Largo)[\s\S]{5,100}\d{4}-\d{3}[\s\S]{1,50}Lisboa/gi;
+            if (content.match(addressBlockRegex)) {
+                // If it's inside a span/p/div, we should be careful. 
+                // Let's use a more localized replacement for contact boxes
+                content = content.replace(addressBlockRegex, formattedAddress);
                 changed = true;
             }
 
-            // 2. Inline / Legal paragraphs (using plain text)
-            // This catches the old address even with newlines/extra spaces
-            const oldAddressRegex = /(?:Av\.|Avenida)\s+Miguel\s+Bombarda,\s+123,\s+2\.º\s+piso,\s+1050-164\s+Lisboa/gi;
-            if (content.match(oldAddressRegex)) {
-                content = content.replace(oldAddressRegex, rawAddress);
+            // 2. SEO Meta Description Address
+            const metaAddressRegex = /Estamos em Lisboa,.*?\d{4}-\d{3} Lisboa/gi;
+            if (content.match(metaAddressRegex)) {
+                content = content.replace(metaAddressRegex, `Estamos em Lisboa, ${settings.address}`);
                 changed = true;
             }
         }
@@ -400,6 +400,7 @@ function syncSettings() {
     });
     console.log('✅ Global settings synchronized.');
 }
+
 
 function buildBlogPreview() {
     // Injects top 3 most recent posts into the homepage blog preview section
