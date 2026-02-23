@@ -68,15 +68,11 @@ function buildTeamPage() {
                     </div>
                 </div>`).join('\n');
 
-    const startMarker = '<!-- CMS_TEAM_MEMBERS -->';
-    const startIndex = html.indexOf(startMarker);
-    const searchPart = html.substring(startIndex);
-    const endIndex = searchPart.indexOf('</div>\n            </div>');
+    const containerRegex = /<div class="grid-cards" id="team-members-container">[\s\S]*?<\/div>/;
+    const newContainerHtml = `<div class="grid-cards" id="team-members-container">\n                <!-- CMS_TEAM_MEMBERS -->\n${teamItemsHtml}\n            </div>`;
 
-    if (startIndex !== -1 && endIndex !== -1) {
-        const before = html.substring(0, startIndex + startMarker.length);
-        const after = searchPart.substring(endIndex);
-        html = before + '\n' + teamItemsHtml + '\n            ' + after;
+    if (containerRegex.test(html)) {
+        html = html.replace(containerRegex, newContainerHtml);
         fs.writeFileSync(templatePath, html);
         console.log('✅ Team page cleaned and updated.');
     }
@@ -102,14 +98,11 @@ function buildBlogIndex() {
                     </div>
                 </a>`).join('\n');
 
-    const startMarker = '<!-- CMS_BLOG_POSTS -->';
-    const startIndex = html.indexOf(startMarker);
-    if (startIndex !== -1) {
-        const searchPart = html.substring(startIndex);
-        const endIndex = searchPart.indexOf('</div>');
-        const before = html.substring(0, startIndex + startMarker.length);
-        const after = searchPart.substring(endIndex);
-        html = before + '\n' + blogItemsHtml + '\n            ' + after;
+    const containerRegex = /<div class="grid-cards" id="blog-posts-container">[\s\S]*?<\/div>/;
+    const newContainerHtml = `<div class="grid-cards" id="blog-posts-container">\n                <!-- CMS_BLOG_POSTS -->\n${blogItemsHtml}\n            </div>`;
+
+    if (containerRegex.test(html)) {
+        html = html.replace(containerRegex, newContainerHtml);
         fs.writeFileSync(templatePath, html);
         console.log('✅ Blog index cleaned and updated.');
     }
