@@ -3,6 +3,7 @@
 [build]
   publish = "."
 
+
 # ── Redirects ─────────────────────────────────────────────────────────────────
 # Strip .html extensions for clean URLs
 [[redirects]]
