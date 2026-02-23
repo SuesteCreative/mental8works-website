@@ -29,6 +29,10 @@ body {
     background: var(--color-bg);
     overflow-x: hidden;
     position: relative;
+    /* Sticky footer logic */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 
@@ -1318,6 +1322,7 @@ p {
     background: var(--color-text-main);
     color: white;
     padding: 4rem 0 2rem;
+    margin-top: auto;
 }
 
 /* Remove border-bottom from footer h4 headings (inline styles override) */
