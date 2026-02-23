@@ -304,14 +304,14 @@ function buildAboutUsPage() {
     updateRole('Tesoureiro', tesoureiro.name);
     // Assembleia and Conselho Fiscal also use "Presidente" label in small caps span
     // To distinguish, we look for them specifically in their cards
-    const assembleiaRegex = /Assembleia Geral<\/h4>[\s\S]*?Presidente<\/span><strong[^>]*>.*?<\/strong>/;
+    const assembleiaRegex = /Assembleia Geral<\/h4>[\s\S]*?<\/div>\s*<\/div>/;
     if (assembleiaRegex.test(html)) {
-        html = html.replace(assembleiaRegex, `Assembleia Geral</h4>\n                        <div style="margin-top: 1rem;">\n                            <p><span style="display: block; font-size: 0.8rem; color: var(--color-text-light); text-transform: uppercase;">Presidente</span><strong style="font-size: 1.1rem;">${assembleia.name}</strong></p>`);
+        html = html.replace(assembleiaRegex, `Assembleia Geral</h4>\n                        <div style="margin-top: 1rem;">\n                            <p><span style="display: block; font-size: 0.8rem; color: var(--color-text-light); text-transform: uppercase;">Presidente</span><strong style="font-size: 1.1rem;">${assembleia.name}</strong></p>\n                        </div>\n                    </div>`);
     }
 
-    const conselhoRegex = /Conselho Fiscal<\/h4>[\s\S]*?Presidente<\/span><strong[^>]*>.*?<\/strong>/;
+    const conselhoRegex = /Conselho Fiscal<\/h4>[\s\S]*?<\/div>\s*<\/div>/;
     if (conselhoRegex.test(html)) {
-        html = html.replace(conselhoRegex, `Conselho Fiscal</h4>\n                        <div style="margin-top: 1rem;">\n                            <p><span style="display: block; font-size: 0.8rem; color: var(--color-text-light); text-transform: uppercase;">Presidente</span><strong style="font-size: 1.1rem;">${conselho.name}</strong></p>`);
+        html = html.replace(conselhoRegex, `Conselho Fiscal</h4>\n                        <div style="margin-top: 1rem;">\n                            <p><span style="display: block; font-size: 0.8rem; color: var(--color-text-light); text-transform: uppercase;">Presidente</span><strong style="font-size: 1.1rem;">${conselho.name}</strong></p>\n                        </div>\n                    </div>`);
     }
 
     fs.writeFileSync(templatePath, html);

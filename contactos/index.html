@@ -127,7 +127,8 @@
                                 </div>
                                 <div>
                                     <p style="font-weight: 600; margin-bottom: 5px;">Lisboa</p>
-                                    <p style="color: var(--color-text-main);">Rua de Campolide,<br>n295,<br>6ºdireito,<br>1070-032 Lisboa</p>
+                                    <p style="color: var(--color-text-main);">Rua de
+                                        Campolide,<br>n295,<br>6ºdireito,<br>1070-032 Lisboa</p>
                                 </div>
                             </div>
                             <div style="display: flex; gap: 15px;">
@@ -155,18 +156,18 @@
                     </div>
                 </div>
 
-                <!-- Form Side -->
                 <div class="contact-form-wrapper reveal">
                     <div class="card" style="padding: 3rem;">
                         <h3 style="margin-bottom: 2rem; color: var(--color-primary);">Enviar Mensagem</h3>
-                        <form id="contactFormMain" action="https://formspree.io/f/mental8works@gmail.com" method="POST">
+                        <form id="contactFormMain" onsubmit="sendMail(event)">
                             <div class="form-group">
                                 <label>Nome</label>
-                                <input type="text" name="name" class="form-control" required placeholder="O seu nome">
+                                <input type="text" id="contactName" name="name" class="form-control" required
+                                    placeholder="O seu nome">
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" name="email" class="form-control" required
+                                <input type="email" id="contactEmail" name="email" class="form-control" required
                                     placeholder="seu@email.com">
                             </div>
                             <div class="form-group">
@@ -179,14 +180,14 @@
                             </div>
                             <div class="form-group">
                                 <label>Mensagem</label>
-                                <textarea name="message" class="form-control" rows="5" required
+                                <textarea id="contactMessage" name="message" class="form-control" rows="5" required
                                     placeholder="Como podemos ajudar?"></textarea>
                             </div>
                             <div class="form-group checkbox-group"
                                 style="margin-bottom: 1.5rem; display: flex; gap: 10px; align-items: flex-start;">
                                 <input type="checkbox" id="privacyMain" required style="margin-top: 4px;">
                                 <label for="privacyMain" style="font-size: 0.85rem; opacity: 0.9; cursor: pointer;">
-                                    Li e aceito a <a href="./privacidade/index.html"
+                                    Li e aceito a <a href="../privacidade/index.html"
                                         style="color: var(--color-primary); text-decoration: underline;">política de
                                         privacidade</a>.
                                 </label>
@@ -196,6 +197,7 @@
                         </form>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
