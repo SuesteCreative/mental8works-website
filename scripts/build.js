@@ -68,11 +68,11 @@ function buildTeamPage() {
                     </div>
                 </div>`).join('\n');
 
-    const containerRegex = /<div class="grid-cards" id="team-members-container">[\s\S]*?<\/div>/;
-    const newContainerHtml = `<div class="grid-cards" id="team-members-container">\n                <!-- CMS_TEAM_MEMBERS -->\n${teamItemsHtml}\n            </div>`;
+    const containerRegex = /<!-- CMS_TEAM_MEMBERS -->[\s\S]*?<!-- END_CMS_TEAM_MEMBERS -->/;
+    const newContent = `<!-- CMS_TEAM_MEMBERS -->\n${teamItemsHtml}\n                    <!-- END_CMS_TEAM_MEMBERS -->`;
 
     if (containerRegex.test(html)) {
-        html = html.replace(containerRegex, newContainerHtml);
+        html = html.replace(containerRegex, newContent);
         fs.writeFileSync(templatePath, html);
         console.log('✅ Team page cleaned and updated.');
     }
@@ -98,11 +98,11 @@ function buildBlogIndex() {
                     </div>
                 </a>`).join('\n');
 
-    const containerRegex = /<div class="grid-cards" id="blog-posts-container">[\s\S]*?<\/div>/;
-    const newContainerHtml = `<div class="grid-cards" id="blog-posts-container">\n                <!-- CMS_BLOG_POSTS -->\n${blogItemsHtml}\n            </div>`;
+    const containerRegex = /<!-- CMS_BLOG_POSTS -->[\s\S]*?<!-- END_CMS_BLOG_POSTS -->/;
+    const newContent = `<!-- CMS_BLOG_POSTS -->\n${blogItemsHtml}\n                <!-- END_CMS_BLOG_POSTS -->`;
 
     if (containerRegex.test(html)) {
-        html = html.replace(containerRegex, newContainerHtml);
+        html = html.replace(containerRegex, newContent);
         fs.writeFileSync(templatePath, html);
         console.log('✅ Blog index cleaned and updated.');
     }
