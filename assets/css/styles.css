@@ -389,22 +389,22 @@ p {
     padding: 0.5rem 0;
 }
 
-/* Transparent navbar: nav-links and toggle go white */
+/* Transparent navbar: nav-links and toggle stay dark (hero background is light) */
 .header:not(.scrolled):not(.opaque) .nav-link {
-    color: white;
+    color: var(--color-text-main);
 }
 
 .header:not(.scrolled):not(.opaque) .mobile-toggle {
-    color: white;
+    color: var(--color-text-main);
 }
 
 .header:not(.scrolled):not(.opaque) .btn-primary {
-    background: white;
-    color: var(--color-primary);
+    background: var(--color-primary);
+    color: white;
 }
 
 .header:not(.scrolled):not(.opaque) .btn-primary:hover {
-    background: var(--color-primary);
+    background: var(--color-primary-dark, #027a86);
     color: white;
 }
 
@@ -1868,11 +1868,19 @@ p {
 .mission-visual {
     position: relative;
     width: 100%;
-    /* fixed square viewport for the SVG diagram */
     aspect-ratio: 1 / 1;
-    max-width: 420px;
+    /* On mobile, give breathing room so lateral bubbles don't clip */
+    max-width: 360px;
     margin: 2rem auto 0;
+    /* must be visible so bubbles can overflow */
     overflow: visible;
+}
+
+/* Ensure parent sections don't clip overflow on mobile */
+@media (max-width: 899px) {
+    .mission-visual {
+        max-width: 300px;
+    }
 }
 
 @media (min-width: 900px) {
@@ -1976,14 +1984,15 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.6);
-    width: 140px;
-    height: 140px;
+    /* Mobile: smaller to leave room for lateral bubbles */
+    width: 100px;
+    height: 100px;
     background: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1.5rem;
+    padding: 1rem;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
     z-index: 10;
     opacity: 0;
@@ -2010,7 +2019,7 @@ p {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 900px) {
     .main-circle {
         width: 170px;
         height: 170px;
@@ -2088,38 +2097,39 @@ p {
     transform: translate(-50%, -50%) scale(0.6);
 }
 
-/* top-right: x2=315,y2=135 (78.75%/33.75%) */
+/* top-right: pulled slightly inward so bubble doesn't clip on mobile */
 .bubble-transp {
-    top: 33.75%;
-    left: 78.75%;
+    top: 30%;
+    left: 73%;
     transform: translate(-50%, -50%) scale(0.6);
 }
 
-/* bottom-right: x2=315,y2=265 (78.75%/66.25%) */
+/* bottom-right */
 .bubble-excel {
-    top: 66.25%;
-    left: 78.75%;
+    top: 68%;
+    left: 73%;
     transform: translate(-50%, -50%) scale(0.6);
 }
 
-/* bottom: x2=200,y2=330 (50%/82.5%) */
+/* bottom */
 .bubble-susten {
-    top: 82.5%;
+    top: 84%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.6);
 }
 
-/* bottom-left: x2=85,y2=265 (21.25%/66.25%) */
+/* bottom-left */
 .bubble-compet {
-    top: 66.25%;
-    left: 21.25%;
+    top: 68%;
+    left: 27%;
     transform: translate(-50%, -50%) scale(0.6);
 }
 
 /* top-left: x2=85,y2=135 (21.25%/33.75%) */
+/* top-left: pulled slightly inward */
 .bubble-humanismo {
-    top: 33.75%;
-    left: 21.25%;
+    top: 30%;
+    left: 27%;
     transform: translate(-50%, -50%) scale(0.6);
 }
 
