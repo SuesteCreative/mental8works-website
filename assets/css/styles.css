@@ -744,14 +744,7 @@ p {
         /* Matches dynamic word size to maintain uniform look */
     }
 
-    /* Fix dynamic word flow on desktop */
-    #dynamic-word {
-        display: inline-block;
-        min-width: 0;
-        white-space: nowrap;
-        font-size: 1em;
-        vertical-align: baseline;
-    }
+    /* dynamic word inherits block + full h1 size via global rules below */
 
     p {
         font-size: 1.1rem;
@@ -761,19 +754,34 @@ p {
     }
 }
 
+/* Dynamic word always on its own line, full h1 size */
+.hero-content h1 {
+    display: block;
+}
+
+.hero-content h1>.dynamic-word-wrapper {
+    display: block;
+    overflow: hidden;
+    height: 1.2em;
+    line-height: 1.2em;
+    margin-top: 0.05em;
+}
+
 .dynamic-word-wrapper {
     position: relative;
-    display: inline-block;
+    display: block;
     overflow: hidden;
-    vertical-align: bottom;
-    height: 1.25em;
-    line-height: 1.25em;
-    margin-bottom: -0.2em;
+    height: 1.2em;
+    line-height: 1.2em;
 }
 
 #dynamic-word {
-    display: inline-block;
+    display: block;
     position: relative;
+    font-size: 1em;
+    font-family: inherit;
+    font-weight: inherit;
+    color: var(--color-primary);
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1323,8 +1331,63 @@ p {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2.5rem;
+    /* Mobile: all cols centered */
     text-align: center;
     margin-bottom: 3rem;
+}
+
+/* Mobile: logo smaller + tighter */
+.footer-col:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo-img {
+    max-height: 70px;
+    width: auto;
+}
+
+.footer-col:first-child p {
+    margin-top: 0.75rem;
+    opacity: 0.75;
+    font-size: 0.88rem;
+    max-width: 280px;
+}
+
+/* Mobile: social icons centered */
+.footer-social-icons {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.footer-social-icons a {
+    color: white;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.footer-social-icons a:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* Mobile contact list & nav list centered */
+.footer-col ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-col ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 @media (min-width: 600px) {
@@ -1340,12 +1403,34 @@ p {
         align-items: start;
     }
 
+    /* Desktop: logo full size, left-aligned col */
+    .footer-col:first-child {
+        align-items: flex-start;
+    }
+
     .footer-logo-img {
         max-height: 120px;
         margin: 0;
     }
-}
 
+    /* Desktop: lists left-aligned */
+    .footer-col ul {
+        align-items: flex-start;
+    }
+
+    .footer-col ul li {
+        justify-content: flex-start;
+    }
+
+    /* Desktop: contacts col — icons slightly left of text start */
+    .footer-col:last-child ul li {
+        padding-left: 0;
+    }
+
+    .footer-social-icons {
+        justify-content: flex-start;
+    }
+}
 
 .footer-logo-link {
     display: inline-block;
@@ -1372,23 +1457,6 @@ p {
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
-}
-
-.footer-social-icons {
-    display: flex;
-    gap: 1.25rem;
-    margin-top: 0.5rem;
-}
-
-.footer-social-icons a {
-    color: white;
-    opacity: 0.8;
-    transition: 0.3s;
-}
-
-.footer-social-icons a:hover {
-    opacity: 1;
-    transform: translateY(-2px);
 }
 
 .footer-bottom-links a:hover {
@@ -2186,25 +2254,29 @@ p {
     opacity: 1;
 }
 
-/* Wave animation */
+/* Wave animation — animates the SVG path d attribute for a real wave morph */
+.sueste-link .wave-brand svg {
+    overflow: visible;
+}
+
 .sueste-link .wave-brand path {
     stroke: currentColor;
     fill: none;
     stroke-width: 1.2;
-    vector-effect: non-scaling-stroke;
-    animation: wave-wobble 2s ease-in-out infinite;
+    stroke-linecap: round;
+    animation: wave-morph 2s ease-in-out infinite;
     transform-origin: 50% 50%;
 }
 
-@keyframes wave-wobble {
+@keyframes wave-morph {
 
     0%,
     100% {
-        transform: translateY(-2px);
+        d: path("M0 5 Q 7.5 0, 15 5 T 30 5 T 45 5 T 60 5");
     }
 
     50% {
-        transform: translateY(2px);
+        d: path("M0 5 Q 7.5 10, 15 5 T 30 5 T 45 5 T 60 5");
     }
 }
 
