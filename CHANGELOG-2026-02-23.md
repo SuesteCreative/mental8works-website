@@ -130,4 +130,50 @@ buildTeamPage()
 
 ---
 
-*Gerado/Atualizado em 2026-02-23 às 21:15 UTC*
+## 11. SEO & Metadados (Fase 2)
+
+### Dados Estruturados (JSON-LD)
+- **Implementação:** Adicionado esquema `MedicalOrganization` e `LocalBusiness` em todas as páginas principais e utilitárias.
+- **Automação:** O `scripts/build.js` agora gera e sincroniza automaticamente o schema JSON-LD com base nas definições de `data/settings.json`.
+
+### Correções de Metadados
+- **Localização:** Substituídas todas as referências residuais à morada antiga (Av. Miguel Bombarda) nos meta tags de descrição pela morada atual na **Rua de Campolide**.
+- **Sitemap Inteligente:** O script de build agora regenera o `sitemap.xml` incluindo automaticamente os novos slugs de artigos do blog.
+
+---
+
+## 12. Rodapé (Footer) e Uniformização Global
+
+### Redesign do Footer
+- **Estética:** Altura reduzida (padding de 3rem) e layout mais limpo.
+- **Redes Sociais:** Ícones movidos da coluna principal para a coluna de **Contactos**, posicionados logo abaixo da morada para melhor hierarquia de informação.
+- **Créditos:** Texto de copyright e créditos padronizado: *"© 2026 Mental8Works — designed by Sueste - Creative Agency. Todos os direitos reservados."*
+
+### Sincronização em Escala
+- **Inovação:** Criada a função `syncFooter()` no `build.js` que percorre **todos** os ficheiros HTML do projeto e injeta o rodapé atualizado. Isto garante 100% de consistência entre páginas de serviços, blog e políticas de privacidade.
+
+---
+
+## 13. Refinamentos de UI/UX
+
+### Landing Page (index.html)
+- **Navegação:** Adicionado botão **"Saber Mais"** na secção "Sobre Nós" ligando à página institucional completa.
+- **Visual:** Restaurado o ícone do envelope no campo de email da secção de contactos.
+
+### Formulários e Alinhamento
+- **Filtro de Contactos:** Adicionada a opção **"Sócios"** ao dropdown de assuntos no formulário de contacto.
+- **Fix "Sobre Nós":** Corrigido o alinhamento e centragem absoluta do subtítulo dos "Órgãos Sociais" (CSS fix + HTML cleanup).
+
+---
+
+## 14. Commits realizados (Fase 2)
+
+```
+06fb7eb  chore(seo): implemented sitewide JSON-LD schema and updated sitemap generation
+2b9c122  fix: user requests - footer redesign, about-us alignment, and landing page button
+22da0ed  fix: landing page about us button
+```
+
+---
+
+*Gerado/Atualizado em 2026-02-23 às 22:15 UTC*
