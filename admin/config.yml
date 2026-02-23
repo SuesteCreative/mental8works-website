@@ -2,6 +2,8 @@ backend:
   name: github
   repo: SuesteCreative/mental8works-website
   branch: main
+  base_url: https://mental8works.pt
+  auth_endpoint: /api/auth
 
 media_folder: "assets/images"
 public_folder: "/assets/images"
