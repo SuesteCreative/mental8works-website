@@ -1275,9 +1275,10 @@ p {
     margin-bottom: 3rem;
 }
 
-.footer-logo-img {
-    max-height: 110px;
-    margin: 0 auto 1rem;
+@media (min-width: 600px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (min-width: 900px) {
@@ -1290,6 +1291,15 @@ p {
         max-height: 140px;
         margin: 0 0 1rem;
     }
+}
+
+.footer-logo-link {
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.footer-logo-link:hover {
+    opacity: 0.8;
 }
 
 .footer-bottom {
@@ -1678,45 +1688,33 @@ p {
    ============================================================ */
 .dynamic-word-wrapper {
     display: inline-block;
-    overflow: hidden;
     vertical-align: bottom;
-    line-height: inherit;
 }
 
 #dynamic-word {
     display: inline-block;
     animation-fill-mode: both;
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 #dynamic-word.word-exit {
-    animation: wordSlideOut 0.35s cubic-bezier(0.4, 0, 1, 1) forwards;
+    opacity: 0;
+    transform: scale(0.95);
 }
 
 #dynamic-word.word-enter {
-    animation: wordSlideIn 0.35s cubic-bezier(0, 0, 0.2, 1) forwards;
+    animation: wordFadeIn 0.4s forwards;
 }
 
-@keyframes wordSlideOut {
+@keyframes wordFadeIn {
     0% {
-        transform: translateY(0);
-        opacity: 1;
+        opacity: 0;
+        transform: scale(0.95);
     }
 
     100% {
-        transform: translateY(-110%);
-        opacity: 0;
-    }
-}
-
-@keyframes wordSlideIn {
-    0% {
-        transform: translateY(110%);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateY(0);
         opacity: 1;
+        transform: scale(1);
     }
 }
 
@@ -1939,157 +1937,87 @@ p {
 /* Positions — anchored so bubble CENTER matches SVG endpoint */
 /* SVG viewBox 400x400; endpoints at percentage of container */
 /* top:    x2=200,y2=36  → 50% / 9% */
-/* top: x2=200,y2=36 (50%/9%) */
+/* top: x2=200,y2=70 (50%/17.5%) */
 .bubble-etica {
-    top: 9%;
+    top: 17.5%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.6);
 }
 
-/* top-right: x2=370,y2=100 (92.5%/25%) */
+/* top-right: x2=315,y2=135 (78.75%/33.75%) */
 .bubble-transp {
-    top: 25%;
-    left: 92.5%;
+    top: 33.75%;
+    left: 78.75%;
     transform: translate(-50%, -50%) scale(0.6);
 }
 
-/* bottom-right: x2=370,y2=300 (92.5%/75%) */
+/* bottom-right: x2=315,y2=265 (78.75%/66.25%) */
 .bubble-excel {
-    top: 75%;
-    left: 92.5%;
+    top: 66.25%;
+    left: 78.75%;
     transform: translate(-50%, -50%) scale(0.6);
 }
 
-/* bottom: x2=200,y2=364 (50%/91%) */
+/* bottom: x2=200,y2=330 (50%/82.5%) */
 .bubble-susten {
-    top: 91%;
+    top: 82.5%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.6);
 }
 
-/* bottom-left: x2=30,y2=300 (7.5%/75%) */
+/* bottom-left: x2=85,y2=265 (21.25%/66.25%) */
 .bubble-compet {
-    top: 75%;
-    left: 7.5%;
+    top: 66.25%;
+    left: 21.25%;
     transform: translate(-50%, -50%) scale(0.6);
 }
 
-/* top-left: x2=30,y2=100 (7.5%/25%) */
+/* top-left: x2=85,y2=135 (21.25%/33.75%) */
 .bubble-humanismo {
-    top: 25%;
-    left: 7.5%;
+    top: 33.75%;
+    left: 21.25%;
     transform: translate(-50%, -50%) scale(0.6);
 }
 
 /* top-left */
 
 /* visible state — same anchor + scale(1) */
-.bubble-etica.visible {
+.bubble-node.visible {
+    opacity: 1;
     transform: translate(-50%, -50%) scale(1);
 }
 
-.bubble-transp.visible {
-    transform: translate(0, -50%) scale(1);
-}
-
-.bubble-excel.visible {
-    transform: translate(0, 50%) scale(1);
-}
-
-.bubble-susten.visible {
-    transform: translate(-50%, 50%) scale(1);
-}
-
-.bubble-compet.visible {
-    transform: translate(0, 50%) scale(1);
-}
-
-.bubble-humanismo.visible {
-    transform: translate(0, -50%) scale(1);
-}
-
-/* Override floatMission per-bubble to preserve anchor transform */
 .bubble-etica.visible {
-    animation: floatMission-top 5s infinite alternate ease-in-out;
+    animation: floatMission-v 5s infinite alternate ease-in-out;
 }
 
 .bubble-transp.visible {
-    animation: floatMission-tr 5s 0.4s infinite alternate ease-in-out;
+    animation: floatMission-v 5s 0.4s infinite alternate ease-in-out;
 }
 
 .bubble-excel.visible {
-    animation: floatMission-br 5s 0.8s infinite alternate ease-in-out;
+    animation: floatMission-v 5s 0.8s infinite alternate ease-in-out;
 }
 
 .bubble-susten.visible {
-    animation: floatMission-bot 5s 1.2s infinite alternate ease-in-out;
+    animation: floatMission-v 5s 1.2s infinite alternate ease-in-out;
 }
 
 .bubble-compet.visible {
-    animation: floatMission-bl 5s 1.6s infinite alternate ease-in-out;
+    animation: floatMission-v 5s 1.6s infinite alternate ease-in-out;
 }
 
 .bubble-humanismo.visible {
-    animation: floatMission-tl 5s 2.0s infinite alternate ease-in-out;
+    animation: floatMission-v 5s 2.0s infinite alternate ease-in-out;
 }
 
-@keyframes floatMission-top {
+@keyframes floatMission-v {
     0% {
-        transform: translate(-50%, -50%) scale(1) translateY(0)
+        transform: translate(-50%, -50%) scale(1) translateY(0);
     }
 
     100% {
-        transform: translate(-50%, -50%) scale(1) translateY(-7px)
-    }
-}
-
-@keyframes floatMission-tr {
-    0% {
-        transform: translate(0, -50%) scale(1) translateY(0)
-    }
-
-    100% {
-        transform: translate(0, -50%) scale(1) translateY(-7px)
-    }
-}
-
-@keyframes floatMission-br {
-    0% {
-        transform: translate(0, 50%) scale(1) translateY(0)
-    }
-
-    100% {
-        transform: translate(0, 50%) scale(1) translateY(7px)
-    }
-}
-
-@keyframes floatMission-bot {
-    0% {
-        transform: translate(-50%, 50%) scale(1) translateY(0)
-    }
-
-    100% {
-        transform: translate(-50%, 50%) scale(1) translateY(7px)
-    }
-}
-
-@keyframes floatMission-bl {
-    0% {
-        transform: translate(0, 50%) scale(1) translateY(0)
-    }
-
-    100% {
-        transform: translate(0, 50%) scale(1) translateY(7px)
-    }
-}
-
-@keyframes floatMission-tl {
-    0% {
-        transform: translate(0, -50%) scale(1) translateY(0)
-    }
-
-    100% {
-        transform: translate(0, -50%) scale(1) translateY(-7px)
+        transform: translate(-50%, -50%) scale(1) translateY(-8px);
     }
 }
 

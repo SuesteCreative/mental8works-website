@@ -102,6 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let wordInterval;
         let animating = false;
 
+        let loopsCompleted = 0;
+
         const cycleWord = () => {
             if (animating) return;
             animating = true;
@@ -111,6 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => {
                 wordIndex = (wordIndex + 1) % words.length;
+
+                // If we've returned to index 0, increment loop counter
+                if (wordIndex === 0) {
+                    loopsCompleted++;
+                }
+
                 dynamicWord.textContent = words[wordIndex];
                 dynamicWord.classList.remove('word-exit');
                 dynamicWord.classList.add('word-enter');
@@ -118,24 +126,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     dynamicWord.classList.remove('word-enter');
                     animating = false;
+
+                    // Stop after one full loop is completed AND we are back at the first word
+                    if (loopsCompleted >= 1 && wordIndex === 0) {
+                        stopWordRotation();
+                    }
                 }, 380);
             }, 380);
         };
 
         const startWordRotation = () => {
-            if (wordInterval) return;
+            if (wordInterval || loopsCompleted >= 1) return;
             wordInterval = setInterval(cycleWord, 2500);
         };
         const stopWordRotation = () => {
-            clearInterval(wordInterval);
-            wordInterval = null;
+            if (wordInterval) {
+                clearInterval(wordInterval);
+                wordInterval = null;
+            }
         };
 
+        // Initial start
         startWordRotation();
 
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) stopWordRotation();
-            else startWordRotation();
+            else if (loopsCompleted < 1) startWordRotation();
         });
     }
 
