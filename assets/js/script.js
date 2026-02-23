@@ -29,6 +29,7 @@ window.sendMail = function (e) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Mental8Works Script Initialized v2.2');
     // Mobile Menu Toggle Logic
     const mobileToggle = document.querySelector('.mobile-toggle');
     const navMenu = document.querySelector('.nav-menu');
