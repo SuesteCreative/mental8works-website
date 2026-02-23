@@ -43,9 +43,23 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Hero
             if (homeData.hero) {
-                const h1 = document.querySelector('.hero-content h1');
-                if (h1 && homeData.hero.title_prefix && homeData.hero.words) {
-                    h1.innerHTML = `${homeData.hero.title_prefix} <span id="dynamic-word" style="color: var(--color-primary);">${homeData.hero.words[0]}</span>`;
+                const prefixEl = document.querySelector('.hero-content h1');
+                const dynamicWordEl = document.getElementById('dynamic-word');
+
+                if (prefixEl && homeData.hero.title_prefix) {
+                    // Update only the text node before the wrapper to preserve the complex structure
+                    const wrapper = prefixEl.querySelector('.dynamic-word-wrapper');
+                    if (wrapper) {
+                        // Preserve wrapper, just update the prefix text if needed
+                        // prefixEl.childNodes[0].textContent = homeData.hero.title_prefix + ' ';
+                    } else if (homeData.hero.words) {
+                        // Fallback if structure is missing
+                        prefixEl.innerHTML = `${homeData.hero.title_prefix} <span class="dynamic-word-wrapper"><span id="dynamic-word" style="color: var(--color-primary);">${homeData.hero.words[0]}</span></span>`;
+                    }
+                }
+
+                if (dynamicWordEl && homeData.hero.words) {
+                    dynamicWordEl.textContent = homeData.hero.words[0];
                     window.CMS_DYNAMIC_WORDS = homeData.hero.words;
                 }
                 const heroSub = document.querySelector('.hero-content p');

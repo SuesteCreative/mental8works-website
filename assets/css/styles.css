@@ -716,6 +716,40 @@ p {
     }
 }
 
+.dynamic-word-wrapper {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    height: 1.25em;
+    line-height: 1.25em;
+    margin-bottom: -0.2em;
+}
+
+#dynamic-word {
+    display: inline-block;
+    position: relative;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.word-exit {
+    transform: translateY(-100%);
+}
+
+.word-enter {
+    animation: wordSlideIn 0.35s forwards;
+}
+
+@keyframes wordSlideIn {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
 /* Services - Updated Background */
 .grid-cards {
     display: grid;
@@ -1733,6 +1767,36 @@ p {
     opacity: 0.8;
 }
 
+/* Light flux pulse following the path */
+.tentacle-pulse {
+    stroke: white;
+    stroke-width: 3;
+    stroke-linecap: round;
+    fill: none;
+    opacity: 0;
+    stroke-dasharray: 20, 1000;
+    stroke-dashoffset: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+/* Active flux pulse logic */
+
+.tentacle-pulse.active {
+    opacity: 1;
+    animation: fluxPulse 2s linear infinite;
+}
+
+@keyframes fluxPulse {
+    0% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: -1000;
+    }
+}
+
 /* Contact Methods Row */
 .contact-methods-row {
     margin-bottom: 1rem;
@@ -1833,17 +1897,17 @@ p {
 
 .float-card.bubble-node.visible {
     opacity: 1;
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
     animation: floatMission 5s infinite alternate ease-in-out;
 }
 
 @keyframes floatMission {
     0% {
-        transform: scale(1) translateY(0);
+        transform: translate(-50%, -50%) scale(1) translateY(0);
     }
 
     100% {
-        transform: scale(1) translateY(-8px);
+        transform: translate(-50%, -50%) scale(1) translateY(-8px);
     }
 }
 
@@ -1875,45 +1939,46 @@ p {
 /* Positions — anchored so bubble CENTER matches SVG endpoint */
 /* SVG viewBox 400x400; endpoints at percentage of container */
 /* top:    x2=200,y2=36  → 50% / 9% */
+/* top: x2=200,y2=36 (50%/9%) */
 .bubble-etica {
-    top: 0%;
+    top: 9%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.6);
 }
 
-/* top */
+/* top-right: x2=370,y2=100 (92.5%/25%) */
 .bubble-transp {
-    top: 18%;
-    right: 2%;
-    transform: translate(0, -50%) scale(0.6);
+    top: 25%;
+    left: 92.5%;
+    transform: translate(-50%, -50%) scale(0.6);
 }
 
-/* top-right */
+/* bottom-right: x2=370,y2=300 (92.5%/75%) */
 .bubble-excel {
-    bottom: 18%;
-    right: 2%;
-    transform: translate(0, 50%) scale(0.6);
+    top: 75%;
+    left: 92.5%;
+    transform: translate(-50%, -50%) scale(0.6);
 }
 
-/* bottom-right */
+/* bottom: x2=200,y2=364 (50%/91%) */
 .bubble-susten {
-    bottom: 0%;
+    top: 91%;
     left: 50%;
-    transform: translate(-50%, 50%) scale(0.6);
+    transform: translate(-50%, -50%) scale(0.6);
 }
 
-/* bottom */
+/* bottom-left: x2=30,y2=300 (7.5%/75%) */
 .bubble-compet {
-    bottom: 18%;
-    left: 2%;
-    transform: translate(0, 50%) scale(0.6);
+    top: 75%;
+    left: 7.5%;
+    transform: translate(-50%, -50%) scale(0.6);
 }
 
-/* bottom-left */
+/* top-left: x2=30,y2=100 (7.5%/25%) */
 .bubble-humanismo {
-    top: 18%;
-    left: 2%;
-    transform: translate(0, -50%) scale(0.6);
+    top: 25%;
+    left: 7.5%;
+    transform: translate(-50%, -50%) scale(0.6);
 }
 
 /* top-left */

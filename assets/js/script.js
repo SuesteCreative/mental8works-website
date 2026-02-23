@@ -152,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (step >= 1 && step <= paths.length) {
                 const idx = step - 1;
                 const path = paths[idx];
+                const pulse = missionVisual.querySelector(`#pulse-${step}`);
                 const len = path.getTotalLength ? path.getTotalLength() : 300;
 
                 path.style.strokeDasharray = len;
@@ -161,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 setTimeout(() => {
                     if (bubbles[idx]) bubbles[idx].classList.add('visible');
+                    if (pulse) pulse.classList.add('active');
                 }, 600);
             }
         };
