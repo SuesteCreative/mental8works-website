@@ -43,7 +43,7 @@ function buildTeamPage() {
                 <!-- ${member.name} (Dynamic) -->
                 <div class="team-card-detailed reveal" style="transition-delay: ${0.05 + (idx * 0.05)}s;">
                     <div class="team-card-image">
-                        <img src="${member.photo.startsWith('/') ? '..' + member.photo : (member.photo.startsWith('assets') ? '../' + member.photo : member.photo)}" alt="${member.name}"
+                        <img src="${(() => { const p = member.photo || '/assets/images/user-outline.webp'; return p.startsWith('/') ? '..' + p : (p.startsWith('assets') ? '../' + p : p); })()}" alt="${member.name}"
                             style="object-fit: cover; width: 100%; height: 100%;">
                     </div>
                     <div class="team-card-info">
