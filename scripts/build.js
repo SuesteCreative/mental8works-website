@@ -31,6 +31,105 @@ function getAllHtmlFiles(dir, files_ = []) {
     return files_;
 }
 
+function syncFooter() {
+    const settingsPath = path.join(__dirname, '..', 'data', 'settings.json');
+    if (!fs.existsSync(settingsPath)) return;
+    const settings = JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
+    const htmlFiles = getAllHtmlFiles(path.join(__dirname, '..'));
+
+    htmlFiles.forEach(filePath => {
+        if (filePath.includes('node_modules') || filePath.includes('.git')) return;
+
+        let content = fs.readFileSync(filePath, 'utf8');
+        const relPath = path.relative(path.dirname(filePath), path.join(__dirname, '..'));
+        const rootPath = relPath === '' ? './' : relPath.replace(/\\/g, '/') + '/';
+
+        const footerHtml = `
+    <!-- Footer -->
+    <footer class="footer reveal">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="${rootPath}index.html" class="footer-logo-link">
+                        <img src="${rootPath}assets/images/logo-mental8works-white.webp" alt="Mental8Works White Logo" class="footer-logo-img">
+                    </a>
+                    <p style="opacity: 0.8; font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6;">
+                        Promovendo a saúde mental com excelência e humanidade desde 2014. Uma associação dedicada ao seu bem-estar.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1.5rem; color: white; font-weight: 600; font-size: 1.1rem; border-bottom: 2px solid var(--color-primary); display: inline-block; padding-bottom: 5px;">Empresa</h4>
+                    <ul style="opacity: 0.9; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}index.html">Início</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}about-us/index.html">Sobre Nós</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}team/index.html">Equipa</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}socios/index.html">Sócio</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1.5rem; color: white; font-weight: 600; font-size: 1.1rem; border-bottom: 2px solid var(--color-primary); display: inline-block; padding-bottom: 5px;">Intervenção</h4>
+                    <ul style="opacity: 0.9; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}index.html#services">Serviços</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}blog/index.html">Blog</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}agendamentos/index.html">Agendamentos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1.5rem; color: white; font-weight: 600; font-size: 1.1rem; border-bottom: 2px solid var(--color-primary); display: inline-block; padding-bottom: 5px;">Contactos</h4>
+                    <ul style="opacity: 0.9; list-style: none; padding: 0; margin-bottom: 1.5rem;">
+                        <li style="margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <a href="mailto:${settings.email}">${settings.email}</a>
+                        </li>
+                        <li style="margin-bottom: 0.75rem; line-height: 1.6; display: flex; align-items: flex-start; gap: 8px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 4px;">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <span>${settings.address.replace(/,\s*/g, ',<br>')}</span>
+                        </li>
+                    </ul>
+                    <div class="footer-social-icons" style="display: flex; gap: 1rem;">
+                        <a href="${settings.facebook}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="${settings.instagram}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="${settings.linkedin}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center;">
+                <div class="footer-bottom-links" style="display: flex; gap: 2rem; justify-content: center; margin-bottom: 1rem; font-size: 0.9rem; opacity: 0.8; flex-wrap: wrap;">
+                    <a href="${rootPath}privacidade/index.html" style="color: white; text-decoration: none;">Política de Privacidade</a>
+                    <a href="${rootPath}privacidade/termos.html" style="color: white; text-decoration: none;">Termos e Condições</a>
+                    <a href="${rootPath}privacidade/index.html" style="color: white; text-decoration: none;">Cookies</a>
+                    <a href="${rootPath}contactos/index.html" style="color: white; text-decoration: none;">Contactos</a>
+                </div>
+                <div style="font-size: 0.85rem; opacity: 0.7;">
+                    &copy; 2026 Mental8Works &mdash; designed by <a href="https://sueste-creative.pt/" class="sueste-link" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Sueste - Creative Agency</a>. Todos os direitos reservados.
+                </div>
+            </div>
+        </div>
+    </footer>`;
+
+        const footerRegex = /<footer[\s\S]*?<\/footer>/;
+        if (footerRegex.test(content)) {
+            content = content.replace(footerRegex, footerHtml);
+            fs.writeFileSync(filePath, content);
+        }
+    });
+    console.log('✅ Global footers synchronized and standardized.');
+}
+
 // --- Build Logic ---
 
 function buildTeamPage() {
@@ -506,6 +605,7 @@ try {
     buildBlogPreview();
     buildAboutUsPage();
     syncSettings();
+    syncFooter();
     updateSitemap();
 } catch (err) {
     console.error('❌ Build script error:', err);
