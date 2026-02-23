@@ -249,12 +249,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // This uses the professional library from CDN
     if (typeof CookieConsent !== 'undefined') {
         CookieConsent.run({
-            revision: 2,
+            revision: 3,
+            autoShow: false,
             guiOptions: {
                 consentModal: {
                     layout: "cloud",
                     position: "bottom center",
-                    equalWeightButtons: true,
+                    equalWeightButtons: false,
                     flipButtons: false
                 },
                 preferencesModal: {
@@ -322,5 +323,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+
+        // Forced 1-second delay before showing the banner as requested
+        setTimeout(() => {
+            if (!CookieConsent.getCookie('cc_cookie')) {
+                CookieConsent.show();
+            }
+        }, 1000);
     }
 });
+

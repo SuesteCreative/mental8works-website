@@ -2486,28 +2486,48 @@ p {
 
 /* ── Cookie Consent Theme Overrides ────────────────────────────────────── */
 #cc-main {
-    --cc-bg: rgba(15, 20, 40, 0.98);
-    --cc-primary-color: #ffffff;
-    --cc-secondary-color: rgba(255, 255, 255, 0.85);
+    --cc-bg: #ffffff;
+    --cc-primary-color: #0f172a;
+    --cc-secondary-color: #475569;
 
+    /* First two buttons: Teal */
     --cc-btn-primary-bg: var(--color-primary);
     --cc-btn-primary-text: #ffffff;
     --cc-btn-primary-hover-bg: #027a87;
 
-    --cc-btn-secondary-bg: rgba(255, 255, 255, 0.08);
+    --cc-btn-secondary-bg: var(--color-primary);
     --cc-btn-secondary-text: #ffffff;
-    --cc-btn-secondary-hover-bg: rgba(255, 255, 255, 0.15);
-    --cc-btn-secondary-border: rgba(255, 255, 255, 0.2);
+    --cc-btn-secondary-hover-bg: #027a87;
 
-    --cc-modal-border-radius: 16px;
-    --cc-btn-border-radius: 8px;
+    --cc-modal-border-radius: 20px;
+    --cc-btn-border-radius: 10px;
     --cc-font-family: var(--font-sans);
 }
 
-/* Glassmorphism effect for the banner */
+/* Specific styling for the third button "Gerir preferências" - Dark Blue */
+#cc-main .cm__btn[data-role="show"] {
+    background: #0f1428 !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+#cc-main .cm__btn[data-role="show"]:hover {
+    background: #1e293b !important;
+}
+
+/* Premium shadowing and border for white banner */
 #cc-main .cm--cloud {
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Ensure mobile visibility and spacing */
+@media (max-width: 768px) {
+    #cc-main .cm {
+        padding: 1.5rem !important;
+    }
+
+    #cc-main .cm__btns {
+        gap: 0.75rem !important;
+    }
 }
