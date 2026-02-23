@@ -1,38 +1,38 @@
 {
-    "hero": {
-        "title_prefix": "Encontre o seu equilíbrio",
-        "words": [
-            "interior",
-            "emocional",
-            "mental",
-            "tranquilo"
-        ],
-        "subheading": "Promovendo a saúde mental com uma abordagem humana, inclusiva e acessível. O seu bem-estar é a nossa prioridade.",
-        "image": "/assets/images/hero-banner.webp"
-    },
-    "services": [
-        {
-            "name": "Psicologia",
-            "description": "Apoio emocional especializado através de psicoterapia para adultos, crianças e jovens, focada no seu bem-estar."
-        },
-        {
-            "name": "Psiquiatria",
-            "description": "Consulta de especialidade médica focada no diagnóstico e tratamento de perturbações mentais."
-        },
-        {
-            "name": "Ação Social",
-            "description": "Como associação sem fins lucrativos, aceitamos donativos para manter a nossa missão e serviços de apoio à comunidade."
-        }
+  "hero": {
+    "title_prefix": "Encontre o seu equilíbrio",
+    "words": [
+      "interior",
+      "emocional",
+      "mental",
+      "connosco"
     ],
-    "mission": {
-        "text": "Como associação sem fins lucrativos, o nosso maior objetivo é democratizar o acesso à saúde mental. Acreditamos que o apoio psicológico não deve ser um luxo, mas um direito fundamental, independentemente da situação económica.",
-        "bubbles": [
-            "Ética",
-            "Transparência",
-            "Excelência",
-            "Sustentabilidade",
-            "Competência",
-            "Humanismo"
-        ]
+    "subheading": "Promovendo a saúde mental com uma abordagem humana, inclusiva e acessível. O seu bem-estar é a nossa prioridade.",
+    "image": "/assets/images/hero-banner.webp"
+  },
+  "services": [
+    {
+      "name": "Psicologia",
+      "description": "Apoio emocional especializado através de psicoterapia para adultos, crianças e jovens, focada no seu bem-estar."
+    },
+    {
+      "name": "Psiquiatria",
+      "description": "Consulta de especialidade médica focada no diagnóstico e tratamento de perturbações mentais."
+    },
+    {
+      "name": "Ação Social",
+      "description": "Como associação sem fins lucrativos, aceitamos donativos para manter a nossa missão e serviços de apoio à comunidade."
     }
+  ],
+  "mission": {
+    "text": "Como associação sem fins lucrativos, o nosso maior objetivo é democratizar o acesso à saúde mental. Acreditamos que o apoio psicológico não deve ser um luxo, mas um direito fundamental, independentemente da situação económica.",
+    "bubbles": [
+      "Ética",
+      "Transparência",
+      "Excelência",
+      "Sustentabilidade",
+      "Competência",
+      "Humanismo"
+    ]
+  }
 }
