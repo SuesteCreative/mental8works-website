@@ -244,36 +244,81 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // ── Cookie Consent Banner Logic (GDPR Compliant) ─────────────────────
-    if (!localStorage.getItem('cookie-consent')) {
-        const banner = document.createElement('div');
-        banner.id = 'cookie-banner';
-        banner.innerHTML = `
-            <div class="container" style="align-items: center;">
-                <p style="flex: 1; margin-right: 1.5rem;">Utilizamos cookies essenciais para garantir o funcionamento do nosso site. Caso consinta, utilizamos também cookies analíticos para melhorar a sua experiência. Pode consultar a nossa <a href="/privacidade/index.html" style="color: var(--color-primary); text-decoration: underline;">Política de Privacidade e Cookies</a> para mais informações.</p>
-                <div class="cookie-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <button class="btn btn-secondary" id="reject-cookies" style="border: 1px solid rgba(255,255,255,0.2); background: transparent; color: white;">Apenas Essenciais</button>
-                    <button class="btn btn-primary" id="accept-cookies">Aceitar Todas</button>
-                </div>
-            </div>
-        `;
-        document.body.appendChild(banner);
-
-        // Small delay to trigger animation
-        setTimeout(() => banner.classList.add('active'), 800);
-
-        const closeBanner = (status) => {
-            localStorage.setItem('cookie-consent', status);
-            banner.classList.remove('active');
-            setTimeout(() => banner.remove(), 500);
-
-            // Dispatch event for any analytics tracking logic to initialize if accepted
-            if (status === 'all') {
-                window.dispatchEvent(new Event('cookies-accepted'));
+    // ── Cookie Consent Library (vanilla-cookieconsent) ──────────────────
+    // This uses the professional library from CDN
+    if (typeof CookieConsent !== 'undefined') {
+        CookieConsent.run({
+            guiOptions: {
+                consentModal: {
+                    layout: "cloud",
+                    position: "bottom center",
+                    equalWeightButtons: true,
+                    flipButtons: false
+                },
+                preferencesModal: {
+                    layout: "list",
+                    position: "right",
+                    equalWeightButtons: true,
+                    flipButtons: false
+                }
+            },
+            categories: {
+                necessary: {
+                    readOnly: true
+                },
+                analytics: {}
+            },
+            language: {
+                default: "pt",
+                autoDetect: "browser",
+                translations: {
+                    pt: {
+                        consentModal: {
+                            title: "Olá, respeitamos a sua privacidade! 🍪",
+                            description: "Utilizamos cookies essenciais para o funcionamento do site. Se concordar, usaremos também cookies analíticos para melhorar a sua experiência.",
+                            acceptAllBtn: "Aceitar Todas",
+                            acceptNecessaryBtn: "Apenas Essenciais",
+                            showPreferencesBtn: "Gerir preferências",
+                            footer: `
+                                <a href="/privacidade/index.html">Política de Privacidade</a>
+                            `
+                        },
+                        preferencesModal: {
+                            title: "Preferências de Cookies",
+                            acceptAllBtn: "Aceitar Todas",
+                            acceptNecessaryBtn: "Apenas Essenciais",
+                            savePreferencesBtn: "Guardar definições",
+                            closeIconLabel: "Fechar",
+                            serviceCounterLabel: "Serviço|Serviços",
+                            sections: [
+                                {
+                                    title: "Uso de Cookies",
+                                    description: "Pode gerir as suas preferências sobre que cookies permitimos no nosso site."
+                                },
+                                {
+                                    title: "Cookies Estritamente Necessários <span class=\"pm__badge\">Sempre Ativos</span>",
+                                    description: "Essenciais para o funcionamento correto do site, como navegação e segurança.",
+                                    linkedCategory: "necessary"
+                                },
+                                {
+                                    title: "Cookies Analíticos",
+                                    description: "Permitem-nos compreender como os visitantes interagem com o site, ajudando-nos a melhorar o serviço.",
+                                    linkedCategory: "analytics"
+                                },
+                                {
+                                    title: "Mais Informação",
+                                    description: "Para qualquer dúvida sobre a nossa política de cookies, por favor contacte-nos."
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            onConsent: ({ cookie }) => {
+                if (CookieConsent.acceptedCategory('analytics')) {
+                    window.dispatchEvent(new Event('cookies-accepted'));
+                }
             }
-        };
-
-        document.getElementById('accept-cookies').addEventListener('click', () => closeBanner('all'));
-        document.getElementById('reject-cookies').addEventListener('click', () => closeBanner('essential'));
+        });
     }
 });
