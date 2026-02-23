@@ -610,17 +610,26 @@ p {
     }
 
     .hero-container {
-        display: block;
-        max-width: 1200px;
-    }
-
-    .hero-content {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        max-width: 1200px;
         align-items: center;
         gap: 1.5rem 5rem;
         /* Reduced row gap */
         text-align: left;
+    }
+
+    .hero-banner {
+        width: 100%;
+        height: auto;
+        border-radius: 40px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .hero-banner:hover {
+        transform: scale(1.02);
     }
 
     .hero-visual {
@@ -655,16 +664,6 @@ p {
     }
 
     /* ensuring visual center */
-
-    .hero-banner {
-        max-width: none;
-        transform: rotate(2deg);
-        margin: 0;
-    }
-
-    .hero-banner:hover {
-        transform: rotate(0);
-    }
 
     .pills-container {
         display: flex;
@@ -1283,13 +1282,14 @@ p {
 
 @media (min-width: 900px) {
     .footer-grid {
-        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        grid-template-columns: 1.5fr 1fr 1fr auto;
         text-align: left;
+        align-items: start;
     }
 
     .footer-logo-img {
-        max-height: 140px;
-        margin: 0 0 1rem;
+        max-height: 120px;
+        margin: 0;
     }
 }
 
@@ -1318,6 +1318,28 @@ p {
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
+}
+
+.footer-social-icons {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 0.5rem;
+}
+
+.footer-social-icons a {
+    color: white;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.footer-social-icons a:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.footer-bottom-links a:hover {
+    opacity: 1;
+    text-decoration: underline !important;
 }
 
 @media (min-width: 768px) {
