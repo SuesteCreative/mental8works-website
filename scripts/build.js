@@ -377,11 +377,8 @@ function syncSettings() {
             const formattedAddress = settings.address.replace(/,\s*/g, ',<br>');
 
             // 1. Footer / Contact Page blocks (span/div based)
-            // Look for address-y words and handle the common structure
             const addressBlockRegex = /(?:Av\.|Avenida|Rua|Praceta|Largo)[\s\S]{5,100}\d{4}-\d{3}[\s\S]{1,50}Lisboa/gi;
             if (content.match(addressBlockRegex)) {
-                // If it's inside a span/p/div, we should be careful. 
-                // Let's use a more localized replacement for contact boxes
                 content = content.replace(addressBlockRegex, formattedAddress);
                 changed = true;
             }
@@ -392,6 +389,31 @@ function syncSettings() {
                 content = content.replace(metaAddressRegex, `Estamos em Lisboa, ${settings.address}`);
                 changed = true;
             }
+
+            // 3. JSON-LD Address
+            const streetAddressRegex = /"streetAddress":\s*"[^"]*"/g;
+            const postalCodeRegex = /"postalCode":\s*"[^"]*"/g;
+
+            const streetMatch = settings.address.match(/^[^,]+/);
+            const zipMatch = settings.address.match(/\d{4}-\d{3}/);
+
+            if (streetMatch && content.match(streetAddressRegex)) {
+                content = content.replace(streetAddressRegex, `"streetAddress": "${streetMatch[0]}"`);
+                changed = true;
+            }
+            if (zipMatch && content.match(postalCodeRegex)) {
+                content = content.replace(postalCodeRegex, `"postalCode": "${zipMatch[0]}"`);
+                changed = true;
+            }
+        }
+
+        // Sync Telephone in JSON-LD
+        if (settings.phone) {
+            const schemaPhoneRegex = /"telephone":\s*"[^"]*"/g;
+            if (content.match(schemaPhoneRegex)) {
+                content = content.replace(schemaPhoneRegex, `"telephone": "${settings.phone}"`);
+                changed = true;
+            }
         }
 
         if (changed) {
@@ -400,6 +422,40 @@ function syncSettings() {
     });
     console.log('✅ Global settings synchronized.');
 }
+
+function updateSitemap() {
+    const sitemapPath = path.join(__dirname, '..', 'sitemap.xml');
+    if (!fs.existsSync(sitemapPath)) return;
+
+    const blogPosts = readCollection('data/blog').filter(p => p.title && p.title.trim() !== '' && p._filename !== 'odeio-segundas');
+    const today = new Date().toISOString().split('T')[0];
+
+    let sitemap = fs.readFileSync(sitemapPath, 'utf8');
+
+    // Extract base sitemap (everything before the last </urlset>)
+    const urlsetEnd = sitemap.lastIndexOf('</urlset>');
+    if (urlsetEnd === -1) return;
+
+    let newSitemap = sitemap.substring(0, urlsetEnd);
+
+    blogPosts.forEach(post => {
+        const url = `https://mental8works.pt/blog/posts/${post._filename}.html`;
+        if (!newSitemap.includes(url)) {
+            newSitemap += `
+  <url>
+    <loc>${url}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>`;
+        }
+    });
+
+    newSitemap += '\n</urlset>';
+    fs.writeFileSync(sitemapPath, newSitemap);
+    console.log('✅ Sitemap updated with blog posts.');
+}
+
 
 
 function buildBlogPreview() {
@@ -450,6 +506,7 @@ try {
     buildBlogPreview();
     buildAboutUsPage();
     syncSettings();
+    updateSitemap();
 } catch (err) {
     console.error('❌ Build script error:', err);
     process.exit(1);

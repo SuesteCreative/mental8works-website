@@ -64,4 +64,30 @@
     <priority>0.2</priority>
   </url>
 
+
+  <url>
+    <loc>https://mental8works.pt/blog/posts/desmistificar-o-suicidio.html</loc>
+    <lastmod>2026-02-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mental8works.pt/blog/posts/mudancas-no-regresso-a-rotina.html</loc>
+    <lastmod>2026-02-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mental8works.pt/blog/posts/saude-mental-recursos-e-informacoes.html</loc>
+    <lastmod>2026-02-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mental8works.pt/blog/posts/vamos-falar-de-ansiedade.html</loc>
+    <lastmod>2026-02-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>

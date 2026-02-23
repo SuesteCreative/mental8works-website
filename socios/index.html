@@ -42,8 +42,51 @@
 
     <link rel="stylesheet" href="../assets/css/styles.css?v=2.0">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
+
+    <!-- JSON-LD: LocalBusiness + MedicalOrganization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["MedicalOrganization", "LocalBusiness"],
+      "name": "Mental8Works",
+      "description": "Associação de saúde mental em Lisboa com consultas de psicologia e psiquiatria presencial e online desde 2014.",
+      "url": "https://mental8works.pt",
+      "logo": "https://mental8works.pt/assets/images/logo-mental8works-color.webp",
+      "image": "https://mental8works.pt/assets/images/hero-banner.webp",
+      "telephone": "+351 210 000 000",
+      "email": "mental8works@gmail.com",
+      "foundingDate": "2014",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua de Campolide n295 6ºdir",
+        "addressLocality": "Lisboa",
+        "postalCode": "1070-032",
+        "addressCountry": "PT"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "38.7223",
+        "longitude": "-9.1393"
+      },
+      "sameAs": [
+        "https://www.facebook.com/mental8works/",
+        "https://www.instagram.com/mental8works/",
+        "https://www.linkedin.com/company/mental8works/"
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "09:00",
+          "closes": "20:00"
+        }
+      ],
+      "medicalSpecialty": ["Psychiatry", "Psychology"],
+      "priceRange": "€€"
+    }
+    </script>
 </head>
 
 <body>
@@ -346,7 +389,7 @@
         </div>
     </footer>
 
-    
+
     <script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js" defer></script>
     <script src="../assets/js/script.js?v=2.5" defer></script>
 </body>
