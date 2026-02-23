@@ -16,6 +16,21 @@ function readCollection(dirPath) {
         });
 }
 
+function getAllHtmlFiles(dir, files_ = []) {
+    const files = fs.readdirSync(dir);
+    for (const i in files) {
+        const name = dir + '/' + files[i];
+        if (fs.statSync(name).isDirectory()) {
+            if (!name.includes('node_modules') && !name.includes('.git')) {
+                getAllHtmlFiles(name, files_);
+            }
+        } else if (name.endsWith('.html')) {
+            files_.push(name);
+        }
+    }
+    return files_;
+}
+
 // --- Build Logic ---
 
 function buildTeamPage() {
@@ -53,10 +68,7 @@ function buildTeamPage() {
                     </div>
                 </div>`).join('\n');
 
-    // REGEX IMPROVED: We capture everything between the placeholder and the closing div of the grid
     const startMarker = '<!-- CMS_TEAM_MEMBERS -->';
-    const endOfContainer = '</div>\n            </div>\n        </section>';
-
     const startIndex = html.indexOf(startMarker);
     const searchPart = html.substring(startIndex);
     const endIndex = searchPart.indexOf('</div>\n            </div>');
@@ -110,13 +122,89 @@ function buildHomePage() {
     const templatePath = path.join(__dirname, '..', 'index.html');
     let html = fs.readFileSync(templatePath, 'utf8');
 
-    if (home.hero && home.hero.words) {
-        const wordsArray = JSON.stringify(home.hero.words);
-        html = html.replace(/window\.CMS_DYNAMIC_WORDS\s*=\s*\[.*?\]/, `window.CMS_DYNAMIC_WORDS = ${wordsArray}`);
+    // Update Hero
+    if (home.hero) {
+        if (home.hero.title_prefix) {
+            html = html.replace(/(<h1>)([^<]*)(<br>)/, `$1${home.hero.title_prefix}$3`);
+        }
+        if (home.hero.words) {
+            const wordsArray = JSON.stringify(home.hero.words);
+            html = html.replace(/window\.CMS_DYNAMIC_WORDS\s*=\s*\[.*?\]/, `window.CMS_DYNAMIC_WORDS = ${wordsArray}`);
+        }
+        if (home.hero.subheading) {
+            html = html.replace(/(<p>)([\s\S]*?)(<\/p>[\s\S]*?<div class="hero-actions">)/, `$1\n                    ${home.hero.subheading}\n                $3`);
+        }
+    }
+
+    // Update Mission
+    if (home.mission && home.mission.text) {
+        html = html.replace(/(<h2 style="margin-top: 1rem;">O que Nos Define<\/h2>[\s\S]*?<p>)([\s\S]*?)(<\/p>)/, `$1${home.mission.text}$3`);
+
+        if (home.mission.bubbles) {
+            const bubblesHtml = home.mission.bubbles.map(b => `<div class="mission-bubble">${b}</div>`).join('\n                        ');
+            const bubbleContainerRegex = /<div class="mission-bubbles">[\s\S]*?<\/div>/;
+            html = html.replace(bubbleContainerRegex, `<div class="mission-bubbles">\n                        ${bubblesHtml}\n                    </div>`);
+        }
     }
 
     fs.writeFileSync(templatePath, html);
     console.log('✅ Homepage updated.');
+}
+
+function syncSettings() {
+    const settingsPath = path.join(__dirname, '..', 'data', 'settings.json');
+    if (!fs.existsSync(settingsPath)) return;
+    const settings = JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
+
+    const htmlFiles = getAllHtmlFiles(path.join(__dirname, '..'));
+
+    htmlFiles.forEach(filePath => {
+        let content = fs.readFileSync(filePath, 'utf8');
+        let changed = false;
+
+        // Sync Email
+        if (settings.email) {
+            const emailRegex = /href="mailto:.*?"/g;
+            const emailTextRegex = />[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}</g;
+            if (content.match(emailRegex)) {
+                content = content.replace(emailRegex, `href="mailto:${settings.email}"`);
+                changed = true;
+            }
+            if (content.match(emailTextRegex)) {
+                content = content.replace(emailTextRegex, `>${settings.email}<`);
+                changed = true;
+            }
+        }
+
+        // Sync Socials
+        if (settings.facebook) {
+            content = content.replace(/href="https:\/\/www\.facebook\.com\/.*?"/g, `href="${settings.facebook}"`);
+            changed = true;
+        }
+        if (settings.instagram) {
+            content = content.replace(/href="https:\/\/www\.instagram\.com\/.*?"/g, `href="${settings.instagram}"`);
+            changed = true;
+        }
+        if (settings.linkedin) {
+            content = content.replace(/href="https:\/\/www\.linkedin\.com\/company\/.*?"/g, `href="${settings.linkedin}"`);
+            changed = true;
+        }
+
+        // Sync Address in Footer (approximate match)
+        if (settings.address) {
+            const addressMatch = content.match(/<span[^>]*>Av\. Miguel Bombarda,[\s\S]*?1050-164 Lisboa<\/span>/);
+            if (addressMatch) {
+                const formattedAddress = settings.address.replace(/, /g, ',<br>');
+                content = content.replace(addressMatch[0], `<span>${formattedAddress}</span>`);
+                changed = true;
+            }
+        }
+
+        if (changed) {
+            fs.writeFileSync(filePath, content);
+        }
+    });
+    console.log('✅ Global settings synchronized.');
 }
 
 // Run
@@ -124,6 +212,7 @@ try {
     buildTeamPage();
     buildBlogIndex();
     buildHomePage();
+    syncSettings();
 } catch (err) {
     console.error('❌ Build script error:', err);
     process.exit(1);
