@@ -127,7 +127,7 @@
     <div class="menu-overlay"></div>
 
     <!-- Header -->
-                <header class="header">
+        <header class="header">
         <div class="container nav-container">
             <a href="./index.html" class="nav-logo-link">
                 <img src="./assets/images/logo-mental8works-color.webp" alt="Logótipo Mental8Works - Saúde Mental em Lisboa" class="nav-logo-img">
@@ -488,18 +488,18 @@
             </div>
 
             <div class="contact-form-wrapper">
-                <form id="contactForm" onsubmit="sendMail(event)">
+                <form id="contactForm" action="https://formspree.io/f/pedrotovarporto@gmail.com" method="POST">
                     <div class="form-group">
                         <label>Nome</label>
-                        <input type="text" class="form-control" id="contactName" required>
+                        <input type="text" class="form-control" name="Nome" id="contactName" required>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" id="contactEmail" required>
+                        <input type="email" class="form-control" name="Email" id="contactEmail" required>
                     </div>
                     <div class="form-group">
                         <label>Mensagem</label>
-                        <textarea class="form-control" rows="4" id="contactMessage" required></textarea>
+                        <textarea class="form-control" rows="4" name="Mensagem" id="contactMessage" required></textarea>
                     </div>
                     <div class="form-group checkbox-group">
                         <input type="checkbox" id="privacy" required>
@@ -518,7 +518,7 @@
 
     <!-- Footer -->
 
-                <footer class="footer reveal">
+        <footer class="footer reveal">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
