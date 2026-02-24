@@ -36,3 +36,4 @@ https://www.mental8works.pt/* https://mental8works.pt/:splat 301
 /desmistificar-o-suicidio* /blog/posts/desmistificar-o-suicidio.html 301
 
 
+/category* /blog/ 301
