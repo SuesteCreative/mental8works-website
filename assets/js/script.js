@@ -216,15 +216,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (ratio >= 0.10 && !logo.classList.contains('visible')) {
                     revealStep(0);
                 }
-                for (let i = 0; i < paths.length; i++) {
-                    const threshold = 0.20 + i * 0.12;
-                    if (ratio >= threshold && !paths[i].classList.contains('drawn')) {
-                        paths[i].classList.add('drawn');
-                        revealStep(i + 1);
+                if (ratio >= 0.20) {
+                    for (let i = 0; i < paths.length; i++) {
+                        if (!paths[i].classList.contains('drawn')) {
+                            paths[i].classList.add('drawn');
+                            revealStep(i + 1);
+                        }
                     }
                 }
             });
-        }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9] });
+        }, { threshold: [0, 0.1, 0.2, 0.3, 0.4] });
 
         missionObserver.observe(missionVisual);
     }
