@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── Navbar transparent-on-top (landing page only) ────────────────────────
     const header = document.querySelector('.header');
     const path = window.location.pathname;
-    const isLandingPage = path === '/' || path.endsWith('/index.html') && !path.includes('/blog/') && !path.includes('/about-us/') && !path.includes('/contactos/') && !path.includes('/agendamentos/') && !path.includes('/socios/') && !path.includes('/team/');
+    const isLandingPage = path === '/' || path.endsWith('/index.html') && !path.includes('/blog/') && !path.includes('/sobre-nos/') && !path.includes('/contactos/') && !path.includes('/agendamentos/') && !path.includes('/socios/') && !path.includes('/equipa/');
 
     if (header) {
         if (isLandingPage) {

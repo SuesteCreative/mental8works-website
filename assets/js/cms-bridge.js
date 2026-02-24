@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const isHomePage = path.endsWith('/') || (path.endsWith('index.html') && !path.includes('/blog/'));
 
     // Helper: determine base path depending on page depth
-    const basePath = (path.includes('/blog/') || path.includes('/about-us/') || path.includes('/contactos/') || path.includes('/agendamentos/') || path.includes('/socios/') || path.includes('/team/')) ? '../' : '';
+    const basePath = (path.includes('/blog/') || path.includes('/sobre-nos/') || path.includes('/contactos/') || path.includes('/agendamentos/') || path.includes('/socios/') || path.includes('/equipa/')) ? '../' : '';
 
     // 1. Load General Settings (contacts, social links)
     try {
