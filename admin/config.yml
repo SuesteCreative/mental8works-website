@@ -24,8 +24,6 @@ collections:
     slug: "{{slug}}"
     identifier_field: "name"
     summary: "{{name}} — {{role}}"
-    media_folder: "assets/images/equipa"
-    public_folder: "/assets/images/equipa"
     fields:
       - {label: "Nome", name: "name", widget: "string"}
       - {label: "Cargo / Especialidade", name: "role", widget: "string"}
@@ -53,8 +51,6 @@ collections:
     slug: "{{slug}}"
     identifier_field: "name"
     summary: "{{name}} — {{role}}"
-    media_folder: "assets/images/equipa"
-    public_folder: "/assets/images/equipa"
     fields:
       - {label: "Nome", name: "name", widget: "string"}
       - {label: "Cargo", name: "role", widget: "string"}
@@ -83,8 +79,6 @@ collections:
     format: "json"
     create: true
     slug: "{{slug}}"
-    media_folder: "assets/images/blog"
-    public_folder: "/assets/images/blog"
     fields:
       - {label: "Titulo", name: "title", widget: "string"}
       - {label: "Data", name: "date", widget: "datetime"}

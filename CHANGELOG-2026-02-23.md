@@ -148,6 +148,7 @@ buildTeamPage()
 - **Estética:** Altura reduzida (padding de 3rem) e layout mais limpo.
 - **Redes Sociais:** Ícones movidos da coluna principal para a coluna de **Contactos**, posicionados logo abaixo da morada para melhor hierarquia de informação.
 - **Créditos:** Texto de copyright e créditos padronizado com a **restauração do efeito de animação da "onda"** no link da Sueste Creative Agency.
+- **Layout Bottom:** Corrigido o empilhamento vertical: links agora aparecem obrigatoriamente na linha de cima e o copyright na linha de baixo, ambos centrados, eliminando a confusão visual em ecrãs largos.
 
 ### Sincronização em Escala
 - **Inovação:** Criada a função `syncFooter()` no `build.js` que percorre **todos** os ficheiros HTML do projeto e injeta o rodapé atualizado. Isto garante 100% de consistência entre páginas de serviços, blog e políticas de privacidade.
@@ -173,6 +174,7 @@ buildTeamPage()
 2b9c122  fix: user requests - footer redesign, about-us alignment, and landing page button
 22da0ed  fix: landing page about us button
 9bc8cd2  fix: restored sueste wave brand effect in footer
+1b54a0e  fix: footer bottom redesign - stacked layout
 ```
 
 ---
