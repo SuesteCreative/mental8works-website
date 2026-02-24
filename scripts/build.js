@@ -44,14 +44,12 @@ function syncFooter() {
         const relPath = path.relative(path.dirname(filePath), path.join(__dirname, '..'));
         const rootPath = relPath === '' ? './' : relPath.replace(/\\/g, '/') + '/';
 
-        const footerHtml = `
-    <!-- Footer -->
-    <footer class="footer reveal">
+        const footerHtml = `    <footer class="footer reveal">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <a href="${rootPath}index.html" class="footer-logo-link">
-                        <img src="${rootPath}assets/images/logo-mental8works-white.webp" alt="Mental8Works White Logo" class="footer-logo-img">
+                        <img src="${rootPath}assets/images/logo-mental8works-white.webp" alt="Logótipo Mental8Works Branco" class="footer-logo-img">
                     </a>
                     <p style="opacity: 0.8; font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6;">
                         Promovendo a saúde mental com excelência e humanidade desde 2014. Uma associação dedicada ao seu bem-estar.
@@ -142,12 +140,10 @@ function syncNavbar() {
 
         const logoPath = `${rootPath}assets/images/logo-mental8works-color.webp`;
 
-        const navbarHtml = `
-    <!-- Header -->
-    <header class="header">
+        const navbarHtml = `    <header class="header">
         <div class="container nav-container">
             <a href="${rootPath}index.html" class="nav-logo-link">
-                <img src="${logoPath}" alt="Mental8Works" class="nav-logo-img">
+                <img src="${logoPath}" alt="Logótipo Mental8Works - Saúde Mental em Lisboa" class="nav-logo-img">
             </a>
 
             <div class="mobile-toggle">
