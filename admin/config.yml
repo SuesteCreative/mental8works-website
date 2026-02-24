@@ -177,6 +177,18 @@ collections:
               - {label: "Titulo", name: "title", widget: "string"}
               - {label: "Texto 1", name: "text1", widget: "text"}
               - {label: "Texto 2", name: "text2", widget: "text"}
+
+          - label: "Perguntas Frequentes (FAQs)"
+            name: "faqs"
+            widget: "list"
+            label_singular: "Pergunta"
+            field:
+              label: "FAQ"
+              name: "faq"
+              widget: "object"
+              fields:
+                - {label: "Pergunta", name: "question", widget: "string"}
+                - {label: "Resposta", name: "answer", widget: "markdown"}
       - name: "socios"
         label: "Pagina Sócio"
         file: "data/socios.json"

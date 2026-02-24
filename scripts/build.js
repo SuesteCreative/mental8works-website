@@ -734,6 +734,30 @@ function buildAppointmentsPage() {
     }
 
     // Social Info Box
+    // Build FAQS logic snippet
+    
+    if (data.faqs) {
+        let faqsHtml = '<!-- CMS_APPOINTMENTS_FAQS -->\n            <div class="faq-container">\n';
+        data.faqs.forEach(f => {
+            const mdAnswer = f.faq.answer
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>');
+                
+            faqsHtml += `                <div class="faq-item">
+                    <button class="faq-question">
+                        ${f.faq.question}
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>${mdAnswer}</p>
+                    </div>
+                </div>\n`;
+        });
+        faqsHtml += '            </div>\n            <!-- END_CMS_APPOINTMENTS_FAQS -->';
+        
+        html = html.replace(/<!-- CMS_APPOINTMENTS_FAQS -->[\s\S]*?<!-- END_CMS_APPOINTMENTS_FAQS -->/, faqsHtml);
+    }
+
     if (data.social_info) {
         const socialHtml = `
             <!-- CMS_APPOINTMENTS_SOCIAL_INFO -->

@@ -14,5 +14,31 @@
         "title": "Valor Social: na Mental8Works pode encontrar consultas a preço social.",
         "text1": "A Mental8Works está sensível a situações de maior vulnerabilidade social e por isso criou consultas a preço social destinado a pessoas em situação de: desemprego, baixa médica ou Certificado de Incapacidade Temporária (CIT) e trabalhador-estudante.",
         "text2": "O valor será aplicado a partir da consulta em que for apresentado documento comprovativo da situação de vulnerabilidade social."
-    }
+    },
+    "faqs": [
+        {
+            "faq": {
+                "question": "Realizam consultas de psicologia online?",
+                "answer": "Sim! Na Mental8Works garantimos excelentes resultados através de **consultas de psicologia online** ou presenciais (nas nossas instalações em Campolide, Lisboa). Independentemente do formato, será sempre acompanhado por um psicólogo especializado de forma rígida e confidencial."
+            }
+        },
+        {
+            "faq": {
+                "question": "Qual é o preço da consulta de psicologia?",
+                "answer": "O **preço da primeira consulta de psicologia** e triagem tem o valor base de 55€, sendo que as sessões seguintes são substancialmente ajustadas e fixadas nos 45€. Pode conferir o preçário tabelado em detalhe na grelha comparativa no topo desta página."
+            }
+        },
+        {
+            "faq": {
+                "question": "De que forma as consultas são mais baratas ou acessíveis a quem precisa?",
+                "answer": "Sendo a Mental8Works uma Associação de saúde mental sem fins lucrativos, lutamos por uma rede inclusiva médica. É por isso que aplicamos condições de **Preço Social** (descidas que podem chegar a 10 euros por consulta no ato do pagamento) destinadas a pessoas desempregadas, de baixa médica ou estudantes em dificuldades. Consulte o nosso plano de Valores Sociais."
+            }
+        },
+        {
+            "faq": {
+                "question": "Qual o valor da consulta de psiquiatria?",
+                "answer": "Para a área de especialidade médica de acompanhamento contínuo, a consulta de psiquiatria arranca a partir dos 60€ (Avaliação base/Diagnóstico), fixando-se também a valores muito inferiores no regime de tratamento contínuo ou abrigo social."
+            }
+        }
+    ]
 }
