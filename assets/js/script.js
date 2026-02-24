@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const len = path.getTotalLength ? path.getTotalLength() : 300;
 
                 path.style.strokeDasharray = len;
-                path.style.strokeDashoffset = len;
+                path.style.strokeDashoffset = -len;
                 path.getBoundingClientRect();
                 path.style.strokeDashoffset = 0;
 
