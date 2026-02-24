@@ -216,5 +216,6 @@ collections:
           - {label: "Instagram", name: "instagram", widget: "string"}
           - {label: "LinkedIn", name: "linkedin", widget: "string"}
 
-# Triggering Cloudflare build to load environment variables
-# Novo deploy com chaves OAuth corrigidas
+
+# Deploying to Cloudflare Pages with GitHub OAuth
+# Last updated: 2026-02-24
