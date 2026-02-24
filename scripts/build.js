@@ -428,10 +428,129 @@ function buildHomePage() {
     console.log('✅ Homepage updated.');
 }
 
+// --- Markdown Helper ---
+function markdownToHtml(text) {
+    if (!text) return "";
+    let html = text;
+    // Bold **text**
+    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    // Links [text](url)
+    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+    // Newlines
+    html = html.replace(/\n/g, '<br>');
+    return html;
+}
+
 function buildAboutUsPage() {
     const templatePath = path.join(__dirname, '..', 'about-us', 'index.html');
     if (!fs.existsSync(templatePath)) return;
     let html = fs.readFileSync(templatePath, 'utf8');
+
+    // CMS Content
+    const dataPath = path.join(__dirname, '..', 'data', 'about.json');
+    if (fs.existsSync(dataPath)) {
+        const about = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+
+        // Hero
+        if (about.hero) {
+            const heroHtml = `
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="badge" style="background: var(--color-primary); color: white;">Nossa História</span>
+                <h1 style="margin-top: 1rem;">${about.hero.title}</h1>
+                <p class="lead" style="max-width: 800px; margin: 1.5rem auto; font-size: 1.25rem; opacity: 0.9;">
+                    ${about.hero.lead}
+                </p>
+            </div>`;
+            const heroRegex = /<!-- CMS_ABOUT_HERO -->[\s\S]*?<!-- END_CMS_ABOUT_HERO -->/;
+            if (heroRegex.test(html)) {
+                html = html.replace(heroRegex, `<!-- CMS_ABOUT_HERO -->${heroHtml}\n            <!-- END_CMS_ABOUT_HERO -->`);
+            }
+        }
+
+        // History
+        if (about.history) {
+            const histHtml = `
+                <div class="reveal">
+                    <h2>${about.history.title}</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1.5rem;">
+                        ${about.history.text1}
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
+                        ${about.history.text2}
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
+                        ${about.history.text3}
+                    </p>
+                </div>`;
+            const histRegex = /<!-- CMS_ABOUT_HISTORY -->[\s\S]*?<!-- END_CMS_ABOUT_HISTORY -->/;
+            if (histRegex.test(html)) {
+                html = html.replace(histRegex, `<!-- CMS_ABOUT_HISTORY -->${histHtml}\n                <!-- END_CMS_ABOUT_HISTORY -->`);
+            }
+        }
+
+        // Social
+        if (about.social_component) {
+            const socialHtml = `
+                <div class="reveal">
+                    <h2>${about.social_component.title}</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1.5rem;">
+                        ${about.social_component.text}
+                    </p>
+                    <div class="neat-graph"
+                        style="margin-top: 2rem; background: white; padding: 3rem 2rem 3.5rem 3rem; border-radius: 20px; box-shadow: var(--shadow-md); position: relative; overflow: visible;">
+                        <p
+                            style="font-size: 0.75rem; color: var(--color-text-light); margin-bottom: 1rem; text-align: left;">
+                            Nº de Consultas</p>
+                        <div
+                            style="display: flex; justify-content: space-around; align-items: flex-end; height: 180px; gap: 15px; border-left: 2px solid #eee; border-bottom: 2px solid #eee; padding-left: 10px; padding-bottom: 0; margin-bottom: 2rem;">
+                            <div
+                                style="width: 60px; height: 40%; background: var(--color-primary-light); border-radius: 8px 8px 0 0; position: relative; display: flex; justify-content: center;">
+                                <span
+                                    style="position: absolute; top: -22px; font-weight: 700; color: var(--color-text-main); font-size: 0.8rem;">1200+</span>
+                                <span
+                                    style="position: absolute; bottom: -22px; color: var(--color-text-light); font-size: 0.75rem;">2014</span>
+                            </div>
+                            <div
+                                style="width: 60px; height: 65%; background: var(--color-primary); border-radius: 8px 8px 0 0; position: relative; display: flex; justify-content: center;">
+                                <span
+                                    style="position: absolute; top: -22px; font-weight: 700; color: var(--color-text-main); font-size: 0.8rem;">3500+</span>
+                                <span
+                                    style="position: absolute; bottom: -22px; color: var(--color-text-light); font-size: 0.75rem;">2019</span>
+                            </div>
+                            <div
+                                style="width: 60px; height: 95%; background: var(--color-secondary); border-radius: 8px 8px 0 0; position: relative; display: flex; justify-content: center;">
+                                <span
+                                    style="position: absolute; top: -22px; font-weight: 700; color: var(--color-text-main); font-size: 0.8rem;">5000+</span>
+                                <span
+                                    style="position: absolute; bottom: -22px; color: var(--color-text-light); font-size: 0.75rem;">2026</span>
+                            </div>
+                        </div>
+                        <p class="text-center"
+                            style="font-size: 0.9rem; color: var(--color-text-main); font-weight: 500;">
+                            Evolução do Impacto Social (Consultas Realizadas)
+                        </p>
+                    </div>
+                </div>`;
+            const socialRegex = /<!-- CMS_ABOUT_SOCIAL -->[\s\S]*?<!-- END_CMS_ABOUT_SOCIAL -->/;
+            if (socialRegex.test(html)) {
+                html = html.replace(socialRegex, `<!-- CMS_ABOUT_SOCIAL -->${socialHtml}\n                <!-- END_CMS_ABOUT_SOCIAL -->`);
+            }
+        }
+
+        // Image
+        if (about.image) {
+            const imgHtml = `
+                    <!-- CMS_ABOUT_IMAGE -->
+                    <img src="${about.image.startsWith('/') ? '..' + about.image : about.image}" alt="Equipa Mental8Works"
+                        style="width: 100%; border-radius: 20px; box-shadow: var(--shadow-lg);">
+                    <!-- END_CMS_ABOUT_IMAGE -->`;
+            const imgRegex = /<!-- CMS_ABOUT_IMAGE -->[\s\S]*?<!-- END_CMS_ABOUT_IMAGE -->/;
+            if (imgRegex.test(html)) {
+                html = html.replace(imgRegex, imgHtml);
+            }
+        }
+    }
+
     const teamNodes = readCollection('data/team');
 
     // Find key roles with exclusion to distinguish between different presidents
@@ -471,6 +590,184 @@ function buildAboutUsPage() {
 
     fs.writeFileSync(templatePath, html);
     console.log('✅ About Us page updated.');
+}
+
+function buildSociosPage() {
+    const templatePath = path.join(__dirname, '..', 'socios', 'index.html');
+    if (!fs.existsSync(templatePath)) return;
+    let html = fs.readFileSync(templatePath, 'utf8');
+
+    const dataPath = path.join(__dirname, '..', 'data', 'socios.json');
+    if (!fs.existsSync(dataPath)) return;
+    const socios = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+
+    // Hero
+    if (socios.hero) {
+        const heroHtml = `
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="badge" style="background: var(--color-secondary); color: var(--color-text-main);">Missão Social</span>
+                <h1 style="margin-top: 1rem;">${socios.hero.title}</h1>
+                <p class="lead" style="max-width: 800px; margin: 1.5rem auto; font-size: 1.25rem; opacity: 0.9;">
+                    ${socios.hero.lead}
+                </p>
+            </div>`;
+        html = html.replace(/<!-- CMS_SOCIOS_HERO -->[\s\S]*?<!-- END_CMS_SOCIOS_HERO -->/, `<!-- CMS_SOCIOS_HERO -->${heroHtml}\n            <!-- END_CMS_SOCIOS_HERO -->`);
+    }
+
+    // Impacto
+    if (socios.impact) {
+        const impactHtml = `
+            <div style="max-width: 960px; margin: 0 auto; margin-bottom: 6rem; display: flex; flex-direction: column; align-items: center;"
+                class="reveal">
+                <h2 style="text-align: center; width: 100%;">${socios.impact.title}</h2>
+                <p
+                    style="font-size: 1.15rem; line-height: 1.8; margin-top: 1.5rem; text-align: center; max-width: 900px; margin-inline: auto; color: var(--color-text-main); opacity: 0.9;">
+                    ${socios.impact.text1}
+                </p>
+                <p
+                    style="font-size: 1.15rem; line-height: 1.8; margin-top: 1.2rem; text-align: center; max-width: 900px; margin-inline: auto; color: var(--color-text-main); opacity: 0.9;">
+                    ${markdownToHtml(socios.impact.text2)}
+                </p>
+                <div style="margin-top: 2rem;">
+                    <a href="../contactos/index.html" class="btn btn-primary">Quero Ser Sócio</a>
+                </div>
+            </div>`;
+        html = html.replace(/<!-- CMS_SOCIOS_IMPACT -->[\s\S]*?<!-- END_CMS_SOCIOS_IMPACT -->/, `<!-- CMS_SOCIOS_IMPACT -->${impactHtml}\n            <!-- END_CMS_SOCIOS_IMPACT -->`);
+    }
+
+    // IBAN
+    if (socios.iban) {
+        const ibanHtml = `
+            <div class="card text-center reveal"
+                style="margin: 4rem auto 0 auto; max-width: 960px; width: 100%; padding: 2.5rem; background: #ffffff; border: 1.5px solid rgba(3,145,159,0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                <span class="badge"
+                    style="background: var(--color-primary); color: white; margin-bottom: 1rem;">Donativos</span>
+                <h3 style="margin-top: 0.75rem; font-family: var(--font-serif); color: var(--color-text-main);">Apoie a
+                    Nossa Missão</h3>
+                <p style="max-width: 600px; margin: 1rem auto; font-size: 1rem;">
+                    Pode também contribuir directamente para a nossa missão através de transferência bancária.
+                </p>
+                <div
+                    style="display: inline-flex; align-items: center; gap: 0.75rem; background: #f8fafc; border: 1.5px solid rgba(3,145,159,0.2); border-radius: 14px; padding: 1rem 2rem; margin-top: 0.5rem; box-shadow: 0 4px 16px rgba(3,145,159,0.08);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                        stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="5" width="20" height="14" rx="2" />
+                        <line x1="2" y1="10" x2="22" y2="10" />
+                    </svg>
+                    <span
+                        style="font-family: 'Outfit', monospace; font-size: 1.05rem; font-weight: 600; letter-spacing: 0.05em; color: var(--color-text-main);">${socios.iban}</span>
+                </div>
+                <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 1rem;">Mental8Works — IBAN para donativos</p>
+            </div>`;
+        html = html.replace(/<!-- CMS_SOCIOS_DONATIVOS -->[\s\S]*?<!-- END_CMS_SOCIOS_DONATIVOS -->/, `<!-- CMS_SOCIOS_DONATIVOS -->${ibanHtml}\n            <!-- END_CMS_SOCIOS_DONATIVOS -->`);
+    }
+
+    fs.writeFileSync(templatePath, html);
+    console.log('✅ Socios page updated.');
+}
+
+function buildAppointmentsPage() {
+    const templatePath = path.join(__dirname, '..', 'agendamentos', 'index.html');
+    if (!fs.existsSync(templatePath)) return;
+    let html = fs.readFileSync(templatePath, 'utf8');
+
+    const dataPath = path.join(__dirname, '..', 'data', 'appointments.json');
+    if (!fs.existsSync(dataPath)) return;
+    const data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+
+    // Hero Subtitle
+    if (data.hero_subtitle) {
+        const heroHtml = `
+            <div class="text-center">
+                <h1>Agende a Sua Consulta</h1>
+                <p class="lead" style="max-width: 800px; margin: 1.5rem auto 4rem;">
+                    ${data.hero_subtitle}
+                </p>
+            </div>`;
+        html = html.replace(/<!-- CMS_APPOINTMENTS_HERO -->[\s\S]*?<!-- END_CMS_APPOINTMENTS_HERO -->/, `<!-- CMS_APPOINTMENTS_HERO -->${heroHtml}\n            <!-- END_CMS_APPOINTMENTS_HERO -->`);
+    }
+
+    // Psychiatry Pricing
+    if (data.psychiatry) {
+        const psychHtml = `
+                <!-- CMS_PRICING_PSYCHIATRY -->
+                <div class="pricing-card reveal">
+                    <div class="pricing-header">
+                        <h3>Psiquiatria</h3>
+                        <div class="price-main">${data.psychiatry.first}<span> / 1ª Consulta</span></div>
+                        <div class="price-next">Seguintes: ${data.psychiatry.following}</div>
+                        <div class="price-social"
+                            style="color: var(--color-primary); font-weight: 600; margin-top: 0.5rem;">Preço social: ${data.psychiatry.social}
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Atendimento Online e Presencial</li>
+                    </ul>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScmf8ICKVDhN5RiBjPreF12jviu3av3TLlvrorxlu9lP9VSSA/viewform?usp=pp_url"
+                        target="_blank" rel="noopener noreferrer" class="btn btn-primary"
+                        style="width: 100%; border-radius: 50px;">Marcar
+                        Consulta</a>
+                </div>
+                <!-- END_CMS_PRICING_PSYCHIATRY -->`;
+        html = html.replace(/<!-- CMS_PRICING_PSYCHIATRY -->[\s\S]*?<!-- END_CMS_PRICING_PSYCHIATRY -->/, psychHtml);
+    }
+
+    // Psychology Pricing
+    if (data.psychology) {
+        const psychHtml = `
+                <!-- CMS_PRICING_PSYCHOLOGY -->
+                <div class="pricing-card reveal featured">
+                    <div class="pricing-header">
+                        <h3>Psicologia</h3>
+                        <div class="price-main">${data.psychology.first}<span> / 1ª Consulta</span></div>
+                        <div class="price-next">Seguintes: ${data.psychology.following}</div>
+                        <div class="price-social"
+                            style="color: var(--color-primary); font-weight: 600; margin-top: 0.5rem;">Preço social: ${data.psychology.social}
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Atendimento Online e Presencial</li>
+                    </ul>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfwd4SGi8fKlZjJW7xDwzFOYjrITs4AE_vcAxs2_PDKjgff5A/viewform?usp=pp_url"
+                        target="_blank" rel="noopener noreferrer" class="btn btn-primary"
+                        style="width: 100%; border-radius: 50px;">Marcar
+                        Consulta</a>
+                </div>
+                <!-- END_CMS_PRICING_PSYCHOLOGY -->`;
+        html = html.replace(/<!-- CMS_PRICING_PSYCHOLOGY -->[\s\S]*?<!-- END_CMS_PRICING_PSYCHOLOGY -->/, psychHtml);
+    }
+
+    // Social Info Box
+    if (data.social_info) {
+        const socialHtml = `
+            <!-- CMS_APPOINTMENTS_SOCIAL_INFO -->
+            <div class="social-value-box reveal" style="margin-top: 4rem;">
+                <div class="social-value-content">
+                    <div>
+                        <h4
+                            style="color: var(--color-primary); margin-bottom: 1rem; font-family: var(--font-serif); font-size: 1.5rem;">
+                            ${data.social_info.title}</h4>
+                        <p
+                            style="margin-bottom: 1rem; color: var(--color-text-main); font-size: 1.1rem; line-height: 1.8;">
+                            ${data.social_info.text1}
+                        </p>
+                        <p
+                            style="margin-bottom: 1rem; color: var(--color-text-main); font-size: 1.1rem; line-height: 1.8;">
+                            ${data.social_info.text2}
+                        </p>
+                        <hr style="opacity: 0.1; margin: 2rem 0;">
+                        <p style="font-weight: 600;">Contacte-nos para esclarecer alguma dúvida que persista.</p>
+                        <p>Email: <a href="mailto:mental8works@gmail.com"
+                                style="color: var(--color-primary);">mental8works@gmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+            <!-- END_CMS_APPOINTMENTS_SOCIAL_INFO -->`;
+        html = html.replace(/<!-- CMS_APPOINTMENTS_SOCIAL_INFO -->[\s\S]*?<!-- END_CMS_APPOINTMENTS_SOCIAL_INFO -->/, socialHtml);
+    }
+
+    fs.writeFileSync(templatePath, html);
+    console.log('✅ Appointments page updated.');
 }
 
 function syncSettings() {
@@ -659,6 +956,8 @@ try {
     buildHomePage();
     buildBlogPreview();
     buildAboutUsPage();
+    buildSociosPage();
+    buildAppointmentsPage();
     syncSettings();
     syncFooter();
     syncNavbar();
@@ -667,3 +966,4 @@ try {
     console.error('❌ Build script error:', err);
     process.exit(1);
 }
+

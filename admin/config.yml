@@ -125,7 +125,76 @@ collections:
               - label: "Bolhas"
                 name: "bubbles"
                 widget: "list"
-                field: {label: "Valor", name: "val", widget: "string"}
+                field: {label: "Valore", name: "val", widget: "string"}
+      - name: "about"
+        label: "Pagina Sobre Nós"
+        file: "data/about.json"
+        fields:
+          - label: "Cabecalho"
+            name: "hero"
+            widget: "object"
+            fields:
+              - {label: "Titulo", name: "title", widget: "string"}
+              - {label: "Subtitulo", name: "lead", widget: "text"}
+          - {label: "Imagem Principal", name: "image", widget: "image"}
+          - label: "Nossa Historia"
+            name: "history"
+            widget: "object"
+            fields:
+              - {label: "Titulo", name: "title", widget: "string"}
+              - {label: "Paragrafo 1", name: "text1", widget: "text"}
+              - {label: "Paragrafo 2", name: "text2", widget: "text"}
+              - {label: "Paragrafo 3", name: "text3", widget: "text"}
+          - label: "Componente Social"
+            name: "social_component"
+            widget: "object"
+            fields:
+              - {label: "Titulo", name: "title", widget: "string"}
+              - {label: "Texto", name: "text", widget: "text"}
+      - name: "agendamentos"
+        label: "Pagina Agendamentos"
+        file: "data/appointments.json"
+        fields:
+          - {label: "Subtitulo Hero", name: "hero_subtitle", widget: "text"}
+          - label: "Preços Psiquiatria"
+            name: "psychiatry"
+            widget: "object"
+            fields:
+              - {label: "1ª Consulta", name: "first", widget: "string"}
+              - {label: "Seguintes", name: "following", widget: "string"}
+              - {label: "Preço Social", name: "social", widget: "string"}
+          - label: "Preços Psicologia"
+            name: "psychology"
+            widget: "object"
+            fields:
+              - {label: "1ª Consulta", name: "first", widget: "string"}
+              - {label: "Seguintes", name: "following", widget: "string"}
+              - {label: "Preço Social", name: "social", widget: "string"}
+          - label: "Informação Social"
+            name: "social_info"
+            widget: "object"
+            fields:
+              - {label: "Titulo", name: "title", widget: "string"}
+              - {label: "Texto 1", name: "text1", widget: "text"}
+              - {label: "Texto 2", name: "text2", widget: "text"}
+      - name: "socios"
+        label: "Pagina Sócio"
+        file: "data/socios.json"
+        fields:
+          - label: "Cabecalho"
+            name: "hero"
+            widget: "object"
+            fields:
+              - {label: "Titulo", name: "title", widget: "string"}
+              - {label: "Subtitulo", name: "lead", widget: "text"}
+          - label: "O Impacto do seu Apoio"
+            name: "impact"
+            widget: "object"
+            fields:
+              - {label: "Titulo", name: "title", widget: "string"}
+              - {label: "Paragrafo 1", name: "text1", widget: "text"}
+              - {label: "Paragrafo 2", name: "text2", widget: "markdown"}
+          - {label: "IBAN p/ Transferencia", name: "iban", widget: "string"}
 
   # ─────────────────────────────────────────────
   #  CONFIGURAÇÕES GERAIS
