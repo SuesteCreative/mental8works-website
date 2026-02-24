@@ -60,8 +60,8 @@ function syncFooter() {
                     <h4 style="margin-bottom: 1.5rem; color: white; font-weight: 600; font-size: 1.1rem; border-bottom: 2px solid var(--color-primary); display: inline-block; padding-bottom: 5px;">Empresa</h4>
                     <ul style="opacity: 0.9; list-style: none; padding: 0;">
                         <li style="margin-bottom: 0.75rem;"><a href="${rootPath}index.html">Início</a></li>
-                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}about-us/index.html">Sobre Nós</a></li>
-                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}team/index.html">Equipa</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}sobre-nos/index.html">Sobre Nós</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}equipa/index.html">Equipa</a></li>
                         <li style="margin-bottom: 0.75rem;"><a href="${rootPath}socios/index.html">Sócio</a></li>
                     </ul>
                 </div>
@@ -157,8 +157,8 @@ function syncNavbar() {
 
             <nav class="nav-menu">
                 <a href="${rootPath}index.html#servicos" class="nav-link">Serviços</a>
-                <a href="${rootPath}about-us/index.html" class="nav-link">Sobre Nós</a>
-                <a href="${rootPath}team/index.html" class="nav-link">Equipa</a>
+                <a href="${rootPath}sobre-nos/index.html" class="nav-link">Sobre Nós</a>
+                <a href="${rootPath}equipa/index.html" class="nav-link">Equipa</a>
                 <a href="${rootPath}socios/index.html" class="nav-link">Sócio</a>
                 <a href="${rootPath}blog/index.html" class="nav-link">Blog</a>
                 <a href="${rootPath}contactos/index.html" class="nav-link">Contactos</a>
