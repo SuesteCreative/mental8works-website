@@ -130,6 +130,61 @@ function syncFooter() {
     console.log('✅ Global footers synchronized and standardized.');
 }
 
+function syncNavbar() {
+    const htmlFiles = getAllHtmlFiles(path.join(__dirname, '..'));
+
+    htmlFiles.forEach(filePath => {
+        if (filePath.includes('node_modules') || filePath.includes('.git')) return;
+
+        let content = fs.readFileSync(filePath, 'utf8');
+        const relPath = path.relative(path.dirname(filePath), path.join(__dirname, '..'));
+        const rootPath = relPath === '' ? './' : relPath.replace(/\\/g, '/') + '/';
+
+        const logoPath = `${rootPath}assets/images/logo-mental8works-color.webp`;
+
+        const navbarHtml = `
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="${rootPath}index.html" class="nav-logo-link">
+                <img src="${logoPath}" alt="Mental8Works" class="nav-logo-img">
+            </a>
+
+            <div class="mobile-toggle">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="${rootPath}index.html#services" class="nav-link">Serviços</a>
+                <a href="${rootPath}about-us/index.html" class="nav-link">Sobre Nós</a>
+                <a href="${rootPath}team/index.html" class="nav-link">Equipa</a>
+                <a href="${rootPath}socios/index.html" class="nav-link">Sócio</a>
+                <a href="${rootPath}blog/index.html" class="nav-link">Blog</a>
+                <a href="${rootPath}contactos/index.html" class="nav-link">Contactos</a>
+                <a href="${rootPath}agendamentos/index.html" class="btn btn-primary d-md-none"
+                    style="margin-top: 1rem; width: 100%;">Agendar</a>
+            </nav>
+
+            <div class="nav-actions d-none d-md-block">
+                <a href="${rootPath}agendamentos/index.html" class="btn btn-primary">Agendar</a>
+            </div>
+        </div>
+    </header>`;
+
+        const navbarRegex = /<header[\s\S]*?<\/header>/;
+        if (navbarRegex.test(content)) {
+            content = content.replace(navbarRegex, navbarHtml);
+            fs.writeFileSync(filePath, content);
+        }
+    });
+    console.log('✅ Global navbars synchronized and standardized.');
+}
+
 // --- Build Logic ---
 
 function buildTeamPage() {
@@ -606,6 +661,7 @@ try {
     buildAboutUsPage();
     syncSettings();
     syncFooter();
+    syncNavbar();
     updateSitemap();
 } catch (err) {
     console.error('❌ Build script error:', err);

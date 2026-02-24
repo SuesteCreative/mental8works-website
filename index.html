@@ -112,7 +112,7 @@
     <link rel="prefetch" href="blog/">
     <link rel="prefetch" href="agendamentos/">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
 </head>
 
@@ -130,10 +130,12 @@
     <div class="menu-overlay"></div>
 
     <!-- Header -->
+    
+    <!-- Header -->
     <header class="header">
         <div class="container nav-container">
-            <a href="#" class="nav-logo-link">
-                <img src="assets/images/logo-mental8works-color.webp" alt="Mental8Works" class="nav-logo-img">
+            <a href="./index.html" class="nav-logo-link">
+                <img src="./assets/images/logo-mental8works-color.webp" alt="Mental8Works" class="nav-logo-img">
             </a>
 
             <div class="mobile-toggle">
@@ -146,18 +148,18 @@
             </div>
 
             <nav class="nav-menu">
-                <a href="#services" class="nav-link">Serviços</a>
-                <a href="about-us/index.html" class="nav-link">Sobre Nós</a>
-                <a href="team/index.html" class="nav-link">Equipa</a>
-                <a href="socios/index.html" class="nav-link">Sócio</a>
-                <a href="blog/index.html" class="nav-link">Blog</a>
-                <a href="contactos/index.html" class="nav-link">Contactos</a>
-                <a href="agendamentos/index.html" class="btn btn-primary d-md-none"
+                <a href="./index.html#services" class="nav-link">Serviços</a>
+                <a href="./about-us/index.html" class="nav-link">Sobre Nós</a>
+                <a href="./team/index.html" class="nav-link">Equipa</a>
+                <a href="./socios/index.html" class="nav-link">Sócio</a>
+                <a href="./blog/index.html" class="nav-link">Blog</a>
+                <a href="./contactos/index.html" class="nav-link">Contactos</a>
+                <a href="./agendamentos/index.html" class="btn btn-primary d-md-none"
                     style="margin-top: 1rem; width: 100%;">Agendar</a>
             </nav>
 
             <div class="nav-actions d-none d-md-block">
-                <a href="agendamentos/index.html" class="btn btn-primary">Agendar</a>
+                <a href="./agendamentos/index.html" class="btn btn-primary">Agendar</a>
             </div>
         </div>
     </header>
@@ -405,7 +407,9 @@
 
                 <div class="contact-info">
                     <h2>Entre em Contacto</h2>
-                    <p>Como associação sem fins lucrativos, o nosso maior objetivo é democratizar o acesso à saúde mental. Acreditamos que o apoio psicológico não deve ser um luxo, mas um direito fundamental, independentemente da situação económica.</p>
+                    <p>Como associação sem fins lucrativos, o nosso maior objetivo é democratizar o acesso à saúde
+                        mental. Acreditamos que o apoio psicológico não deve ser um luxo, mas um direito fundamental,
+                        independentemente da situação económica.</p>
 
                     <div style="margin-top: 2rem;">
                         <a href="agendamentos/index.html" class="btn btn-primary"
@@ -413,24 +417,16 @@
                             📅 Agende Já a Sua Consulta
                         </a>
 
-                        <div class="contact-methods-row">
-                            <a href="mailto:mental8works@gmail.com" class="contact-method-item">
-                                <div class="btn-social">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                                </div>
-                                <span class="contact-method-text">mental8works@gmail.com</span>
-                            </a>
-                        </div>
-
                         <div class="social-buttons-row">
-                            <span class="btn-social" title="Whatsapp (Brevemente)" style="cursor: help;">
+                            <a href="mailto:mental8works@gmail.com" class="btn-social" title="Email">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round">
                                     <path
-                                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
                                 </svg>
-                            </span>
+                            </a>
                             <a href="https://www.instagram.com/mental8works/" target="_blank" rel="noopener noreferrer"
                                 class="btn-social" title="Instagram">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
@@ -460,44 +456,47 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="contact-form-wrapper">
-                    <form id="contactForm" onsubmit="sendMail(event)">
-                        <div class="form-group">
-                            <label>Nome</label>
-                            <input type="text" class="form-control" id="contactName" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-control" id="contactEmail" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Mensagem</label>
-                            <textarea class="form-control" rows="4" id="contactMessage" required></textarea>
-                        </div>
-                        <div class="form-group checkbox-group">
-                            <input type="checkbox" id="privacy" required>
-                            <label for="privacy">
-                                Li e aceito a <a href="contactos/index.html"
-                                    style="color: var(--color-primary); text-decoration: underline;">política de
-                                    privacidade</a>.
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensagem</button>
-                    </form>
-                </div>
             </div>
+
+            <div class="contact-form-wrapper">
+                <form id="contactForm" onsubmit="sendMail(event)">
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input type="text" class="form-control" id="contactName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" id="contactEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mensagem</label>
+                        <textarea class="form-control" rows="4" id="contactMessage" required></textarea>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="privacy" required>
+                        <label for="privacy">
+                            Li e aceito a <a href="contactos/index.html"
+                                style="color: var(--color-primary); text-decoration: underline;">política de
+                                privacidade</a>.
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
         </div>
     </section>
 
     <!-- Footer -->
-    
+
     <!-- Footer -->
-    
+
     <!-- Footer -->
-    
+
     <!-- Footer -->
-    
+
+    <!-- Footer -->
+
     <!-- Footer -->
     
     <!-- Footer -->
@@ -651,7 +650,7 @@
         </div>
     </div>
 
-    
+
     <script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js" defer></script>
     <script src="assets/js/script.js?v=2.5" defer></script>
 </body>
