@@ -194,7 +194,7 @@ function buildTeamPage() {
                 <div class="team-card-detailed reveal" style="transition-delay: ${0.05 + (idx * 0.05)}s;">
                     <div class="team-card-image">
                         <img src="${(() => { const p = member.photo || '/assets/images/fav-icon-color.png'; return p.startsWith('/') ? '..' + p : (p.startsWith('assets') ? '../' + p : p); })()}" alt="${member.name}"
-                            style="object-fit: cover; width: 100%; height: 100%;">
+                            width="400" height="400" style="object-fit: cover; width: 100%; height: 100%;">
                     </div>
                     <div class="team-card-info">
                         <h2>${member.name}</h2>
@@ -242,7 +242,7 @@ function buildBlogIndex() {
                 <!-- Artigo: ${post.title} -->
                 <a href="posts/${post._filename}.html" class="card blog-card">
                     <div class="blog-card-img-wrapper">
-                        <img src="${displayImage}" alt="${post.title}" loading="lazy">
+                            <img src="${displayImage}" alt="${post.title}" width="400" height="250" loading="lazy">
                     </div>
                     <div class="blog-content">
                         <p style="font-size:0.8rem; opacity:0.6; margin-bottom:0.5rem;">${new Date(post.date).toLocaleDateString('pt-PT', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
@@ -924,7 +924,7 @@ function buildBlogPreview() {
         return `
                 <a href="blog/posts/${post._filename}.html" class="card blog-card reveal" style="text-decoration:none; color:inherit; display:flex; flex-direction:column;">
                     <div class="blog-card-img-wrapper">
-                        <img src="${imgSrc}" alt="${post.title}" loading="lazy">
+                            <img src="${imgSrc}" alt="${post.title}" width="400" height="250" loading="lazy">
                     </div>
                     <div class="blog-content">
                         <p style="font-size:0.8rem; opacity:0.6; margin-bottom:0.5rem;">${date}</p>
