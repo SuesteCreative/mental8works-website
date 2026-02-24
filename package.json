@@ -8,5 +8,8 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Sueste - Creative Agency",
-    "license": "ISC"
+    "license": "ISC",
+    "devDependencies": {
+        "sharp": "^0.34.5"
+    }
 }
