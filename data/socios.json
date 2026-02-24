@@ -1,12 +1,12 @@
 {
-  "hero": {
-    "title": "Seja Sócio da Mental8Works",
-    "lead": "Ajude-nos a democratizar a saúde mental e a transformar vidas através de um cuidado acessível e humano."
-  },
-  "impact": {
-    "title": "O Impacto do seu Apoio",
-    "text1": "A Mental8Works é uma associação sem fins lucrativos que nasce da convicção de que a saúde mental é um direito, não um privilégio.",
-    "text2": "Ao tornar-se sócio ou ao apoiar a nossa missão, está a contribuir diretamente para a viabilidade da nossa **Tarifa Social**, permitindo que pessoas em situação de vulnerabilidade económica tenham acesso a psicoterapia e psiquiatria de excelência."
-  },
-  "iban": "IBAN TESTE 0000"
+    "hero": {
+        "title": "Seja Sócio da Mental8Works",
+        "lead": "Ajude-nos a democratizar a saúde mental e a transformar vidas através de um cuidado acessível e humano."
+    },
+    "impact": {
+        "title": "O Impacto do seu Apoio",
+        "text1": "A Mental8Works é uma associação sem fins lucrativos que nasce da convicção de que a saúde mental é um direito, não um privilégio.",
+        "text2": "Ao tornar-se sócio ou ao apoiar a nossa missão, está a contribuir diretamente para a viabilidade da nossa **Tarifa Social**, permitindo que pessoas em situação de vulnerabilidade económica tenham acesso a psicoterapia e psiquiatria de excelência."
+    },
+    "iban": "PT50 0045 9060 4028 0189 3134 2"
 }
