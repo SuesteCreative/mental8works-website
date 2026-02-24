@@ -272,9 +272,11 @@ p {
     position: absolute;
     border-radius: 50%;
     filter: blur(60px);
-    animation: floatBlobs 3s infinite alternate ease-in-out;
-    opacity: 0.6;
+    animation: floatBlobs 12s infinite alternate ease-in-out;
+    opacity: 0.4;
     background: radial-gradient(circle, currentColor 0%, transparent 70%);
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .blob-1 {
@@ -283,7 +285,7 @@ p {
     width: 250px;
     height: 250px;
     color: rgba(240, 190, 68, 0.5);
-    animation: floatBlobs 2s infinite alternate ease-in-out;
+    animation: floatBlobs 8s infinite alternate ease-in-out;
 }
 
 .blob-2 {
@@ -301,7 +303,7 @@ p {
     width: 200px;
     height: 200px;
     color: rgba(240, 190, 68, 0.5);
-    animation: floatBlobs 9s infinite alternate ease-in-out;
+    animation: floatBlobs 14s infinite alternate ease-in-out;
 }
 
 .blob-4 {
@@ -349,15 +351,15 @@ p {
 
 @keyframes floatBlobs {
     0% {
-        transform: translate(0, 0) scale(1);
+        transform: translate3d(0, 0, 0) scale(1);
     }
 
     50% {
-        transform: translate(20px, -30px) scale(1.05);
+        transform: translate3d(20px, -30px, 0) scale(1.05);
     }
 
     100% {
-        transform: translate(-15px, 25px) scale(0.95);
+        transform: translate3d(-15px, 25px, 0) scale(0.95);
     }
 }
 
