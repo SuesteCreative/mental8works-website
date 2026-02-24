@@ -113,7 +113,7 @@ function syncFooter() {
                     <a href="${rootPath}contactos/index.html">Contactos</a>
                 </div>
                 <div class="footer-copyright">
-                    &copy; 2026 Mental8Works &mdash; designed by <a href="https://sueste-creative.pt/" class="sueste-link" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Sueste - Creative Agency<span class="wave-brand"><svg viewBox="0 0 60 10" preserveAspectRatio="none" style="width: 60px; height: 10px; display: inline-block; vertical-align: middle; margin-left: 4px;"><path d="M0 5 Q15 0 30 5 T60 5" fill="none" stroke="currentColor" stroke-width="2" class="wave-path" /></svg></span></a>. Todos os direitos reservados.
+                    &copy; 2026 Mental8Works &mdash; designed by <a href="https://sueste-creative.pt/" class="sueste-link" target="_blank" rel="noopener noreferrer">Sueste - Creative Agency<span class="wave-brand"><svg viewBox="0 0 60 10" preserveAspectRatio="none" style="width: 60px; height: 10px; display: inline-block; vertical-align: middle; margin-left: 4px;"><path d="M0 5 Q 7.5 0, 15 5 T 30 5 T 45 5 T 60 5" fill="none" stroke="currentColor" stroke-width="0.8"></path></svg></span></a>. Todos os direitos reservados.
                 </div>
             </div>
         </div>
