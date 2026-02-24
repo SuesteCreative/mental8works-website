@@ -103,6 +103,8 @@
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
+    <!-- LCP Fix -->
+    <link rel="preload" as="image" href="assets/images/hero-banner.webp" fetchpriority="high">
 </head>
 
 <body>
@@ -119,7 +121,7 @@
     <div class="menu-overlay"></div>
 
     <!-- Header -->
-        <header class="header">
+            <header class="header">
         <div class="container nav-container">
             <a href="./index.html" class="nav-logo-link">
                 <img src="./assets/images/logo-mental8works-color.webp" alt="Mental8Works - Saúde Mental em Lisboa" class="nav-logo-img">
@@ -159,7 +161,7 @@
                             style="color: var(--color-primary);">interior</span></span></h1>
 
                 <div class="hero-visual">
-                    <img src="assets/images/hero-banner.webp" alt="Mental8Works - Saúde Mental" class="hero-banner"
+                    <img src="assets/images/hero-banner.webp" alt="Mental8Works - Saúde Mental" class="hero-banner" fetchpriority="high"
                         width="800" height="600" decoding="async" loading="eager">
                 </div>
 
@@ -470,7 +472,7 @@
 
     <!-- Footer -->
 
-        <footer class="footer reveal">
+            <footer class="footer reveal">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">

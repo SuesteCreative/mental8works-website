@@ -2562,3 +2562,10 @@ p {
     outline: 3px solid var(--color-primary) !important;
     outline-offset: 3px !important;
 }
+
+/* Mobile Lighthouse Optimizations */
+@media (max-width: 768px) {
+    .blob {
+        display: none !important; /* Removes heavy GPU blur on mobile */
+    }
+}
