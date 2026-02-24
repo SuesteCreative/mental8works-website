@@ -1,3 +1,6 @@
+# WWW to non-WWW Redirect
+https://www.mental8works.pt/* https://mental8works.pt/:splat 301
+
 /index.html / 301
 /about-us/index.html /about-us/ 301
 /team/index.html /team/ 301
