@@ -1,11 +1,11 @@
 {
-    "name": "Alexandre Horácio",
-    "role": "Tesoureiro / Psicólogo Clínico e da Saúde",
-    "photo": "/assets/images/alexandre-horacio.webp",
-    "linkedin": "#",
-    "bio_items": [
-        "Mestre em Psicologia Clínica pela Faculdade de Psicologia da Universidade de Lisboa",
-        "Frequenta Pós-Graduação em Psicoterapia Cognitivo Comportamental pelo Instituto Português de Psicologia e outras ciências – INSPSIC",
-        "Formado em psicoterapia EMDR N1"
-    ]
+  "name": "Alexandre Horácio",
+  "role": "Tesoureiro / Psicólogo Clínico e da Saúde",
+  "photo": "/assets/images/alexandre-horacio.webp",
+  "linkedin": "https://linkedin.com/",
+  "bio_items": [
+    "Mestre em Psicologia Clínica pela Faculdade de Psicologia da Universidade de Lisboa",
+    "Frequenta Pós-Graduação em Psicoterapia Cognitivo Comportamental pelo Instituto Português de Psicologia e outras ciências – INSPSIC",
+    "Formado em psicoterapia EMDR N1"
+  ]
 }
