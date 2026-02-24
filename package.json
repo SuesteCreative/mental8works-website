@@ -4,7 +4,7 @@
     "description": "Mental8Works Website",
     "main": "index.html",
     "scripts": {
-        "build": "node scripts/build.js",
+        "build": "node scripts/optimize-all-images.js && node scripts/build.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Sueste - Creative Agency",
