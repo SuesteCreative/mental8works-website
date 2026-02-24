@@ -2268,19 +2268,16 @@ p {
     fill: none;
     stroke-width: 1.2;
     stroke-linecap: round;
-    animation: wave-morph 2s ease-in-out infinite;
-    transform-origin: 50% 50%;
+    animation: wave-slide 2s linear infinite;
 }
 
-@keyframes wave-morph {
-
-    0%,
-    100% {
-        d: path("M0 5 Q 7.5 0, 15 5 T 30 5 T 45 5 T 60 5");
+@keyframes wave-slide {
+    0% {
+        transform: translateX(0);
     }
 
-    50% {
-        d: path("M0 5 Q 7.5 10, 15 5 T 30 5 T 45 5 T 60 5");
+    100% {
+        transform: translateX(-30px);
     }
 }
 
