@@ -2249,6 +2249,19 @@ p {
     color: var(--color-primary);
 }
 
+.sueste-link {
+    font-family: inherit;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: var(--color-text-main);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.sueste-link:hover {
+    color: var(--color-primary);
+}
+
 .sueste-link svg {
     opacity: 0.6;
     transition: opacity 0.3s ease;
@@ -2266,18 +2279,25 @@ p {
 .sueste-link .wave-brand path {
     stroke: currentColor;
     fill: none;
-    stroke-width: 1.2;
-    stroke-linecap: round;
-    animation: wave-slide 2s linear infinite;
+    stroke-width: 0.8;
+    animation: wave-wobble 2s ease-in-out infinite;
+    transform-origin: center;
 }
 
-@keyframes wave-slide {
-    0% {
-        transform: translateX(0);
+.sueste-link:hover .wave-brand path {
+    animation-duration: 1s;
+    color: var(--color-primary);
+}
+
+@keyframes wave-wobble {
+
+    0%,
+    100% {
+        transform: scaleY(1.4) translateY(-1px);
     }
 
-    100% {
-        transform: translateX(-30px);
+    50% {
+        transform: scaleY(0.4) translateY(1px);
     }
 }
 
