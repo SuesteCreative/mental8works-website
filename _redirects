@@ -37,3 +37,6 @@ https://www.mental8works.pt/* https://mental8works.pt/:splat 301
 
 
 /category* /blog/ 301
+/team* /equipa/ 301
+/about-us* /sobre-nos/ 301
+/services* /#servicos 301
