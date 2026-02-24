@@ -2557,3 +2557,8 @@ p {
         gap: 0.75rem !important;
     }
 }
+/* ── Acessibilidade: Keyboard Focus ── */
+:focus-visible {
+    outline: 3px solid var(--color-primary) !important;
+    outline-offset: 3px !important;
+}

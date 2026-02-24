@@ -49,7 +49,7 @@ function syncFooter() {
             <div class="footer-grid">
                 <div class="footer-col">
                     <a href="${rootPath}index.html" class="footer-logo-link">
-                        <img src="${rootPath}assets/images/logo-mental8works-white.webp" alt="Logótipo Mental8Works Branco" class="footer-logo-img">
+                        <img src="${rootPath}assets/images/logo-mental8works-white.webp" alt="Mental8Works Associação" class="footer-logo-img">
                     </a>
                     <p style="opacity: 0.8; font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6;">
                         Promovendo a saúde mental com excelência e humanidade desde 2014. Uma associação dedicada ao seu bem-estar.
@@ -143,7 +143,7 @@ function syncNavbar() {
         const navbarHtml = `    <header class="header">
         <div class="container nav-container">
             <a href="${rootPath}index.html" class="nav-logo-link">
-                <img src="${logoPath}" alt="Logótipo Mental8Works - Saúde Mental em Lisboa" class="nav-logo-img">
+                <img src="${logoPath}" alt="Mental8Works - Saúde Mental em Lisboa" class="nav-logo-img">
             </a>
 
             <div class="mobile-toggle">
@@ -537,7 +537,7 @@ function buildAboutUsPage() {
         if (about.image) {
             const imgHtml = `
                     <!-- CMS_ABOUT_IMAGE -->
-                    <img src="${about.image.startsWith('/') ? '..' + about.image : about.image}" alt="Equipa Mental8Works"
+                    <img src="${about.image.startsWith('/') ? '..' + about.image : about.image}" alt="Fotografia da equipa de psicólogos e psiquiatras da Mental8Works em Lisboa"
                         style="width: 100%; border-radius: 20px; box-shadow: var(--shadow-lg);">
                     <!-- END_CMS_ABOUT_IMAGE -->`;
             const imgRegex = /<!-- CMS_ABOUT_IMAGE -->[\s\S]*?<!-- END_CMS_ABOUT_IMAGE -->/;
