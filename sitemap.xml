@@ -9,14 +9,14 @@
   </url>
 
   <url>
-    <loc>https://mental8works.pt/about-us/</loc>
+    <loc>https://mental8works.pt/sobre-nos/</loc>
     <lastmod>2026-02-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://mental8works.pt/team/</loc>
+    <loc>https://mental8works.pt/equipa/</loc>
     <lastmod>2026-02-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -101,6 +101,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+
+
+
+
+
 
 
 

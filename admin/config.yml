@@ -44,7 +44,7 @@ collections:
   - name: "team"
     label: "Equipa"
     label_singular: "Membro"
-    folder: "data/team"
+    folder: "data/equipa"
     extension: "json"
     format: "json"
     create: true

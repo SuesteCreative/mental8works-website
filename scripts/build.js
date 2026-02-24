@@ -69,7 +69,7 @@ function syncFooter() {
                 <div class="footer-col">
                     <h4 style="margin-bottom: 1.5rem; color: white; font-weight: 600; font-size: 1.1rem; border-bottom: 2px solid var(--color-primary); display: inline-block; padding-bottom: 5px;">Intervenção</h4>
                     <ul style="opacity: 0.9; list-style: none; padding: 0;">
-                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}index.html#services">Serviços</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}index.html#servicos">Serviços</a></li>
                         <li style="margin-bottom: 0.75rem;"><a href="${rootPath}blog/index.html">Blog</a></li>
                         <li style="margin-bottom: 0.75rem;"><a href="${rootPath}agendamentos/index.html">Agendamentos</a></li>
                     </ul>
@@ -156,7 +156,7 @@ function syncNavbar() {
             </div>
 
             <nav class="nav-menu">
-                <a href="${rootPath}index.html#services" class="nav-link">Serviços</a>
+                <a href="${rootPath}index.html#servicos" class="nav-link">Serviços</a>
                 <a href="${rootPath}about-us/index.html" class="nav-link">Sobre Nós</a>
                 <a href="${rootPath}team/index.html" class="nav-link">Equipa</a>
                 <a href="${rootPath}socios/index.html" class="nav-link">Sócio</a>
@@ -184,8 +184,8 @@ function syncNavbar() {
 // --- Build Logic ---
 
 function buildTeamPage() {
-    const teamNodes = readCollection('data/team');
-    const templatePath = path.join(__dirname, '..', 'team', 'index.html');
+    const teamNodes = readCollection('data/equipa');
+    const templatePath = path.join(__dirname, '..', 'equipa', 'index.html');
     if (!fs.existsSync(templatePath)) return;
     let html = fs.readFileSync(templatePath, 'utf8');
 
@@ -272,7 +272,7 @@ function buildIndividualPosts(posts) {
         return;
     }
     const template = fs.readFileSync(templatePath, 'utf8');
-    const teamNodes = readCollection('data/team');
+    const teamNodes = readCollection('data/equipa');
     const authorNodes = readCollection('data/authors');
 
     posts.forEach(post => {
@@ -438,7 +438,7 @@ function markdownToHtml(text) {
 }
 
 function buildAboutUsPage() {
-    const templatePath = path.join(__dirname, '..', 'about-us', 'index.html');
+    const templatePath = path.join(__dirname, '..', 'sobre-nos', 'index.html');
     if (!fs.existsSync(templatePath)) return;
     let html = fs.readFileSync(templatePath, 'utf8');
 
@@ -547,7 +547,7 @@ function buildAboutUsPage() {
         }
     }
 
-    const teamNodes = readCollection('data/team');
+    const teamNodes = readCollection('data/equipa');
 
     // Find key roles with exclusion to distinguish between different presidents
     const findMember = (roleKeywords, excludeKeywords = []) => {

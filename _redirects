@@ -2,22 +2,22 @@
 https://www.mental8works.pt/* https://mental8works.pt/:splat 301
 
 /index.html / 301
-/about-us/index.html /about-us/ 301
-/team/index.html /team/ 301
+/sobre-nos/index.html /sobre-nos/ 301
+/equipa/index.html /equipa/ 301
 /socios/index.html /socios/ 301
 /blog/index.html /blog/ 301
 /contactos/index.html /contactos/ 301
 /agendamentos/index.html /agendamentos/ 301
 
 # Legacy WordPress Redirects
-/quem-somos/a-equipa* /team/ 301
-/quem-somos/os-nossos-orgaos* /about-us/ 301
-/quem-somos* /about-us/ 301
+/quem-somos/a-equipa* /equipa/ 301
+/quem-somos/os-nossos-orgaos* /sobre-nos/ 301
+/quem-somos* /sobre-nos/ 301
 /marcar-consulta* /agendamentos/ 301
-/servicos* /#services 301
+/servicos* /#servicos 301
 /categoria* /blog/ 301
 /tag* /blog/ 301
-/author* /team/ 301
+/author* /equipa/ 301
 /feed* /blog/ 301
 /comments* / 301
 /2014/* /blog/ 301
