@@ -494,25 +494,28 @@
             </div>
 
             <div class="contact-form-wrapper">
-                <form id="contactForm" action="https://formsubmit.co/mental8works@gmail.com" method="POST">
-                    <input type="hidden" name="_subject" value="Nova mensagem da Mental8Works!">
-                    <input type="hidden" name="_captcha" value="false">
+                <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="dfcd6510-07c9-460f-ba60-03d967281764">
+                    <input type="hidden" name="subject" value="Nova Mensagem: Site Mental8Works (Live)">
+                    <input type="hidden" name="from_name" value="Mental8Works Website">
+                    <input type="hidden" name="redirect" value="https://mental8works.pt/obrigado/index.html">
+
                     <div class="form-group">
                         <label>Nome</label>
-                        <input type="text" class="form-control" name="Nome" id="contactName" required>
+                        <input type="text" class="form-control" name="Nome do Cliente" id="contactName" required>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" name="Email" id="contactEmail" required>
+                        <input type="email" class="form-control" name="Email de Contacto" id="contactEmail" required>
                     </div>
                     <div class="form-group">
                         <label>Mensagem</label>
                         <textarea class="form-control" rows="4" name="Mensagem" id="contactMessage" required></textarea>
                     </div>
                     <div class="form-group checkbox-group">
-                        <input type="checkbox" id="privacy" required>
+                        <input type="checkbox" id="privacy" name="Aceitou Politica Privacidade" value="Sim" required>
                         <label for="privacy">
-                            Li e aceito a <a href="contactos/index.html"
+                            Li e aceito a <a href="privacidade/index.html"
                                 style="color: var(--color-primary); text-decoration: underline;">política de
                                 privacidade</a>.
                         </label>
