@@ -39,6 +39,15 @@ collections:
       - {label: "Biografia curta", name: "bio", widget: "text", required: false, hint: "Breve descrição do autor. Aparece na página do artigo do blog."}
 
   # ─────────────────────────────────────────────
+  #  ESTADO DA EQUIPA (DUPLICADO PARA CONVENIÊNCIA)
+  # ─────────────────────────────────────────────
+  - name: "team_status_sync"
+    label: "Equipa (Visibilidade)"
+    file: "data/team_settings.json"
+    fields:
+      - {label: "Página da Equipa Ativa", name: "active", widget: "boolean", default: true, hint: "Este toggle é o mesmo que o de a 'Configurações da Equipa'. Se desativado em ambos, a página exibirá 'Em Construção'."}
+
+  # ─────────────────────────────────────────────
   #  EQUIPA
   # ─────────────────────────────────────────────
   - name: "team"
