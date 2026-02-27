@@ -118,76 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Carousel Logic Removed - Reverted to Grid Layout
 
-    // ── Hero Dynamic Word – smooth slide-clip animation ──────────────────
-    const dynamicWord = document.getElementById('dynamic-word');
-    if (dynamicWord) {
-        let words = window.CMS_DYNAMIC_WORDS ||
-            ["emocional", "mental", "pessoal", "pleno", "connosco"];
-        let wordIndex = 0;
-        let wordInterval;
-        let animating = false;
-        let loopsCompleted = 0;
 
-        const cycleWord = () => {
-            if (animating || words.length <= 1) return;
-            animating = true;
-
-            // slide out
-            dynamicWord.classList.add('word-exit');
-
-            setTimeout(() => {
-                wordIndex = (wordIndex + 1) % words.length;
-
-                // If we've returned to index 0, increment loop counter
-                if (wordIndex === 0) {
-                    loopsCompleted++;
-                }
-
-                dynamicWord.textContent = words[wordIndex];
-                dynamicWord.classList.remove('word-exit');
-                dynamicWord.classList.add('word-enter');
-
-                setTimeout(() => {
-                    dynamicWord.classList.remove('word-enter');
-                    animating = false;
-
-                    // Stop after one full loop is completed AND we are back at the first word
-                    if (loopsCompleted >= 1 && wordIndex === 0) {
-                        stopWordRotation();
-                    }
-                }, 380);
-            }, 380);
-        };
-
-        const startWordRotation = () => {
-            if (wordInterval || loopsCompleted >= 1 || words.length <= 1) return;
-            wordInterval = setInterval(cycleWord, 2500);
-        };
-        const stopWordRotation = () => {
-            if (wordInterval) {
-                clearInterval(wordInterval);
-                wordInterval = null;
-            }
-        };
-
-        // Listen for CMS data bridge updates
-        window.addEventListener('cms-words-loaded', (e) => {
-            words = e.detail;
-            wordIndex = 0;
-            loopsCompleted = 0;
-            dynamicWord.textContent = words[0];
-            stopWordRotation();
-            if (words.length > 1) startWordRotation();
-        });
-
-        // Initial start
-        startWordRotation();
-
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) stopWordRotation();
-            else if (loopsCompleted < 1 && words.length > 1) startWordRotation();
-        });
-    }
 
     // ── Mission Section – scroll-driven tentacle diagram ─────────────────
     const missionVisual = document.getElementById('mission-visual');

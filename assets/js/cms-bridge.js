@@ -42,28 +42,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Hero
             if (homeData.hero) {
-                const prefixEl = document.querySelector('.hero-content h1');
                 const dynamicWordEl = document.getElementById('dynamic-word');
-
-                // Normalize words (handle string array or object array from CMS)
-                let normalizedWords = [];
-                if (homeData.hero.words) {
-                    normalizedWords = homeData.hero.words.map(w => typeof w === 'object' ? w.word : w);
-                }
-
-                if (prefixEl && homeData.hero.title_prefix) {
-                    const wrapper = prefixEl.querySelector('.dynamic-word-wrapper');
-                    if (wrapper) {
-                        // Just update prefix if needed (though usually static)
-                    } else if (normalizedWords.length > 0) {
-                        prefixEl.innerHTML = `${homeData.hero.title_prefix} <span class="dynamic-word-wrapper"><span id="dynamic-word" style="color: var(--color-primary);">${normalizedWords[0]}</span></span>`;
-                    }
-                }
-
-                if (normalizedWords.length > 0) {
-                    window.CMS_DYNAMIC_WORDS = normalizedWords;
-                    if (dynamicWordEl) dynamicWordEl.textContent = normalizedWords[0];
-                    window.dispatchEvent(new CustomEvent('cms-words-loaded', { detail: normalizedWords }));
+                if (dynamicWordEl && homeData.hero.words && homeData.hero.words.length > 0) {
+                    // Extract first word (handle string or object array)
+                    const firstWord = typeof homeData.hero.words[0] === 'object'
+                        ? homeData.hero.words[0].word
+                        : homeData.hero.words[0];
+                    dynamicWordEl.textContent = firstWord;
                 }
 
                 const heroSub = document.querySelector('.hero-content p');

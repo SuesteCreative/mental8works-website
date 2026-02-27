@@ -756,54 +756,7 @@ p {
     }
 }
 
-/* Dynamic word always on its own line, full h1 size */
-.hero-content h1 {
-    display: block;
-}
 
-.hero-content h1>.dynamic-word-wrapper {
-    display: block;
-    overflow: hidden;
-    height: 1.2em;
-    line-height: 1.2em;
-    margin-top: 0.05em;
-}
-
-.dynamic-word-wrapper {
-    position: relative;
-    display: block;
-    overflow: hidden;
-    height: 1.2em;
-    line-height: 1.2em;
-}
-
-#dynamic-word {
-    display: block;
-    position: relative;
-    font-size: 1em;
-    font-family: inherit;
-    font-weight: inherit;
-    color: var(--color-primary);
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.word-exit {
-    transform: translateY(-100%);
-}
-
-.word-enter {
-    animation: wordSlideIn 0.35s forwards;
-}
-
-@keyframes wordSlideIn {
-    0% {
-        transform: translateY(100%);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
 
 /* Services - Updated Background */
 .grid-cards {
