@@ -258,14 +258,14 @@ function buildTeamPage() {
     } else {
         finalContent = `
                 <!-- Under Construction Section -->
-                <div class="under-construction reveal" style="min-height: 70vh; display: flex; flex-direction: column; justify-content: center; margin-top: 100px;">
+                <div class="under-construction reveal" style="grid-column: 1 / -1; width: 100%; min-height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto;">
                     <div class="brush-animation-box">
                         <div class="paint-stroke"></div>
                         <div class="brush-tool"></div>
                     </div>
-                    <div class="uc-content">
-                        <img src="../assets/images/team-construction.png" alt="Equipa em Manutenção" class="uc-visual-img" style="width: 100%; max-width: 450px; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <p style="text-align: center; margin: 0 auto; max-width: 500px; font-size: 1.25rem;">Estamos a atualizar a nossa equipa para lhe prestar um melhor serviço. Por favor, volte mais tarde. Pedimos desculpa pelo incómodo.</p>
+                    <div class="uc-content" style="text-align: center; width: 100%;">
+                        <img src="../assets/images/team-construction.png" alt="Equipa em Manutenção" class="uc-visual-img" style="width: 100%; max-width: 500px; border-radius: 20px; margin: 0 auto 2.5rem; box-shadow: 0 20px 40px rgba(0,0,0,0.12);">
+                        <p style="text-align: center; margin: 0 auto; max-width: 550px; font-size: 1.35rem; color: var(--color-text-main); line-height: 1.6;">Estamos a atualizar a nossa equipa para lhe prestar um melhor serviço. Por favor, volte mais tarde. Pedimos desculpa pelo incómodo.</p>
                     </div>
                 </div>`;
     }
