@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem Enviada | Mental8Works</title>
+    <link rel="icon" type="image/png" href="../assets/images/fav-icon-color.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        .success-page {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .success-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            width: 100%;
+            border: 1px solid var(--color-border);
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+            box-shadow: 0 10px 20px rgba(3, 145, 159, 0.2);
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--color-text-main);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Blobs (reuse same background) -->
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="success-page">
+        <div class="success-card">
+            <div class="success-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <h1>Mensagem Recebida!</h1>
+            <p>Obrigado pelo seu contacto. Recebemos a sua mensagem com sucesso e a nossa equipa irá responder-lhe com a
+                maior brevidade possível.</p>
+            <div class="btn-group">
+                <a href="../index.html" class="btn btn-primary">Voltar ao Início</a>
+                <a href="../contactos/index.html" class="btn btn-secondary">Contactos</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/script.js" defer></script>
+</body>
+
+</html>

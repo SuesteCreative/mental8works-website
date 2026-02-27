@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dynamicWord = document.getElementById('dynamic-word');
     if (dynamicWord) {
         const words = window.CMS_DYNAMIC_WORDS ||
-            ["interior", "emocional", "mental", "pessoal", "pleno", "espiritual", "connosco"];
+            ["emocional", "mental", "pessoal", "pleno", "connosco"];
         let wordIndex = 0;
         let wordInterval;
         let animating = false;

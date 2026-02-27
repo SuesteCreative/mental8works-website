@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Impacto - Mental8Works</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #03919f;
+            --color-secondary: #f0be44;
+            --color-text: #1e293b;
+            --color-bg: #ffffff;
+            --color-border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #f8fafc;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 10mm auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--color-primary);
+            padding-bottom: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--color-primary);
+            font-size: 2.2rem;
+            margin: 0;
+        }
+
+        .date {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--color-primary);
+            border-left: 5px solid var(--color-secondary);
+            padding-left: 15px;
+            margin-top: 2rem;
+            font-size: 1.4rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        th {
+            background: #f1f5f9;
+            color: var(--color-primary);
+            font-weight: 600;
+            width: 35%;
+        }
+
+        .highlight {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 2rem;
+        }
+
+        footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-border);
+            font-size: 0.8rem;
+            color: #64748b;
+            text-align: center;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .page {
+                margin: 0;
+                box-shadow: none;
+                width: 100%;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        .btn-print {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(3, 145, 159, 0.3);
+            z-index: 100;
+            transition: transform 0.2s;
+        }
+
+        .btn-print:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="btn-print no-print" onclick="window.print()">🖨️ Imprimir para PDF</button>
+
+    <div class="page">
+        <header>
+            <div class="logo">Mental8Works</div>
+            <div class="date">Relatório Gerado em: 27 de Fevereiro de 2026</div>
+        </header>
+
+        <h1>Relatório de Padronização e Limpeza de Conteúdo</h1>
+        <p>Este documento detalha as atualizações realizadas no website para alinhar a comunicação com as diretrizes da
+            cliente.</p>
+
+        <h2>1. Identidade e Serviços</h2>
+        <table>
+            <tr>
+                <th>Remoção de Termos</th>
+                <td>Retirados os termos "espiritual", "interior" e "mediação familiar" das seções de psicologia e
+                    serviços.</td>
+            </tr>
+            <tr>
+                <th>Novas Descrições</th>
+                <td>Atualizada a descrição de <b>Psicologia</b> (foco em consultas clínicas) e <b>Psiquiatria</b> (foco
+                    em aspetos biológicos e farmacológicos).</td>
+            </tr>
+        </table>
+
+        <h2>2. Transição "Sócio" para "Donativos"</h2>
+        <table>
+            <tr>
+                <th>Nomenclatura</th>
+                <td>Substituição total do termo "Sócio" por <span class="highlight">Donativos</span> em todo o
+                    ecossistema do site (Menu, Rodapé, Formulários).</td>
+            </tr>
+            <tr>
+                <th>Fluxo de Apoio</th>
+                <td>Removida a opção "Quero ser sócio" para simplificar a contribuição direta.</td>
+            </tr>
+        </table>
+
+        <h2>3. Sobre Nós e Missão Social</h2>
+        <table>
+            <tr>
+                <th>Visão</th>
+                <td>Adicionado o compromisso: <i>"... norma e não apenas a exceção.."</i> na seção de missão.</td>
+            </tr>
+            <tr>
+                <th>Literacia</th>
+                <td>Nova redação sobre o papel da associação na desmistificação da saúde mental com rigor científico.
+                </td>
+            </tr>
+            <tr>
+                <th>Impacto Social</th>
+                <td>Gráfico atualizado com os marcos 2015-2020-2026. Texto de impacto simplificado, removendo listas de
+                    instituições.</td>
+            </tr>
+        </table>
+
+        <h2>4. Reestruturação da Equipa</h2>
+        <table>
+            <tr>
+                <th>Organização</th>
+                <td>Membros agora agrupados por <b>Especialidade</b> (Psiquiatria e Psicologia Clínica).</td>
+            </tr>
+            <tr>
+                <th>Senioridade</th>
+                <td>Reordenamento manual por experiência e cargos diretivos.</td>
+            </tr>
+            <tr>
+                <th>Modo Manutenção</th>
+                <td>Implementada página de construção bilingue (PT/EN) com visual centrado e animado.</td>
+            </tr>
+        </table>
+
+        <h2>5. Outros Ajustes Clínicos</h2>
+        <table>
+            <tr>
+                <th>Morada</th>
+                <td>Atualizada para: <i>Rua de Campolide, nº 295, 6º Dto, 1070-032 Lisboa</i>.</td>
+            </tr>
+            <tr>
+                <th>LinkedIn</th>
+                <td>Remoção completa de links de LinkedIn em rodapés, posts do blog e metadados SEO.</td>
+            </tr>
+            <tr>
+                <th>Tarifa Social</th>
+                <td>Adicionada nota obrigatória sobre comprovativos para <b>Trabalhadores-Estudantes</b>.</td>
+            </tr>
+        </table>
+
+        <div class="status-badge">Concluído com Sucesso</div>
+
+        <footer>
+            &copy; 2026 Mental8Works — Preparado por Antigravity AI.<br>
+            Este relatório foi otimizado para exportação em PDF.
+        </footer>
+    </div>
+
+</body>
+
+</html>

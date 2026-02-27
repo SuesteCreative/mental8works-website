@@ -28,9 +28,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (settings.instagram) {
                 document.querySelectorAll('a[href*="instagram.com"]').forEach(el => el.href = settings.instagram);
             }
-            if (settings.linkedin) {
-                document.querySelectorAll('a[href*="linkedin.com"]').forEach(el => el.href = settings.linkedin);
-            }
+            // LinkedIn removed as per client request
+
         }
     } catch (e) { console.warn('Settings not loaded:', e); }
 
@@ -99,14 +98,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             blogContainer.innerHTML = posts.map(post => {
-                const date = new Date(post.date).toLocaleDateString('pt-PT', { year: 'numeric', month: 'long', day: 'numeric' });
                 return `
                     <a href="posts/${post.slug}/index.html" class="card blog-card">
                         <div class="blog-card-img-wrapper">
                             <img src="${post.image}" alt="${post.title}" loading="lazy">
                         </div>
                         <div class="blog-content">
-                            <p style="font-size:0.8rem; opacity:0.6; margin-bottom:0.5rem;">${date}</p>
                             <h3>${post.title}</h3>
                             <p>${post.summary}</p>
                             <span style="color: var(--color-primary); font-weight: 600;">Ler mais &rarr;</span>
@@ -120,4 +117,99 @@ document.addEventListener('DOMContentLoaded', async () => {
             blogContainer.innerHTML = '<p class="text-center" style="grid-column:1/-1;opacity:0.6;">Nenhum artigo encontrado.</p>';
         }
     }
+
+    // 4. Team Page Logic
+    const isTeamPage = path.includes('/equipa/');
+    if (isTeamPage) {
+        const teamContainer = document.getElementById('team-members-container');
+        if (teamContainer) {
+            try {
+                // Check if page should be visible or show Under Construction
+                let isPageActive = true;
+                try {
+                    const settingsRes = await fetch(`${basePath}data/team_settings.json?v=${new Date().getTime()}`);
+                    if (settingsRes.ok) {
+                        const s = await settingsRes.json();
+                        isPageActive = s.active;
+                    }
+                } catch (e) { console.warn('Team settings not loaded, defaulting to active'); }
+
+                if (!isPageActive) {
+                    // Show UC section (handled by the static HTML overlay usually, 
+                    // but here we ensure the container only shows the UC message if we want)
+                    // If the static HTML already has the UC message, we just don't hide it.
+                    return;
+                }
+
+                const members = [
+                    'maria-silva',     // Psicologia (Presidente/Senior)
+                    'pedro-neto-cunha', // Psicologia (Conselho Fiscal)
+                    'alexandre-horácio',// Psicologia (Tesoureiro)
+                    'simone-vieira',    // Psicologia
+                    'joao-revez-lopes', // Psiquiatria
+                    'carla-placeholder', // Placeholder for new members
+                    'pilar-placeholder',
+                    'ines-placeholder'
+                ];
+
+                const memberData = await Promise.all(members.map(async (m) => {
+                    try {
+                        const res = await fetch(`${basePath}data/equipa/${m}.json`);
+                        return res.ok ? await res.json() : null;
+                    } catch { return null; }
+                }));
+
+                const activeMembers = memberData.filter(m => m !== null);
+
+                // Group by specialty
+                const psiquiatria = activeMembers.filter(m => m.role && m.role.toLowerCase().includes('psiq'));
+                const psicologia = activeMembers.filter(m => m.role && (m.role.toLowerCase().includes('psicól') || m.role.toLowerCase().includes('psicot')));
+
+                let html = '';
+
+                if (psiquiatria.length > 0) {
+                    html += `
+                        <div style="grid-column: 1 / -1; margin: 3rem 0 1.5rem; text-align: left;">
+                            <h2 style="color: var(--color-primary); border-bottom: 2px solid var(--color-secondary); display: inline-block; padding-bottom: 5px; font-size: 1.8rem;">Psiquiatria</h2>
+                        </div>
+                    `;
+                    html += psiquiatria.map(renderMember).join('');
+                }
+
+                if (psicologia.length > 0) {
+                    html += `
+                        <div style="grid-column: 1 / -1; margin: 4rem 0 1.5rem; text-align: left;">
+                            <h2 style="color: var(--color-primary); border-bottom: 2px solid var(--color-secondary); display: inline-block; padding-bottom: 5px; font-size: 1.8rem;">Psicologia Clínica</h2>
+                        </div>
+                    `;
+                    html += psicologia.map(renderMember).join('');
+                }
+
+                if (html) {
+                    teamContainer.innerHTML = html;
+                }
+
+            } catch (e) {
+                console.error('Error loading team:', e);
+            }
+        }
+    }
+
+    function renderMember(m) {
+        return `
+            <div class="card team-card reveal">
+                <div class="team-img-wrapper">
+                    <img src="${basePath}${m.photo.startsWith('/') ? m.photo.substring(1) : m.photo}" alt="${m.name}" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <h3 style="margin-bottom: 0.25rem;">${m.name}</h3>
+                    <p style="color: var(--color-primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">${m.role}</p>
+                    <ul style="list-style: none; padding: 0; font-size: 0.85rem; opacity: 0.8;">
+                        ${m.bio_items.map(item => `<li style="margin-bottom: 0.5rem; line-height: 1.4;">• ${item}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
+        `;
+    }
 });
+

@@ -2,7 +2,6 @@
   "hero": {
     "title_prefix": "Encontre o seu equilíbrio",
     "words": [
-      "interior",
       "emocional",
       "mental",
       "connosco"
@@ -13,11 +12,11 @@
   "services": [
     {
       "name": "Psicologia",
-      "description": "Apoio emocional especializado através de psicoterapia para adultos, crianças e jovens, focada no seu bem-estar."
+      "description": "Apoio psicológico focado no bem-estar, através de consultas de Psicologia Clínica para todas as idades."
     },
     {
       "name": "Psiquiatria",
-      "description": "Consulta de especialidade médica focada no diagnóstico e tratamento de perturbações mentais."
+      "description": "Tratamento focado nos aspetos biológicos e farmacológicos da saúde mental, com acompanhamento especializado."
     },
     {
       "name": "Ação Social",
@@ -36,5 +35,3 @@
     ]
   }
 }
-
-
