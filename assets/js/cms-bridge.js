@@ -45,22 +45,27 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const prefixEl = document.querySelector('.hero-content h1');
                 const dynamicWordEl = document.getElementById('dynamic-word');
 
+                // Normalize words (handle string array or object array from CMS)
+                let normalizedWords = [];
+                if (homeData.hero.words) {
+                    normalizedWords = homeData.hero.words.map(w => typeof w === 'object' ? w.word : w);
+                }
+
                 if (prefixEl && homeData.hero.title_prefix) {
-                    // Update only the text node before the wrapper to preserve the complex structure
                     const wrapper = prefixEl.querySelector('.dynamic-word-wrapper');
                     if (wrapper) {
-                        // Preserve wrapper, just update the prefix text if needed
-                        // prefixEl.childNodes[0].textContent = homeData.hero.title_prefix + ' ';
-                    } else if (homeData.hero.words) {
-                        // Fallback if structure is missing
-                        prefixEl.innerHTML = `${homeData.hero.title_prefix} <span class="dynamic-word-wrapper"><span id="dynamic-word" style="color: var(--color-primary);">${homeData.hero.words[0]}</span></span>`;
+                        // Just update prefix if needed (though usually static)
+                    } else if (normalizedWords.length > 0) {
+                        prefixEl.innerHTML = `${homeData.hero.title_prefix} <span class="dynamic-word-wrapper"><span id="dynamic-word" style="color: var(--color-primary);">${normalizedWords[0]}</span></span>`;
                     }
                 }
 
-                if (dynamicWordEl && homeData.hero.words) {
-                    dynamicWordEl.textContent = homeData.hero.words[0];
-                    window.CMS_DYNAMIC_WORDS = homeData.hero.words;
+                if (normalizedWords.length > 0) {
+                    window.CMS_DYNAMIC_WORDS = normalizedWords;
+                    if (dynamicWordEl) dynamicWordEl.textContent = normalizedWords[0];
+                    window.dispatchEvent(new CustomEvent('cms-words-loaded', { detail: normalizedWords }));
                 }
+
                 const heroSub = document.querySelector('.hero-content p');
                 if (heroSub && homeData.hero.subheading) heroSub.textContent = homeData.hero.subheading;
                 const heroImg = document.querySelector('.hero-banner');

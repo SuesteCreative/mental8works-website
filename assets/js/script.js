@@ -121,16 +121,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── Hero Dynamic Word – smooth slide-clip animation ──────────────────
     const dynamicWord = document.getElementById('dynamic-word');
     if (dynamicWord) {
-        const words = window.CMS_DYNAMIC_WORDS ||
+        let words = window.CMS_DYNAMIC_WORDS ||
             ["emocional", "mental", "pessoal", "pleno", "connosco"];
         let wordIndex = 0;
         let wordInterval;
         let animating = false;
-
         let loopsCompleted = 0;
 
         const cycleWord = () => {
-            if (animating) return;
+            if (animating || words.length <= 1) return;
             animating = true;
 
             // slide out
@@ -161,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const startWordRotation = () => {
-            if (wordInterval || loopsCompleted >= 1) return;
+            if (wordInterval || loopsCompleted >= 1 || words.length <= 1) return;
             wordInterval = setInterval(cycleWord, 2500);
         };
         const stopWordRotation = () => {
@@ -171,12 +170,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
+        // Listen for CMS data bridge updates
+        window.addEventListener('cms-words-loaded', (e) => {
+            words = e.detail;
+            wordIndex = 0;
+            loopsCompleted = 0;
+            dynamicWord.textContent = words[0];
+            stopWordRotation();
+            if (words.length > 1) startWordRotation();
+        });
+
         // Initial start
         startWordRotation();
 
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) stopWordRotation();
-            else if (loopsCompleted < 1) startWordRotation();
+            else if (loopsCompleted < 1 && words.length > 1) startWordRotation();
         });
     }
 
