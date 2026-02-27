@@ -1,7 +1,16 @@
 {
   "email": "mental8works@gmail.com",
   "phone": "+351 210 000 000",
-  "address": "Sede: Rua de Campolide n295 6ºdir / Consultório: Av. Miguel Bombarda n123",
+  "addresses": {
+    "sede": {
+      "sede_address": "Rua de Campolide n295 6ºdir",
+      "sede_visible": true
+    },
+    "consultorio": {
+      "consultorio_address": "Miguel Bombarda n123 2o piso",
+      "consultorio_visible": true
+    }
+  },
   "facebook": "https://www.facebook.com/mental8works/",
   "instagram": "https://www.instagram.com/mental8works/"
 }

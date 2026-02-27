@@ -224,15 +224,29 @@ collections:
       preview: false
     files:
       - name: "contacts"
-        label: "Contactos"
+        label: "Contactos e Moradas"
         file: "data/settings.json"
         fields:
           - {label: "Email", name: "email", widget: "string"}
           - {label: "Telefone", name: "phone", widget: "string"}
-          - {label: "Morada", name: "address", widget: "string"}
+          - label: "Moradas"
+            name: "addresses"
+            widget: "object"
+            fields:
+              - label: "Sede"
+                name: "sede"
+                widget: "object"
+                fields:
+                  - {label: "Endereço", name: "sede_address", widget: "string"}
+                  - {label: "Mostrar no site", name: "sede_visible", widget: "boolean", default: true}
+              - label: "Consultório"
+                name: "consultorio"
+                widget: "object"
+                fields:
+                  - {label: "Endereço", name: "consultorio_address", widget: "string"}
+                  - {label: "Mostrar no site", name: "consultorio_visible", widget: "boolean", default: true}
           - {label: "Facebook", name: "facebook", widget: "string"}
           - {label: "Instagram", name: "instagram", widget: "string"}
-          - {label: "LinkedIn", name: "linkedin", widget: "string"}
 
 # Deploying to Cloudflare Pages with GitHub OAuth
 # Last updated: 2026-02-24
