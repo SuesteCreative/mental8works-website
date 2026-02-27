@@ -196,6 +196,34 @@ function buildTeamPage() {
     if (!fs.existsSync(templatePath)) return;
     let html = fs.readFileSync(templatePath, 'utf8');
 
+    const headerRegex = /<!-- CMS_TEAM_HEADER -->[\s\S]*?<!-- END_CMS_TEAM_HEADER -->/;
+    if (isActive) {
+        // Restore header if active
+        const originalHeader = `<!-- CMS_TEAM_HEADER -->
+        <!-- Banner -->
+        <section class="banner-placeholder reveal"
+            style="height: 260px; background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light)); display: flex; align-items: center; justify-content: center; margin-top: 80px;">
+            <div class="container text-center">
+                <h1 class="reveal"
+                    style="color: var(--color-primary); font-family: var(--font-serif); font-size: 3rem;">A
+                    Nossa Equipa</h1>
+                <p class="reveal"
+                    style="font-size: 1.15rem; opacity: 0.8; max-width: 600px; margin: 0.75rem auto 0; transition-delay: 0.15s;">
+                    Conheça os especialistas
+                    dedicados ao seu bem-estar mental.</p>
+            </div>
+        </section>
+        <!-- END_CMS_TEAM_HEADER -->`;
+        if (headerRegex.test(html)) {
+            html = html.replace(headerRegex, originalHeader);
+        }
+    } else {
+        // Hide header if under construction
+        if (headerRegex.test(html)) {
+            html = html.replace(headerRegex, '<!-- CMS_TEAM_HEADER -->\n        <!-- Titulo oculto em manutencao -->\n        <!-- END_CMS_TEAM_HEADER -->');
+        }
+    }
+
     let finalContent = "";
 
     if (isActive) {
@@ -230,14 +258,14 @@ function buildTeamPage() {
     } else {
         finalContent = `
                 <!-- Under Construction Section -->
-                <div class="under-construction reveal">
+                <div class="under-construction reveal" style="min-height: 70vh; display: flex; flex-direction: column; justify-content: center; margin-top: 100px;">
                     <div class="brush-animation-box">
                         <div class="paint-stroke"></div>
                         <div class="brush-tool"></div>
                     </div>
                     <div class="uc-content">
                         <img src="../assets/images/team-construction.png" alt="Equipa em Manutenção" class="uc-visual-img" style="width: 100%; max-width: 450px; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <p style="text-align: center; margin: 0 auto; max-width: 500px;">Estamos a atualizar a nossa equipa para lhe prestar um melhor serviço. Por favor, volte mais tarde. Pedimos desculpa pelo incómodo.</p>
+                        <p style="text-align: center; margin: 0 auto; max-width: 500px; font-size: 1.25rem;">Estamos a atualizar a nossa equipa para lhe prestar um melhor serviço. Por favor, volte mais tarde. Pedimos desculpa pelo incómodo.</p>
                     </div>
                 </div>`;
     }
