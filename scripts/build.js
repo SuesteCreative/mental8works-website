@@ -236,10 +236,8 @@ function buildTeamPage() {
                         <div class="brush-tool"></div>
                     </div>
                     <div class="uc-content">
-                        <h2>Estamos a trabalhar aqui</h2>
-                        <p>Estamos a atualizar a nossa equipa para lhe prestar um melhor serviço. Por favor, volte mais tarde. Pedimos desculpa pelo incómodo.</p>
-                        <div class="uc-lang-divider"></div>
-                        <p style="opacity: 0.8; font-style: italic;">We're currently working here to update our team information. Please check back later. We apologize for the inconvenience.</p>
+                        <img src="../assets/images/team-construction.png" alt="Equipa em Manutenção" class="uc-visual-img" style="width: 100%; max-width: 450px; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <p style="text-align: center; margin: 0 auto; max-width: 500px;">Estamos a atualizar a nossa equipa para lhe prestar um melhor serviço. Por favor, volte mais tarde. Pedimos desculpa pelo incómodo.</p>
                     </div>
                 </div>`;
     }
