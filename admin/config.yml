@@ -189,6 +189,13 @@ collections:
               fields:
                 - {label: "Pergunta", name: "question", widget: "string"}
                 - {label: "Resposta", name: "answer", widget: "markdown"}
+      
+      - name: "team_settings"
+        label: "Configurações da Equipa"
+        file: "data/team_settings.json"
+        fields:
+          - {label: "Página da Equipa Ativa", name: "active", widget: "boolean", default: true, hint: "Se desativado, a página exibirá uma mensagem de 'Em Construção'."}
+
       - name: "socios"
         label: "Pagina Sócio"
         file: "data/socios.json"
@@ -227,7 +234,6 @@ collections:
           - {label: "Facebook", name: "facebook", widget: "string"}
           - {label: "Instagram", name: "instagram", widget: "string"}
           - {label: "LinkedIn", name: "linkedin", widget: "string"}
-
 
 # Deploying to Cloudflare Pages with GitHub OAuth
 # Last updated: 2026-02-24

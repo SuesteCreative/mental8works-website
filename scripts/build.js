@@ -185,11 +185,21 @@ function syncNavbar() {
 
 function buildTeamPage() {
     const teamNodes = readCollection('data/equipa');
+    const settingsPath = path.join(__dirname, '..', 'data', 'team_settings.json');
+    let isActive = true;
+    if (fs.existsSync(settingsPath)) {
+        const settings = JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
+        isActive = settings.active !== false;
+    }
+
     const templatePath = path.join(__dirname, '..', 'equipa', 'index.html');
     if (!fs.existsSync(templatePath)) return;
     let html = fs.readFileSync(templatePath, 'utf8');
 
-    const teamItemsHtml = teamNodes.map((member, idx) => `
+    let finalContent = "";
+
+    if (isActive) {
+        finalContent = teamNodes.map((member, idx) => `
                 <!-- ${member.name} (Dynamic) -->
                 <div class="team-card-detailed reveal" style="transition-delay: ${0.05 + (idx * 0.05)}s;">
                     <div class="team-card-image">
@@ -199,9 +209,9 @@ function buildTeamPage() {
                     <div class="team-card-info">
                         <h2>${member.name}</h2>
                         ${(() => {
-            if (!member.linkedin || !member.linkedin.includes('linkedin.com')) return '';
-            const url = member.linkedin.startsWith('http') ? member.linkedin : `https://${member.linkedin}`;
-            return `
+                if (!member.linkedin || !member.linkedin.includes('linkedin.com')) return '';
+                const url = member.linkedin.startsWith('http') ? member.linkedin : `https://${member.linkedin}`;
+                return `
                         <a href="${url}" target="_blank" rel="noopener noreferrer" class="linkedin-icon"
                             style="color: #0077b5; margin-bottom: 0.5rem; display: inline-flex;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
@@ -210,21 +220,37 @@ function buildTeamPage() {
                                     d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                             </svg>
                         </a>`;
-        })()}
+            })()}
                         <p class="role">${member.role}</p>
                         <ul class="bio-list">
                             ${(member.bio_items || []).map(item => `<li>${item}</li>`).join('\n                            ')}
                         </ul>
                     </div>
                 </div>`).join('\n');
+    } else {
+        finalContent = `
+                <!-- Under Construction Section -->
+                <div class="under-construction reveal">
+                    <div class="brush-animation-box">
+                        <div class="paint-stroke"></div>
+                        <div class="brush-tool"></div>
+                    </div>
+                    <div class="uc-content">
+                        <h2>Estamos a trabalhar aqui</h2>
+                        <p>Estamos a atualizar a nossa equipa para lhe prestar um melhor serviço. Por favor, volte mais tarde. Pedimos desculpa pelo incómodo.</p>
+                        <div class="uc-lang-divider"></div>
+                        <p style="opacity: 0.8; font-style: italic;">We're currently working here to update our team information. Please check back later. We apologize for the inconvenience.</p>
+                    </div>
+                </div>`;
+    }
 
     const containerRegex = /<!-- CMS_TEAM_MEMBERS -->[\s\S]*?<!-- END_CMS_TEAM_MEMBERS -->/;
-    const newContent = `<!-- CMS_TEAM_MEMBERS -->\n${teamItemsHtml}\n                    <!-- END_CMS_TEAM_MEMBERS -->`;
+    const newContent = `<!-- CMS_TEAM_MEMBERS -->\n${finalContent}\n                    <!-- END_CMS_TEAM_MEMBERS -->`;
 
     if (containerRegex.test(html)) {
         html = html.replace(containerRegex, newContent);
         fs.writeFileSync(templatePath, html);
-        console.log('✅ Team page cleaned and updated.');
+        console.log(`✅ Team page updated (${isActive ? 'Active' : 'Under Construction'}).`);
     }
 }
 
@@ -735,14 +761,14 @@ function buildAppointmentsPage() {
 
     // Social Info Box
     // Build FAQS logic snippet
-    
+
     if (data.faqs) {
         let faqsHtml = '<!-- CMS_APPOINTMENTS_FAQS -->\n            <div class="faq-container">\n';
         data.faqs.forEach(f => {
             const mdAnswer = f.faq.answer
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                 .replace(/\*(.*?)\*/g, '<em>$1</em>');
-                
+
             faqsHtml += `                <div class="faq-item">
                     <button class="faq-question">
                         ${f.faq.question}
@@ -754,7 +780,7 @@ function buildAppointmentsPage() {
                 </div>\n`;
         });
         faqsHtml += '            </div>\n            <!-- END_CMS_APPOINTMENTS_FAQS -->';
-        
+
         html = html.replace(/<!-- CMS_APPOINTMENTS_FAQS -->[\s\S]*?<!-- END_CMS_APPOINTMENTS_FAQS -->/, faqsHtml);
     }
 
