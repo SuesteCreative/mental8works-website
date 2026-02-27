@@ -10,11 +10,11 @@
   "services": [
     {
       "name": "Psicologia",
-      "description": "Apoio psicológico focado no bem-estar, através de consultas de Psicologia Clínica para todas as idades."
+      "description": "Apoio psicológico através de consultas de Psicologia Clínica para todas as idades."
     },
     {
       "name": "Psiquiatria",
-      "description": "Tratamento focado nos aspetos biológicos e farmacológicos da saúde mental, com acompanhamento especializado."
+      "description": "Tratamento focado nos aspetos biológicos e farmacológicos da saúde mental."
     },
     {
       "name": "Ação Social",

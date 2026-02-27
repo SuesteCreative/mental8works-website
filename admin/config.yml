@@ -35,7 +35,6 @@ collections:
         media_library:
           config:
             max_file_size: 2097152
-      - {label: "LinkedIn", name: "linkedin", widget: "string", required: false, hint: "URL completo do perfil LinkedIn (ex: https://www.linkedin.com/in/nome)"}
       - {label: "Biografia curta", name: "bio", widget: "text", required: false, hint: "Breve descrição do autor. Aparece na página do artigo do blog."}
 
 
@@ -63,7 +62,6 @@ collections:
         media_library:
           config:
             max_file_size: 2097152
-      - {label: "LinkedIn", name: "linkedin", widget: "string", required: false, hint: "URL completo do perfil LinkedIn (ex: https://www.linkedin.com/in/nome)"}
       - label: "Formação / Pontos biográficos"
         name: "bio_items"
         widget: "list"
@@ -82,7 +80,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - {label: "Titulo", name: "title", widget: "string"}
-      - {label: "Data", name: "date", widget: "datetime"}
+      - {label: "Data", name: "date", widget: "datetime", required: false}
       - {label: "Imagem de Destaque", name: "image", widget: "image"}
       - {label: "Resumo", name: "summary", widget: "text"}
       - label: "Autor"

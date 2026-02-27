@@ -134,12 +134,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const members = [
                     'maria-silva',     // Psicologia (Presidente/Senior)
                     'pedro-neto-cunha', // Psicologia (Conselho Fiscal)
-                    'alexandre-horácio',// Psicologia (Tesoureiro)
+                    'alexandre-horacio', // Psicologia (Tesoureiro)
                     'simone-vieira',    // Psicologia
-                    'joao-revez-lopes', // Psiquiatria
-                    'carla-placeholder', // Placeholder for new members
-                    'pilar-placeholder',
-                    'ines-placeholder'
+                    'joao-revez-lopes'  // Psiquiatria
                 ];
 
                 const memberData = await Promise.all(members.map(async (m) => {
