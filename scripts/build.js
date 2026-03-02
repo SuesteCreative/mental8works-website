@@ -396,7 +396,8 @@ function buildIndividualPosts(posts) {
 
         // Handle newlines (double newline = paragraph break, single = line break)
         const bodyWithNewlines = bodyParsed.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
-
+        const canonicalUrl = `https://mental8works.pt/blog/posts/${post._filename}.html`;
+        html = html.replace(/{{CANONICAL}}/g, canonicalUrl);
         html = html.replace(/{{BODY}}/g, bodyWithNewlines);
 
         // Hero Image

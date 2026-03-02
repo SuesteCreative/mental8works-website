@@ -1,13 +1,16 @@
-# WWW to non-WWW Redirect
+# Protocol and Domain Standardization
+http://mental8works.pt/* https://mental8works.pt/:splat 301
+http://www.mental8works.pt/* https://mental8works.pt/:splat 301
 https://www.mental8works.pt/* https://mental8works.pt/:splat 301
 
-/index.html / 301
-/sobre-nos/index.html /sobre-nos/ 301
-/equipa/index.html /equipa/ 301
-/socios/index.html /socios/ 301
-/blog/index.html /blog/ 301
-/contactos/index.html /contactos/ 301
-/agendamentos/index.html /agendamentos/ 301
+# Clean index.html redirects
+/index.html https://mental8works.pt/ 301
+/sobre-nos/index.html https://mental8works.pt/sobre-nos/ 301
+/equipa/index.html https://mental8works.pt/equipa/ 301
+/socios/index.html https://mental8works.pt/socios/ 301
+/blog/index.html https://mental8works.pt/blog/ 301
+/contactos/index.html https://mental8works.pt/contactos/ 301
+/agendamentos/index.html https://mental8works.pt/agendamentos/ 301
 
 # Legacy WordPress Redirects
 /quem-somos/a-equipa* /equipa/ 301
