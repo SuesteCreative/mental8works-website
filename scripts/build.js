@@ -48,7 +48,7 @@ function syncFooter() {
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <a href="${rootPath}index.html" class="footer-logo-link">
+                    <a href="${rootPath}" class="footer-logo-link">
                         <img src="${rootPath}assets/images/logo-mental8works-white.webp" alt="Mental8Works Associação" class="footer-logo-img">
                     </a>
                     <p style="opacity: 0.8; font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6;">
@@ -59,19 +59,19 @@ function syncFooter() {
                 <div class="footer-col">
                     <h4 style="margin-bottom: 1.5rem; color: white; font-weight: 600; font-size: 1.1rem; border-bottom: 2px solid var(--color-primary); display: inline-block; padding-bottom: 5px;">Empresa</h4>
                     <ul style="opacity: 0.9; list-style: none; padding: 0;">
-                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}index.html">Início</a></li>
-                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}sobre-nos/index.html">Sobre Nós</a></li>
-                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}equipa/index.html">Equipa</a></li>
-                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}socios/index.html">Sócio</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}">Início</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}sobre-nos/">Sobre Nós</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}equipa/">Equipa</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}socios/">Sócio</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
                     <h4 style="margin-bottom: 1.5rem; color: white; font-weight: 600; font-size: 1.1rem; border-bottom: 2px solid var(--color-primary); display: inline-block; padding-bottom: 5px;">Intervenção</h4>
                     <ul style="opacity: 0.9; list-style: none; padding: 0;">
-                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}index.html#servicos">Serviços</a></li>
-                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}blog/index.html">Blog</a></li>
-                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}agendamentos/index.html">Agendamentos</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}#servicos">Serviços</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}blog/">Blog</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}agendamentos/">Agendamentos</a></li>
                     </ul>
                 </div>
 
@@ -118,10 +118,10 @@ function syncFooter() {
 
             <div class="footer-bottom">
                 <div class="footer-bottom-links">
-                    <a href="${rootPath}privacidade/index.html">Política de Privacidade</a>
+                    <a href="${rootPath}privacidade/">Política de Privacidade</a>
                     <a href="${rootPath}privacidade/termos.html">Termos e Condições</a>
-                    <a href="${rootPath}privacidade/index.html">Cookies</a>
-                    <a href="${rootPath}contactos/index.html">Contactos</a>
+                    <a href="${rootPath}privacidade/">Cookies</a>
+                    <a href="${rootPath}contactos/">Contactos</a>
                 </div>
                 <div class="footer-copyright">
                     &copy; 2026 Mental8Works &mdash; designed by <a href="https://sueste-creative.pt/" class="sueste-link" target="_blank" rel="noopener noreferrer">Sueste - Creative Agency<span class="wave-brand"><svg viewBox="0 0 60 10" preserveAspectRatio="none" style="width: 60px; height: 10px; display: inline-block; vertical-align: middle; margin-left: 4px;"><path d="M0 5 Q 7.5 0, 15 5 T 30 5 T 45 5 T 60 5" fill="none" stroke="currentColor" stroke-width="0.8"></path></svg></span></a>. Todos os direitos reservados.
@@ -153,7 +153,7 @@ function syncNavbar() {
 
         const navbarHtml = `    <header class="header">
         <div class="container nav-container">
-            <a href="${rootPath}index.html" class="nav-logo-link">
+            <a href="${rootPath}" class="nav-logo-link">
                 <img src="${logoPath}" alt="Mental8Works - Saúde Mental em Lisboa" class="nav-logo-img">
             </a>
 
@@ -167,18 +167,18 @@ function syncNavbar() {
             </div>
 
             <nav class="nav-menu">
-                <a href="${rootPath}index.html#servicos" class="nav-link">Serviços</a>
-                <a href="${rootPath}sobre-nos/index.html" class="nav-link">Sobre Nós</a>
-                <a href="${rootPath}equipa/index.html" class="nav-link">Equipa</a>
-                <a href="${rootPath}socios/index.html" class="nav-link">Sócio</a>
-                <a href="${rootPath}blog/index.html" class="nav-link">Blog</a>
-                <a href="${rootPath}contactos/index.html" class="nav-link">Contactos</a>
-                <a href="${rootPath}agendamentos/index.html" class="btn btn-primary d-md-none"
+                <a href="${rootPath}#servicos" class="nav-link">Serviços</a>
+                <a href="${rootPath}sobre-nos/" class="nav-link">Sobre Nós</a>
+                <a href="${rootPath}equipa/" class="nav-link">Equipa</a>
+                <a href="${rootPath}socios/" class="nav-link">Sócio</a>
+                <a href="${rootPath}blog/" class="nav-link">Blog</a>
+                <a href="${rootPath}contactos/" class="nav-link">Contactos</a>
+                <a href="${rootPath}agendamentos/" class="btn btn-primary d-md-none"
                     style="margin-top: 1rem; width: 100%;">Agendar</a>
             </nav>
 
             <div class="nav-actions d-none d-md-block">
-                <a href="${rootPath}agendamentos/index.html" class="btn btn-primary">Agendar</a>
+                <a href="${rootPath}agendamentos/" class="btn btn-primary">Agendar</a>
             </div>
         </div>
     </header>`;
