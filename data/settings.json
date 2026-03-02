@@ -4,10 +4,10 @@
   "addresses": {
     "sede": {
       "sede_address": "Rua de Campolide n295 6ºdir",
-      "sede_visible": true
+      "sede_visible": false
     },
     "consultorio": {
-      "consultorio_address": "Miguel Bombarda n123 2o piso",
+      "consultorio_address": "Av. Miguel Bombarda n123 2o piso",
       "consultorio_visible": true
     }
   },
