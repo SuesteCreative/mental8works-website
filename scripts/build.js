@@ -235,10 +235,14 @@ function buildTeamPage() {
         }
     }
 
-    let finalContent = "";
+    const containerPsychiatryRegex = /<!-- CMS_TEAM_PSYCHIATRY -->[\s\S]*?<!-- END_CMS_TEAM_PSYCHIATRY -->/;
+    const containerPsychologyRegex = /<!-- CMS_TEAM_PSYCHOLOGY -->[\s\S]*?<!-- END_CMS_TEAM_PSYCHOLOGY -->/;
 
     if (isActive) {
-        finalContent = teamNodes.map((member, idx) => `
+        const psychiatryNodes = teamNodes.filter(m => m.specialty === 'Psiquiatria' || (m.role && (m.role.toLowerCase().includes('psiquiatria') || m.role.toLowerCase().includes('psiquiatra'))));
+        const psychologyNodes = teamNodes.filter(m => !psychiatryNodes.includes(m));
+
+        const renderGrid = (nodes) => nodes.map((member, idx) => `
                 <!-- ${member.name} (Dynamic) -->
                 <div class="team-card-detailed reveal" style="transition-delay: ${0.05 + (idx * 0.05)}s;">
                     <div class="team-card-image">
@@ -247,27 +251,21 @@ function buildTeamPage() {
                     </div>
                     <div class="team-card-info">
                         <h2>${member.name}</h2>
-                        ${(() => {
-                if (!member.linkedin || !member.linkedin.includes('linkedin.com')) return '';
-                const url = member.linkedin.startsWith('http') ? member.linkedin : `https://${member.linkedin}`;
-                return `
-                        <a href="${url}" target="_blank" rel="noopener noreferrer" class="linkedin-icon"
-                            style="color: #0077b5; margin-bottom: 0.5rem; display: inline-flex;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="currentColor">
-                                <path
-                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                            </svg>
-                        </a>`;
-            })()}
                         <p class="role">${member.role}</p>
                         <ul class="bio-list">
                             ${(member.bio_items || []).map(item => `<li>${item}</li>`).join('\n                            ')}
                         </ul>
                     </div>
                 </div>`).join('\n');
+
+        if (containerPsychiatryRegex.test(html)) {
+            html = html.replace(containerPsychiatryRegex, `<!-- CMS_TEAM_PSYCHIATRY -->\n${renderGrid(psychiatryNodes)}\n                    <!-- END_CMS_TEAM_PSYCHIATRY -->`);
+        }
+        if (containerPsychologyRegex.test(html)) {
+            html = html.replace(containerPsychologyRegex, `<!-- CMS_TEAM_PSYCHOLOGY -->\n${renderGrid(psychologyNodes)}\n                    <!-- END_CMS_TEAM_PSYCHOLOGY -->`);
+        }
     } else {
-        finalContent = `
+        const ucContent = `
                 <!-- Under Construction Section -->
                 <div class="under-construction reveal" style="grid-column: 1 / -1; width: 100%; min-height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto;">
                     <div class="brush-animation-box">
@@ -279,16 +277,14 @@ function buildTeamPage() {
                         <p style="text-align: center; margin: 0 auto; max-width: 550px; font-size: 1.35rem; color: var(--color-text-main); line-height: 1.6;">Estamos a atualizar a nossa equipa para lhe prestar um melhor serviço. Por favor, volte mais tarde. Pedimos desculpa pelo incómodo.</p>
                     </div>
                 </div>`;
+        if (containerPsychiatryRegex.test(html)) {
+            html = html.replace(containerPsychiatryRegex, `<!-- CMS_TEAM_PSYCHIATRY -->\n${ucContent}\n                    <!-- END_CMS_TEAM_PSYCHIATRY -->`);
+        }
+        // Psychology remains empty or also gets UC? Usually one UC is enough. Let's hide sections if inactive.
     }
 
-    const containerRegex = /<!-- CMS_TEAM_MEMBERS -->[\s\S]*?<!-- END_CMS_TEAM_MEMBERS -->/;
-    const newContent = `<!-- CMS_TEAM_MEMBERS -->\n${finalContent}\n                    <!-- END_CMS_TEAM_MEMBERS -->`;
-
-    if (containerRegex.test(html)) {
-        html = html.replace(containerRegex, newContent);
-        fs.writeFileSync(templatePath, html);
-        console.log(`✅ Team page updated (${isActive ? 'Active' : 'Under Construction'}).`);
-    }
+    fs.writeFileSync(templatePath, html);
+    console.log(`✅ Team page updated (${isActive ? 'Active' : 'Under Construction'}).`);
 }
 
 function buildBlogIndex() {

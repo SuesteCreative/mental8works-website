@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </div>
                     `;
 
-                    if (m.role.toLowerCase().includes('psiquiatria') || m.role.toLowerCase().includes('psiquiatra')) {
+                    if (m.specialty === 'Psiquiatria' || (m.role && (m.role.toLowerCase().includes('psiquiatria') || m.role.toLowerCase().includes('psiquiatra')))) {
                         psychiatryGrid.insertAdjacentHTML('beforeend', card);
                     } else {
                         psychologyGrid.insertAdjacentHTML('beforeend', card);

@@ -62,6 +62,11 @@ collections:
         media_library:
           config:
             max_file_size: 2097152
+      - label: "Especialidade"
+        name: "specialty"
+        widget: "select"
+        options: ["Psicologia", "Psiquiatria"]
+        default: "Psicologia"
       - label: "Formação / Pontos biográficos"
         name: "bio_items"
         widget: "list"
