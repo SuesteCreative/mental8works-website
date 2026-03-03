@@ -825,6 +825,38 @@ function buildAppointmentsPage() {
     console.log('✅ Appointments page updated.');
 }
 
+function buildContactPage() {
+    const templatePath = path.join(__dirname, '..', 'contactos', 'index.html');
+    if (!fs.existsSync(templatePath)) return;
+    let html = fs.readFileSync(templatePath, 'utf8');
+
+    const settingsPath = path.join(__dirname, '..', 'data', 'settings.json');
+    if (!fs.existsSync(settingsPath)) return;
+    const settings = JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
+
+    if (settings.addresses) {
+        let addrHtml = '';
+        if (settings.addresses.sede && settings.addresses.sede.sede_visible) {
+            addrHtml += `
+                                    <p style="font-weight: 600; margin-bottom: 5px;">Sede</p>
+                                    <p style="color: var(--color-text-main); margin-bottom: 12px;">${settings.addresses.sede.sede_address}</p>`;
+        }
+        if (settings.addresses.consultorio && settings.addresses.consultorio.consultorio_visible) {
+            addrHtml += `
+                                    <p style="font-weight: 600; margin-bottom: 5px;">Consultório</p>
+                                    <p style="color: var(--color-text-main);">${settings.addresses.consultorio.consultorio_address}</p>`;
+        }
+
+        const addrRegex = /<!-- CMS_CONTACT_ADDRESS -->[\s\S]*?<!-- END_CMS_CONTACT_ADDRESS -->/;
+        if (addrRegex.test(html)) {
+            html = html.replace(addrRegex, `<!-- CMS_CONTACT_ADDRESS -->${addrHtml}\n                                    <!-- END_CMS_CONTACT_ADDRESS -->`);
+        }
+    }
+
+    fs.writeFileSync(templatePath, html);
+    console.log('✅ Contact page updated.');
+}
+
 function syncSettings() {
     const settingsPath = path.join(__dirname, '..', 'data', 'settings.json');
     if (!fs.existsSync(settingsPath)) return;
@@ -879,10 +911,43 @@ function syncSettings() {
         }
 
         // Sync Address
-        if (settings.address) {
+        if (settings.addresses) {
+            const formattedSede = settings.addresses.sede && settings.addresses.sede.sede_visible ? settings.addresses.sede.sede_address : '';
+            const formattedConsultorio = settings.addresses.consultorio && settings.addresses.consultorio.consultorio_visible ? settings.addresses.consultorio.consultorio_address : '';
+
+            // SEO Meta Description Address update
+            const metaAddressRegex = /Estamos em Lisboa,.*?\d{4}-\d{3} Lisboa/gi;
+            if (content.match(metaAddressRegex)) {
+                let addrLine = '';
+                if (formattedSede) addrLine += formattedSede;
+                if (formattedConsultorio) addrLine += (addrLine ? ' e ' : '') + formattedConsultorio;
+                content = content.replace(metaAddressRegex, `Estamos em Lisboa, ${addrLine}`);
+                changed = true;
+            }
+
+            // JSON-LD Address update
+            const streetAddressRegex = /"streetAddress":\s*"[^"]*"/g;
+            const postalCodeRegex = /"postalCode":\s*"[^"]*"/g;
+
+            // Pick primary address for SEO (Consultório preferred if visible, else Sede)
+            const primaryAddress = formattedConsultorio || formattedSede;
+            if (primaryAddress) {
+                const streetMatch = primaryAddress.match(/^[^,]+/);
+                const zipMatch = primaryAddress.match(/\d{4}-\d{3}/);
+
+                if (streetMatch && content.match(streetAddressRegex)) {
+                    content = content.replace(streetAddressRegex, `"streetAddress": "${streetMatch[0]}"`);
+                    changed = true;
+                }
+                if (zipMatch && content.match(postalCodeRegex)) {
+                    content = content.replace(postalCodeRegex, `"postalCode": "${zipMatch[0]}"`);
+                    changed = true;
+                }
+            }
+        } else if (settings.address) {
             const formattedAddress = settings.address.replace(/,\s*/g, ',<br>');
 
-            // 1. Footer / Contact Page blocks (span/div based)
+            // 1. Footer / Contact Page blocks (old style)
             const addressBlockRegex = /(?:Av\.|Avenida|Rua|Praceta|Largo)[\s\S]{5,100}\d{4}-\d{3}[\s\S]{1,50}Lisboa/gi;
             if (content.match(addressBlockRegex)) {
                 content = content.replace(addressBlockRegex, formattedAddress);
@@ -1013,6 +1078,7 @@ try {
     buildAboutUsPage();
     buildSociosPage();
     buildAppointmentsPage();
+    buildContactPage();
     syncSettings();
     syncFooter();
     syncNavbar();

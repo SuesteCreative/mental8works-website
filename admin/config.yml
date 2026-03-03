@@ -155,6 +155,22 @@ collections:
             fields:
               - {label: "Titulo", name: "title", widget: "string"}
               - {label: "Texto", name: "text", widget: "text"}
+          - label: "Orgãos Sociais"
+            name: "orgaos_sociais"
+            widget: "list"
+            label_singular: "Card de Órgão"
+            collapsed: false
+            summary: "{{title}}"
+            fields:
+              - {label: "Título do Card", name: "title", widget: "string", hint: "Ex: Direção, Conselho Fiscal, etc."}
+              - {label: "Cor de Destaque", name: "accent_color", widget: "string", hint: "Ex: var(--color-primary), var(--color-secondary), ou código HEX #03919f", default: "var(--color-primary)"}
+              - label: "Membros"
+                name: "members"
+                widget: "list"
+                label_singular: "Membro"
+                fields:
+                  - {label: "Cargo / Label", name: "label", widget: "string", hint: "Ex: Presidente, Tesoureiro"}
+                  - {label: "Nome", name: "name", widget: "string"}
       - name: "agendamentos"
         label: "Pagina Agendamentos"
         file: "data/appointments.json"
