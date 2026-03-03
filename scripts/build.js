@@ -421,7 +421,12 @@ function buildHomePage() {
         }
     }
 
-    // Update Services
+    // Services Title
+    if (home.services_title) {
+        html = html.replace(/<!-- CMS_HOME_SERVICES_TITLE -->[\s\S]*?<!-- END_CMS_HOME_SERVICES_TITLE -->/, `<!-- CMS_HOME_SERVICES_TITLE -->\n            <h2 class="text-center">${home.services_title}</h2>\n            <!-- END_CMS_HOME_SERVICES_TITLE -->`);
+    }
+
+    // Update Services List
     if (home.services) {
         const servicesHtml = home.services.map((s, idx) => {
             const icon = idx === 1 ? `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2" /></svg>` :
@@ -453,15 +458,137 @@ function buildHomePage() {
         }
     }
 
+    // Support Online
+    if (home.support) {
+        const supportHtml = `
+    <section class="section reveal" style="padding-top: 0;">
+        <div class="container">
+            <div class="card"
+                style="background: var(--color-surface); padding: 3rem; border-radius: 30px; border: 1px solid rgba(var(--color-primary-rgb), 0.1);">
+                <div
+                    style="display: flex; width: 64px; height: 64px; background: rgba(3, 145, 159, 0.1); border-radius: 50%; justify-content: center; margin-bottom: 1.5rem; align-items: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 7l-7 5 7 5V7z" />
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                    </svg>
+                </div>
+                <h2 style="margin-bottom: 1rem;">${home.support.title}</h2>
+                <p style="font-size: 1.2rem; max-width: 800px; margin: 0 0 2rem 0; opacity: 0.85;">
+                    ${markdownToHtml(home.support.text)}
+                </p>
+                <a href="agendamentos/index.html" class="btn btn-primary">${home.support.button_text}</a>
+            </div>
+        </div>
+    </section>`;
+        html = html.replace(/<!-- CMS_HOME_SUPPORT -->[\s\S]*?<!-- END_CMS_HOME_SUPPORT -->/, `<!-- CMS_HOME_SUPPORT -->${supportHtml}\n    <!-- END_CMS_HOME_SUPPORT -->`);
+    }
+
+    // About Us (Landing)
+    if (home.about) {
+        const aboutHtml = `
+    <section class="section reveal section-about reveal" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <h2 style="color: var(--color-text-main);">${home.about.title}</h2>
+                    <h3 style="color: var(--color-primary); font-size: 1.25rem; line-height: 1.5;">${home.about.subtitle}</h3>
+                    <p>${home.about.text}</p>
+                    <a href="sobre-nos/index.html" class="btn btn-secondary" style="margin-top: 1.5rem;">Saber Mais</a>
+                </div>
+                <div class="about-images">
+                    <img src="${home.about.image.startsWith('/') ? '.' + home.about.image : home.about.image}"
+                        alt="${home.about.title}" loading="lazy"
+                        decoding="async" style="width: 100%; height: auto; border-radius: 12px;">
+                </div>
+            </div>
+        </div>
+    </section>`;
+        html = html.replace(/<!-- CMS_HOME_ABOUT -->[\s\S]*?<!-- END_CMS_HOME_ABOUT -->/, `<!-- CMS_HOME_ABOUT -->${aboutHtml}\n    <!-- END_CMS_HOME_ABOUT -->`);
+    }
+
     // Update Mission
-    if (home.mission && home.mission.text) {
-        html = html.replace(/(<h2 style="margin-top: 1rem;">O que Nos Define<\/h2>[\s\S]*?<p>)([\s\S]*?)(<\/p>)/, `$1${home.mission.text}$3`);
+    if (home.mission) {
+        const missionTextHtml = `
+                <div class="reveal">
+                    <span class="badge" style="background: var(--color-secondary); color: var(--color-text-main);">${home.mission.badge}</span>
+                    <h2 style="margin-top: 1rem;">${home.mission.title}</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">
+                        ${home.mission.text1}
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
+                        ${markdownToHtml(home.mission.text2)}
+                    </p>
+                </div>`;
+        html = html.replace(/<!-- CMS_HOME_MISSION_TEXT -->[\s\S]*?<!-- END_CMS_HOME_MISSION_TEXT -->/, `<!-- CMS_HOME_MISSION_TEXT -->\n${missionTextHtml}\n                <!-- END_CMS_HOME_MISSION_TEXT -->`);
 
         if (home.mission.bubbles) {
-            const bubblesHtml = home.mission.bubbles.map(b => `<div class="mission-bubble">${b}</div>`).join('\n                        ');
-            const bubbleContainerRegex = /<div class="mission-bubbles">[\s\S]*?<\/div>/;
-            html = html.replace(bubbleContainerRegex, `<div class="mission-bubbles">\n                        ${bubblesHtml}\n                    </div>`);
+            const bubblesHtml = home.mission.bubbles.map((b, idx) => {
+                const bubbleClasses = ['bubble-etica', 'bubble-transp', 'bubble-excel', 'bubble-susten', 'bubble-compet', 'bubble-humanismo'];
+                return `<div class="float-card bubble-node ${bubbleClasses[idx] || ''}" data-bubble="${idx + 1}">${b}</div>`;
+            }).join('\n                    ');
+            html = html.replace(/<!-- CMS_HOME_BUBBLES -->[\s\S]*?<!-- END_CMS_HOME_BUBBLES -->/, `<!-- CMS_HOME_BUBBLES -->\n                    ${bubblesHtml}\n                    <!-- END_CMS_HOME_BUBBLES -->`);
         }
+    }
+
+    // Training
+    if (home.training) {
+        const trainingHtml = `
+    <section class="section reveal" id="formacao" style="background: var(--color-surface);">
+        <div class="container">
+            <div class="social-value-box" style="margin-top: 0; padding: 2rem 1.5rem;">
+                <div class="social-value-content"
+                    style="align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+                    <div style="flex: 1; min-width: 200px;">
+                        <h2 style="color: var(--color-primary); margin-bottom: 1rem;">${home.training.title}</h2>
+                        <p style="font-size: 1.1rem; opacity: 0.9;">
+                            ${home.training.text}
+                        </p>
+                    </div>
+                    <a href="contactos/index.html" class="btn btn-primary" style="padding: 1rem 2.5rem;">${home.training.button_text}</a>
+                </div>
+            </div>
+        </div>
+    </section>`;
+        html = html.replace(/<!-- CMS_HOME_TRAINING -->[\s\S]*?<!-- END_CMS_HOME_TRAINING -->/, `<!-- CMS_HOME_TRAINING -->${trainingHtml}\n    <!-- END_CMS_HOME_TRAINING -->`);
+    }
+
+    // Contact
+    if (home.contact) {
+        const contactHtml = `
+                <div class="contact-info">
+                    <h2>${home.contact.title}</h2>
+                    <p>${home.contact.text}</p>
+
+                    <div style="margin-top: 2rem;">
+                        <a href="agendamentos/index.html" class="btn btn-primary"
+                            style="padding: 1rem 2rem; font-size: 1.1rem; width: 100%; text-align: center; margin-bottom: 1.5rem;">
+                            ${home.contact.button_text}
+                        </a>
+
+                        <div class="social-buttons-row">
+                            <a href="https://www.instagram.com/mental8works/" target="_blank" rel="noopener noreferrer"
+                                class="btn-social" title="Instagram">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/mental8works/" target="_blank" rel="noopener noreferrer"
+                                class="btn-social" title="Facebook">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>`;
+        html = html.replace(/<!-- CMS_HOME_CONTACT_INFO -->[\s\S]*?<!-- END_CMS_HOME_CONTACT_INFO -->/, `<!-- CMS_HOME_CONTACT_INFO -->\n${contactHtml}\n                <!-- END_CMS_HOME_CONTACT_INFO -->`);
     }
 
     fs.writeFileSync(templatePath, html);

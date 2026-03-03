@@ -7,6 +7,7 @@
     "subheading": "Promovendo a saúde mental com uma abordagem humana, inclusiva e acessível. O seu bem-estar é a nossa prioridade.",
     "image": "/assets/images/hero-banner-lighthouse.webp"
   },
+  "services_title": "Os Nossos Serviços",
   "services": [
     {
       "name": "Psicologia",
@@ -21,8 +22,22 @@
       "description": "Como associação sem fins lucrativos, aceitamos donativos para manter a nossa missão e serviços de apoio à comunidade."
     }
   ],
+  "support": {
+    "title": "Onde quer que esteja",
+    "text": "Garantimos o mesmo rigor clínico e confidencialidade tanto em regime **presencial em Lisboa** (Campolide) como através de **consultas online**, permitindo o acompanhamento independentemente da sua localização geográfica.",
+    "button_text": "Saber mais sobre consultas online"
+  },
+  "about": {
+    "title": "Sobre Nós",
+    "subtitle": "Propomo-nos a construir um futuro em que a nossa visão possa ser a norma.",
+    "text": "A Mental8Works é uma associação sem fins lucrativos, criada a partir da insatisfação de profissionais que acreditavam ser possível fazer mais e melhor na área da saúde mental.",
+    "image": "/assets/images/about-us.webp"
+  },
   "mission": {
-    "text": "Como associação sem fins lucrativos, o nosso maior objetivo é democratizar o acesso à saúde mental. Acreditamos que o apoio psicológico não deve ser um luxo, mas um direito fundamental, independentemente da situação económica.",
+    "badge": "Nossa Missão Social",
+    "title": "O que Nos Define",
+    "text1": "Como associação sem fins lucrativos, o nosso maior objetivo é democratizar o acesso à saúde mental. Acreditamos que o apoio psicológico não deve ser um luxo, mas um direito fundamental, independentemente da situação económica.",
+    "text2": "A nossa **Tarifa Social** é a materialização desta crença, permitindo que profissionais de excelência acompanhem quem mais precisa, removendo as barreiras financeiras que muitas vezes impedem a cura.",
     "bubbles": [
       "Ética",
       "Transparência",
@@ -31,5 +46,15 @@
       "Competência",
       "Humanismo"
     ]
+  },
+  "training": {
+    "title": "Formação Mental8Works",
+    "text": "Oferecemos um catálogo de formação técnica e comportamental customizado para profissionais de saúde, educação e empresas.",
+    "button_text": "Pedir Formação"
+  },
+  "contact": {
+    "title": "Entre em Contacto",
+    "text": "Como associação sem fins lucrativos, o nosso maior objetivo é democratizar o acesso à saúde mental. Acreditamos que o apoio psicológico não deve ser um luxo, mas um direito fundamental, independentemente da situação económica.",
+    "button_text": "📅 Agende Já a Sua Consulta"
   }
 }

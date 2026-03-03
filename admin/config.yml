@@ -118,18 +118,57 @@ collections:
               - label: "Palavras Animadas"
                 name: "words"
                 widget: "list"
-                field: {label: "Palavra", name: "word", widget: "string"}
+                field: {label: "Palavra", widget: "string"}
               - {label: "Subtitulo", name: "subheading", widget: "text"}
               - {label: "Imagem", name: "image", widget: "image"}
-          - label: "Missao"
+          - {label: "Título Secção Serviços", name: "services_title", widget: "string"}
+          - label: "Serviços"
+            name: "services"
+            widget: "list"
+            fields:
+              - {label: "Nome", name: "name", widget: "string"}
+              - {label: "Descrição", name: "description", widget: "text"}
+          - label: "Suporte Online (Onde quer que esteja)"
+            name: "support"
+            widget: "object"
+            fields:
+              - {label: "Título", name: "title", widget: "string"}
+              - {label: "Texto", name: "text", widget: "markdown"}
+              - {label: "Texto Botão", name: "button_text", widget: "string"}
+          - label: "Sobre Nós (Landing)"
+            name: "about"
+            widget: "object"
+            fields:
+              - {label: "Título", name: "title", widget: "string"}
+              - {label: "Subtítulo", name: "subtitle", widget: "string"}
+              - {label: "Texto", name: "text", widget: "text"}
+              - {label: "Imagem", name: "image", widget: "image"}
+          - label: "Missão Social"
             name: "mission"
             widget: "object"
             fields:
-              - {label: "Texto", name: "text", widget: "text"}
-              - label: "Bolhas"
+              - {label: "Badge", name: "badge", widget: "string"}
+              - {label: "Título", name: "title", widget: "string"}
+              - {label: "Parágrafo 1", name: "text1", widget: "text"}
+              - {label: "Parágrafo 2", name: "text2", widget: "markdown"}
+              - label: "Bolhas de Valores"
                 name: "bubbles"
                 widget: "list"
-                field: {label: "Valore", name: "val", widget: "string"}
+                field: {label: "Valor", widget: "string"}
+          - label: "Formação"
+            name: "training"
+            widget: "object"
+            fields:
+              - {label: "Título", name: "title", widget: "string"}
+              - {label: "Texto", name: "text", widget: "text"}
+              - {label: "Texto Botão", name: "button_text", widget: "string"}
+          - label: "Contactos (Landing)"
+            name: "contact"
+            widget: "object"
+            fields:
+              - {label: "Título", name: "title", widget: "string"}
+              - {label: "Texto", name: "text", widget: "text"}
+              - {label: "Texto Botão", name: "button_text", widget: "string"}
       - name: "about"
         label: "Pagina Sobre Nós"
         file: "data/about.json"
