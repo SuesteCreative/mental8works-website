@@ -2208,11 +2208,12 @@ p {
     font-family: 'Outfit', sans-serif;
     font-size: 0.85rem;
     letter-spacing: 0.05em;
-    color: #ffffff;
+    color: #ffffff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
     text-decoration: none;
     transition: color 0.3s ease;
-    display: inline-flex;
-    align-items: center;
+    display: inline-block;
     vertical-align: middle;
 }
 
