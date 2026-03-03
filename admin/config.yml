@@ -222,6 +222,7 @@ collections:
               - {label: "1ª Consulta", name: "first", widget: "string"}
               - {label: "Seguintes", name: "following", widget: "string"}
               - {label: "Preço Social", name: "social", widget: "string"}
+              - {label: "Link do Formulário", name: "form_link", widget: "string"}
           - label: "Preços Psicologia"
             name: "psychology"
             widget: "object"
@@ -229,6 +230,7 @@ collections:
               - {label: "1ª Consulta", name: "first", widget: "string"}
               - {label: "Seguintes", name: "following", widget: "string"}
               - {label: "Preço Social", name: "social", widget: "string"}
+              - {label: "Link do Formulário", name: "form_link", widget: "string"}
           - label: "Informação Social"
             name: "social_info"
             widget: "object"

@@ -3,12 +3,14 @@
     "psychiatry": {
         "first": "60€",
         "following": "50€",
-        "social": "45€"
+        "social": "45€",
+        "form_link": "https://docs.google.com/forms/d/e/1FAIpQLScmf8ICKVDhN5RiBjPreF12jviu3av3TLlvrorxlu9lP9VSSA/viewform?usp=pp_url"
     },
     "psychology": {
         "first": "55€",
         "following": "45€",
-        "social": "35€"
+        "social": "35€",
+        "form_link": "https://docs.google.com/forms/d/e/1FAIpQLSfwd4SGi8fKlZjJW7xDwzFOYjrITs4AE_vcAxs2_PDKjgff5A/viewform?usp=pp_url"
     },
     "social_info": {
         "title": "Valor Social: na Mental8Works pode encontrar consultas a preço social.",
@@ -19,7 +21,7 @@
         {
             "faq": {
                 "question": "Realizam consultas de psicologia online?",
-                "answer": "Sim! Na Mental8Works garantimos excelentes resultados através de **consultas de psicologia online** ou presenciais (nas nossas instalações em Campolide, Lisboa). Independentemente do formato, será sempre acompanhado por um psicólogo especializado de forma rígida e confidencial."
+                "answer": "Sim! Na Mental8Works garantimos excelentes resultados através de **consultas de psicologia online ou presenciais em Lisboa**. Independentemente do formato, será sempre acompanhado por um psicólogo especializado de forma rígida e confidencial."
             }
         },
         {
@@ -31,7 +33,7 @@
         {
             "faq": {
                 "question": "De que forma as consultas são mais baratas ou acessíveis a quem precisa?",
-                "answer": "Sendo a Mental8Works uma Associação de saúde mental sem fins lucrativos, lutamos por uma rede inclusiva médica. É por isso que aplicamos condições de **Preço Social** (descidas que podem chegar a 10 euros por consulta no ato do pagamento) destinadas a pessoas desempregadas, de baixa médica ou estudantes em dificuldades. Consulte o nosso plano de Valores Sociais."
+                "answer": "Sendo a Mental8Works uma Associação de saúde mental sem fins lucrativos, lutamos por uma rede inclusiva médica. É por isso que aplicamos condições de **Preço Social** destinadas a pessoas desempregadas, de baixa médica ou estudantes em dificuldades. Consulte o nosso plano de Valores Sociais."
             }
         },
         {

@@ -288,7 +288,7 @@ function buildBlogIndex() {
                             <img src="${displayImage}" alt="${post.title}" width="400" height="250" loading="lazy">
                     </div>
                     <div class="blog-content">
-                        <p style="font-size:0.8rem; opacity:0.6; margin-bottom:0.5rem;">${new Date(post.date).toLocaleDateString('pt-PT', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
+                        <p style="display: none;">${new Date(post.date).toLocaleDateString('pt-PT', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
                         <h3>${post.title}</h3>
                         <p>${post.summary || ''}</p>
                         <span style="color: var(--color-primary); font-weight: 600;">Ler mais &rarr;</span>
@@ -863,7 +863,7 @@ function buildAppointmentsPage() {
                     <ul class="pricing-features">
                         <li>Atendimento Online e Presencial</li>
                     </ul>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScmf8ICKVDhN5RiBjPreF12jviu3av3TLlvrorxlu9lP9VSSA/viewform?usp=pp_url"
+                    <a href="${data.psychiatry.form_link || '#'}"
                         target="_blank" rel="noopener noreferrer" class="btn btn-primary"
                         style="width: 100%; border-radius: 50px;">Marcar
                         Consulta</a>
@@ -888,7 +888,7 @@ function buildAppointmentsPage() {
                     <ul class="pricing-features">
                         <li>Atendimento Online e Presencial</li>
                     </ul>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfwd4SGi8fKlZjJW7xDwzFOYjrITs4AE_vcAxs2_PDKjgff5A/viewform?usp=pp_url"
+                    <a href="${data.psychology.form_link || '#'}"
                         target="_blank" rel="noopener noreferrer" class="btn btn-primary"
                         style="width: 100%; border-radius: 50px;">Marcar
                         Consulta</a>
@@ -1186,7 +1186,7 @@ function buildBlogPreview() {
                             <img src="${imgSrc}" alt="${post.title}" width="400" height="250" loading="lazy">
                     </div>
                     <div class="blog-content">
-                        <p style="font-size:0.8rem; opacity:0.6; margin-bottom:0.5rem;">${date}</p>
+                        <p style="display: none;">${date}</p>
                         <h3>${post.title}</h3>
                         <p>${summary}</p>
                         <span style="color: var(--color-primary); font-weight: 600;">Ler mais &rarr;</span>
