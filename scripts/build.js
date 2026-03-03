@@ -62,7 +62,7 @@ function syncFooter() {
                         <li style="margin-bottom: 0.75rem;"><a href="${rootPath}">Início</a></li>
                         <li style="margin-bottom: 0.75rem;"><a href="${rootPath}sobre-nos/">Sobre Nós</a></li>
                         <li style="margin-bottom: 0.75rem;"><a href="${rootPath}equipa/">Equipa</a></li>
-                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}socios/">Sócio</a></li>
+                        <li style="margin-bottom: 0.75rem;"><a href="${rootPath}socios/">Contribuir</a></li>
                     </ul>
                 </div>
 
@@ -170,7 +170,7 @@ function syncNavbar() {
                 <a href="${rootPath}#servicos" class="nav-link">Serviços</a>
                 <a href="${rootPath}sobre-nos/" class="nav-link">Sobre Nós</a>
                 <a href="${rootPath}equipa/" class="nav-link">Equipa</a>
-                <a href="${rootPath}socios/" class="nav-link">Sócio</a>
+                <a href="${rootPath}socios/" class="nav-link">Contribuir</a>
                 <a href="${rootPath}blog/" class="nav-link">Blog</a>
                 <a href="${rootPath}contactos/" class="nav-link">Contactos</a>
                 <a href="${rootPath}agendamentos/" class="btn btn-primary d-md-none"
@@ -787,7 +787,7 @@ function buildSociosPage() {
                     ${markdownToHtml(socios.impact.text2)}
                 </p>
                 <div style="margin-top: 2rem;">
-                    <a href="../contactos/index.html" class="btn btn-primary">Quero Ser Sócio</a>
+                    <a href="../contactos/index.html" class="btn btn-primary">Quero Contribuir</a>
                 </div>
             </div>`;
         html = html.replace(/<!-- CMS_SOCIOS_IMPACT -->[\s\S]*?<!-- END_CMS_SOCIOS_IMPACT -->/, `<!-- CMS_SOCIOS_IMPACT -->${impactHtml}\n            <!-- END_CMS_SOCIOS_IMPACT -->`);
