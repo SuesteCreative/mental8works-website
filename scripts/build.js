@@ -802,7 +802,7 @@ function buildSociosPage() {
                     style="background: var(--color-primary); color: white; margin-bottom: 1rem;">Donativos</span>
                 <h3 style="margin-top: 0.75rem; font-family: var(--font-serif); color: var(--color-text-main);">Apoie a
                     Nossa Missão</h3>
-                <p style="max-width: 600px; margin: 1rem auto; font-size: 1rem;">
+                <p style="text-align: left; max-width: 600px; margin: 1rem 0; font-size: 1rem;">
                     Pode também contribuir directamente para a nossa missão através de transferência bancária.
                 </p>
                 <div
