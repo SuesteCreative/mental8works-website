@@ -1,0 +1,11 @@
+{
+  "specialty": "Psiquiatria",
+  "name": "Pilar Froes",
+  "role": "Médica Psiquiatra",
+  "photo": "/assets/images/pilar.jpg",
+  "bio_items": [
+    "Mestre em Medicina pela Faculdade de Medicina e Ciências Biomedicas da Universidade do Algarve",
+    "Internato de Psiquiatria, Unifade Local de Saúde de Santa Maria",
+    "Internato de Ano Comum, Unidade Local de Saúde do Arco Ribeirinho"
+  ]
+}
