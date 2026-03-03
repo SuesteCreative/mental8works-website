@@ -2142,8 +2142,22 @@ p {
 }
 
 .reveal.active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Ensure content is visible even if JS fails or is slow */
+.no-js .reveal {
     opacity: 1;
     transform: translateY(0);
+}
+
+.section-hero-compact {
+    padding-top: 140px !important;
+    padding-bottom: 4rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    position: relative;
+    overflow: hidden;
 }
 
 /* Global Card Drop Shadows */

@@ -212,6 +212,7 @@ function buildTeamPage() {
     let html = fs.readFileSync(templatePath, 'utf8');
 
     // 1. Toggles for Active vs Maintenance
+    // NOTE: Forcing isActive to true if it exists in settings, but allowing override
     if (isActive) {
         // Show Active, Hide Maintenance
         html = html.replace(/id="team-active-content"(?: style="[^"]*")?/, 'id="team-active-content" style="display: block;"');
@@ -227,7 +228,7 @@ function buildTeamPage() {
 
         const renderGrid = (nodes) => nodes.map((member, idx) => `
                 <!-- ${member.name} (Dynamic) -->
-                <div class="team-card-detailed reveal" style="transition-delay: ${0.05 + (idx * 0.05)}s;">
+                <div class="team-card-detailed" style="transition-delay: ${0.05 + (idx * 0.05)}s;">
                     <div class="team-card-image">
                         <img src="${(() => { const p = member.photo || '/assets/images/fav-icon-color.png'; return p.startsWith('/') ? '..' + p : (p.startsWith('assets') ? '../' + p : p); })()}" alt="${member.name}"
                             width="400" height="400" style="object-fit: cover; width: 100%; height: 100%;">
@@ -256,7 +257,7 @@ function buildTeamPage() {
         html = html.replace(/id="team-maintenance-content"(?: style="[^"]*")?/, 'id="team-maintenance-content" style="display: block;"');
 
         const ucContent = `
-            <div class="under-construction reveal" style="min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; margin: 100px auto 0; text-align: center;">
+            <div class="under-construction" style="min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem 2rem; text-align: center;">
                 <img src="../assets/images/team-construction.png" alt="Equipa em Manutenção" class="uc-visual-img" style="width: 100%; max-width: 500px; border-radius: 20px; margin-bottom: 2.5rem; box-shadow: 0 20px 40px rgba(0,0,0,0.12);">
                 <h2 style="font-family: var(--font-serif); font-size: 2.5rem; color: var(--color-primary); margin-bottom: 1.5rem;">A nossa equipa está a crescer</h2>
                 <p style="text-align: center; margin: 0 auto; max-width: 550px; font-size: 1.25rem; color: var(--color-text-main); line-height: 1.6;">Estamos a atualizar a nossa equipa para lhe prestar um melhor serviço. Por favor, volte mais tarde. Pedimos desculpa pelo incómodo.</p>
