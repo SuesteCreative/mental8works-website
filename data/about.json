@@ -13,5 +13,41 @@
   "social_component": {
     "title": "Componente Social",
     "text": "A nossa componente social é o pilar que sustenta a democratização da saúde mental. Acreditamos na equidade e no apoio comunitário como motores de mudança."
-  }
+  },
+  "orgaos_sociais": [
+    {
+      "title": "Direção",
+      "accent_color": "var(--color-primary)",
+      "members": [
+        {
+          "label": "Presidente",
+          "name": "Maria Silva"
+        },
+        {
+          "label": "Tesoureiro",
+          "name": "Alexandre Horácio"
+        }
+      ]
+    },
+    {
+      "title": "Mesa da Assembleia Geral",
+      "accent_color": "var(--color-secondary)",
+      "members": [
+        {
+          "label": "Presidente",
+          "name": "Elisa Pinto"
+        }
+      ]
+    },
+    {
+      "title": "Conselho Fiscal",
+      "accent_color": "var(--color-text-main)",
+      "members": [
+        {
+          "label": "Presidente",
+          "name": "Pedro Neto Cunha"
+        }
+      ]
+    }
+  ]
 }

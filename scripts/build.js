@@ -589,43 +589,34 @@ function buildAboutUsPage() {
                 html = html.replace(imgRegex, imgHtml);
             }
         }
-    }
 
-    const teamNodes = readCollection('data/equipa');
+        // Orgaos Sociais (render from about.json)
+        if (about.orgaos_sociais) {
+            const orgaosHtml = about.orgaos_sociais.map(org => {
+                const membersHtml = org.members.map((m, idx) => `
+                        <p style="${idx < org.members.length - 1 ? 'margin-bottom: 1rem;' : ''}">
+                            <span style="display: block; font-size: 0.8rem; color: var(--color-text-light); text-transform: uppercase;">${m.label}</span>
+                            <strong style="font-size: 1.1rem;">${m.name}</strong>
+                        </p>
+                        ${idx < org.members.length - 1 ? '<hr style="margin: 1rem auto; width: 30px; opacity: 0.1;">' : ''}
+                `).join('');
 
-    // Find key roles with exclusion to distinguish between different presidents
-    const findMember = (roleKeywords, excludeKeywords = []) => {
-        return teamNodes.find(m => {
-            const role = (m.role || "").toLowerCase();
-            const matchesAll = roleKeywords.every(k => role.includes(k.toLowerCase()));
-            const matchesExclude = excludeKeywords.length === 0 || excludeKeywords.some(k => role.includes(k.toLowerCase()));
-            return matchesAll && (excludeKeywords.length === 0 ? true : !excludeKeywords.some(k => role.includes(k.toLowerCase())));
-        });
-    };
+                return `
+                <div class="card reveal text-center" style="padding: 2.5rem; border-top: 4px solid ${org.accent_color || 'var(--color-primary)'};">
+                    <h4 style="color: var(--color-primary); margin-bottom: 1.5rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">
+                        ${org.title}
+                    </h4>
+                    <div style="margin-top: 1rem;">
+                        ${membersHtml}
+                    </div>
+                </div>`;
+            }).join('\n');
 
-    const presidente = findMember(['presidente'], ['assembleia', 'conselho']) || { name: 'Maria Silva' };
-    const tesoureiro = findMember(['tesoureiro']) || { name: 'Alexandre Horácio' };
-    const assembleia = findMember(['presidente', 'assembleia']) || { name: 'Elisa Pinto' };
-    const conselho = findMember(['presid', 'conselho']) || { name: 'Pedro Neto Cunha' };
-
-    // Update names in "Órgãos Sociais" using the same labels as the UI
-    const updateRole = (roleLabel, name) => {
-        const regex = new RegExp(`(<span[^>]*>${roleLabel}<\\/span><strong[^>]*>).*?(<\\/strong>)`, 'g');
-        html = html.replace(regex, `$1${name}$2`);
-    };
-
-    updateRole('Presidente', presidente.name); // Direção Presidente
-    updateRole('Tesoureiro', tesoureiro.name);
-    // Assembleia and Conselho Fiscal also use "Presidente" label in small caps span
-    // To distinguish, we look for them specifically in their cards
-    const assembleiaRegex = /Assembleia Geral<\/h4>[\s\S]*?<\/div>\s*<\/div>/;
-    if (assembleiaRegex.test(html)) {
-        html = html.replace(assembleiaRegex, `Assembleia Geral</h4>\n                        <div style="margin-top: 1rem;">\n                            <p><span style="display: block; font-size: 0.8rem; color: var(--color-text-light); text-transform: uppercase;">Presidente</span><strong style="font-size: 1.1rem;">${assembleia.name}</strong></p>\n                        </div>\n                    </div>`);
-    }
-
-    const conselhoRegex = /Conselho Fiscal<\/h4>[\s\S]*?<\/div>\s*<\/div>/;
-    if (conselhoRegex.test(html)) {
-        html = html.replace(conselhoRegex, `Conselho Fiscal</h4>\n                        <div style="margin-top: 1rem;">\n                            <p><span style="display: block; font-size: 0.8rem; color: var(--color-text-light); text-transform: uppercase;">Presidente</span><strong style="font-size: 1.1rem;">${conselho.name}</strong></p>\n                        </div>\n                    </div>`);
+            const orgaosRegex = /<!-- CMS_ABOUT_ORGAOS -->[\s\S]*?<!-- END_CMS_ABOUT_ORGAOS -->/;
+            if (orgaosRegex.test(html)) {
+                html = html.replace(orgaosRegex, `<!-- CMS_ABOUT_ORGAOS -->${orgaosHtml}\n                <!-- END_CMS_ABOUT_ORGAOS -->`);
+            }
+        }
     }
 
     fs.writeFileSync(templatePath, html);
