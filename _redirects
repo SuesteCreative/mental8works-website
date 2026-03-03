@@ -1,17 +1,3 @@
-# Protocol and Domain Standardization
-http://mental8works.pt/* https://mental8works.pt/:splat 301
-http://www.mental8works.pt/* https://mental8works.pt/:splat 301
-https://www.mental8works.pt/* https://mental8works.pt/:splat 301
-
-# Clean index.html redirects
-/index.html https://mental8works.pt/ 301
-/sobre-nos/index.html https://mental8works.pt/sobre-nos/ 301
-/equipa/index.html https://mental8works.pt/equipa/ 301
-/socios/index.html https://mental8works.pt/socios/ 301
-/blog/index.html https://mental8works.pt/blog/ 301
-/contactos/index.html https://mental8works.pt/contactos/ 301
-/agendamentos/index.html https://mental8works.pt/agendamentos/ 301
-
 # Legacy WordPress Redirects
 /quem-somos/a-equipa* /equipa/ 301
 /quem-somos/os-nossos-orgaos* /sobre-nos/ 301
@@ -38,7 +24,7 @@ https://www.mental8works.pt/* https://mental8works.pt/:splat 301
 /mudancas-no-regresso-a-rotina* /blog/posts/mudancas-no-regresso-a-rotina.html 301
 /desmistificar-o-suicidio* /blog/posts/desmistificar-o-suicidio.html 301
 
-
+# English/Generic terms
 /category* /blog/ 301
 /team* /equipa/ 301
 /about-us* /sobre-nos/ 301
