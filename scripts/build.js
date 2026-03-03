@@ -347,6 +347,8 @@ function buildIndividualPosts(posts) {
         html = html.replace(/{{TITLE}}/g, post.title || "Sem Título");
         html = html.replace(/{{DATE}}/g, dateFormatted);
         html = html.replace(/{{SUMMARY}}/g, post.summary || "");
+        html = html.replace(/{{CANONICAL}}/g, `https://mental8works.pt/blog/posts/${post._filename}.html`);
+        html = html.replace(/{{IMAGE}}/g, post.image || "/assets/images/hero-banner.webp");
         html = html.replace(/{{AUTHOR_NAME}}/g, authorName);
         html = html.replace(/{{AUTHOR_ROLE}}/g, authorRole);
 
@@ -994,6 +996,12 @@ function syncSettings() {
     htmlFiles.forEach(filePath => {
         let content = fs.readFileSync(filePath, 'utf8');
         let changed = false;
+
+        // Normalize lang attribute
+        if (content.includes('lang="pt"')) {
+            content = content.replace('lang="pt"', 'lang="pt-PT"');
+            changed = true;
+        }
 
         // Sync Email
         if (settings.email) {
