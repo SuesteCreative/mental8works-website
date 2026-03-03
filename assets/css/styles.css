@@ -2206,27 +2206,14 @@ p {
 /* Sueste Agency Brand Link */
 .sueste-link {
     font-family: 'Outfit', sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     letter-spacing: 0.05em;
-    color: #888;
+    color: #ffffff;
     text-decoration: none;
     transition: color 0.3s ease;
     display: inline-flex;
     align-items: center;
     vertical-align: middle;
-}
-
-.sueste-link:hover {
-    color: var(--color-primary);
-}
-
-.sueste-link {
-    font-family: inherit;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    color: var(--color-text-main);
-    text-decoration: none;
-    transition: color 0.3s ease;
 }
 
 .sueste-link:hover {
@@ -2738,7 +2725,8 @@ p {
 }
 
 /* Safety net for Team Cards visibility */
-.team-card-detailed, .team-card {
+.team-card-detailed,
+.team-card {
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
