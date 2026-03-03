@@ -118,7 +118,7 @@ collections:
               - label: "Palavras Animadas"
                 name: "words"
                 widget: "list"
-                field: {label: "Palavra", widget: "string"}
+                field: {label: "Palavra", name: "word", widget: "string"}
               - {label: "Subtitulo", name: "subheading", widget: "text"}
               - {label: "Imagem", name: "image", widget: "image"}
           - {label: "Título Secção Serviços", name: "services_title", widget: "string"}
@@ -154,7 +154,7 @@ collections:
               - label: "Bolhas de Valores"
                 name: "bubbles"
                 widget: "list"
-                field: {label: "Valor", widget: "string"}
+                field: {label: "Valor", name: "value", widget: "string"}
           - label: "Formação"
             name: "training"
             widget: "object"
