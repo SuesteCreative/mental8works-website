@@ -199,46 +199,29 @@ function buildTeamPage() {
     const settingsPath = path.join(__dirname, '..', 'data', 'team_settings.json');
     let isActive = true;
     if (fs.existsSync(settingsPath)) {
-        const settings = JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
-        isActive = settings.active !== false;
+        try {
+            const settings = JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
+            isActive = settings.active !== false;
+        } catch (e) {
+            console.error('Error reading team settings:', e);
+        }
     }
 
     const templatePath = path.join(__dirname, '..', 'equipa', 'index.html');
     if (!fs.existsSync(templatePath)) return;
     let html = fs.readFileSync(templatePath, 'utf8');
 
-    const headerRegex = /<!-- CMS_TEAM_HEADER -->[\s\S]*?<!-- END_CMS_TEAM_HEADER -->/;
+    // 1. Toggles for Active vs Maintenance
     if (isActive) {
-        // Restore header if active
-        const originalHeader = `<!-- CMS_TEAM_HEADER -->
-        <!-- Banner -->
-        <section class="banner-placeholder reveal"
-            style="height: 260px; background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light)); display: flex; align-items: center; justify-content: center; margin-top: 80px;">
-            <div class="container text-center">
-                <h1 class="reveal"
-                    style="color: var(--color-primary); font-family: var(--font-serif); font-size: 3rem;">A
-                    Nossa Equipa</h1>
-                <p class="reveal"
-                    style="font-size: 1.15rem; opacity: 0.8; max-width: 600px; margin: 0.75rem auto 0; transition-delay: 0.15s;">
-                    Conheça os especialistas
-                    dedicados ao seu bem-estar mental.</p>
-            </div>
-        </section>
-        <!-- END_CMS_TEAM_HEADER -->`;
-        if (headerRegex.test(html)) {
-            html = html.replace(headerRegex, originalHeader);
-        }
-    } else {
-        // Hide header if under construction
-        if (headerRegex.test(html)) {
-            html = html.replace(headerRegex, '<!-- CMS_TEAM_HEADER -->\n        <!-- Titulo oculto em manutencao -->\n        <!-- END_CMS_TEAM_HEADER -->');
-        }
-    }
+        // Show Active, Hide Maintenance
+        html = html.replace(/id="team-active-content"(?: style="[^"]*")?/, 'id="team-active-content" style="display: block;"');
+        html = html.replace(/id="team-maintenance-content"(?: style="[^"]*")?/, 'id="team-maintenance-content" style="display: none;"');
 
-    const containerPsychiatryRegex = /<!-- CMS_TEAM_PSYCHIATRY -->[\s\S]*?<!-- END_CMS_TEAM_PSYCHIATRY -->/;
-    const containerPsychologyRegex = /<!-- CMS_TEAM_PSYCHOLOGY -->[\s\S]*?<!-- END_CMS_TEAM_PSYCHOLOGY -->/;
+        // Clear maintenance section content
+        const maintenanceContentRegex = /<!-- CMS_TEAM_MAINTENANCE_CONTENT -->[\s\S]*?<!-- END_CMS_TEAM_MAINTENANCE_CONTENT -->/;
+        html = html.replace(maintenanceContentRegex, `<!-- CMS_TEAM_MAINTENANCE_CONTENT -->\n            <!-- END_CMS_TEAM_MAINTENANCE_CONTENT -->`);
 
-    if (isActive) {
+        // Render Grids
         const psychiatryNodes = teamNodes.filter(m => m.specialty === 'Psiquiatria' || (m.role && (m.role.toLowerCase().includes('psiquiatria') || m.role.toLowerCase().includes('psiquiatra'))));
         const psychologyNodes = teamNodes.filter(m => !psychiatryNodes.includes(m));
 
@@ -258,29 +241,29 @@ function buildTeamPage() {
                     </div>
                 </div>`).join('\n');
 
+        const containerPsychiatryRegex = /<!-- CMS_TEAM_PSYCHIATRY -->[\s\S]*?<!-- END_CMS_TEAM_PSYCHIATRY -->/;
+        const containerPsychologyRegex = /<!-- CMS_TEAM_PSYCHOLOGY -->[\s\S]*?<!-- END_CMS_TEAM_PSYCHOLOGY -->/;
+
         if (containerPsychiatryRegex.test(html)) {
-            html = html.replace(containerPsychiatryRegex, `<!-- CMS_TEAM_PSYCHIATRY -->\n${renderGrid(psychiatryNodes)}\n                    <!-- END_CMS_TEAM_PSYCHIATRY -->`);
+            html = html.replace(containerPsychiatryRegex, `<!-- CMS_TEAM_PSYCHIATRY -->\n${renderGrid(psychiatryNodes)}\n                            <!-- END_CMS_TEAM_PSYCHIATRY -->`);
         }
         if (containerPsychologyRegex.test(html)) {
-            html = html.replace(containerPsychologyRegex, `<!-- CMS_TEAM_PSYCHOLOGY -->\n${renderGrid(psychologyNodes)}\n                    <!-- END_CMS_TEAM_PSYCHOLOGY -->`);
+            html = html.replace(containerPsychologyRegex, `<!-- CMS_TEAM_PSYCHOLOGY -->\n${renderGrid(psychologyNodes)}\n                            <!-- END_CMS_TEAM_PSYCHOLOGY -->`);
         }
     } else {
+        // Hide Active, Show Maintenance
+        html = html.replace(/id="team-active-content"(?: style="[^"]*")?/, 'id="team-active-content" style="display: none;"');
+        html = html.replace(/id="team-maintenance-content"(?: style="[^"]*")?/, 'id="team-maintenance-content" style="display: block;"');
+
         const ucContent = `
-                <!-- Under Construction Section -->
-                <div class="under-construction reveal" style="grid-column: 1 / -1; width: 100%; min-height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0 auto;">
-                    <div class="brush-animation-box">
-                        <div class="paint-stroke"></div>
-                        <div class="brush-tool"></div>
-                    </div>
-                    <div class="uc-content" style="text-align: center; width: 100%;">
-                        <img src="../assets/images/team-construction.png" alt="Equipa em Manutenção" class="uc-visual-img" style="width: 100%; max-width: 500px; border-radius: 20px; margin: 0 auto 2.5rem; box-shadow: 0 20px 40px rgba(0,0,0,0.12);">
-                        <p style="text-align: center; margin: 0 auto; max-width: 550px; font-size: 1.35rem; color: var(--color-text-main); line-height: 1.6;">Estamos a atualizar a nossa equipa para lhe prestar um melhor serviço. Por favor, volte mais tarde. Pedimos desculpa pelo incómodo.</p>
-                    </div>
-                </div>`;
-        if (containerPsychiatryRegex.test(html)) {
-            html = html.replace(containerPsychiatryRegex, `<!-- CMS_TEAM_PSYCHIATRY -->\n${ucContent}\n                    <!-- END_CMS_TEAM_PSYCHIATRY -->`);
-        }
-        // Psychology remains empty or also gets UC? Usually one UC is enough. Let's hide sections if inactive.
+            <div class="under-construction reveal" style="min-height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 4rem 2rem; margin: 0 auto; text-align: center;">
+                <img src="../assets/images/team-construction.png" alt="Equipa em Manutenção" class="uc-visual-img" style="width: 100%; max-width: 500px; border-radius: 20px; margin-bottom: 2.5rem; box-shadow: 0 20px 40px rgba(0,0,0,0.12);">
+                <h2 style="font-family: var(--font-serif); font-size: 2.5rem; color: var(--color-primary); margin-bottom: 1.5rem;">A nossa equipa está a crescer</h2>
+                <p style="text-align: center; margin: 0 auto; max-width: 550px; font-size: 1.25rem; color: var(--color-text-main); line-height: 1.6;">Estamos a atualizar a nossa equipa para lhe prestar um melhor serviço. Por favor, volte mais tarde. Pedimos desculpa pelo incómodo.</p>
+            </div>`;
+
+        const maintenanceContentRegex = /<!-- CMS_TEAM_MAINTENANCE_CONTENT -->[\s\S]*?<!-- END_CMS_TEAM_MAINTENANCE_CONTENT -->/;
+        html = html.replace(maintenanceContentRegex, `<!-- CMS_TEAM_MAINTENANCE_CONTENT -->\n${ucContent}\n            <!-- END_CMS_TEAM_MAINTENANCE_CONTENT -->`);
     }
 
     fs.writeFileSync(templatePath, html);

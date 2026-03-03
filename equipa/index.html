@@ -22,7 +22,7 @@
     <meta property="og:locale" content="pt_PT">
     <meta property="og:site_name" content="Mental8Works">
 
-    <!-- Twitter Card -->
+    <!-- twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Equipa | Mental8Works">
     <meta name="twitter:description"
@@ -41,11 +41,10 @@
         rel="stylesheet" media="print" onload="this.media='all'">
 
     <link rel="stylesheet" href="../assets/css/styles.css?v=2.5">
-
     <link rel="stylesheet" media="print" onload="this.media='all'"
         href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
 
-    <!-- JSON-LD: LocalBusiness + MedicalOrganization -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -57,33 +56,13 @@
       "image": "https://mental8works.pt/assets/images/hero-banner.webp",
       "telephone": "+351 210 000 000",
       "email": "mental8works@gmail.com",
-      "foundingDate": "2014",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Rua de Campolide n295 6ºdir",
         "addressLocality": "Lisboa",
         "postalCode": "1070-032",
         "addressCountry": "PT"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "38.7223",
-        "longitude": "-9.1393"
-      },
-      "sameAs": [
-        "https://www.facebook.com/mental8works/",
-        "https://www.instagram.com/mental8works/"
-      ],
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-          "opens": "09:00",
-          "closes": "20:00"
-        }
-      ],
-      "medicalSpecialty": ["Psychiatry", "Psychology"],
-      "priceRange": "€€"
+      }
     }
     </script>
 </head>
@@ -101,9 +80,8 @@
 
     <div class="menu-overlay"></div>
 
-
     <!-- Header -->
-                            <header class="header">
+        <header class="header">
         <div class="container nav-container">
             <a href="../" class="nav-logo-link">
                 <img src="../assets/images/logo-mental8works-color.webp" alt="Mental8Works - Saúde Mental em Lisboa" class="nav-logo-img">
@@ -136,23 +114,27 @@
     </header>
 
     <main style="flex: 1;">
-        <section class="section-hero-compact reveal">
-            <div class="container text-center">
-                <h1>A Nossa Equipa</h1>
-                <p style="max-width: 700px; margin: 0 auto; opacity: 0.85;">Uma equipa multidisciplinar focada no seu
-                    bem-estar, com profissionais experientes e dedicados.</p>
-            </div>
-        </section>
+        <!-- CMS_TEAM_ACTIVE_SECTION -->
+        <div id="team-active-content" style="display: block;">
+            <!-- CMS_TEAM_HEADER -->
+            <section class="section-hero-compact reveal">
+                <div class="container text-center">
+                    <h1>A Nossa Equipa</h1>
+                    <p style="max-width: 700px; margin: 0 auto; opacity: 0.85;">Uma equipa multidisciplinar focada no
+                        seu bem-estar, com profissionais experientes e dedicados.</p>
+                </div>
+            </section>
+            <!-- END_CMS_TEAM_HEADER -->
 
-
-        <section class="section" style="padding-top: 2.5rem;">
-            <div class="container">
-                <div style="margin-bottom: 4rem;">
-                    <h2 class="section-title reveal"
-                        style="margin-bottom: 2rem; border-bottom: 2px solid var(--color-primary); display: inline-block;">
-                        Psiquiatria</h2>
-                    <div class="grid-cards" id="psychiatry-grid">
-                        <!-- CMS_TEAM_PSYCHIATRY -->
+            <section class="section" style="padding-top: 2.5rem;">
+                <div class="container">
+                    <!-- Psychiatry Section -->
+                    <div style="margin-bottom: 4rem;">
+                        <h2 class="section-title reveal"
+                            style="margin-bottom: 2rem; border-bottom: 2px solid var(--color-primary); display: inline-block;">
+                            Psiquiatria</h2>
+                        <div class="grid-cards" id="psychiatry-grid">
+                            <!-- CMS_TEAM_PSYCHIATRY -->
 
                 <!-- João Revez Lopes (Dynamic) -->
                 <div class="team-card-detailed reveal" style="transition-delay: 0.05s;">
@@ -171,16 +153,17 @@
                         </ul>
                     </div>
                 </div>
-                    <!-- END_CMS_TEAM_PSYCHIATRY -->
+                            <!-- END_CMS_TEAM_PSYCHIATRY -->
+                        </div>
                     </div>
-                </div>
 
-                <div>
-                    <h2 class="section-title reveal"
-                        style="margin-bottom: 2rem; border-bottom: 2px solid var(--color-primary); display: inline-block;">
-                        Psicologia</h2>
-                    <div class="grid-cards" id="psychology-grid">
-                        <!-- CMS_TEAM_PSYCHOLOGY -->
+                    <!-- Psychology Section -->
+                    <div>
+                        <h2 class="section-title reveal"
+                            style="margin-bottom: 2rem; border-bottom: 2px solid var(--color-primary); display: inline-block;">
+                            Psicologia</h2>
+                        <div class="grid-cards" id="psychology-grid">
+                            <!-- CMS_TEAM_PSYCHOLOGY -->
 
                 <!-- Alexandre Horácio (Dynamic) -->
                 <div class="team-card-detailed reveal" style="transition-delay: 0.05s;">
@@ -250,15 +233,25 @@
                         </ul>
                     </div>
                 </div>
-                    <!-- END_CMS_TEAM_PSYCHOLOGY -->
+                            <!-- END_CMS_TEAM_PSYCHOLOGY -->
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
+        <!-- END_CMS_TEAM_ACTIVE_SECTION -->
+
+        <!-- CMS_TEAM_MAINTENANCE_SECTION -->
+        <!-- This section will only contain content when maintenance mode is ON -->
+        <div id="team-maintenance-content" style="display: none;">
+            <!-- CMS_TEAM_MAINTENANCE_CONTENT -->
+            <!-- END_CMS_TEAM_MAINTENANCE_CONTENT -->
+        </div>
+        <!-- END_CMS_TEAM_MAINTENANCE_SECTION -->
     </main>
 
     <!-- Footer -->
-                            <footer class="footer reveal">
+        <footer class="footer reveal">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
@@ -302,7 +295,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 4px;">
                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
                             </svg>
-                            <span><strong>Sede:</strong> Rua de Campolide n295 6ºdir<br><strong>Consultório:</strong> Miguel Bombarda n123 2o piso</span>
+                            <span><strong>Consultório:</strong> Av. Miguel Bombarda n123 2o piso</span>
                         </li>
                     </ul>
                     <div class="footer-social-icons" style="display: flex; gap: 1rem;">
@@ -329,7 +322,6 @@
             </div>
         </div>
     </footer>
-
 
     <script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js" defer></script>
     <script src="../assets/js/script.js?v=2.9" defer></script>
