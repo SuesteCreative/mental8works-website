@@ -223,8 +223,14 @@ function buildTeamPage() {
         html = html.replace(maintenanceContentRegex, `<!-- CMS_TEAM_MAINTENANCE_CONTENT -->\n            <!-- END_CMS_TEAM_MAINTENANCE_CONTENT -->`);
 
         // Render Grids
-        const psychiatryNodes = teamNodes.filter(m => m.specialty === 'Psiquiatria' || (m.role && (m.role.toLowerCase().includes('psiquiatria') || m.role.toLowerCase().includes('psiquiatra'))));
-        const psychologyNodes = teamNodes.filter(m => !psychiatryNodes.includes(m));
+        // Render Grids (Sorted Alphabetically)
+        const psychiatryNodes = teamNodes
+            .filter(m => m.specialty === 'Psiquiatria' || (m.role && (m.role.toLowerCase().includes('psiquiatria') || m.role.toLowerCase().includes('psiquiatra'))))
+            .sort((a, b) => a.name.localeCompare(b.name, 'pt-PT'));
+
+        const psychologyNodes = teamNodes
+            .filter(m => !psychiatryNodes.includes(m))
+            .sort((a, b) => a.name.localeCompare(b.name, 'pt-PT'));
 
         const renderGrid = (nodes) => nodes.map((member, idx) => `
                 <!-- ${member.name} (Dynamic) -->

@@ -84,9 +84,6 @@ ul {
     padding: 4rem 0;
     position: relative;
     text-align: center;
-    /* Performance: Rendering optimization for mobile */
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 1000px;
 }
 
 @media (min-width: 900px) {
