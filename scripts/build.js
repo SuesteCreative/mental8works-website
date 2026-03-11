@@ -1135,6 +1135,50 @@ function syncSettings() {
     console.log('✅ Global settings synchronized.');
 }
 
+function syncGoogleAnalytics() {
+    const settingsPath = path.join(__dirname, '..', 'data', 'settings.json');
+    if (!fs.existsSync(settingsPath)) return;
+    const settings = JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
+    
+    if (!settings.google_analytics_id) return;
+
+    const gaId = settings.google_analytics_id;
+    const gaSnippet = `<!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=${gaId}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '${gaId}');
+    </script>
+    <!-- End Google tag (gtag.js) -->`;
+
+    const htmlFiles = getAllHtmlFiles(path.join(__dirname, '..'));
+    // Include template.html explicitly
+    const templatePath = path.join(__dirname, '..', 'blog', 'posts', 'template.html');
+    if (fs.existsSync(templatePath)) htmlFiles.push(templatePath);
+
+    htmlFiles.forEach(filePath => {
+        if (filePath.includes('node_modules') || filePath.includes('.git')) return;
+
+        let content = fs.readFileSync(filePath, 'utf8');
+        
+        // Remove existing snippets if any
+        const existingGaRegex = /<!-- Google tag \(gtag\.js\) -->[\s\S]*?<!-- End Google tag \(gtag\.js\) -->/;
+        if (existingGaRegex.test(content)) {
+            content = content.replace(existingGaRegex, '');
+        }
+
+        // Inject before </head>
+        if (content.includes('</head>')) {
+            content = content.replace('</head>', `${gaSnippet}\n</head>`);
+            fs.writeFileSync(filePath, content);
+        }
+    });
+    console.log(`✅ Google Analytics (${gaId}) synchronized across all pages.`);
+}
+
 function updateSitemap() {
     const sitemapPath = path.join(__dirname, '..', 'sitemap.xml');
     if (!fs.existsSync(sitemapPath)) return;
@@ -1223,6 +1267,7 @@ try {
     syncSettings();
     syncFooter();
     syncNavbar();
+    syncGoogleAnalytics();
     updateSitemap();
 } catch (err) {
     console.error('❌ Build script error:', err);
