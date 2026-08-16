@@ -2227,33 +2227,60 @@ p {
     opacity: 1;
 }
 
-/* Wave animation — animates the SVG path d attribute for a real wave morph */
+/* Wave animation — the path is drawn 1.5 wavelengths wider than the viewBox
+   (from x=-30 to x=60) and slides right by exactly one wavelength (30 units)
+   per loop, so the crests travel horizontally and the loop seam is invisible.
+   A slower, non-harmonic amplitude "breathe" on the svg keeps the motion
+   organic instead of metronomic. */
 .sueste-link .wave-brand svg {
-    overflow: visible;
+    overflow: hidden;
+    animation: wave-breathe 3.7s ease-in-out infinite;
+    transform-origin: center;
 }
 
 .sueste-link .wave-brand path {
     stroke: currentColor;
     fill: none;
     stroke-width: 0.8;
-    animation: wave-wobble 2s ease-in-out infinite;
-    transform-origin: center;
+    animation: wave-travel 2.4s linear infinite;
 }
 
 .sueste-link:hover .wave-brand path {
-    animation-duration: 1s;
+    animation-duration: 1.1s;
     color: var(--color-primary);
 }
 
-@keyframes wave-wobble {
+.sueste-link:hover .wave-brand svg {
+    animation-duration: 2s;
+}
+
+@keyframes wave-travel {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(30px);
+    }
+}
+
+@keyframes wave-breathe {
 
     0%,
     100% {
-        transform: scaleY(1.4) translateY(-1px);
+        transform: scaleY(1);
     }
 
     50% {
-        transform: scaleY(0.4) translateY(1px);
+        transform: scaleY(0.7);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .sueste-link .wave-brand svg,
+    .sueste-link .wave-brand path {
+        animation: none;
     }
 }
 
