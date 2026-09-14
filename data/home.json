@@ -10,8 +10,12 @@
   "services_title": "Os Nossos Serviços",
   "services": [
     {
-      "name": "Psicologia",
-      "description": "Apoio psicológico através de consultas de Psicologia Clínica para crianças, adolescentes e adultos."
+      "name": "Psicologia do Adulto",
+      "description": "Apoio psicológico através de consultas de Psicologia Clínica para adultos."
+    },
+    {
+      "name": "Psicologia Infantojuvenil",
+      "description": "Apoio psicológico através de consultas de Psicologia Clínica para crianças e adolescentes."
     },
     {
       "name": "Psiquiatria",
